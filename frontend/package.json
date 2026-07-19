@@ -1,0 +1,44 @@
+{
+  "name": "frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "cross-env NEXT_TELEMETRY_DISABLED=1 next dev --webpack --hostname 127.0.0.1",
+    "dev:turbo": "cross-env NEXT_TELEMETRY_DISABLED=1 next dev --hostname 127.0.0.1",
+    "build": "cross-env NEXT_TELEMETRY_DISABLED=1 next build",
+    "build:export": "cross-env NEXT_TELEMETRY_DISABLED=1 BUILD_MODE=export next build",
+    "start": "cross-env NEXT_TELEMETRY_DISABLED=1 next start --hostname 127.0.0.1",
+    "lint": "eslint",
+    "render:method-guide-preview": "node scripts/render-method-guide-preview.cjs",
+    "verify:method-guide": "node scripts/verify-method-guide.cjs"
+  },
+  "dependencies": {
+    "@monaco-editor/react": "^4.7.0",
+    "clsx": "^2.1.1",
+    "echarts": "^6.1.0",
+    "echarts-for-react": "^3.0.6",
+    "framer-motion": "^12.38.0",
+    "lucide-react": "^1.8.0",
+    "next": "16.2.10",
+    "pdfjs-dist": "^5.7.284",
+    "react": "19.2.4",
+    "react-dom": "19.2.4"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "cross-env": "^10.1.0",
+    "eslint": "^9",
+    "eslint-config-next": "16.2.10",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  },
+  "overrides": {
+    "dompurify": "3.4.12",
+    "next": {
+      "postcss": "8.5.10"
+    }
+  }
+}

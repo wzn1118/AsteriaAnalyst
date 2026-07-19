@@ -1,0 +1,608 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>方法编辑器新手教程 · 静态视觉预览</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #030605;
+        --panel: rgba(255, 255, 255, 0.065);
+        --line: rgba(255, 255, 255, 0.12);
+        --text: #f6f0e6;
+        --muted: #a9b6ba;
+        --cool: #74d0d9;
+        --warm: #f7c873;
+        --sage: #9ec69f;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        color: var(--text);
+        font-family: "Aptos Display", "Microsoft YaHei", "PingFang SC", sans-serif;
+        background:
+          radial-gradient(circle at 16% 8%, rgba(116, 208, 217, 0.24), transparent 30%),
+          radial-gradient(circle at 86% 12%, rgba(247, 200, 115, 0.18), transparent 32%),
+          radial-gradient(circle at 50% 100%, rgba(158, 198, 159, 0.16), transparent 38%),
+          linear-gradient(135deg, #030605 0%, #081314 44%, #0d0b07 100%);
+        overflow-x: hidden;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+        background-size: 96px 96px;
+        mask-image: radial-gradient(circle at 48% 18%, black 0%, transparent 72%);
+        opacity: 0.3;
+      }
+
+      main {
+        position: relative;
+        width: min(1280px, calc(100vw - 32px));
+        margin: 0 auto;
+        padding: 36px 0 52px;
+      }
+
+      .glass {
+        position: relative;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 34px;
+        background: rgba(0, 0, 0, 0.24);
+        box-shadow: 0 32px 120px rgba(0, 0, 0, 0.42), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(22px);
+      }
+
+      .hero {
+        display: grid;
+        gap: 28px;
+        grid-template-columns: minmax(0, 1.1fr) minmax(340px, 0.9fr);
+        padding: 30px;
+      }
+
+      .badge, .metric, .route-node, .sample-row, .step, .outcome-card {
+        border: 1px solid var(--line);
+        background: var(--panel);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07);
+      }
+
+      .badge {
+        display: inline-flex;
+        border-radius: 999px;
+        padding: 8px 12px;
+        color: #c8fbff;
+        font-size: 11px;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        margin: 24px 0 0;
+        max-width: 860px;
+        font-size: clamp(48px, 7vw, 94px);
+        line-height: 0.92;
+        letter-spacing: -0.08em;
+      }
+
+      .lead {
+        max-width: 760px;
+        color: var(--muted);
+        font-size: 18px;
+        line-height: 1.9;
+      }
+
+      .constellation {
+        min-height: 430px;
+        padding: 24px;
+      }
+
+      .orbit {
+        position: relative;
+        height: 270px;
+        margin-top: 22px;
+      }
+
+      .orbit::before, .orbit::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        border-radius: 999px;
+        transform: translate(-50%, -50%);
+      }
+
+      .orbit::before {
+        width: 242px;
+        height: 242px;
+        border: 1px solid rgba(116, 208, 217, 0.26);
+        box-shadow: 0 0 46px rgba(116, 208, 217, 0.12);
+      }
+
+      .orbit::after {
+        width: 148px;
+        height: 148px;
+        border: 1px dashed rgba(247, 200, 115, 0.28);
+      }
+
+      .core {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        display: grid;
+        width: 128px;
+        height: 128px;
+        place-items: center;
+        border-radius: 999px;
+        border: 1px solid rgba(116, 208, 217, 0.5);
+        background: linear-gradient(135deg, rgba(116, 208, 217, 0.22), rgba(247, 200, 115, 0.16));
+        transform: translate(-50%, -50%);
+        text-align: center;
+      }
+
+      .star {
+        position: absolute;
+        width: 106px;
+        border-radius: 20px;
+        padding: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(7, 17, 19, 0.86);
+      }
+
+      .star:nth-child(2) { left: 50%; top: 0; transform: translateX(-50%); }
+      .star:nth-child(3) { right: 0; top: 50%; transform: translateY(-50%); }
+      .star:nth-child(4) { left: 50%; bottom: 0; transform: translateX(-50%); }
+      .star:nth-child(5) { left: 0; top: 50%; transform: translateY(-50%); }
+
+      .metric-grid, .launch-route, .outcomes {
+        display: grid;
+        gap: 14px;
+      }
+
+      .metric-grid {
+        grid-template-columns: repeat(3, 1fr);
+        margin-top: 18px;
+      }
+
+      .metric {
+        border-radius: 18px;
+        padding: 14px;
+      }
+
+      .metric strong {
+        display: block;
+        margin-top: 4px;
+        font-size: 30px;
+      }
+
+      .launch {
+        margin-top: 20px;
+        padding: 22px;
+      }
+
+      .launch-route {
+        grid-template-columns: repeat(4, 1fr);
+        margin-top: 18px;
+      }
+
+      .route-node, .outcome-card {
+        border-radius: 24px;
+        padding: 16px;
+      }
+
+      .route-node:nth-child(1), .mission-card.cool {
+        border-color: rgba(116, 208, 217, 0.3);
+      }
+
+      .route-node:nth-child(2), .mission-card.warm {
+        border-color: rgba(247, 200, 115, 0.28);
+      }
+
+      .mission-card {
+        position: relative;
+        display: grid;
+        gap: 20px;
+        grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
+        margin-top: 20px;
+        padding: 22px;
+        border: 1px solid var(--line);
+        border-radius: 34px;
+        background: rgba(0, 0, 0, 0.22);
+        box-shadow: 0 24px 90px rgba(0, 0, 0, 0.32);
+      }
+
+      .mission-card h2 {
+        margin: 10px 0 0;
+        font-size: clamp(34px, 4vw, 58px);
+        line-height: 1;
+        letter-spacing: -0.06em;
+      }
+
+      .eyebrow {
+        margin: 0;
+        color: var(--muted);
+        font-size: 11px;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+      }
+
+      .summary {
+        color: #c8fbff;
+        font-size: 17px;
+        line-height: 1.8;
+      }
+
+      .warm .summary { color: #ffe6ae; }
+
+      .why, .example, .outcome-card p, .route-node p, .metric p {
+        color: var(--muted);
+        line-height: 1.75;
+      }
+
+      .result-grid {
+        display: grid;
+        gap: 12px;
+        grid-template-columns: repeat(2, 1fr);
+        margin-top: 18px;
+      }
+
+      .result-grid div {
+        border-radius: 22px;
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.055);
+        padding: 16px;
+      }
+
+      .result-grid span, .sample-row span, .step span {
+        color: var(--muted);
+        font-size: 11px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+      }
+
+      .sample-deck {
+        min-height: 360px;
+        border-radius: 28px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background:
+          radial-gradient(circle at center, rgba(116, 208, 217, 0.12), transparent 42%),
+          rgba(0, 0, 0, 0.28);
+        padding: 18px;
+      }
+
+      .sample-row {
+        margin-top: 10px;
+        border-radius: 18px;
+        padding: 12px;
+      }
+
+      .sample-row strong {
+        display: block;
+        margin-top: 6px;
+      }
+
+      .example {
+        border-radius: 20px;
+        border: 1px solid var(--line);
+        background: rgba(0, 0, 0, 0.24);
+        padding: 14px;
+      }
+
+      .steps {
+        display: grid;
+        grid-column: 1 / -1;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+      }
+
+      .step {
+        border-radius: 22px;
+        padding: 16px;
+      }
+
+      .outcome-wall {
+        margin-top: 20px;
+        padding: 24px;
+      }
+
+      .outcomes {
+        grid-template-columns: repeat(3, 1fr);
+        margin-top: 18px;
+      }
+
+      .outcome-card h3 {
+        margin: 12px 0 0;
+      }
+
+      @media (max-width: 900px) {
+        .hero, .mission-card, .launch-route, .outcomes {
+          grid-template-columns: 1fr;
+        }
+
+        .steps, .metric-grid, .result-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section class="hero glass">
+        <div>
+          <span class="badge">Reusable method guide · static preview</span>
+          <h1>方法编辑器新手教程</h1>
+          <p class="lead">这是从 METHOD_GUIDES 数据生成的静态视觉预览。即使 Next 路由预览卡住，也能独立验收星图导航、发射轨道、样例剧场和最终交付墙。</p>
+        </div>
+        <aside class="constellation glass">
+          <p class="eyebrow">Star map onboarding</p>
+          <h2>星图导航</h2>
+          <div class="orbit">
+            <div class="core"><strong>Now</strong><br />锁定对象</div>
+            <div class="star"><span>01</span><br /><strong>锁定对象</strong></div><div class="star"><span>02</span><br /><strong>绑定字段</strong></div><div class="star"><span>03</span><br /><strong>追加跑法</strong></div><div class="star"><span>04</span><br /><strong>解释输入</strong></div>
+          </div>
+          <div class="metric-grid">
+            <div class="metric"><span>章节</span><strong>4</strong><p>对象、字段、实例、解释输入</p></div>
+            <div class="metric"><span>动作</span><strong>12</strong><p>每章 3 步照着做</p></div>
+            <div class="metric"><span>样例</span><strong>4</strong><p>每章一套可复制配置</p></div>
+          </div>
+        </aside>
+      </section>
+
+      <section class="launch glass">
+        <p class="eyebrow">Launch route</p>
+        <h2>发射轨道：第一次配置就按这条线走</h2>
+        <div class="launch-route">
+          <div class="route-node"><span>01</span><h3>重点对象筛选</h3><p>得到一个只聚焦目标对象的分析实例，后续图表和报告都不会跑偏。</p></div><div class="route-node"><span>02</span><h3>字段角色绑定</h3><p>得到一组可执行字段绑定，让方法知道结果、解释、分组和对象分别来自哪一列。</p></div><div class="route-node"><span>03</span><h3>运行实例</h3><p>得到多个互不覆盖的执行实例，报告可以把它们当成独立证据一起引用。</p></div><div class="route-node"><span>04</span><h3>解释/建模输入字段</h3><p>得到一组可解释输入，模型和报告都会围绕这些字段解释“为什么是这个结果”。</p></div>
+        </div>
+      </section>
+
+
+    <article class="mission-card cool" id="topic-object">
+      <div class="mission-copy">
+        <p class="eyebrow">Stage 01 / 锁定对象</p>
+        <h2>重点对象筛选</h2>
+        <p class="summary">先锁定“分析谁”，再分析它的指标和结构。</p>
+        <p class="why">对象不是指标字段，而是某一列里的具体值。很多对象级方法需要先知道你关心的是哪一个或哪一组对象，否则系统只能做全表统计。</p>
+        <div class="result-grid">
+          <div>
+            <span>最终交付</span>
+            <p>得到一个只聚焦目标对象的分析实例，后续图表和报告都不会跑偏。</p>
+          </div>
+          <div>
+            <span>最终检查</span>
+            <p>能说清楚“我正在分析谁”，并且对象列、对象值、分组口径三项都已填好。</p>
+          </div>
+        </div>
+      </div>
+      <div class="sample-deck">
+        <p class="eyebrow">样例剧场</p>
+
+              <div class="sample-row">
+                <span>对象列 · Demo 1</span>
+                <strong>基金会名称</strong>
+              </div>
+
+              <div class="sample-row">
+                <span>对象值 · Demo 2</span>
+                <strong>A 基金会、B 基金会</strong>
+              </div>
+
+              <div class="sample-row">
+                <span>分组口径 · Demo 3</span>
+                <strong>服务领域 / 年度</strong>
+              </div>
+
+        <p class="example"><b>样例：</b>对象列选“基金会名称”，对象值填“某某基金会”，分析指标选“项目收入”，系统就只筛这家基金会的记录，再按服务领域或年度做画像。</p>
+      </div>
+      <div class="steps">
+
+              <div class="step">
+                <span>01</span>
+                <p>选对象所在列：例如基金会名称、客户名称、门店名称、SKU。</p>
+              </div>
+
+              <div class="step">
+                <span>02</span>
+                <p>选要分析的对象值：可以点样本值，也可以手动输入多个名称。</p>
+              </div>
+
+              <div class="step">
+                <span>03</span>
+                <p>选分组口径：例如服务领域、地区、年度，用来比较对象内部结构。</p>
+              </div>
+
+      </div>
+    </article>
+
+    <article class="mission-card warm" id="topic-fields">
+      <div class="mission-copy">
+        <p class="eyebrow">Stage 02 / 绑定字段</p>
+        <h2>字段角色绑定</h2>
+        <p class="summary">告诉方法每一列扮演什么角色，而不是单纯多选指标。</p>
+        <p class="why">同一个字段在不同方法里可以扮演不同角色。绑定清楚后，后端统计引擎、图表和报告解释才会使用同一套业务口径。</p>
+        <div class="result-grid">
+          <div>
+            <span>最终交付</span>
+            <p>得到一组可执行字段绑定，让方法知道结果、解释、分组和对象分别来自哪一列。</p>
+          </div>
+          <div>
+            <span>最终检查</span>
+            <p>结果指标不为空，解释字段不是纯 ID，分组字段和对象字段没有混在一起。</p>
+          </div>
+        </div>
+      </div>
+      <div class="sample-deck">
+        <p class="eyebrow">样例剧场</p>
+
+              <div class="sample-row">
+                <span>结果指标 · Demo 1</span>
+                <strong>项目收入</strong>
+              </div>
+
+              <div class="sample-row">
+                <span>解释字段 · Demo 2</span>
+                <strong>项目支出、年度</strong>
+              </div>
+
+              <div class="sample-row">
+                <span>分组字段 · Demo 3</span>
+                <strong>服务领域</strong>
+              </div>
+
+        <p class="example"><b>样例：</b>做基金会画像时，结果指标选“项目收入”，解释字段可选“项目支出、年度”，分组口径选“服务领域”，对象名称列选“基金会名称”。</p>
+      </div>
+      <div class="steps">
+
+              <div class="step">
+                <span>01</span>
+                <p>先看问题要解释什么：收入、支出、得分、数量通常放到结果指标。</p>
+              </div>
+
+              <div class="step">
+                <span>02</span>
+                <p>再选影响或辅助解释结果的列：支出、年度、规模、比例通常放到解释字段。</p>
+              </div>
+
+              <div class="step">
+                <span>03</span>
+                <p>如果要比较类别，就补充分组口径；如果要点名对象，就补充名称列。</p>
+              </div>
+
+      </div>
+    </article>
+
+    <article class="mission-card cool" id="topic-runs">
+      <div class="mission-copy">
+        <p class="eyebrow">Stage 03 / 追加跑法</p>
+        <h2>运行实例</h2>
+        <p class="summary">同一个方法可以保存多种独立跑法。</p>
+        <p class="why">不要为了换一个对象或字段重新找方法。追加实例后，每个实例都有自己的字段绑定和对象筛选，报告生成时会作为独立证据进入合并。</p>
+        <div class="result-grid">
+          <div>
+            <span>最终交付</span>
+            <p>得到多个互不覆盖的执行实例，报告可以把它们当成独立证据一起引用。</p>
+          </div>
+          <div>
+            <span>最终检查</span>
+            <p>每个实例都有独立名称、字段绑定和筛选条件，切换实例时配置不会互相覆盖。</p>
+          </div>
+        </div>
+      </div>
+      <div class="sample-deck">
+        <p class="eyebrow">样例剧场</p>
+
+              <div class="sample-row">
+                <span>实例 01 · Demo 1</span>
+                <strong>全数据总体画像</strong>
+              </div>
+
+              <div class="sample-row">
+                <span>实例 02 · Demo 2</span>
+                <strong>A 基金会重点对象</strong>
+              </div>
+
+              <div class="sample-row">
+                <span>实例 03 · Demo 3</span>
+                <strong>B 基金会对比对象</strong>
+              </div>
+
+        <p class="example"><b>样例：</b>同一个“画像文字解读”方法，可以跑一次“基金会名称 = A 基金会”，再跑一次“基金会名称 = B 基金会”，最后比较两家的服务领域和收入结构。</p>
+      </div>
+      <div class="steps">
+
+              <div class="step">
+                <span>01</span>
+                <p>字段绑定口径：只按当前字段角色运行，适合普通统计或图表。</p>
+              </div>
+
+              <div class="step">
+                <span>02</span>
+                <p>全数据口径：不锁定某个对象，适合总体概览、数据审计、附录证据。</p>
+              </div>
+
+              <div class="step">
+                <span>03</span>
+                <p>重点对象口径：先筛某个对象值，再分析它自己的表现和结构。</p>
+              </div>
+
+      </div>
+    </article>
+
+    <article class="mission-card warm" id="topic-features">
+      <div class="mission-copy">
+        <p class="eyebrow">Stage 04 / 解释输入</p>
+        <h2>解释/建模输入字段</h2>
+        <p class="summary">这些字段用于解释结果，不是对象名称，也不一定是最终指标。</p>
+        <p class="why">建模、关联、对比类方法需要一些辅助字段来解释结果指标。这里选择的字段会作为特征、解释变量或辅助证据进入方法执行。</p>
+        <div class="result-grid">
+          <div>
+            <span>最终交付</span>
+            <p>得到一组可解释输入，模型和报告都会围绕这些字段解释“为什么是这个结果”。</p>
+          </div>
+          <div>
+            <span>最终检查</span>
+            <p>解释字段能帮助回答业务问题，派生指标有清晰口径，长文本和纯编号没有误选。</p>
+          </div>
+        </div>
+      </div>
+      <div class="sample-deck">
+        <p class="eyebrow">样例剧场</p>
+
+              <div class="sample-row">
+                <span>业务输入 · Demo 1</span>
+                <strong>项目支出、年度、服务领域</strong>
+              </div>
+
+              <div class="sample-row">
+                <span>派生指标 · Demo 2</span>
+                <strong>标准化_项目收入</strong>
+              </div>
+
+              <div class="sample-row">
+                <span>避开字段 · Demo 3</span>
+                <strong>统一信用代码、长简介</strong>
+              </div>
+
+        <p class="example"><b>样例：</b>结果指标是“项目收入”时，解释字段可以选“项目支出、年度、服务领域”，派生指标可以选“标准化_项目收入、百分位_项目收入”。</p>
+      </div>
+      <div class="steps">
+
+              <div class="step">
+                <span>01</span>
+                <p>优先选和结果有关的业务字段，例如支出、年度、规模、比例。</p>
+              </div>
+
+              <div class="step">
+                <span>02</span>
+                <p>避免把纯 ID、统一信用代码、长文本简介直接当成建模输入。</p>
+              </div>
+
+              <div class="step">
+                <span>03</span>
+                <p>如果系统已生成标准化、百分位、占比等派生指标，可按业务口径补充选择。</p>
+              </div>
+
+      </div>
+    </article>
+
+
+      <section class="outcome-wall glass">
+        <p class="eyebrow">Final unlock</p>
+        <h2>跑完这套教程，新手不是“看懂了”，而是已经能交付。</h2>
+        <div class="outcomes">
+          <article class="outcome-card"><span>配置闭环</span><h3>方法知道该看谁、看什么、怎么解释</h3><p>对象筛选、字段绑定、实例口径和解释输入全部连起来，不再靠猜。</p></article>
+          <article class="outcome-card"><span>样例可复制</span><h3>每章都有一套能直接照填的业务样例</h3><p>新手不用从空白开始，先跑通样例，再替换成自己的数据。</p></article>
+          <article class="outcome-card"><span>证据能交付</span><h3>最终产物可以进入报告、图表和附录</h3><p>教程不是只教按钮，而是把第一次配置导向可复用、可审计、可解释的分析证据。</p></article>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

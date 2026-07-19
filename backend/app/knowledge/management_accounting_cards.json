@@ -1,0 +1,62 @@
+[
+  {
+    "id": "ima_planning_performance",
+    "title": "计划、预算与绩效闭环",
+    "source_name": "IMA Management Accounting Competency Framework",
+    "source_url": "https://www.imanet.org/research-publications/statements-on-management-accounting/ima-management-accounting-competency-framework",
+    "summary": "管理会计先把目标、资源配置、预算、滚动预测和绩效反馈放在同一条闭环里看，判断不是停留在结果好坏，而是追问计划是否落地、偏差是否可解释、后续资源是否需要重分配。",
+    "trigger_tokens": ["预算", "预算执行", "滚动预测", "forecast", "actual", "variance", "plan", "达成"],
+    "key_questions": ["预算是否达成", "偏差来自结构性失真还是执行偏差", "资源是否需要重分配"],
+    "metrics": ["预算达成率", "偏差额", "偏差率", "滚动预测误差"],
+    "actions": ["拆解偏差来源", "滚动修正预测", "调整资源配置顺序"],
+    "guardrails": ["不能只看结果值不看预算口径", "不能把一次性偏差直接写成长期经营结论"]
+  },
+  {
+    "id": "acca_ratio_quality",
+    "title": "利润质量与收益结构",
+    "source_name": "ACCA Ratio Analysis",
+    "source_url": "https://www.accaglobal.com/us/en/student/exam-support-resources/fundamentals-exams-study-resources/f2/technical-articles/ratio-analysis.html",
+    "summary": "收入增长要和毛利率、营业利润率、净利率、周转率和偿债指标一起看，重点是区分规模增长、利润率变化和资产使用效率，判断增长有没有质量。",
+    "trigger_tokens": ["收入", "毛利", "毛利率", "营业利润", "净利润", "ROA", "ROE", "margin", "profit"],
+    "key_questions": ["增长是规模驱动还是利润率驱动", "利润率变化是否可持续", "资产效率是否支撑当前盈利"],
+    "metrics": ["毛利率", "营业利润率", "净利率", "资产周转率", "ROA", "ROE"],
+    "actions": ["拆分利润来源", "区分规模与质量", "追踪利润率与周转的组合变化"],
+    "guardrails": ["不能把收入增长直接写成经营改善", "不能忽略利润率和周转率的方向相反"]
+  },
+  {
+    "id": "acca_working_capital",
+    "title": "营运资本与现金周转",
+    "source_name": "ACCA Working Capital Management",
+    "source_url": "https://www.accaglobal.com/ubcs/en/student/exam-support-resources/fundamentals-exams-study-resources/f9/technical-articles/wcm.html",
+    "summary": "现金不是利润的附属结果，而是经营韧性的直接体现。应收、存货、应付和现金转换周期要一起看，才能判断增长是否在吞噬现金。",
+    "trigger_tokens": ["应收", "应付", "存货", "现金", "working capital", "inventory", "receivable", "payable"],
+    "key_questions": ["现金是否被营运资本占用", "增长是否带来回款压力", "存货与应付是否共同推高资金压力"],
+    "metrics": ["应收周转天数", "存货周转天数", "应付周转天数", "现金转换周期", "营运资本占用"],
+    "actions": ["排查回款链路", "优化备货与采购节奏", "把营运资本纳入增长讨论"],
+    "guardrails": ["不能只看利润不看现金转换", "不能把高增长掩盖的现金压力当成正常现象"]
+  },
+  {
+    "id": "cfa_reporting_quality",
+    "title": "报表质量与收益可持续性",
+    "source_name": "CFA Institute Evaluating Quality of Financial Reports",
+    "source_url": "https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2025/evaluating-quality-financial-reports",
+    "summary": "分析财务表现时要同时看利润表、现金流量表和资产负债表的一致性，重点盯住收入确认、费用资本化、经营现金流与净利润差异，以及异常披露。",
+    "trigger_tokens": ["现金流", "经营现金流", "净利润", "资产负债", "earnings quality", "cash flow quality", "reporting quality"],
+    "key_questions": ["利润和现金流是否一致", "是否存在会计处理导致的利润虚高", "资产负债表是否出现异常膨胀或掩盖负债"],
+    "metrics": ["经营现金流/净利润", "资产负债率", "权益变化", "异常应计项目"],
+    "actions": ["把利润与现金一起复核", "排查一次性收益和会计口径变化", "把质量风险单列成预警"],
+    "guardrails": ["不能把会计利润直接当成真实经营质量", "不能忽略报表披露质量对结论强度的影响"]
+  },
+  {
+    "id": "cgma_cost_driver",
+    "title": "成本动因、责任中心与场景拆解",
+    "source_name": "CGMA / CIMA Performance Management",
+    "source_url": "https://www.cgma.org/resources/tools/performance-management.html",
+    "summary": "管理会计不是只看总成本，而是要把成本放回业务动因、责任中心和产品场景里，判断哪些成本是规模必需、哪些是效率问题、哪些是结构性浪费。",
+    "trigger_tokens": ["成本中心", "责任中心", "费用", "成本", "事业部", "产品线", "department", "segment"],
+    "key_questions": ["哪类成本随规模自然增长", "哪类成本来自效率问题", "哪些责任中心或产品线拖累了整体表现"],
+    "metrics": ["成本率", "费用率", "部门利润贡献", "单位产出成本", "责任中心偏差"],
+    "actions": ["按责任中心拆成本", "按场景复盘费用有效性", "识别结构性浪费与可压缩项目"],
+    "guardrails": ["不能只看总费用不看责任归属", "不能把一次性投入和长期低效成本混在一起"]
+  }
+]

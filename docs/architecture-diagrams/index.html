@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Asteria Architecture Diagrams</title>
+    <style>
+      :root {
+        --bg: #f3efe8;
+        --card: #fffdf9;
+        --ink: #1f1916;
+        --muted: #6a615b;
+        --line: #ddd3ca;
+        --accent: #d85a3a;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: Inter, "Microsoft YaHei", Arial, sans-serif;
+        background: var(--bg);
+        color: var(--ink);
+      }
+      .shell {
+        max-width: 1680px;
+        margin: 0 auto;
+        padding: 32px 24px 64px;
+      }
+      h1 {
+        margin: 0 0 12px;
+        font-size: 40px;
+        line-height: 1.05;
+      }
+      p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+      .meta {
+        margin-top: 18px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      .chip {
+        border: 1px solid var(--line);
+        background: var(--card);
+        border-radius: 999px;
+        padding: 10px 14px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .grid {
+        margin-top: 28px;
+        display: grid;
+        gap: 24px;
+      }
+      .card {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        padding: 18px 18px 22px;
+      }
+      .card h2 {
+        margin: 0 0 6px;
+        font-size: 24px;
+      }
+      .card p {
+        margin-bottom: 14px;
+      }
+      .links {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 14px;
+      }
+      .links a {
+        color: var(--accent);
+        text-decoration: none;
+        font-weight: 600;
+      }
+      .preview {
+        width: 100%;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        display: block;
+        background: white;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="shell">
+      <h1>Asteria Architecture Diagram Review Board</h1>
+      <p>这是这轮完整审计后产出的三张重设计架构图源文件。它们目前以 SVG 和 PNG 形式落在本地，等待 Figma 桥接恢复后再导入目标文件。</p>
+      <div class="meta">
+        <span class="chip">01 业务版：面向业务负责人 / 分析师 / 修订协作者</span>
+        <span class="chip">02 技术架构：面向研发和项目协作者</span>
+        <span class="chip">03 端点附录：保留完整 HTTP surface</span>
+      </div>
+
+      <section class="grid">
+        <article class="card">
+          <h2>01 Business View</h2>
+          <p>只讲“输入、判断路径、形成结论、交付与修订”，不掺接口和模块。</p>
+          <div class="links">
+            <a href="./01-business-view.svg">SVG</a>
+            <a href="./01-business-view.png">PNG</a>
+          </div>
+          <img class="preview" src="./01-business-view.png" alt="Business View Preview" />
+        </article>
+
+        <article class="card">
+          <h2>02 Technical Architecture</h2>
+          <p>只保留技术主结构和三条核心流程，不把所有 endpoint 挤进主图。</p>
+          <div class="links">
+            <a href="./02-technical-architecture.svg">SVG</a>
+            <a href="./02-technical-architecture.png">PNG</a>
+          </div>
+          <img class="preview" src="./02-technical-architecture.png" alt="Technical Architecture Preview" />
+        </article>
+
+        <article class="card">
+          <h2>03 Endpoint Inventory</h2>
+          <p>完整端点附录，供核对 `backend/app/main.py` 当前暴露面。</p>
+          <div class="links">
+            <a href="./03-endpoint-inventory.svg">SVG</a>
+            <a href="./03-endpoint-inventory.png">PNG</a>
+          </div>
+          <img class="preview" src="./03-endpoint-inventory.png" alt="Endpoint Inventory Preview" />
+        </article>
+      </section>
+    </main>
+  </body>
+</html>

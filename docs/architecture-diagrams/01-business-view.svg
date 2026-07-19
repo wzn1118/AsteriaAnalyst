@@ -1,0 +1,196 @@
+<svg width="1920" height="1500" viewBox="0 0 1920 1500" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1920" height="1500" fill="#F3EFE8"/>
+  <rect x="36" y="36" width="1848" height="1428" rx="28" fill="#F7F3EC" stroke="#D9D0C6" stroke-width="2"/>
+  <rect x="36" y="36" width="12" height="1428" rx="6" fill="#D85A3A"/>
+
+  <text x="78" y="84" fill="#8A8078" font-size="16" font-family="Inter, Arial, sans-serif" font-weight="600">BUSINESS VIEW</text>
+  <text x="78" y="146" fill="#1F1916" font-size="48" font-family="Inter, Arial, sans-serif" font-weight="700">业务视角：这套系统怎么把材料变成报告</text>
+  <text x="78" y="194" fill="#544B46" font-size="18" font-family="Inter, Arial, sans-serif">给非技术同事看的版本。这一页只回答四个问题：这次输入什么、系统如何判断路径、最后交付什么、后续怎么修订和复用。</text>
+  <text x="78" y="220" fill="#544B46" font-size="18" font-family="Inter, Arial, sans-serif">接口、模块、运行时细节单独放到技术版，不和业务说明混在一起。</text>
+
+  <g>
+    <rect x="78" y="250" width="258" height="62" rx="18" fill="#FFFFFF" stroke="#D7CEC4"/>
+    <rect x="92" y="266" width="4" height="30" rx="2" fill="#D85A3A"/>
+    <text x="108" y="276" fill="#1F1916" font-size="16" font-family="Inter, Arial, sans-serif" font-weight="600">这页给谁看</text>
+    <text x="108" y="296" fill="#6C625C" font-size="11" font-family="Inter, Arial, sans-serif">业务负责人 / 分析师 / 修订协作者</text>
+  </g>
+  <g>
+    <rect x="354" y="250" width="244" height="62" rx="18" fill="#FFFFFF" stroke="#D7CEC4"/>
+    <rect x="368" y="266" width="4" height="30" rx="2" fill="#D4A42F"/>
+    <text x="384" y="276" fill="#1F1916" font-size="16" font-family="Inter, Arial, sans-serif" font-weight="600">最后交付什么</text>
+    <text x="384" y="296" fill="#6C625C" font-size="11" font-family="Inter, Arial, sans-serif">正式报告 / 图表 / 明细 / 管理版</text>
+  </g>
+  <g>
+    <rect x="616" y="250" width="258" height="62" rx="18" fill="#FFFFFF" stroke="#D7CEC4"/>
+    <rect x="630" y="266" width="4" height="30" rx="2" fill="#5D67D9"/>
+    <text x="646" y="276" fill="#1F1916" font-size="16" font-family="Inter, Arial, sans-serif" font-weight="600">这页不讲什么</text>
+    <text x="646" y="296" fill="#6C625C" font-size="11" font-family="Inter, Arial, sans-serif">接口、模块、runtime、endpoint</text>
+  </g>
+  <g>
+    <rect x="892" y="250" width="248" height="62" rx="18" fill="#FFFFFF" stroke="#D7CEC4"/>
+    <rect x="906" y="266" width="4" height="30" rx="2" fill="#4E8D77"/>
+    <text x="922" y="276" fill="#1F1916" font-size="16" font-family="Inter, Arial, sans-serif" font-weight="600">核心价值</text>
+    <text x="922" y="296" fill="#6C625C" font-size="11" font-family="Inter, Arial, sans-serif">更快成稿 / 更稳交付 / 更方便修订</text>
+  </g>
+
+  <line x1="36" y1="340" x2="1884" y2="340" stroke="#E0D8CF"/>
+
+  <!-- Step 1 -->
+  <rect x="76" y="376" width="1768" height="218" rx="24" fill="#FFF7F2" stroke="#E8B7A8"/>
+  <rect x="96" y="396" width="304" height="178" rx="18" fill="#FFFEFC" stroke="#E5D8CD"/>
+  <rect x="114" y="414" width="8" height="142" rx="4" fill="#D85A3A"/>
+  <text x="146" y="426" fill="#D85A3A" font-size="14" font-family="Inter, Arial, sans-serif" font-weight="700">01</text>
+  <text x="146" y="460" fill="#1F1916" font-size="28" font-family="Inter, Arial, sans-serif" font-weight="700">收齐输入</text>
+  <text x="146" y="494" fill="#5C534D" font-size="14" font-family="Inter, Arial, sans-serif">开始写报告之前，先确认这次到底拿到了哪些材料。</text>
+
+  <g>
+    <rect x="424" y="402" width="352" height="166" rx="20" fill="#FFFFFF" stroke="#D8CEC5"/>
+    <rect x="442" y="420" width="6" height="46" rx="3" fill="#D85A3A"/>
+    <text x="458" y="426" fill="#1F1916" font-size="20" font-family="Inter, Arial, sans-serif" font-weight="600">数据材料</text>
+    <text x="458" y="452" fill="#6C625C" font-size="12" font-family="Inter, Arial, sans-serif">这次真正要分析的核心数据</text>
+    <line x1="442" y1="478" x2="740" y2="478" stroke="#E7DED5"/>
+    <text x="458" y="510" fill="#2B2521" font-size="14" font-family="Inter, Arial, sans-serif">Excel / CSV / TSV / Stata</text>
+    <text x="458" y="534" fill="#2B2521" font-size="14" font-family="Inter, Arial, sans-serif">可以是单表，也可以是多表</text>
+    <text x="458" y="558" fill="#2B2521" font-size="14" font-family="Inter, Arial, sans-serif">不同 sheet 会被分别识别</text>
+  </g>
+  <g>
+    <rect x="800" y="402" width="352" height="166" rx="20" fill="#FFFFFF" stroke="#D8CEC5"/>
+    <rect x="818" y="420" width="6" height="46" rx="3" fill="#D85A3A"/>
+    <text x="834" y="426" fill="#1F1916" font-size="20" font-family="Inter, Arial, sans-serif" font-weight="600">业务要求</text>
+    <text x="834" y="452" fill="#6C625C" font-size="12" font-family="Inter, Arial, sans-serif">这份分析想解决什么问题</text>
+    <line x1="818" y1="478" x2="1116" y2="478" stroke="#E7DED5"/>
+    <text x="834" y="510" fill="#2B2521" font-size="14" font-family="Inter, Arial, sans-serif">给谁看，期待看到什么结论</text>
+    <text x="834" y="534" fill="#2B2521" font-size="14" font-family="Inter, Arial, sans-serif">更偏经营复盘、专项诊断，还是风格复刻</text>
+    <text x="834" y="558" fill="#2B2521" font-size="14" font-family="Inter, Arial, sans-serif">有哪些约束和重点关注方向</text>
+  </g>
+  <g>
+    <rect x="1176" y="402" width="626" height="166" rx="20" fill="#FFFFFF" stroke="#D8CEC5"/>
+    <rect x="1194" y="420" width="6" height="46" rx="3" fill="#D85A3A"/>
+    <text x="1210" y="426" fill="#1F1916" font-size="20" font-family="Inter, Arial, sans-serif" font-weight="600">参考与协作基础</text>
+    <text x="1210" y="452" fill="#6C625C" font-size="12" font-family="Inter, Arial, sans-serif">已有材料和后续协作入口</text>
+    <line x1="1194" y1="478" x2="1766" y2="478" stroke="#E7DED5"/>
+    <text x="1210" y="510" fill="#2B2521" font-size="14" font-family="Inter, Arial, sans-serif">历史报告模板、既有表达风格、业务背景材料</text>
+    <text x="1210" y="534" fill="#2B2521" font-size="14" font-family="Inter, Arial, sans-serif">工作台发起请求，后续可继续批注、补图、改口径</text>
+    <text x="1210" y="558" fill="#2B2521" font-size="14" font-family="Inter, Arial, sans-serif">支持版本留存，便于后面继续迭代</text>
+  </g>
+
+  <!-- Step 2 -->
+  <rect x="76" y="624" width="1768" height="226" rx="24" fill="#FFFBEF" stroke="#E8D79A"/>
+  <rect x="96" y="644" width="304" height="186" rx="18" fill="#FFFEFC" stroke="#E5D8CD"/>
+  <rect x="114" y="662" width="8" height="150" rx="4" fill="#D4A42F"/>
+  <text x="146" y="674" fill="#D4A42F" font-size="14" font-family="Inter, Arial, sans-serif" font-weight="700">02</text>
+  <text x="146" y="708" fill="#1F1916" font-size="26" font-family="Inter, Arial, sans-serif" font-weight="700">理解任务</text>
+  <text x="146" y="740" fill="#1F1916" font-size="26" font-family="Inter, Arial, sans-serif" font-weight="700">选择路径</text>
+  <text x="146" y="774" fill="#5C534D" font-size="14" font-family="Inter, Arial, sans-serif">系统先判断这次属于哪类分析，再选合适的产出方式。</text>
+
+  <g>
+    <rect x="424" y="650" width="352" height="174" rx="20" fill="#FFFFFF" stroke="#D8CEC5"/>
+    <rect x="442" y="668" width="6" height="46" rx="3" fill="#D4A42F"/>
+    <text x="458" y="674" fill="#1F1916" font-size="20" font-family="Inter, Arial, sans-serif" font-weight="600">看懂数据结构</text>
+    <text x="458" y="700" fill="#6C625C" font-size="12" font-family="Inter, Arial, sans-serif">先判断这批数据能支持什么分析</text>
+    <line x1="442" y1="726" x2="740" y2="726" stroke="#E7DED5"/>
+    <text x="458" y="758" fill="#2B2521" font-size="14" font-family="Inter, Arial, sans-serif">识别字段角色和表之间关系</text>
+    <text x="458" y="782" fill="#2B2521" font-size="14" font-family="Inter, Arial, sans-serif">判断是单表、跨表，还是需要专项路径</text>
+    <text x="458" y="806" fill="#2B2521" font-size="14" font-family="Inter, Arial, sans-serif">发现缺失、冲突或低质量信号</text>
+  </g>
+  <g>
+    <rect x="800" y="650" width="352" height="174" rx="20" fill="#FFFFFF" stroke="#D8CEC5"/>
+    <rect x="818" y="668" width="6" height="46" rx="3" fill="#D4A42F"/>
+    <text x="834" y="674" fill="#1F1916" font-size="20" font-family="Inter, Arial, sans-serif" font-weight="600">明确分析目标</text>
+    <text x="834" y="700" fill="#6C625C" font-size="12" font-family="Inter, Arial, sans-serif">把“想做分析”翻成具体任务</text>
+    <line x1="818" y1="726" x2="1116" y2="726" stroke="#E7DED5"/>
+    <text x="834" y="758" fill="#2B2521" font-size="14" font-family="Inter, Arial, sans-serif">经营复盘、专项诊断，还是风格复刻</text>
+    <text x="834" y="782" fill="#2B2521" font-size="14" font-family="Inter, Arial, sans-serif">更偏管理摘要、深度洞察还是补充附件</text>
+    <text x="834" y="806" fill="#2B2521" font-size="14" font-family="Inter, Arial, sans-serif">决定产出是标准报告、长报告还是修订稿</text>
+  </g>
+  <g>
+    <rect x="1176" y="650" width="626" height="174" rx="20" fill="#FFFFFF" stroke="#D8CEC5"/>
+    <rect x="1194" y="668" width="6" height="46" rx="3" fill="#D4A42F"/>
+    <text x="1210" y="674" fill="#1F1916" font-size="20" font-family="Inter, Arial, sans-serif" font-weight="600">选择处理路径</text>
+    <text x="1210" y="700" fill="#6C625C" font-size="12" font-family="Inter, Arial, sans-serif">业务上更好理解为 5 条路径</text>
+    <line x1="1194" y1="726" x2="1766" y2="726" stroke="#E7DED5"/>
+    <text x="1210" y="758" fill="#2B2521" font-size="14" font-family="Inter, Arial, sans-serif">常规经营分析 / 多表专项分析 / 行业专题分析</text>
+    <text x="1210" y="782" fill="#2B2521" font-size="14" font-family="Inter, Arial, sans-serif">历史风格适配 / 报告修订协作</text>
+    <text x="1210" y="806" fill="#2B2521" font-size="14" font-family="Inter, Arial, sans-serif">不同路径决定后面走标准链、专项链还是修订链</text>
+  </g>
+
+  <!-- Step 3 -->
+  <rect x="76" y="880" width="1768" height="226" rx="24" fill="#F7F8FF" stroke="#C9CBF2"/>
+  <rect x="96" y="900" width="304" height="186" rx="18" fill="#FFFEFC" stroke="#E5D8CD"/>
+  <rect x="114" y="918" width="8" height="150" rx="4" fill="#5D67D9"/>
+  <text x="146" y="928" fill="#5D67D9" font-size="14" font-family="Inter, Arial, sans-serif" font-weight="700">03</text>
+  <text x="146" y="962" fill="#1F1916" font-size="26" font-family="Inter, Arial, sans-serif" font-weight="700">形成可读结论</text>
+  <text x="146" y="996" fill="#5C534D" font-size="14" font-family="Inter, Arial, sans-serif">无论走哪条路径，最后都要落到“看得懂、能讨论、能决策”的报告。</text>
+
+  <g>
+    <rect x="424" y="906" width="352" height="174" rx="20" fill="#FFFFFF" stroke="#D8CEC5"/>
+    <rect x="442" y="924" width="6" height="46" rx="3" fill="#5D67D9"/>
+    <text x="458" y="930" fill="#1F1916" font-size="20" font-family="Inter, Arial, sans-serif" font-weight="600">事实层</text>
+    <text x="458" y="956" fill="#6C625C" font-size="12" font-family="Inter, Arial, sans-serif">先把事实讲清楚</text>
+    <line x1="442" y1="982" x2="740" y2="982" stroke="#E7DED5"/>
+    <text x="458" y="1014" fill="#2B2521" font-size="14" font-family="Inter, Arial, sans-serif">关键指标、走势、结构和对比</text>
+    <text x="458" y="1038" fill="#2B2521" font-size="14" font-family="Inter, Arial, sans-serif">必要的图表和明细表</text>
+    <text x="458" y="1062" fill="#2B2521" font-size="14" font-family="Inter, Arial, sans-serif">在需要时补充统计或 R 类专项图表</text>
+  </g>
+  <g>
+    <rect x="800" y="906" width="352" height="174" rx="20" fill="#FFFFFF" stroke="#D8CEC5"/>
+    <rect x="818" y="924" width="6" height="46" rx="3" fill="#5D67D9"/>
+    <text x="834" y="930" fill="#1F1916" font-size="20" font-family="Inter, Arial, sans-serif" font-weight="600">解释层</text>
+    <text x="834" y="956" fill="#6C625C" font-size="12" font-family="Inter, Arial, sans-serif">说明“为什么会这样”</text>
+    <line x1="818" y1="982" x2="1116" y2="982" stroke="#E7DED5"/>
+    <text x="834" y="1014" fill="#2B2521" font-size="14" font-family="Inter, Arial, sans-serif">不只陈列数据，还要解释变化原因</text>
+    <text x="834" y="1038" fill="#2B2521" font-size="14" font-family="Inter, Arial, sans-serif">指出值得关注的问题、异常和风险</text>
+    <text x="834" y="1062" fill="#2B2521" font-size="14" font-family="Inter, Arial, sans-serif">把复杂结果压缩成可读结论</text>
+  </g>
+  <g>
+    <rect x="1176" y="906" width="626" height="174" rx="20" fill="#FFFFFF" stroke="#D8CEC5"/>
+    <rect x="1194" y="924" width="6" height="46" rx="3" fill="#5D67D9"/>
+    <text x="1210" y="930" fill="#1F1916" font-size="20" font-family="Inter, Arial, sans-serif" font-weight="600">决策层</text>
+    <text x="1210" y="956" fill="#6C625C" font-size="12" font-family="Inter, Arial, sans-serif">帮读者更快抓重点</text>
+    <line x1="1194" y1="982" x2="1766" y2="982" stroke="#E7DED5"/>
+    <text x="1210" y="1014" fill="#2B2521" font-size="14" font-family="Inter, Arial, sans-serif">经营摘要、管理层表达、行动建议</text>
+    <text x="1210" y="1038" fill="#2B2521" font-size="14" font-family="Inter, Arial, sans-serif">必要时形成行动清单或专项路线图</text>
+    <text x="1210" y="1062" fill="#2B2521" font-size="14" font-family="Inter, Arial, sans-serif">把分析结果转成后续跟进事项</text>
+  </g>
+
+  <!-- Step 4 -->
+  <rect x="76" y="1136" width="1768" height="226" rx="24" fill="#F4FBF8" stroke="#B9D6CC"/>
+  <rect x="96" y="1156" width="304" height="186" rx="18" fill="#FFFEFC" stroke="#E5D8CD"/>
+  <rect x="114" y="1174" width="8" height="150" rx="4" fill="#4E8D77"/>
+  <text x="146" y="1184" fill="#4E8D77" font-size="14" font-family="Inter, Arial, sans-serif" font-weight="700">04</text>
+  <text x="146" y="1218" fill="#1F1916" font-size="26" font-family="Inter, Arial, sans-serif" font-weight="700">交付、修订、复用</text>
+  <text x="146" y="1252" fill="#5C534D" font-size="14" font-family="Inter, Arial, sans-serif">价值不只是一版报告，而是让交付和后续迭代都更顺。</text>
+
+  <g>
+    <rect x="424" y="1162" width="352" height="174" rx="20" fill="#FFFFFF" stroke="#D8CEC5"/>
+    <rect x="442" y="1180" width="6" height="46" rx="3" fill="#4E8D77"/>
+    <text x="458" y="1186" fill="#1F1916" font-size="20" font-family="Inter, Arial, sans-serif" font-weight="600">正式交付</text>
+    <text x="458" y="1212" fill="#6C625C" font-size="12" font-family="Inter, Arial, sans-serif">给业务方的成品</text>
+    <line x1="442" y1="1238" x2="740" y2="1238" stroke="#E7DED5"/>
+    <text x="458" y="1270" fill="#2B2521" font-size="14" font-family="Inter, Arial, sans-serif">HTML / PDF 报告</text>
+    <text x="458" y="1294" fill="#2B2521" font-size="14" font-family="Inter, Arial, sans-serif">图表包和可复核明细</text>
+    <text x="458" y="1318" fill="#2B2521" font-size="14" font-family="Inter, Arial, sans-serif">管理版、长版或附录版输出</text>
+  </g>
+  <g>
+    <rect x="800" y="1162" width="352" height="174" rx="20" fill="#FFFFFF" stroke="#D8CEC5"/>
+    <rect x="818" y="1180" width="6" height="46" rx="3" fill="#4E8D77"/>
+    <text x="834" y="1186" fill="#1F1916" font-size="20" font-family="Inter, Arial, sans-serif" font-weight="600">协作修订</text>
+    <text x="834" y="1212" fill="#6C625C" font-size="12" font-family="Inter, Arial, sans-serif">已有报告也能继续改</text>
+    <line x1="818" y1="1238" x2="1116" y2="1238" stroke="#E7DED5"/>
+    <text x="834" y="1270" fill="#2B2521" font-size="14" font-family="Inter, Arial, sans-serif">批注、补图、改措辞、改口径</text>
+    <text x="834" y="1294" fill="#2B2521" font-size="14" font-family="Inter, Arial, sans-serif">支持版本发布和二次修订</text>
+    <text x="834" y="1318" fill="#2B2521" font-size="14" font-family="Inter, Arial, sans-serif">把修改意见沉淀到同一套工作台</text>
+  </g>
+  <g>
+    <rect x="1176" y="1162" width="626" height="174" rx="20" fill="#FFFFFF" stroke="#D8CEC5"/>
+    <rect x="1194" y="1180" width="6" height="46" rx="3" fill="#4E8D77"/>
+    <text x="1210" y="1186" fill="#1F1916" font-size="20" font-family="Inter, Arial, sans-serif" font-weight="600">沉淀复用</text>
+    <text x="1210" y="1212" fill="#6C625C" font-size="12" font-family="Inter, Arial, sans-serif">让下一次更快</text>
+    <line x1="1194" y1="1238" x2="1766" y2="1238" stroke="#E7DED5"/>
+    <text x="1210" y="1270" fill="#2B2521" font-size="14" font-family="Inter, Arial, sans-serif">模板、风格、修订方式会沉淀下来</text>
+    <text x="1210" y="1294" fill="#2B2521" font-size="14" font-family="Inter, Arial, sans-serif">过程资产可复用，便于后面复盘</text>
+    <text x="1210" y="1318" fill="#2B2521" font-size="14" font-family="Inter, Arial, sans-serif">再做类似报告时可以更快成稿</text>
+  </g>
+
+  <text x="78" y="1418" fill="#7A7068" font-size="14" font-family="Inter, Arial, sans-serif" font-weight="500">阅读建议：业务协作、交付和修订只看这一页；如果要对接研发或理解实现方式，请看第 2 页技术架构。</text>
+</svg>

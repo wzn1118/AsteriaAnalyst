@@ -1,0 +1,173 @@
+<svg width="1920" height="1660" viewBox="0 0 1920 1660" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1920" height="1660" fill="#F3EFE8"/>
+  <rect x="36" y="36" width="1848" height="1588" rx="28" fill="#F7F3EC" stroke="#D9D0C6" stroke-width="2"/>
+  <rect x="36" y="36" width="12" height="1588" rx="6" fill="#D85A3A"/>
+
+  <text x="78" y="84" fill="#8A8078" font-size="16" font-family="Inter, Arial, sans-serif" font-weight="600">TECHNICAL ARCHITECTURE</text>
+  <text x="78" y="146" fill="#1F1916" font-size="46" font-family="Inter, Arial, sans-serif" font-weight="700">技术版：系统怎么从请求走到结果</text>
+  <text x="78" y="194" fill="#544B46" font-size="18" font-family="Inter, Arial, sans-serif">给研发和项目协作者看的版本。这一页不再把所有模块名和端点堆在一起，而是只讲系统主链和三条关键工作流。</text>
+  <text x="78" y="220" fill="#544B46" font-size="18" font-family="Inter, Arial, sans-serif">如果需要所有 path 和接口，直接看第 3 页端点附录。</text>
+
+  <g>
+    <rect x="78" y="250" width="186" height="62" rx="18" fill="#FFFFFF" stroke="#D7CEC4"/>
+    <rect x="92" y="266" width="4" height="30" rx="2" fill="#D85A3A"/>
+    <text x="108" y="276" fill="#1F1916" font-size="16" font-family="Inter, Arial, sans-serif" font-weight="600">看什么</text>
+    <text x="108" y="296" fill="#6C625C" font-size="11" font-family="Inter, Arial, sans-serif">系统主链 + 关键流程</text>
+  </g>
+  <g>
+    <rect x="282" y="250" width="186" height="62" rx="18" fill="#FFFFFF" stroke="#D7CEC4"/>
+    <rect x="296" y="266" width="4" height="30" rx="2" fill="#D4A42F"/>
+    <text x="312" y="276" fill="#1F1916" font-size="16" font-family="Inter, Arial, sans-serif" font-weight="600">不看什么</text>
+    <text x="312" y="296" fill="#6C625C" font-size="11" font-family="Inter, Arial, sans-serif">完整 endpoint 列表</text>
+  </g>
+  <g>
+    <rect x="486" y="250" width="210" height="62" rx="18" fill="#FFFFFF" stroke="#D7CEC4"/>
+    <rect x="500" y="266" width="4" height="30" rx="2" fill="#5D67D9"/>
+    <text x="516" y="276" fill="#1F1916" font-size="16" font-family="Inter, Arial, sans-serif" font-weight="600">系统主链</text>
+    <text x="516" y="296" fill="#6C625C" font-size="11" font-family="Inter, Arial, sans-serif">界面 → API → 判断 → 执行 → 交付</text>
+  </g>
+  <g>
+    <rect x="714" y="250" width="256" height="62" rx="18" fill="#FFFFFF" stroke="#D7CEC4"/>
+    <rect x="728" y="266" width="4" height="30" rx="2" fill="#4E8D77"/>
+    <text x="744" y="276" fill="#1F1916" font-size="16" font-family="Inter, Arial, sans-serif" font-weight="600">关键能力</text>
+    <text x="744" y="296" fill="#6C625C" font-size="11" font-family="Inter, Arial, sans-serif">生成 / 修订 / 运行时治理</text>
+  </g>
+
+  <line x1="36" y1="340" x2="1884" y2="340" stroke="#E0D8CF"/>
+
+  <rect x="76" y="372" width="1768" height="404" rx="24" fill="#FCF9F4" stroke="#D7CDC4"/>
+  <rect x="96" y="392" width="8" height="364" rx="4" fill="#756FD2"/>
+  <text x="122" y="416" fill="#6861C6" font-size="24" font-family="Inter, Arial, sans-serif" font-weight="700">系统主链</text>
+  <text x="122" y="446" fill="#625954" font-size="14" font-family="Inter, Arial, sans-serif">先只看这一条：用户从工作台发起请求，系统判断路径，调用对应执行链，最后把结果交付出来并沉淀到可继续修订的目录里。</text>
+
+  <!-- Main chain cards -->
+  <g>
+    <rect x="122" y="508" width="286" height="214" rx="20" fill="#FFFFFF" stroke="#D8CEC5"/>
+    <rect x="140" y="526" width="6" height="44" rx="3" fill="#D85A3A"/>
+    <text x="156" y="532" fill="#1F1916" font-size="22" font-family="Inter, Arial, sans-serif" font-weight="600">1. 工作台界面</text>
+    <line x1="140" y1="582" x2="390" y2="582" stroke="#E7DED5"/>
+    <text x="156" y="616" fill="#2B2521" font-size="15" font-family="Inter, Arial, sans-serif">用户在主站发起分析，或在修订工作台继续改已有报告。</text>
+    <text x="156" y="644" fill="#2B2521" font-size="15" font-family="Inter, Arial, sans-serif">这里负责收集数据、需求、背景和修订意见。</text>
+  </g>
+
+  <g>
+    <rect x="456" y="508" width="286" height="214" rx="20" fill="#FFFFFF" stroke="#D8CEC5"/>
+    <rect x="474" y="526" width="6" height="44" rx="3" fill="#D4A42F"/>
+    <text x="490" y="532" fill="#1F1916" font-size="22" font-family="Inter, Arial, sans-serif" font-weight="600">2. API 门面</text>
+    <line x1="474" y1="582" x2="724" y2="582" stroke="#E7DED5"/>
+    <text x="490" y="616" fill="#2B2521" font-size="15" font-family="Inter, Arial, sans-serif">FastAPI 把外部请求按数据、报告、修订、运行时几类入口接住。</text>
+    <text x="490" y="644" fill="#2B2521" font-size="15" font-family="Inter, Arial, sans-serif">这一层还负责配置、挂载、能力清单和基础校验。</text>
+  </g>
+
+  <g>
+    <rect x="790" y="508" width="286" height="214" rx="20" fill="#FFFFFF" stroke="#D8CEC5"/>
+    <rect x="808" y="526" width="6" height="44" rx="3" fill="#5D67D9"/>
+    <text x="824" y="532" fill="#1F1916" font-size="22" font-family="Inter, Arial, sans-serif" font-weight="600">3. 判断引擎</text>
+    <line x1="808" y1="582" x2="1058" y2="582" stroke="#E7DED5"/>
+    <text x="824" y="616" fill="#2B2521" font-size="15" font-family="Inter, Arial, sans-serif">系统先看懂数据结构、分析目标和业务语境，再决定走哪条链。</text>
+    <text x="824" y="644" fill="#2B2521" font-size="15" font-family="Inter, Arial, sans-serif">这里决定是标准报告、多表专项、行业专题、历史风格还是修订链。</text>
+  </g>
+
+  <g>
+    <rect x="1124" y="508" width="286" height="214" rx="20" fill="#FFFFFF" stroke="#D8CEC5"/>
+    <rect x="1142" y="526" width="6" height="44" rx="3" fill="#8A6F7B"/>
+    <text x="1158" y="532" fill="#1F1916" font-size="22" font-family="Inter, Arial, sans-serif" font-weight="600">4. 执行引擎</text>
+    <line x1="1142" y1="582" x2="1392" y2="582" stroke="#E7DED5"/>
+    <text x="1158" y="616" fill="#2B2521" font-size="15" font-family="Inter, Arial, sans-serif">在这一步进入真正的分析、生成、专项链、runtime 或 pipeline。</text>
+    <text x="1158" y="644" fill="#2B2521" font-size="15" font-family="Inter, Arial, sans-serif">不同专题能力都挂在这一层，但不需要在主图里一一展开。</text>
+  </g>
+
+  <g>
+    <rect x="1458" y="508" width="340" height="214" rx="20" fill="#FFFFFF" stroke="#D8CEC5"/>
+    <rect x="1476" y="526" width="6" height="44" rx="3" fill="#4E8D77"/>
+    <text x="1492" y="532" fill="#1F1916" font-size="22" font-family="Inter, Arial, sans-serif" font-weight="600">5. 交付与修订资产</text>
+    <line x1="1476" y1="582" x2="1780" y2="582" stroke="#E7DED5"/>
+    <text x="1492" y="616" fill="#2B2521" font-size="15" font-family="Inter, Arial, sans-serif">结果最终落成 HTML / PDF / 图表 / 明细 / 运行记录，并进入后续修订和目录索引。</text>
+    <text x="1492" y="644" fill="#2B2521" font-size="15" font-family="Inter, Arial, sans-serif">这一步保证结果可交付、可回看、可继续改。</text>
+  </g>
+
+  <path d="M408 620 C430 620 434 620 456 620" stroke="#B58F30" stroke-width="5" stroke-linecap="round"/>
+  <path d="M742 620 C764 620 768 620 790 620" stroke="#B58F30" stroke-width="5" stroke-linecap="round"/>
+  <path d="M1076 620 C1098 620 1102 620 1124 620" stroke="#756FD2" stroke-width="5" stroke-linecap="round"/>
+  <path d="M1410 620 C1432 620 1436 620 1458 620" stroke="#4E8D77" stroke-width="5" stroke-linecap="round"/>
+
+  <rect x="76" y="812" width="1768" height="202" rx="24" fill="#FFF7F2" stroke="#E8B7A8"/>
+  <rect x="96" y="832" width="8" height="162" rx="4" fill="#D85A3A"/>
+  <text x="122" y="856" fill="#D85A3A" font-size="24" font-family="Inter, Arial, sans-serif" font-weight="700">A 生成流程</text>
+  <text x="122" y="886" fill="#625954" font-size="14" font-family="Inter, Arial, sans-serif">新报告从这里进入：可以同步生成，也可以异步排队，还可以进更长的 runtime / pipeline。</text>
+  <g>
+    <rect x="326" y="842" width="418" height="142" rx="20" fill="#FFFFFF" stroke="#D8CEC5"/>
+    <rect x="344" y="860" width="6" height="42" rx="3" fill="#D85A3A"/>
+    <text x="360" y="866" fill="#1F1916" font-size="18" font-family="Inter, Arial, sans-serif" font-weight="600">同步报告</text>
+    <text x="360" y="896" fill="#2B2521" font-size="14" font-family="Inter, Arial, sans-serif">适合直接返回结果的标准报告主流程。</text>
+    <text x="360" y="920" fill="#2B2521" font-size="14" font-family="Inter, Arial, sans-serif">请求进来后走编排与判断层，直接产出可下载报告。</text>
+  </g>
+  <g>
+    <rect x="768" y="842" width="418" height="142" rx="20" fill="#FFFFFF" stroke="#D8CEC5"/>
+    <rect x="786" y="860" width="6" height="42" rx="3" fill="#D85A3A"/>
+    <text x="802" y="866" fill="#1F1916" font-size="18" font-family="Inter, Arial, sans-serif" font-weight="600">异步任务</text>
+    <text x="802" y="896" fill="#2B2521" font-size="14" font-family="Inter, Arial, sans-serif">适合需要排队、后台执行和状态查询的生成任务。</text>
+    <text x="802" y="920" fill="#2B2521" font-size="14" font-family="Inter, Arial, sans-serif">用户先拿到 job，再回查进度和产物。</text>
+  </g>
+  <g>
+    <rect x="1210" y="842" width="556" height="142" rx="20" fill="#FFFFFF" stroke="#D8CEC5"/>
+    <rect x="1228" y="860" width="6" height="42" rx="3" fill="#D85A3A"/>
+    <text x="1244" y="866" fill="#1F1916" font-size="18" font-family="Inter, Arial, sans-serif" font-weight="600">延长链和专项链</text>
+    <text x="1244" y="896" fill="#2B2521" font-size="14" font-family="Inter, Arial, sans-serif">适合 generic long、历史风格、附录增强、R 工作流等更重链路。</text>
+    <text x="1244" y="920" fill="#2B2521" font-size="14" font-family="Inter, Arial, sans-serif">最终结果会注册回报告目录，继续回到统一交付面。</text>
+  </g>
+
+  <rect x="76" y="1048" width="1768" height="202" rx="24" fill="#F7F8FF" stroke="#C9CBF2"/>
+  <rect x="96" y="1068" width="8" height="162" rx="4" fill="#5D67D9"/>
+  <text x="122" y="1092" fill="#5D67D9" font-size="24" font-family="Inter, Arial, sans-serif" font-weight="700">B 修订流程</text>
+  <text x="122" y="1122" fill="#625954" font-size="14" font-family="Inter, Arial, sans-serif">已有报告从这里进入：先复制工作副本，再接收批注和修改，最后发布新版本。</text>
+  <g>
+    <rect x="326" y="1078" width="418" height="142" rx="20" fill="#FFFFFF" stroke="#D8CEC5"/>
+    <rect x="344" y="1096" width="6" height="42" rx="3" fill="#5D67D9"/>
+    <text x="360" y="1102" fill="#1F1916" font-size="18" font-family="Inter, Arial, sans-serif" font-weight="600">创建修订工作区</text>
+    <text x="360" y="1132" fill="#2B2521" font-size="14" font-family="Inter, Arial, sans-serif">系统先从已有报告复制出可编辑副本，保证后续修改有明确工作区。</text>
+    <text x="360" y="1156" fill="#2B2521" font-size="14" font-family="Inter, Arial, sans-serif">这一步的关键是 source → working 的稳定复制。</text>
+  </g>
+  <g>
+    <rect x="768" y="1078" width="418" height="142" rx="20" fill="#FFFFFF" stroke="#D8CEC5"/>
+    <rect x="786" y="1096" width="6" height="42" rx="3" fill="#5D67D9"/>
+    <text x="802" y="1102" fill="#1F1916" font-size="18" font-family="Inter, Arial, sans-serif" font-weight="600">接收改动与证据</text>
+    <text x="802" y="1132" fill="#2B2521" font-size="14" font-family="Inter, Arial, sans-serif">消息、diff、批注、附件、补图请求都挂到同一个 session 里。</text>
+    <text x="802" y="1156" fill="#2B2521" font-size="14" font-family="Inter, Arial, sans-serif">因此修订不是散的，而是一条可追溯的协作链。</text>
+  </g>
+  <g>
+    <rect x="1210" y="1078" width="556" height="142" rx="20" fill="#FFFFFF" stroke="#D8CEC5"/>
+    <rect x="1228" y="1096" width="6" height="42" rx="3" fill="#5D67D9"/>
+    <text x="1244" y="1102" fill="#1F1916" font-size="18" font-family="Inter, Arial, sans-serif" font-weight="600">发布修订版本</text>
+    <text x="1244" y="1132" fill="#2B2521" font-size="14" font-family="Inter, Arial, sans-serif">通过 publish 把工作副本重新变成正式版本，并更新预览和版本记录。</text>
+    <text x="1244" y="1156" fill="#2B2521" font-size="14" font-family="Inter, Arial, sans-serif">结果会重新回到下载面和报告目录，成为后续新基线。</text>
+  </g>
+
+  <rect x="76" y="1284" width="1768" height="238" rx="24" fill="#F4FBF8" stroke="#B9D6CC"/>
+  <rect x="96" y="1304" width="8" height="198" rx="4" fill="#4E8D77"/>
+  <text x="122" y="1328" fill="#4E8D77" font-size="24" font-family="Inter, Arial, sans-serif" font-weight="700">C 运行时与治理</text>
+  <text x="122" y="1358" fill="#625954" font-size="14" font-family="Inter, Arial, sans-serif">这一层回答“执行怎么控、质量怎么管、资产怎么留”。</text>
+  <g>
+    <rect x="326" y="1314" width="418" height="178" rx="20" fill="#FFFFFF" stroke="#D8CEC5"/>
+    <rect x="344" y="1332" width="6" height="42" rx="3" fill="#4E8D77"/>
+    <text x="360" y="1338" fill="#1F1916" font-size="18" font-family="Inter, Arial, sans-serif" font-weight="600">运行时控制</text>
+    <text x="360" y="1368" fill="#2B2521" font-size="14" font-family="Inter, Arial, sans-serif">系统把 pipeline、run、task、修订 turn 都收敛到统一的运行看板里。</text>
+    <text x="360" y="1392" fill="#2B2521" font-size="14" font-family="Inter, Arial, sans-serif">因此可以统一做 cancel / resume / active process 观察。</text>
+  </g>
+  <g>
+    <rect x="768" y="1314" width="418" height="178" rx="20" fill="#FFFFFF" stroke="#D8CEC5"/>
+    <rect x="786" y="1332" width="6" height="42" rx="3" fill="#4E8D77"/>
+    <text x="802" y="1338" fill="#1F1916" font-size="18" font-family="Inter, Arial, sans-serif" font-weight="600">质量与审计</text>
+    <text x="802" y="1368" fill="#2B2521" font-size="14" font-family="Inter, Arial, sans-serif">不仅产出结果，也会留下质量门、学习台账和运行痕迹。</text>
+    <text x="802" y="1392" fill="#2B2521" font-size="14" font-family="Inter, Arial, sans-serif">这样后续排错、复盘和改造都不需要重新猜系统做过什么。</text>
+  </g>
+  <g>
+    <rect x="1210" y="1314" width="556" height="178" rx="20" fill="#FFFFFF" stroke="#D8CEC5"/>
+    <rect x="1228" y="1332" width="6" height="42" rx="3" fill="#4E8D77"/>
+    <text x="1244" y="1338" fill="#1F1916" font-size="18" font-family="Inter, Arial, sans-serif" font-weight="600">交付与目录</text>
+    <text x="1244" y="1368" fill="#2B2521" font-size="14" font-family="Inter, Arial, sans-serif">HTML、PDF、图表、明细、trace 和 bundle 会一起沉淀到目录体系里。</text>
+    <text x="1244" y="1392" fill="#2B2521" font-size="14" font-family="Inter, Arial, sans-serif">报告目录索引和存储目录保证结果可下载、可追踪、可继续修订。</text>
+  </g>
+
+  <text x="78" y="1570" fill="#7A7068" font-size="14" font-family="Inter, Arial, sans-serif" font-weight="500">附注：这页只讲主结构和关键流程。所有具体 path、端点分组和完整清单，请看第 3 页 Endpoint Inventory。</text>
+</svg>

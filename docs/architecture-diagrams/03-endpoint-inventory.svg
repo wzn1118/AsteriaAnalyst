@@ -1,0 +1,164 @@
+<svg width="1920" height="1400" viewBox="0 0 1920 1400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1920" height="1400" fill="#F3EFE8"/>
+  <rect x="36" y="36" width="1848" height="1328" rx="28" fill="#F7F3EC" stroke="#D9D0C6" stroke-width="2"/>
+  <rect x="36" y="36" width="12" height="1328" rx="6" fill="#D85A3A"/>
+
+  <text x="78" y="84" fill="#8A8078" font-size="16" font-family="Inter, Arial, sans-serif" font-weight="600">ENDPOINT INVENTORY</text>
+  <text x="78" y="146" fill="#1F1916" font-size="46" font-family="Inter, Arial, sans-serif" font-weight="700">附录：完整端点清单</text>
+  <text x="78" y="194" fill="#544B46" font-size="18" font-family="Inter, Arial, sans-serif">这一页只负责把 backend/app/main.py 里的 63 个 HTTP surface 和 2 个 mount 按业务域整理出来，不再承担业务说明或技术结构说明。</text>
+
+  <g>
+    <rect x="78" y="236" width="192" height="62" rx="18" fill="#FFFFFF" stroke="#D7CEC4"/>
+    <rect x="92" y="252" width="4" height="30" rx="2" fill="#D85A3A"/>
+    <text x="108" y="262" fill="#1F1916" font-size="16" font-family="Inter, Arial, sans-serif" font-weight="600">总量</text>
+    <text x="108" y="282" fill="#6C625C" font-size="11" font-family="Inter, Arial, sans-serif">63 HTTP endpoints</text>
+  </g>
+  <g>
+    <rect x="288" y="236" width="154" height="62" rx="18" fill="#FFFFFF" stroke="#D7CEC4"/>
+    <rect x="302" y="252" width="4" height="30" rx="2" fill="#D4A42F"/>
+    <text x="318" y="262" fill="#1F1916" font-size="16" font-family="Inter, Arial, sans-serif" font-weight="600">挂载</text>
+    <text x="318" y="282" fill="#6C625C" font-size="11" font-family="Inter, Arial, sans-serif">2 mounts</text>
+  </g>
+  <g>
+    <rect x="460" y="236" width="224" height="62" rx="18" fill="#FFFFFF" stroke="#D7CEC4"/>
+    <rect x="474" y="252" width="4" height="30" rx="2" fill="#5D67D9"/>
+    <text x="490" y="262" fill="#1F1916" font-size="16" font-family="Inter, Arial, sans-serif" font-weight="600">代码来源</text>
+    <text x="490" y="282" fill="#6C625C" font-size="11" font-family="Inter, Arial, sans-serif">backend/app/main.py</text>
+  </g>
+  <g>
+    <rect x="702" y="236" width="224" height="62" rx="18" fill="#FFFFFF" stroke="#D7CEC4"/>
+    <rect x="716" y="252" width="4" height="30" rx="2" fill="#4E8D77"/>
+    <text x="732" y="262" fill="#1F1916" font-size="16" font-family="Inter, Arial, sans-serif" font-weight="600">阅读方式</text>
+    <text x="732" y="282" fill="#6C625C" font-size="11" font-family="Inter, Arial, sans-serif">按业务域分 9 组查看</text>
+  </g>
+
+  <line x1="36" y1="326" x2="1884" y2="326" stroke="#E0D8CF"/>
+
+  <!-- grid cards -->
+  <g font-family="Inter, Arial, sans-serif">
+    <!-- row 1 col 1 -->
+    <rect x="78" y="360" width="564" height="248" rx="22" fill="#FFFFFF" stroke="#D8CEC5"/>
+    <rect x="96" y="378" width="6" height="44" rx="3" fill="#D85A3A"/>
+    <text x="112" y="384" fill="#1F1916" font-size="18" font-weight="600">Platform / config</text>
+    <text x="594" y="386" fill="#D85A3A" font-size="12" font-weight="600" text-anchor="end">8 + 2</text>
+    <text x="112" y="410" fill="#6C625C" font-size="12">启动、清单、配置与挂载。</text>
+    <line x1="96" y1="436" x2="624" y2="436" stroke="#E7DED5"/>
+    <text x="102" y="466" fill="#2B2521" font-size="12">GET /health</text>
+    <text x="102" y="484" fill="#2B2521" font-size="12">GET /api/manifest</text>
+    <text x="102" y="502" fill="#2B2521" font-size="12">GET /api/ecosystem/market</text>
+    <text x="102" y="520" fill="#2B2521" font-size="12">GET /api/skills/mounted</text>
+    <text x="102" y="538" fill="#2B2521" font-size="12">GET /api/statistics/catalog</text>
+    <text x="102" y="556" fill="#2B2521" font-size="12">GET /api/runtime-settings</text>
+    <text x="102" y="574" fill="#2B2521" font-size="12">PUT /api/runtime-settings</text>
+    <text x="102" y="592" fill="#2B2521" font-size="12">GET /api/runtime/codex-health / MOUNT /storage / MOUNT /</text>
+
+    <!-- row 1 col 2 -->
+    <rect x="678" y="360" width="564" height="248" rx="22" fill="#FFFFFF" stroke="#D8CEC5"/>
+    <rect x="696" y="378" width="6" height="44" rx="3" fill="#D4A42F"/>
+    <text x="712" y="384" fill="#1F1916" font-size="18" font-weight="600">Dataset surface</text>
+    <text x="1194" y="386" fill="#D4A42F" font-size="12" font-weight="600" text-anchor="end">5</text>
+    <text x="712" y="410" fill="#6C625C" font-size="12">数据集读取与工作流预览。</text>
+    <line x1="696" y1="436" x2="1224" y2="436" stroke="#E7DED5"/>
+    <text x="702" y="466" fill="#2B2521" font-size="12">GET /api/datasets</text>
+    <text x="702" y="484" fill="#2B2521" font-size="12">GET /api/datasets/{dataset_id}</text>
+    <text x="702" y="502" fill="#2B2521" font-size="12">GET /api/datasets/{dataset_id}/workflow</text>
+    <text x="702" y="520" fill="#2B2521" font-size="12">POST /api/datasets/upload</text>
+    <text x="702" y="538" fill="#2B2521" font-size="12">POST /api/datasets/{dataset_id}/sheet</text>
+
+    <!-- row 1 col 3 -->
+    <rect x="1278" y="360" width="564" height="248" rx="22" fill="#FFFFFF" stroke="#D8CEC5"/>
+    <rect x="1296" y="378" width="6" height="44" rx="3" fill="#756FD2"/>
+    <text x="1312" y="384" fill="#1F1916" font-size="18" font-weight="600">Historical / background</text>
+    <text x="1794" y="386" fill="#756FD2" font-size="12" font-weight="600" text-anchor="end">6</text>
+    <text x="1312" y="410" fill="#6C625C" font-size="12">历史报告与业务背景资产。</text>
+    <line x1="1296" y1="436" x2="1824" y2="436" stroke="#E7DED5"/>
+    <text x="1302" y="466" fill="#2B2521" font-size="12">GET /api/historical-reports</text>
+    <text x="1302" y="484" fill="#2B2521" font-size="12">GET /api/historical-reports/{template_id}</text>
+    <text x="1302" y="502" fill="#2B2521" font-size="12">POST /api/historical-reports/upload</text>
+    <text x="1302" y="520" fill="#2B2521" font-size="12">GET /api/business-backgrounds</text>
+    <text x="1302" y="538" fill="#2B2521" font-size="12">GET /api/business-backgrounds/{context_id}</text>
+    <text x="1302" y="556" fill="#2B2521" font-size="12">POST /api/business-backgrounds/upload</text>
+
+    <!-- row 2 col 1 -->
+    <rect x="78" y="638" width="564" height="248" rx="22" fill="#FFFFFF" stroke="#D8CEC5"/>
+    <rect x="96" y="656" width="6" height="44" rx="3" fill="#8A6F7B"/>
+    <text x="112" y="662" fill="#1F1916" font-size="18" font-weight="600">Analysis / report generation</text>
+    <text x="594" y="664" fill="#8A6F7B" font-size="12" font-weight="600" text-anchor="end">8</text>
+    <text x="112" y="688" fill="#6C625C" font-size="12">分析执行与报告生成主入口。</text>
+    <line x1="96" y1="714" x2="624" y2="714" stroke="#E7DED5"/>
+    <text x="102" y="744" fill="#2B2521" font-size="12">POST /api/statistics/run</text>
+    <text x="102" y="762" fill="#2B2521" font-size="12">POST /api/code/execute</text>
+    <text x="102" y="780" fill="#2B2521" font-size="12">POST /api/datasets/{dataset_id}/smart-report</text>
+    <text x="102" y="798" fill="#2B2521" font-size="12">POST /api/datasets/{dataset_id}/smart-report-jobs</text>
+    <text x="102" y="816" fill="#2B2521" font-size="12">GET /api/report-jobs/{job_id} / GET /api/reports</text>
+    <text x="102" y="834" fill="#2B2521" font-size="12">GET /api/reports/{report_id} / POST /api/reports/{report_id}/r-intelligence-flow</text>
+
+    <!-- row 2 col 2 -->
+    <rect x="678" y="638" width="564" height="248" rx="22" fill="#FFFFFF" stroke="#D8CEC5"/>
+    <rect x="696" y="656" width="6" height="44" rx="3" fill="#5D67D9"/>
+    <text x="712" y="662" fill="#1F1916" font-size="18" font-weight="600">Revision workbench core</text>
+    <text x="1194" y="664" fill="#5D67D9" font-size="12" font-weight="600" text-anchor="end">7</text>
+    <text x="712" y="688" fill="#6C625C" font-size="12">修订 session 与对话主链。</text>
+    <line x1="696" y1="714" x2="1224" y2="714" stroke="#E7DED5"/>
+    <text x="702" y="744" fill="#2B2521" font-size="12">POST /api/reports/{report_id}/agent-sessions</text>
+    <text x="702" y="762" fill="#2B2521" font-size="12">GET /api/reports/{report_id}/agent-sessions/{session_id}</text>
+    <text x="702" y="780" fill="#2B2521" font-size="12">POST /api/report-agent-sessions/{session_id}/messages</text>
+    <text x="702" y="798" fill="#2B2521" font-size="12">GET /api/report-agent-sessions/{session_id}/events</text>
+    <text x="702" y="816" fill="#2B2521" font-size="12">GET /api/report-agent-sessions/{session_id}/events/stream</text>
+    <text x="702" y="834" fill="#2B2521" font-size="12">POST /cancel / POST /publish</text>
+
+    <!-- row 2 col 3 -->
+    <rect x="1278" y="638" width="564" height="248" rx="22" fill="#FFFFFF" stroke="#D8CEC5"/>
+    <rect x="1296" y="656" width="6" height="44" rx="3" fill="#D48B3E"/>
+    <text x="1312" y="662" fill="#1F1916" font-size="18" font-weight="600">Revision files / review loop</text>
+    <text x="1794" y="664" fill="#D48B3E" font-size="12" font-weight="600" text-anchor="end">8</text>
+    <text x="1312" y="688" fill="#6C625C" font-size="12">文件、diff、附件与批注。</text>
+    <line x1="1296" y1="714" x2="1824" y2="714" stroke="#E7DED5"/>
+    <text x="1302" y="744" fill="#2B2521" font-size="12">GET /files / GET /diff / GET /attachments</text>
+    <text x="1302" y="762" fill="#2B2521" font-size="12">POST /attachments / DELETE /attachments/{attachment_id}</text>
+    <text x="1302" y="780" fill="#2B2521" font-size="12">GET /annotations / POST /annotations</text>
+    <text x="1302" y="798" fill="#2B2521" font-size="12">DELETE /annotations/{annotation_id}</text>
+
+    <!-- row 3 col 1 -->
+    <rect x="78" y="916" width="564" height="248" rx="22" fill="#FFFFFF" stroke="#D8CEC5"/>
+    <rect x="96" y="934" width="6" height="44" rx="3" fill="#1F1916"/>
+    <text x="112" y="940" fill="#1F1916" font-size="18" font-weight="600">Runtime control</text>
+    <text x="594" y="942" fill="#1F1916" font-size="12" font-weight="600" text-anchor="end">10</text>
+    <text x="112" y="966" fill="#6C625C" font-size="12">进程、run、job 控制。</text>
+    <line x1="96" y1="992" x2="624" y2="992" stroke="#E7DED5"/>
+    <text x="102" y="1022" fill="#2B2521" font-size="12">GET /api/runtime/processes</text>
+    <text x="102" y="1040" fill="#2B2521" font-size="12">POST /api/runtime/processes/{kind}/{process_id}/cancel</text>
+    <text x="102" y="1058" fill="#2B2521" font-size="12">POST /api/runtime/processes/{kind}/{process_id}/resume</text>
+    <text x="102" y="1076" fill="#2B2521" font-size="12">POST /api/codex-runs / GET /api/codex-runs/{run_id}</text>
+    <text x="102" y="1094" fill="#2B2521" font-size="12">GET /log / POST /cancel / POST /api/codex-run-jobs</text>
+    <text x="102" y="1112" fill="#2B2521" font-size="12">GET /api/codex-run-jobs/{job_id} / POST /cancel</text>
+
+    <!-- row 3 col 2 -->
+    <rect x="678" y="916" width="564" height="248" rx="22" fill="#FFFFFF" stroke="#D8CEC5"/>
+    <rect x="696" y="934" width="6" height="44" rx="3" fill="#4E8D77"/>
+    <text x="712" y="940" fill="#1F1916" font-size="18" font-weight="600">Ledger / pipeline jobs</text>
+    <text x="1194" y="942" fill="#4E8D77" font-size="12" font-weight="600" text-anchor="end">7</text>
+    <text x="712" y="966" fill="#6C625C" font-size="12">学习台账与 pipeline 任务。</text>
+    <line x1="696" y1="992" x2="1224" y2="992" stroke="#E7DED5"/>
+    <text x="702" y="1022" fill="#2B2521" font-size="12">GET /api/runtime-learning-ledger</text>
+    <text x="702" y="1040" fill="#2B2521" font-size="12">GET /api/runtime-learning-ledger/{entry_id}</text>
+    <text x="702" y="1058" fill="#2B2521" font-size="12">POST /api/codex-pipeline-jobs</text>
+    <text x="702" y="1076" fill="#2B2521" font-size="12">GET /api/codex-pipeline-jobs/{job_id}</text>
+    <text x="702" y="1094" fill="#2B2521" font-size="12">POST /cancel / POST /retry-stage</text>
+    <text x="702" y="1112" fill="#2B2521" font-size="12">POST /register-report-output</text>
+
+    <!-- row 3 col 3 -->
+    <rect x="1278" y="916" width="564" height="248" rx="22" fill="#FFFFFF" stroke="#D8CEC5"/>
+    <rect x="1296" y="934" width="6" height="44" rx="3" fill="#C04E68"/>
+    <text x="1312" y="940" fill="#1F1916" font-size="18" font-weight="600">Revision shells</text>
+    <text x="1794" y="942" fill="#C04E68" font-size="12" font-weight="600" text-anchor="end">4</text>
+    <text x="1312" y="966" fill="#6C625C" font-size="12">修订页面入口。</text>
+    <line x1="1296" y1="992" x2="1824" y2="992" stroke="#E7DED5"/>
+    <text x="1302" y="1022" fill="#2B2521" font-size="12">GET /revision</text>
+    <text x="1302" y="1040" fill="#2B2521" font-size="12">GET /revision/</text>
+    <text x="1302" y="1058" fill="#2B2521" font-size="12">GET /revision/workspace</text>
+    <text x="1302" y="1076" fill="#2B2521" font-size="12">GET /revision/workspace/</text>
+  </g>
+
+  <text x="78" y="1316" fill="#7A7068" font-size="14" font-family="Inter, Arial, sans-serif" font-weight="500">维护建议：这一页优先随代码更新；业务版和技术版只在结构发生变化时调整。</text>
+</svg>

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Analysis Delivery Workflow"
+  short_description: "Turn rough data asks into a deliverable report workflow."
+  default_prompt: "Use $analysis-delivery-workflow to turn my uploaded business data and rough request into a professional downloadable report workflow."
