@@ -38,7 +38,7 @@
   <rect x="76" y="372" width="1768" height="404" rx="24" fill="#FCF9F4" stroke="#D7CDC4"/>
   <rect x="96" y="392" width="8" height="364" rx="4" fill="#756FD2"/>
   <text x="122" y="416" fill="#6861C6" font-size="24" font-family="Inter, Arial, sans-serif" font-weight="700">系统主链</text>
-  <text x="122" y="446" fill="#625954" font-size="14" font-family="Inter, Arial, sans-serif">先只看这一条：用户从工作台发起请求，系统判断路径，调用对应执行链，最后把结果交付出来并沉淀到可继续修订的目录里。</text>
+  <text x="122" y="446" fill="#625954" font-size="14" font-family="Inter, Arial, sans-serif">核心流程：用户从工作台发起请求，系统判断路径，调用对应执行链，交付结果并沉淀到可继续修订的目录中。</text>
 
   <!-- Main chain cards -->
   <g>

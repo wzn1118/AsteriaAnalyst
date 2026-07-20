@@ -1917,13 +1917,13 @@ function methodRunBlockReason(method: MethodCatalogItem, dataset?: DatasetItem) 
   const roles = new Set((method.required_roles || []).map((item) => String(item)));
   const outputType = methodOutputType(method);
   if (methodRequiresTemporalField(method) || roles.has("time")) {
-    return "当前数据缺少可用时间字段，暂时不能运行这类方法。";
+      return "选择可用时间字段后即可运行这类方法。";
   }
   if (roles.has("field_pair") || ["association", "comparison", "regression", "machine_learning", "multivariate"].includes(method.family) || METHOD_CHART_OUTPUTS.has(outputType)) {
-    return "当前数据缺少足够的数值字段，暂时不能运行这类方法。";
+      return "选择足够的数值字段后即可运行这类方法。";
   }
   if (roles.has("grouped") || roles.has("categorical")) {
-    return "当前数据缺少可用分组字段，暂时不能运行这类方法。";
+      return "选择可用分组字段后即可运行这类方法。";
   }
   return "当前数据结构还不满足这个方法的运行条件。";
 }
@@ -2144,12 +2144,12 @@ function methodBeginnerProfile(method: MethodCatalogItem) {
         when: "当你要比较两组或多组，但均值检验假设不稳、异常值较多时使用。",
         how: "选择一个数值结果字段和一个分组字段；配对数据要选择配对检验，独立分组要选择独立样本检验。",
         read: "重点看每组中位数、秩次差异、p 值和效果大小；业务价值结合效果大小、业务阈值和使用场景判断。",
-        caution: "先确认分组含义、样本量和是否同一对象重复测量，避免把配对数据当独立数据。",
+        caution: "先确认分组含义、样本量与同一对象的重复测量情况；配对数据使用对应的配对方法。",
       };
     }
     return {
       problem: "用来比较不同组的平均水平是否有差异，比如不同渠道客单价、不同班级成绩、实验组和对照组表现。",
-      when: "当一个字段是数值结果、另一个字段是分组，并且你关心组间均值是否不同的时候使用。",
+      when: "当一个字段提供数值结果，另一个字段提供分组，并且需要比较组间均值时使用。",
       how: "选择目标数值字段和分组字段；两组常用 t 检验，多组常用 ANOVA，必要时再做事后比较。",
       read: "先看各组均值和置信区间，再看 p 值；如果多组显著，还要看是哪几组之间不同。",
       caution: "检查异常值、样本量、方差是否差不多；如果假设不满足，可改用非参数方法。",
@@ -2160,10 +2160,10 @@ function methodBeginnerProfile(method: MethodCatalogItem) {
     if (has(/logistic|binary|二分类|分类结果/)) {
       return {
         problem: "用来解释或预测一个二分类结果，比如是否购买、是否流失、是否通过。",
-        when: "当目标字段只有是/否、0/1、成功/失败这类结果，且你想知道哪些因素影响概率时使用。",
+        when: "当目标字段使用是/否、0/1、成功/失败等二分类结果，并且需要评估影响概率的因素时使用。",
         how: "选择二分类目标字段，再选择可能影响它的特征字段；分类特征要确认编码和基准组。",
         read: "重点看方向、显著性、优势比或概率变化；系数为正通常表示发生概率上升。",
-        caution: "不要只看准确率，还要看类别是否不平衡、混淆矩阵和业务可解释性。",
+        caution: "同时查看准确率、类别平衡、混淆矩阵和业务可解释性。",
       };
     }
     return {
@@ -2198,9 +2198,9 @@ function methodBeginnerProfile(method: MethodCatalogItem) {
     return {
       problem: "用来把很多相关字段压缩成少数几个综合维度，帮助看整体结构和主要差异来源。",
       when: "当变量很多、彼此相关，直接看单个字段太乱时使用。",
-      how: "选择一组数值字段；运行前通常需要标准化，避免量纲大的字段主导结果。",
+      how: "选择一组数值字段；运行前通常需要标准化，使不同量纲的字段获得均衡权重。",
       read: "重点看解释方差、载荷和样本在主成分上的位置；给每个维度起一个业务能懂的名字。",
-      caution: "降维会牺牲部分细节，结果需要结合原始字段解释，不能只看数学维度名。",
+      caution: "结合原始字段解释降维结果，并核对保留的细节与维度含义。",
     };
   }
 
@@ -2216,10 +2216,10 @@ function methodBeginnerProfile(method: MethodCatalogItem) {
 
   if (family === "distribution_assumption" || has(/normal|shapiro|kolmogorov|qq|distribution|skew|kurtosis|正态|分布|偏度|峰度/)) {
     return {
-      problem: "用来检查字段的分布形态，判断后续能不能放心使用依赖正态性或稳定分布的统计方法。",
+      problem: "用来检查字段的分布形态，为后续依赖正态性或稳定分布前提的统计方法提供依据。",
       when: "当你准备做 t 检验、ANOVA、回归，或想知道数据是否偏态、长尾、异常值多时使用。",
       how: "选择一个或多个数值字段，结合直方图、QQ 图和正态性检验一起看。",
-      read: "p 值小通常表示偏离正态；同时关注偏度、峰度和图形形状，别只看一个检验。",
+      read: "p 值小通常表示偏离正态；同时查看偏度、峰度和图形形状。",
       caution: "大样本下很小的偏离也可能显著；业务上是否影响结论要结合图形和方法稳健性判断。",
     };
   }
@@ -2231,7 +2231,7 @@ function methodBeginnerProfile(method: MethodCatalogItem) {
         when: "分析开始前、建模前、或发现结果异常时都应该先看。",
         how: "查看每个字段缺失数量、缺失比例和缺失是否集中在某些分组或时间段。",
         read: "重点看缺失比例高的字段、关键字段是否缺失，以及缺失是否有明显模式。",
-        caution: "不要默认删掉缺失值；先判断缺失是否有业务含义，再决定填补、保留或剔除。",
+        caution: "先判断缺失是否具有业务含义，再决定填补、保留或剔除。",
       };
     }
     return {
@@ -2239,7 +2239,7 @@ function methodBeginnerProfile(method: MethodCatalogItem) {
       when: "任何正式检验、建模或报告前都应该先用它打底。",
       how: "选择核心字段或全表运行；先看分布、缺失、极端值，再决定下一步分析方法。",
       read: "重点看中位数和均值差距、最小最大值、分位数和缺失比例，这些能暴露口径问题。",
-      caution: "描述统计只说明“现在是什么样”，不能单独说明差异显著或因果关系。",
+      caution: "描述统计呈现当前结构；差异显著性和因果问题使用相应的分析方法评估。",
     };
   }
 
@@ -2269,7 +2269,7 @@ function methodBeginnerProfile(method: MethodCatalogItem) {
       when: "适用于结果以“到某事件发生所需时间”表示，且部分样本仍处于观察期的情形。",
       how: "选择起止时间、事件是否发生字段和分组或协变量；保留未发生事件的删失信息。",
       read: "重点看生存曲线、风险比和不同组的事件发生速度。",
-      caution: "不要把还没发生事件的样本直接删掉；删失处理是这类方法的关键。",
+    caution: "将尚未发生事件的样本按删失处理，保证此类方法的结果完整。",
     };
   }
 
@@ -2361,7 +2361,7 @@ function beginnerMethodSections(method: MethodCatalogItem): MethodCardSection[] 
     {
       kind: "beginner_when",
       label: "什么时候用",
-      value: `当你的问题正好要用 ${cardName} 来解释，并且数据里能提供 ${roles} 时使用。${profile.when}`,
+      value: `当问题由 ${cardName} 解释，且数据提供 ${roles} 时使用。${profile.when}`,
     },
     {
       kind: "beginner_how",
@@ -2387,7 +2387,7 @@ function beginnerUsageGuidance(method: MethodCatalogItem): MethodUsageGuidance[]
   const roles = methodRoleLabels(method).filter(Boolean).join("、") || "目标字段、分组字段或时间字段";
   const outputs = methodOutputLabels(method).filter(Boolean).join("、") || methodOutputLabel(method);
   return [
-    { title: "这张卡何时用", detail: `只有当你要回答「${title}」对应的问题时才优先使用。${profile.when}` },
+    { title: "这张卡何时用", detail: `回答「${title}」对应问题时优先使用。${profile.when}` },
     { title: "字段怎么选", detail: `为「${title}」配置 ${roles}；字段不确定时先用智能默认，再按业务口径微调。${profile.how}` },
     { title: "读结果先看", detail: `「${title}」的输出重点是 ${outputs}。${profile.read}` },
   ];
@@ -2440,7 +2440,7 @@ function methodDisplayCopy(method: MethodCatalogItem) {
   const reportValueHooks = mergeReportValueHooks(method);
 
   let businessLine = `该方法围绕「${methodFocus}」组织 ${primaryOutput}，适合在含有 ${roles} 的数据上使用，重点产出 ${outputs}。`;
-  let actionLine = `重点回答这类 ${family} 方法能不能解释当前数据的变化、差异或机会。`;
+  let actionLine = `重点确认这类 ${family} 方法是否适合解释当前数据的变化、差异或机会。`;
 
   if ((method.required_roles || []).includes("field_pair")) {
     businessLine = `该方法专门看一对字段之间的联动、差距和方向性变化，适合用来解释双变量关系，并输出 ${outputs}。`;
@@ -2522,7 +2522,7 @@ function methodBundleDisplayCopy(bundle: MethodBundle) {
     {
       kind: "bundle_how",
       label: "怎么用",
-      value: `先给这组卡统一配置 ${roleList}；系统会把同一套绑定同步给组内每个子方法，避免同一分析口径被拆散。`,
+      value: `先给这组卡统一配置 ${roleList}；系统会把同一套绑定同步给组内每个子方法，保持分析口径一致。`,
     },
     {
       kind: "bundle_read",
@@ -2532,7 +2532,7 @@ function methodBundleDisplayCopy(bundle: MethodBundle) {
     {
       kind: "bundle_caution",
       label: "小白避坑",
-      value: `这张统一卡里的每个子方法都有自己的解释和输出，不要只看代表方法。展开“子方法明细”可以查看每个子方法对应的使用说明。`,
+      value: `这张统一卡中的每个子方法都有独立解释和输出。展开“子方法明细”可以查看每个子方法对应的使用说明。`,
     },
   ];
   return {
@@ -3033,7 +3033,7 @@ export function AnalysisWorkspaceShell() {
   const uploadBlockReason = !selectedFile
     ? "请先选择待分析的数据文件。"
     : isBusy
-      ? "当前流程正在运行，暂时不能上传新的数据文件。"
+      ? "当前流程正在运行。完成后即可上传新的数据文件。"
       : "";
   const uploadBlockAction = !selectedFile
     ? "点击上方文件卡片选择 CSV、TSV、DTA 或 Excel 文件后，上传按钮会自动恢复。"
@@ -3052,7 +3052,7 @@ export function AnalysisWorkspaceShell() {
     return "";
   }, [methodsById, selectedDataset, selectedRunSpecs]);
   const analysisBlockReason = isBusy
-    ? "当前任务正在运行，暂时不能启动新的分析。"
+    ? "当前任务正在运行。完成后即可启动新的分析。"
     : !selectedDatasetId
       ? "请先选择或上传一个数据集。"
       : !selectedDataset
@@ -3735,7 +3735,7 @@ export function AnalysisWorkspaceShell() {
       } catch (detailError) {
         if (!alive) return;
         setDatasetDetail(null);
-        setError(detailError instanceof Error ? detailError.message : "无法加载数据集字段详情。");
+        setError(detailError instanceof Error ? detailError.message : "数据集字段详情加载失败，请刷新或检查服务连接。");
       }
     }
     void loadDatasetDetail();
@@ -3761,7 +3761,7 @@ export function AnalysisWorkspaceShell() {
           }
         } catch (loadError) {
           if (alive) {
-            setError(loadError instanceof Error ? loadError.message : "无法加载数据集列表。");
+            setError(loadError instanceof Error ? loadError.message : "数据集列表加载失败，请刷新或检查服务连接。");
           }
         }
       };
@@ -3810,7 +3810,7 @@ export function AnalysisWorkspaceShell() {
       } catch (loadError) {
         if (alive) {
           setCatalogLoaded(false);
-          setError(loadError instanceof Error ? loadError.message : "无法加载方法目录。");
+          setError(loadError instanceof Error ? loadError.message : "方法目录加载失败，请刷新或检查服务连接。");
         }
       }
     }
@@ -4403,7 +4403,7 @@ export function AnalysisWorkspaceShell() {
 
   function commitAddedMethodRuns(nextRuns: MethodRunSpec[], appendedRuns: MethodRunSpec[]) {
     if (!appendedRuns.length) {
-      setError(`当前空间不足，最多只能保留 ${MAX_SELECTED_METHOD_RUNS} 个子项。请先删除一些已选子方法。`);
+      setError(`当前已达到 ${MAX_SELECTED_METHOD_RUNS} 个子项上限。请移除已选子方法后再添加。`);
       return;
     }
     setError(null);
@@ -4429,7 +4429,7 @@ export function AnalysisWorkspaceShell() {
       return;
     }
     if (MAX_SELECTED_METHOD_RUNS - baseRuns.length < requiredSlots) {
-      setError(`这组方法需要 ${requiredSlots} 个子方法槽位；当前最多只能保留 ${MAX_SELECTED_METHOD_RUNS} 个子项，请先删除一些已选子方法。`);
+      setError(`这组方法需要 ${requiredSlots} 个子方法槽位。当前上限为 ${MAX_SELECTED_METHOD_RUNS} 个，请移除已选子方法后再添加。`);
       return;
     }
     commitAddedMethodRuns([...baseRuns, ...runs], runs);
@@ -4454,16 +4454,16 @@ export function AnalysisWorkspaceShell() {
     setEditorTarget({ methodId, runId: nextRunId });
     setMethodEditorOpen(true);
     if (methodRunCountById(methodRunSpecs, methodId) >= MAX_SELECTED_METHOD_RUNS) {
-      setError(`这个方法最多只能保留 ${MAX_SELECTED_METHOD_RUNS} 个运行实例。请先移除一个已选实例，再追加。`);
+      setError(`当前已达到此方法的 ${MAX_SELECTED_METHOD_RUNS} 个运行实例上限。请移除一个已选实例后再追加。`);
       return;
     }
     if (methodRunSpecs.length >= MAX_SELECTED_METHOD_RUNS) {
-      setError(`最多只能保留 ${MAX_SELECTED_METHOD_RUNS} 个子项。请先移除一个已选子项，再追加。`);
+        setError(`当前已达到 ${MAX_SELECTED_METHOD_RUNS} 个子项上限。请移除一个已选子项后再追加。`);
       return;
     }
     setMethodRunSpecs((current) => {
       if (current.length >= MAX_SELECTED_METHOD_RUNS) {
-        setError(`最多只能保留 ${MAX_SELECTED_METHOD_RUNS} 个子项。请先移除一个已选子项，再追加。`);
+      setError(`当前已达到 ${MAX_SELECTED_METHOD_RUNS} 个子项上限。请移除一个已选子项后再追加。`);
         return current.slice(0, MAX_SELECTED_METHOD_RUNS);
       }
       setError(null);
@@ -4650,7 +4650,7 @@ export function AnalysisWorkspaceShell() {
         });
       } else {
         if (methodRunSpecs.length >= MAX_SELECTED_METHOD_RUNS || selectedMethodIdSet.size >= MAX_SELECTED_METHOD_RUNS) {
-          setError(`最多只能选择 ${MAX_SELECTED_METHOD_RUNS} 个方法。请先移除一个已选方法，再加入新的方法。`);
+          setError(`当前已达到 ${MAX_SELECTED_METHOD_RUNS} 个方法上限。请移除一个已选方法后再加入新的方法。`);
           setSelectedMethodId(methodId);
           return next;
         }
@@ -4693,7 +4693,7 @@ export function AnalysisWorkspaceShell() {
       appendedRuns.push(...runs);
     }
     if (!appendedRuns.length) {
-      setError(`当前空间不足，最多只能保留 ${MAX_SELECTED_METHOD_RUNS} 个子项。请先删除一些已选子方法。`);
+      setError(`当前已达到 ${MAX_SELECTED_METHOD_RUNS} 个子项上限。请移除已选子方法后再添加。`);
       return;
     }
     setError(null);
@@ -5555,7 +5555,7 @@ function ExternalSkillMountPanel({
         <div>
           <p className="text-[10px] uppercase tracking-[0.22em] text-[var(--muted)]">Plugin library</p>
           <p className="mt-1 text-xs leading-5 text-[var(--muted)]">
-            默认只露出已挂载或前 3 个插件，避免工具库淹没方法卡主流程。
+            默认展示已挂载插件和前 3 个候选插件，保持方法卡主流程清晰。
           </p>
         </div>
         <button className="surface-chip" onClick={() => setLibraryExpanded((value) => !value)} type="button">
@@ -7296,7 +7296,7 @@ function MethodWorkspacePanel({
                   value={currentObjectSelection.group_key || ""}
                 />
                 <SearchableFieldSelect
-                  help="通常和对象所在列一致；只有对象名称和筛选列不同的时候才需要改。"
+                  help="通常与对象所在列一致；对象名称与筛选列不同，可在这里调整。"
                   label="对象值来自哪一列"
                   onChange={(value) =>
                     updateCurrentObjectSelection({
@@ -8735,7 +8735,7 @@ function MethodWorkspacePanel({
               </div>
               {activeMethodFamily ? (
                 <p className="mt-3 text-xs leading-5 text-[var(--muted)]">
-                  当前只显示「{activeMethodFamily}」方法卡；再次点击该卡片可取消筛选。
+                  当前展示「{activeMethodFamily}」方法卡；再次点击该卡片可恢复全部方法。
                 </p>
               ) : null}
             </div>

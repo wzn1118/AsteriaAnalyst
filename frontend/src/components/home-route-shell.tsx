@@ -68,7 +68,7 @@ export function HomePageBody() {
                 <BrainCircuit size={14} />
                 正式分析
               </Link>
-              <SurfaceChip icon={<ShieldCheck size={14} />} text="先配置再生成" />
+              <SurfaceChip icon={<ShieldCheck size={14} />} text="配置完成后生成" />
               <AnalysisWorkspaceLink />
             </div>
           </div>
@@ -79,7 +79,7 @@ export function HomePageBody() {
             <div className="signal-panel">
               <p className="text-xs uppercase tracking-[0.26em] text-[var(--muted)]">当前焦点</p>
               <h2 className="mt-2 text-2xl font-semibold text-[var(--text-strong)]">
-                一个更像工作台的首页
+                面向分析工作的首页
               </h2>
               <div className="mt-5 space-y-3">
                 <div className="signal-strip">

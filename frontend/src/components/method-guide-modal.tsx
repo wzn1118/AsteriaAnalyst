@@ -126,7 +126,7 @@ export const METHOD_GUIDES: Record<MethodGuideTopic, MethodGuideSpec> = {
     why: "建模、关联、对比类方法需要一些辅助字段来解释结果指标。这里选择的字段会作为特征、解释变量或辅助证据进入方法执行。",
     steps: [
       "优先选和结果有关的业务字段，例如支出、年度、规模、比例。",
-      "避免把纯 ID、统一信用代码、长文本简介直接当成建模输入。",
+      "将纯 ID、统一信用代码和长文本简介保留为标识或说明字段，另选业务变量作为建模输入。",
       "如果系统已生成标准化、百分位、占比等派生指标，可按业务口径补充选择。",
     ],
     example: "结果指标是“项目收入”时，解释字段可以选“项目支出、年度、服务领域”，派生指标可以选“标准化_项目收入、百分位_项目收入”。",
@@ -460,7 +460,7 @@ export function MethodGuideCenter({
         <div className="mt-5 rounded-[22px] border border-[#9ec69f]/24 bg-[#9ec69f]/8 p-4">
           <p className="text-[10px] uppercase tracking-[0.24em] text-[#d9ffd8]">复用提示</p>
           <p className="mt-2 text-xs leading-6 text-[var(--muted)]">
-            想把它复用到别的方法页时，只保留四段数据结构：summary、steps、example、checkpoint，再替换每章 demo。
+            复用到别的方法页时，可沿用 summary、steps、example、checkpoint 四段数据结构，再替换每章 demo。
           </p>
           <p className="mt-3 text-xs text-[var(--text-strong)]">当前进度：{activeIndex + 1} / {METHOD_GUIDE_ORDER.length}</p>
         </div>

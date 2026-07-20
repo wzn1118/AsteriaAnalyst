@@ -735,7 +735,7 @@ export function SmartReportStudio() {
                       })}
                     </div>
                   ) : (
-                    <p className="text-sm text-[var(--muted)]">当前数据集暂时没有可选工作表。</p>
+                    <p className="text-sm text-[var(--muted)]">当前数据集暂未提供可选工作表。导入包含工作表的数据后即可选择。</p>
                   )}
                 </div>
               </div>
@@ -902,7 +902,7 @@ export function SmartReportStudio() {
               <textarea
                 className="field-input min-h-[110px] resize-y"
                 onChange={(event) => setKeyConstraints(event.target.value)}
-                placeholder="例如：不要编造数据；保留所有关键明细；必须输出中文；图表要能解释管理动作。"
+                placeholder="例如：以已提供数据为依据；保留关键明细；使用中文；图表对应管理动作。"
                 value={keyConstraints}
               />
             </Field>

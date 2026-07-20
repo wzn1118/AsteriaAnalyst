@@ -192,5 +192,5 @@
     <text x="1210" y="1318" fill="#2B2521" font-size="14" font-family="Inter, Arial, sans-serif">再做类似报告时可以更快成稿</text>
   </g>
 
-  <text x="78" y="1418" fill="#7A7068" font-size="14" font-family="Inter, Arial, sans-serif" font-weight="500">阅读建议：业务协作、交付和修订只看这一页；如果要对接研发或理解实现方式，请看第 2 页技术架构。</text>
+  <text x="78" y="1418" fill="#7A7068" font-size="14" font-family="Inter, Arial, sans-serif" font-weight="500">阅读建议：业务协作、交付和修订从本页开始；对接研发或理解实现方式时，请继续查看第 2 页技术架构。</text>
 </svg>

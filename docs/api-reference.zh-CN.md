@@ -2,24 +2,24 @@
 
 > 适用范围：当前公开仓库 `backend/app/main.py` 注册的本机 HTTP 路由，供本机前端和受控本机集成使用。公网服务与多租户集成需要独立的接口、认证和运维设计。
 
-## 1. 使用前必须知道的边界
+## 1. 运行范围与调用准备
 
-- 默认启动器仅把服务绑定到 `127.0.0.1`。源码模式通常是 `http://127.0.0.1:8000`，便携版通常由同一 FastAPI 服务在 `http://127.0.0.1:8787` 提供页面和 API；端口可能变化，始终以启动日志显示的实际地址为准。
-- 当前应用尚未提供账户认证、Bearer Token 验证或对象级授权层。CORS 仅约束浏览器跨域请求；网络访问授权需由独立机制提供。
-- 默认部署保持回环监听。共享网络或互联网部署需要独立的身份认证、授权、对象隔离、私有下载、审计与限流设计。
-- `/storage/**` 用于本机界面引用已选工件；上传数据、私有设置和运行时目录保存在其他私有目录。
-- `CodeExecutionRequest` 位于内部模型文件，当前公开版本未注册 `/api/code/execute`；对外能力以已注册路由为准。
+- 默认启动器绑定 `127.0.0.1`。源码模式通常使用 `http://127.0.0.1:8000`，便携版通常由同一 FastAPI 服务在 `http://127.0.0.1:8787` 提供页面和 API；端口以启动日志显示的实际地址为准。
+- 当前公开 API 适配本机工作流。账户认证、Bearer Token 验证和对象级授权由外部平台层提供；CORS 用于浏览器跨域匹配。
+- 共享网络和互联网部署配套身份认证、授权、对象隔离、私有下载、审计和限流设计。
+- `/storage/**` 服务于本机界面引用已选工件；上传数据、私有设置和运行时目录保存在私有目录。
+- `CodeExecutionRequest` 位于内部模型文件；当前公开路由表未包含 `/api/code/execute`，对外能力以 `main.py` 中已注册路由为准。
 
 ## 2. 通用约定
 
 | 项目 | 约定 |
 | --- | --- |
 | 编码 | JSON 请求和响应使用 UTF-8；文件上传使用 `multipart/form-data`。 |
-| 标识符 | `dataset_id`、`report_id`、`job_id`、`session_id` 等由服务端生成或返回，调用方不得自行猜测目录路径。 |
+| 标识符 | `dataset_id`、`report_id`、`job_id`、`session_id` 等由服务端生成或返回；调用方保存响应中的标识符继续请求。 |
 | 选择工作表 | 需要切换工作表的接口使用 `active_sheet` 或 `{"sheet_name":"..."}`。上传多工作表 Excel 后必须先确认对应工作表。 |
-| 分页 | 报告目录支持 `limit`、`offset` 等查询参数；不要假定列表响应一定包含全部历史数据。 |
-| 错误 | 常见 HTTP 状态为 `400`（业务输入不成立）、`403`（功能开关未开启）、`404`（标识符不存在）、`422`（FastAPI/Pydantic 校验失败）和 `500`（未处理的服务错误）。错误文本用于诊断，不应依赖其中文/英文措辞作为稳定协议。 |
-| 异步任务 | 创建任务后保存 `job_id`，再轮询对应的 `GET` 路由；不要通过重复提交同一请求来判断任务是否完成。 |
+| 分页 | 报告目录支持 `limit`、`offset` 等查询参数；翻页依据响应内容和游标状态继续读取。 |
+| 错误 | 常见 HTTP 状态为 `400`（业务输入不成立）、`403`（功能开关未开启）、`404`（标识符不存在）、`422`（FastAPI/Pydantic 校验失败）和 `500`（未处理的服务错误）。调用方使用状态码和结构化字段处理状态，错误文本用于诊断。 |
+| 异步任务 | 创建任务后保存 `job_id`，再轮询对应的 `GET` 路由获得状态与结果。 |
 | SSE | 报告修订事件流返回 `text/event-stream`。调用方应保留 `report_id` 与可选 `cursor`，并处理网络中断后的重新连接。 |
 
 若保持 FastAPI 默认配置，本机还可访问 `/openapi.json`、`/docs` 和 `/redoc` 查看机器生成的 schema。它们是当前进程的辅助视图；发布说明和代码变更发生后，以当前 `main.py` 与 `models.py` 为准。
@@ -29,11 +29,11 @@
 | API 组 | 默认可调用性 | 额外条件 | 失败时的典型结果 |
 | --- | --- | --- | --- |
 | 数据、统计、自动分析、报告目录 | 本机默认可用 | 数据集和请求字段有效 | `400`、`404` 或 `422`。 |
-| AI 增强报告 | 可选配置 | 本机已配置可用的 AI 提供方和允许传输的数据 | 任务失败或无法通过正式报告门禁。 |
-| 已挂载 Skill、Lab Skill/Trial 目录、Team 列表与 Runtime 健康检查 | 本机只读可查询 | 服务已启动；查询结果只描述当前本机状态 | 空列表、不可用 CLI 或错误信息，不会启动外部任务。 |
+| AI 增强报告 | 可选配置 | 本机已配置可用的 AI 提供方和允许传输的数据 | 任务失败或正式报告门禁未通过。 |
+| 已挂载 Skill、Lab Skill/Trial 目录、Team 列表与 Runtime 健康检查 | 本机只读可查询 | 服务已启动；查询结果只描述当前本机状态 | 空列表、CLI 状态或错误信息；查询仅返回当前本机状态摘要。 |
 | Skill/Team 导入、挂载、删除，Feature Trial 与 Team Run | 默认关闭 | `ASTERIA_ENABLE_LOCAL_SKILL_INSTALLER=1`；Team Run 还需要实际可用的 Runtime | `403`，错误码通常为 `SKILL_INSTALLATION_DISABLED`。 |
 | 报告智能体会话、Runtime 进程、Codex Run/流水线/学习账本 | 默认关闭 | `ASTERIA_ENABLE_CODEX_RUNTIME_API=1`，并满足 `ASTERIA_CODEX_RUNTIME_ENABLED=1`、CLI 与受限工作区条件 | `403` 或任务失败状态。 |
-| 非沙箱 Codex | 默认关闭 | 除 Runtime 开关外还需 `ASTERIA_ALLOW_UNSANDBOXED_CODEX_RUNTIME=1` 与运行时确认 | 不应把它当作普通用户功能。 |
+| 非沙箱 Codex | 默认关闭 | 除 Runtime 开关外还需 `ASTERIA_ALLOW_UNSANDBOXED_CODEX_RUNTIME=1` 与运行时确认 | 供受信任本机管理员按任务需要启用。 |
 
 功能开关用于管理本机高权限能力；认证和访问控制由独立的安全部署配置提供。完整配置见 [配置与安全](security-deployment.zh-CN.md)。
 
@@ -42,7 +42,7 @@
 | 方法与路径 | 用途 | 主要返回内容 | 注意事项 |
 | --- | --- | --- | --- |
 | `GET /health` | 健康检查 | `{"status":"ok"}` | 启动器用它判断后端是否可用。 |
-| `GET /api/manifest` | 获取产品、集成、文件格式、分析和报告能力摘要 | manifest 对象 | 面向界面发现，不应视为永久版本契约。 |
+| `GET /api/manifest` | 获取产品、集成、文件格式、分析和报告能力摘要 | manifest 对象 | 面向界面发现；版本兼容性以当前代码和 Release 为准。 |
 | `GET /api/ecosystem/market` | 查看生态工具摘要 | `summary`、`tools` | 工具是否可运行仍受本机依赖和开关限制。 |
 | `GET /api/skills/mounted` | 查看当前已挂载 Skill | 摘要和 `skills` | 仅表示本机已挂载状态。 |
 | `GET /api/statistics/catalog` | 获取受支持统计方法目录 | 目录与分类摘要 | 按字段类型、样本条件和方法前提选择目录项。 |
@@ -82,7 +82,7 @@
 | `POST /api/historical-reports/upload` | `multipart/form-data` | `file` | 上传历史报告材料，作为任务上下文；当前数据和证据决定结论。 |
 | `POST /api/business-backgrounds/upload` | `multipart/form-data` | `file` | 上传业务背景材料。 |
 
-调用上传接口前，确认文件仅包含允许进入本机工作区或外部 AI 提供方的数据。上传后的文件需要满足方法前提并通过正式报告验证链，才可支撑相应交付。
+调用上传接口前，确认文件适合进入本机工作区或已配置的外部 AI 提供方。上传后的文件满足方法前提并通过正式报告验证链后，可支撑相应交付。
 
 ## 6. 统计、自动分析与 Analysis Lab
 
@@ -105,7 +105,7 @@
 | `group_column`、`group_a`、`group_b` | 分组字段与两组比较的取值；仅在对应方法需要时填写。 |
 | 方法参数 | 与方法相关，例如显著性、模型、随机种子或图表选项。 |
 
-`AutoAnalysisRequest` 的核心字段：`dataset_id`、`active_sheet`、`user_goal`、`report_part`、字段绑定、方法选择、派生字段选择、Skill 选择与合并模式。它适合生成可审阅的分析建议和结构化结果，但不能绕过正式报告的 AI trace、确定性计算、证据校验和质量门禁。
+`AutoAnalysisRequest` 的核心字段：`dataset_id`、`active_sheet`、`user_goal`、`report_part`、字段绑定、方法选择、派生字段选择、Skill 选择与合并模式。它生成可审阅的分析建议和结构化结果；正式报告使用 AI trace、确定性计算、证据校验和质量门禁。
 
 ### 6.2 Lab 方法资产与 PDCA
 
@@ -119,7 +119,7 @@
 
 ### 6.3 外部 Skill 与功能试验
 
-以下只读目录可以用于展示当前本机状态，不会安装或执行外部内容：
+以下只读目录展示当前本机状态，便于发现已挂载的能力与试验资产：
 
 | 方法与路径 | 请求 | 作用 |
 | --- | --- | --- |
@@ -171,7 +171,7 @@ Team Run 的使用条件包括安装器开关、可用 Codex Runtime、CLI、认
 | --- | --- | --- |
 | 数据范围 | `sheet_name`、`selected_sheets`、`multi_table_mode` | 多表模式为 `single`、`merge`、`separate` 或 `combined`。 |
 | 业务意图 | 业务画像、目标受众、用户需求、报告部分 | 让生成同时围绕业务问题和字段。 |
-| 输出 | 报告风格、语言、视觉偏好、交付目标 | 影响呈现，不可把样式当证据。 |
+| 输出 | 报告风格、语言、视觉偏好、交付目标 | 影响呈现；证据由数据、执行结果和校验记录提供。 |
 | 补充上下文 | 历史报告和业务背景 | 提供参考；正式结论仍需原始数据和验证。 |
 | 高级路线 | R 或高级运行时选项 | 受本机依赖、设置和相应安全边界限制。 |
 
@@ -179,7 +179,7 @@ Team Run 的使用条件包括安装器开关、可用 Codex Runtime、CLI、认
 
 ## 8. 报告修订智能体工作台
 
-除创建会话外，下列会话接口均要求在查询参数中携带 `report_id`，以避免跨报告混淆会话状态。
+下列会话接口在查询参数中携带 `report_id`，以该标识隔离不同报告的会话状态。
 
 | 方法与路径 | 请求/参数 | 作用 |
 | --- | --- | --- |
@@ -199,7 +199,7 @@ Team Run 的使用条件包括安装器开关、可用 Codex Runtime、CLI、认
 | `GET /api/report-agent-sessions/{session_id}/events/stream` | `report_id`、`cursor` | 建立 SSE 事件流。 |
 | `POST /api/report-agent-sessions/{session_id}/publish` | `report_id`、`ReportAgentPublishRequest` | 发布本地修订会话。 |
 
-`ReportAnnotationRequest` 包含工件 URL、工件名称/类型、页码或坐标、形状和说明。工件 URL 必须对应当前报告可访问的本机资产；批注不应嵌入密钥、客户隐私数据或外部公网 URL 作为信任来源。
+`ReportAnnotationRequest` 包含工件 URL、工件名称/类型、页码或坐标、形状和说明。工件 URL 对应当前报告可访问的本机资产；批注使用脱敏说明和经过核验的工件链接。
 
 所有报告智能体会话路由目前要求 `ASTERIA_ENABLE_CODEX_RUNTIME_API=1`。这里的“发布”专指本地报告修订版本；GitHub Release 创建由发布流程管理，正式管理报告持续经过发布门禁。
 
@@ -230,7 +230,7 @@ Team Run 的使用条件包括安装器开关、可用 Codex Runtime、CLI、认
 | `POST /api/codex-runs/{run_id}/cancel` | 无 | 取消运行。 |
 | `POST /api/codex-run-jobs/{job_id}/cancel` | 无 | 取消任务。 |
 
-`CodexRunRequest` 至少需要 `workspace_path`，并可携带提示词、提示词模板、上下文、数据集、模型、超时和会话恢复信息。`workspace_path` 必须是管理员认可的本机工作目录；绝不应从不受信任的浏览器输入直接映射到任意机器路径。
+`CodexRunRequest` 至少需要 `workspace_path`，并可携带提示词、提示词模板、上下文、数据集、模型、超时和会话恢复信息。`workspace_path` 使用管理员认可的本机工作目录，服务端根据受限工作区规则解析路径。
 
 ### 9.3 学习账本与 Codex 流水线
 
@@ -253,7 +253,7 @@ Team Run 的使用条件包括安装器开关、可用 Codex Runtime、CLI、认
 | `GET /api/runtime-settings` | 返回掩码 API Key、是否配置密钥、模型、Base URL、R/Codex 路径和开关摘要。 | 当前只读；仅向受信任的本机使用者展示路径和运行状态。 |
 | `GET /api/runtime/codex-health` | 返回 Codex CLI 可用性、解析路径、版本、候选路径和错误。 | 用于本机 Codex CLI 诊断。 |
 
-当前公开路由仅提供 `GET /api/runtime-settings`。客户端和集成文档应通过本机配置流程设置 API Key 与运行时参数。
+当前公开路由提供 `GET /api/runtime-settings`。客户端和集成文档通过本机配置流程设置 API Key 与运行时参数。
 
 ## 11. 前端页面与静态工件
 
@@ -272,7 +272,7 @@ Team Run 的使用条件包括安装器开关、可用 Codex Runtime、CLI、认
 1. 固定到明确的 Git 提交或 Release 版本；
 2. 在升级前比较 `backend/app/main.py`、`backend/app/models.py` 和本机 OpenAPI；
 3. 处理 `403`、`404`、`422`、异步任务和功能开关；
-4. 不读取或猜测 `/storage`、`workspace/storage`、`%APPDATA%` 下的内部文件结构；
-5. 本机端点仅限受控的本机访问。
+4. 使用响应中提供的工件链接，不依赖 `/storage`、`workspace/storage` 或 `%APPDATA%` 下的内部文件结构；
+5. 在受控本机工作流中调用本机端点。
 
 接口变动时，维护者应同时更新本文件、功能逐项参考和相应测试。
