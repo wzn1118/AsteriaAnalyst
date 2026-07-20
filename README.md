@@ -190,6 +190,7 @@ raw data
 - [便携版 Codex Runtime（中文）](docs/portable-codex-runtime.zh-CN.md)
 - [完整模块与功能手册](docs/module-guide.zh-CN.md)
 - [功能逐项参考：页面、操作、接口、产物与边界](docs/function-reference.zh-CN.md)
+- [逐页结果说明：完成后看到什么、得到什么、下一步做什么](docs/page-results.zh-CN.md)
 - [公开项目介绍](docs/public-project-introduction.zh-CN.md)
 - [快速开始](docs/getting-started.zh-CN.md)
 - [详细用户指南](docs/user-guide.zh-CN.md)

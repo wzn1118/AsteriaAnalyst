@@ -1130,6 +1130,12 @@ def _serve_frontend_file(relative_path: str) -> FileResponse:
     return FileResponse(target_path)
 
 
+@app.get("/", include_in_schema=False)
+@app.head("/", include_in_schema=False)
+def home_entry() -> FileResponse:
+    return _serve_frontend_file("index.html")
+
+
 @app.get("/analysis", include_in_schema=False)
 @app.get("/analysis/", include_in_schema=False)
 @app.head("/analysis", include_in_schema=False)
@@ -1157,6 +1163,14 @@ def lab_entry() -> FileResponse:
 @app.get("/lab/__next.lab.__PAGE__.txt", include_in_schema=False)
 def lab_rsc_entry() -> FileResponse:
     return _serve_frontend_file("lab/__next.lab/__PAGE__.txt")
+
+
+@app.get("/lab/method-guide", include_in_schema=False)
+@app.get("/lab/method-guide/", include_in_schema=False)
+@app.head("/lab/method-guide", include_in_schema=False)
+@app.head("/lab/method-guide/", include_in_schema=False)
+def lab_method_guide_entry() -> FileResponse:
+    return _serve_frontend_file("lab/method-guide.html")
 
 
 @app.get("/lab/method-guide/__next.lab.method-guide.__PAGE__.txt", include_in_schema=False)

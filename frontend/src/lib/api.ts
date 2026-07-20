@@ -54,7 +54,8 @@ export function resolveArtifactUrl(value: string | undefined | null): string | n
   try {
     const backend = new URL(backendBase);
     const artifact = new URL(rawValue, backend.origin);
-    if (artifact.origin !== backend.origin || !artifact.pathname.startsWith("/api/")) {
+    const isTrustedArtifactPath = artifact.pathname.startsWith("/api/") || artifact.pathname.startsWith("/storage/");
+    if (artifact.origin !== backend.origin || !isTrustedArtifactPath) {
       return null;
     }
     return artifact.href;

@@ -9,7 +9,7 @@
 | 你要完成的事 | 首选文档 | 什么时候继续读 |
 | --- | --- | --- |
 | 第一次启动并完成一次本地分析 | [快速开始](getting-started.zh-CN.md) | 需要完整操作顺序时读 [用户指南](user-guide.zh-CN.md) |
-| 查找某个页面、按钮、产物或业务模块 | [模块与功能手册](module-guide.zh-CN.md) | 需要逐项输入、输出、接口和限制时读 [功能逐项参考](function-reference.zh-CN.md) |
+| 查找某个页面、按钮、产物或业务模块 | [模块与功能手册](module-guide.zh-CN.md) | 需要逐项输入、输出、接口和限制时读 [功能逐项参考](function-reference.zh-CN.md)；需要判断每个页面完成后实际得到什么时读 [逐页结果说明](page-results.zh-CN.md) |
 | 理解数据、AI、计算、证据和 PDF 为什么要分层 | [系统架构](architecture.zh-CN.md) | 正式报告负责人还必须读 [正式报告可置信机制](report-integrity.zh-CN.md) |
 | 调用本机 API、排查前后端联调 | [API 参考](api-reference.zh-CN.md) | 需要字段结构时对照 `backend/app/models.py` 和本机 OpenAPI |
 | 配置 AI 提供方、CORS、Codex Runtime 或数据目录 | [配置参考](configuration-reference.zh-CN.md) | 涉及密钥、网络暴露或公开部署边界时继续读 [安全与部署说明](security-deployment.zh-CN.md) |
@@ -23,6 +23,7 @@
 | [公开项目介绍](public-project-introduction.zh-CN.md) | 项目定位、适用场景、公开仓库边界 | `README.md`、`SECURITY.md` |
 | [模块与功能手册](module-guide.zh-CN.md) | 前端工作区、后端服务、数据和报告模块 | 前端路由、`backend/app/services/` |
 | [功能逐项参考](function-reference.zh-CN.md) | 页面操作、接口入口、产物和限制 | 页面实现、`backend/app/main.py` |
+| [逐页结果说明](page-results.zh-CN.md) | 六个实际页面的完成结果、空态、失败边界与下一步 | 前端路由、页面组件与接口返回状态 |
 | [系统架构](architecture.zh-CN.md) | 分层、数据流、存储边界、正式报告链 | `backend/app/main.py`、服务层、`path_service.py` |
 | [AI 强制发布链（中文）](architecture_ai_mandatory_chain.zh-CN.md) | 正式 `management_report.pdf` 的不可绕过技术契约 | `AGENTS.md`、报告服务与发布门禁 |
 | [API 参考](api-reference.zh-CN.md) | 当前注册的 HTTP 路由、请求体、状态和错误 | `backend/app/main.py`、`backend/app/models.py` |
