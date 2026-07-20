@@ -102,7 +102,7 @@
 | `analysis_type` | 必填，统计方法标识；有效取值以当前 `models.py` 和统计目录为准。 |
 | `active_sheet` | 多工作表文件的活动工作表。 |
 | `target`、`features` | 因变量、特征或分析字段。 |
-| `group_field`、`group_fields` | 分组比较或聚合口径。 |
+| `group_column`、`group_a`、`group_b` | 分组字段与两组比较的取值；仅在对应方法需要时填写。 |
 | 方法参数 | 与方法相关，例如显著性、模型、随机种子或图表选项。 |
 
 `AutoAnalysisRequest` 的核心字段：`dataset_id`、`active_sheet`、`user_goal`、`report_part`、字段绑定、方法选择、派生字段选择、Skill 选择与合并模式。它适合生成可审阅的分析建议和结构化结果，但不能绕过正式报告的 AI trace、确定性计算、证据校验和质量门禁。

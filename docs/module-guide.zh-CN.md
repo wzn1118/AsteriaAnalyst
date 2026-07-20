@@ -65,7 +65,7 @@
 
 | 输入类型 | 支持内容 | 用途 |
 | --- | --- | --- |
-| 分析数据 | CSV、TSV、Excel <code>.xlsx</code>、Stata <code>.dta</code>；界面也接受 <code>.xls</code> | 作为统计、图表和报告的原始分析数据 |
+| 分析数据 | CSV、TSV、Excel <code>.xlsx</code>、Stata <code>.dta</code>；旧版 <code>.xls</code> 请先转换为 <code>.xlsx</code> | 作为统计、图表和报告的原始分析数据；部分控件可能显示 <code>.xls</code>，但后端不会将其作为分析数据接收 |
 | 历史报告 | <code>.md</code>、<code>.txt</code>、<code>.html</code>、<code>.htm</code>、<code>.pdf</code>、<code>.docx</code> | 提取既有材料的结构或汇报风格，辅助交付设计 |
 | 业务背景 | 文本、HTML、PDF、Word，以及部分结构化表格文件 | 提供策略、渠道规则、经营约束、研究目标或使用语境 |
 
