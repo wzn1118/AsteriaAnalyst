@@ -81,15 +81,24 @@ Copy-Item .env.example .env
 | `ASTERIA_CODEX_USE_LOGIN_AUTH` | `true` | 使用本机登录认证偏好。 | 不在前端或提交记录中记录认证材料。 |
 | `ASTERIA_CODEX_BYPASS_APPROVALS_AND_SANDBOX` | `false` | 请求跳过审批/沙箱的持久偏好。 | 即使为真，也必须同时有 `ASTERIA_ALLOW_UNSANDBOXED_CODEX_RUNTIME=1` 才可生效。 |
 
-`GET /api/runtime-settings` 只公开脱敏摘要；当前公开 API 没有写入 Runtime 设置的路由。配置后重启服务，再通过本机设置摘要或 `GET /api/runtime/codex-health` 核对可用性。
+`GET /api/runtime-settings` 只公开脱敏摘要；当前公开 API 没有写入 Runtime 设置的路由。配置后重启服务，再通过本机设置摘要或 `GET /api/runtime/codex-health` 核对可用性。健康检查用于发现 CLI 和错误；能看到健康信息不等于 Runtime 已获准创建或执行任务。
 
-## 7. 外部 Skill 与本地 Agent Team
+## 7. 外部 Skill、Feature Trial 与本地 Agent Team
 
 | 变量 | 默认值 | 作用 | 风险 |
 | --- | --- | --- | --- |
-| `ASTERIA_ENABLE_LOCAL_SKILL_INSTALLER` | `false` | 允许本机导入、安装、挂载和运行外部 Skill 与 Report Agent Team。 | 安装或导入的内容可能扩大执行面，必须先审阅来源。 |
+| `ASTERIA_ENABLE_LOCAL_SKILL_INSTALLER` | `false` | 允许本机安装/导入、挂载、取消挂载、删除外部 Skill 和 Report Agent Team，并运行 Feature Trial 或 Team Run。 | 导入内容会影响可读的本机文件、任务上下文和执行面，必须先审阅来源。 |
 
-这个变量不提供用户身份验证。它只能用在受信任管理员控制的单机环境中，绝不应因为“有开关”就开放给不受信任浏览器用户。
+操作和条件应按下表理解：
+
+| 操作 | 需要安装器开关 | 还需要什么 |
+| --- | --- | --- |
+| 查看已挂载 Skill、Lab Skill/Trial 目录或 Team 列表 | 否 | 服务已启动；空列表表示尚未导入，不表示功能缺失 |
+| 安装、导入、挂载、取消挂载、删除 Skill/Team | 是 | 可信来源和管理员本机权限 |
+| 运行 Feature Trial | 是 | 已选择数据集、有效插件和功能 |
+| 运行 Report Agent Team | 是 | 已挂载团队、已选数据集、可运行 Runtime、可用 CLI 和受限工作区 |
+
+完整 Team Run 通常同时需要 `ASTERIA_CODEX_RUNTIME_ENABLED=1`、`ASTERIA_ENABLE_CODEX_RUNTIME_API=1`、`ASTERIA_CODEX_WORKSPACE_ROOT` 和可用 Codex CLI。安装器开关不提供用户身份验证；它只能用在受信任管理员控制的单机环境中，绝不应因为“有开关”就开放给不受信任浏览器用户。具体流程、产物和错误处理见 [本地扩展指南](local-extensions.zh-CN.md)。
 
 ## 8. 推荐的最小配置
 

@@ -6,7 +6,7 @@
 
 Codex Runtime 仅服务于明确启用后的本机辅助工作流，例如报告修订工作台所需的本机 `codex app-server` 能力。它不是 Asteria Analyst 的基础分析前提：没有 Codex、没有 AI 密钥时，基础的本地文件导入与分析仍应可以使用。
 
-公开 Windows 便携包不会把高权限 Runtime 默认暴露给浏览器或网络。任何启用都必须发生在使用者受控的本机环境中，并遵守 [配置参考](configuration-reference.zh-CN.md) 与 [安全与部署说明](security-deployment.zh-CN.md)。
+公开 Windows 便携包不会把高权限 Runtime 默认暴露给浏览器或网络。任何启用都必须发生在使用者受控的本机环境中，并遵守 [配置参考](configuration-reference.zh-CN.md) 与 [安全与部署说明](security-deployment.zh-CN.md)。若要将 Runtime 用于 Lab 中的 Skill、Feature Trial 或 Report Agent Team，请继续阅读 [本地扩展指南](local-extensions.zh-CN.md)；这些入口已实现，但需要各自的本机开关和输入条件。
 
 ## 发现顺序
 

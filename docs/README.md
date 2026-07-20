@@ -13,6 +13,7 @@
 | 理解数据、AI、计算、证据和 PDF 为什么要分层 | [系统架构](architecture.zh-CN.md) | 正式报告负责人还必须读 [正式报告可置信机制](report-integrity.zh-CN.md) |
 | 调用本机 API、排查前后端联调 | [API 参考](api-reference.zh-CN.md) | 需要字段结构时对照 `backend/app/models.py` 和本机 OpenAPI |
 | 配置 AI 提供方、CORS、Codex Runtime 或数据目录 | [配置参考](configuration-reference.zh-CN.md) | 涉及密钥、网络暴露或公开部署边界时继续读 [安全与部署说明](security-deployment.zh-CN.md) |
+| 使用或管理 Skill、Feature Trial、Report Agent Team 与 Codex Runtime | [本地扩展指南](local-extensions.zh-CN.md) | 需要逐项请求/返回字段时读 [API 参考](api-reference.zh-CN.md)；需要确认变量时读 [配置参考](configuration-reference.zh-CN.md) |
 | 修改代码、添加功能或提交 Pull Request | [开发与质量指南](development-guide.zh-CN.md) | 涉及报告生成时还必须遵守 [AI 强制发布链（中文）](architecture_ai_mandatory_chain.zh-CN.md) |
 | 构建 Windows 便携包、发布 GitHub Release、回滚发布 | [发布与运维指南](release-operations.zh-CN.md) | 使用便携包时读 [便携版离线指南](portable-user-guide.zh-CN.md) |
 
@@ -33,6 +34,8 @@
 | [发布与运维指南](release-operations.zh-CN.md) | 源码/便携包构建、Release 验收、回滚 | `scripts/build_portable.ps1`、GitHub Actions |
 | [便携版离线指南](portable-user-guide.zh-CN.md) | ZIP 解压后的启动、数据位置、升级和排障 | 便携包启动脚本、`run_desktop.py` |
 | [便携版 Codex Runtime（中文）](portable-codex-runtime.zh-CN.md) | 可选 Runtime 的发现、开关、健康检查与发布边界 | Runtime 服务、`.env.example` |
+
+| [本地扩展指南](local-extensions.zh-CN.md) | Skill、Feature Trial、Report Agent Team、Report Agent Session 与 Codex Runtime 的入口、流程、结果和边界 | Lab 前端、扩展服务、Runtime 服务 |
 
 ## 阅读约定
 

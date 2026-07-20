@@ -118,6 +118,19 @@ Asteria 适合结构化数据已经存在、但分析交付仍然分散的场景
 
 正式管理报告的完整规则见 [报告可信机制](report-integrity.zh-CN.md) 和 [AI 强制发布链](architecture_ai_mandatory_chain.md)。
 
+## 可选本地扩展不是预告功能
+
+公开项目同时提供 Skill、Feature Trial、Report Agent Team 和 Codex Runtime，但它们不是每个便携包启动后都自动开启的功能。这些扩展会导入本机目录、写入受控任务工作区或调用本机 Codex CLI，因此公开模板保持默认关闭，要求使用者在可信本机明确配置。
+
+| 能力 | 使用入口 | 实际结果 | 关键边界 |
+| --- | --- | --- | --- |
+| Skill | <code>/lab</code> | 导入/挂载经审阅的包，将说明和元数据写入 Lab 外部 Skill 上下文 | 导入不会自动执行包内命令或 MCP 配置 |
+| Feature Trial | <code>/lab</code> | 对真实数据生成就绪度、原因、推荐动作、建议参数和试验文件 | 是适配性评估，不是任意第三方命令执行器 |
+| Report Agent Team | <code>/lab</code> | 导入自有 Markdown 角色，创建一个受控 Codex 任务和工作区 | 不提供内置云团队，也不保证后端并行多 Agent 调度 |
+| Codex Runtime | Runtime API 与修订/团队任务 | 健康检查、运行/任务状态、日志、管线、差异和错误 | 需要 CLI、受限工作区和显式 Runtime 配置 |
+
+Lab 中的 Report Agent Team 与修订工作区中的 Report Agent Session 是不同功能：前者把团队角色和数据上下文交给新任务，后者围绕已有报告管理消息、附件、批注、事件和差异。两者都不能自行将结果提升为正式 <code>management_report.pdf</code>。完整操作、变量、产物和故障排查见 [本地扩展指南](local-extensions.zh-CN.md)。
+
 ## 隐私与公开边界
 
 本项目的 GitHub 公开范围是源码、测试、启动脚本、示例和公开技术文档。下列内容不应进入公开仓库、Issue、截图或演示录屏：

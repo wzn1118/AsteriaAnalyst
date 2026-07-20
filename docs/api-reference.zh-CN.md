@@ -30,8 +30,9 @@
 | --- | --- | --- | --- |
 | 数据、统计、自动分析、报告目录 | 本机默认可用 | 数据集和请求字段有效 | `400`、`404` 或 `422`。 |
 | AI 增强报告 | 可选配置 | 本机已配置可用的 AI 提供方和允许传输的数据 | 任务失败或无法通过正式报告门禁。 |
-| 外部 Skill、功能试验、Agent Team 导入/运行 | 默认关闭 | `ASTERIA_ENABLE_LOCAL_SKILL_INSTALLER=1` | `403`，错误码通常为 `SKILL_INSTALLATION_DISABLED`。 |
-| 报告智能体会话、Runtime 进程、Codex Run/流水线/学习账本 | 默认关闭 | `ASTERIA_ENABLE_CODEX_RUNTIME_API=1`，并满足本机 Runtime 条件 | `403`。 |
+| 已挂载 Skill、Lab Skill/Trial 目录、Team 列表与 Runtime 健康检查 | 本机只读可查询 | 服务已启动；查询结果只描述当前本机状态 | 空列表、不可用 CLI 或错误信息，不会启动外部任务。 |
+| Skill/Team 导入、挂载、删除，Feature Trial 与 Team Run | 默认关闭 | `ASTERIA_ENABLE_LOCAL_SKILL_INSTALLER=1`；Team Run 还需要实际可用的 Runtime | `403`，错误码通常为 `SKILL_INSTALLATION_DISABLED`。 |
+| 报告智能体会话、Runtime 进程、Codex Run/流水线/学习账本 | 默认关闭 | `ASTERIA_ENABLE_CODEX_RUNTIME_API=1`，并满足 `ASTERIA_CODEX_RUNTIME_ENABLED=1`、CLI 与受限工作区条件 | `403` 或任务失败状态。 |
 | 非沙箱 Codex | 默认关闭 | 除 Runtime 开关外还需 `ASTERIA_ALLOW_UNSANDBOXED_CODEX_RUNTIME=1` 与运行时确认 | 不应把它当作普通用户功能。 |
 
 功能开关只用于防止本机误启用高权限能力，并不替代认证或访问控制。完整配置见 [配置与安全](security-deployment.zh-CN.md)。
@@ -118,35 +119,41 @@
 
 ### 6.3 外部 Skill 与功能试验
 
-以下路径都需要本机显式启用 `ASTERIA_ENABLE_LOCAL_SKILL_INSTALLER=1`：
+以下只读目录可以用于展示当前本机状态，不会安装或执行外部内容：
 
 | 方法与路径 | 请求 | 作用 |
 | --- | --- | --- |
+| `GET /api/skills/mounted` | 无 | 列出当前已挂载 Skill 的摘要。 |
 | `GET /api/lab/skills` | 无 | 列出本机导入/挂载的实验室 Skill。 |
-| `POST /api/lab/skills/install` | `LabExternalSkillInstallRequest` | 从 `source_url`、可选 `ref` 安装并可选择 `mount`。 |
-| `POST /api/lab/skills/import-local` | `LabExternalSkillLocalImportRequest` | 从本机 `local_path` 导入并可选择 `mount`。 |
-| `POST /api/lab/skills/{skill_id}/mount` | 无 | 挂载一个 Skill。 |
-| `POST /api/lab/skills/{skill_id}/unmount` | 无 | 卸载一个 Skill。 |
-| `DELETE /api/lab/skills/{skill_id}` | 无 | 删除一个本机 Skill 条目。 |
-| `GET /api/lab/feature-trials/catalog` | 无 | 获取受控功能试验目录。 |
-| `POST /api/lab/feature-trials/run` | `LabFeatureTrialRunRequest` | 使用数据集、工作表、插件、功能类别、功能 ID 和目标执行试验。 |
+| `GET /api/lab/feature-trials/catalog` | 无 | 获取已导入包可声明的受控功能试验目录。 |
 
-本机目录导入、远程安装和试验执行都可能扩大本机执行面。只在受信任的单机环境中使用，并在导入前审阅来源。
+以下管理和试验路径需要本机显式启用 `ASTERIA_ENABLE_LOCAL_SKILL_INSTALLER=1`：
+
+| 方法与路径 | 请求 | 作用与主要返回 |
+| --- | --- | --- |
+| `POST /api/lab/skills/install` | `source_url`、可选 `ref`、`mount` | 从 GitHub 仓库安装；返回包/插件元数据与挂载状态。 |
+| `POST /api/lab/skills/import-local` | `local_path`、`mount` | 从包含 `SKILL.md` 或插件清单的本机目录导入；返回导入条目。 |
+| `POST /api/lab/skills/{skill_id}/mount` | 无 | 把 Skill 加入后续 Lab 的外部 Skill 上下文。 |
+| `POST /api/lab/skills/{skill_id}/unmount` | 无 | 从后续 Lab 上下文移除 Skill，保留本机条目。 |
+| `DELETE /api/lab/skills/{skill_id}` | 无 | 删除本机条目；调用前应确认没有任务依赖它。 |
+| `POST /api/lab/feature-trials/run` | `dataset_id`、可选 `active_sheet`、`plugin_id`、`feature_kind`、`feature_id`、`user_goal` | 返回 `analysis_lab_feature_trial_v1`、`trial_id`、基线画像、就绪度/原因、推荐动作、建议的 Lab 载荷和工件链接。 |
+
+Feature Trial 会写入 `trial.json`、`field_scores.csv` 和 `trial_report.md`。当前实现把受审阅的 Skill 说明/元数据写入 Lab 上下文；它不是通用第三方命令或 MCP 自动执行器。本机目录导入、远程安装和试验执行都可能扩大本机执行面，只在受信任单机环境中使用，并在导入前审阅来源。完整操作见 [本地扩展指南](local-extensions.zh-CN.md)。
 
 ### 6.4 报告 Agent Team
 
-同样需要 `ASTERIA_ENABLE_LOCAL_SKILL_INSTALLER=1`：
+团队列表是只读状态接口；导入、挂载、卸载、删除和运行均需要 `ASTERIA_ENABLE_LOCAL_SKILL_INSTALLER=1`：
 
-| 方法与路径 | 请求 | 作用 |
+| 方法与路径 | 请求 | 作用与主要返回 |
 | --- | --- | --- |
 | `GET /api/lab/report-agent-teams` | 无 | 列出本机团队。 |
-| `POST /api/lab/report-agent-teams/import-local` | `LabReportAgentTeamLocalImportRequest` | 从 `local_path` 导入团队。 |
+| `POST /api/lab/report-agent-teams/import-local` | `local_path`、`mount` | 从至少含一个 Agent Markdown 的本机目录导入团队。 |
 | `POST /api/lab/report-agent-teams/{team_id}/mount` | 无 | 挂载团队。 |
 | `POST /api/lab/report-agent-teams/{team_id}/unmount` | 无 | 卸载团队。 |
 | `DELETE /api/lab/report-agent-teams/{team_id}` | 无 | 删除团队。 |
-| `POST /api/lab/report-agent-teams/run` | `LabReportAgentTeamRunRequest` | 在关联报告/数据集/工作表上下文中运行选定团队。 |
+| `POST /api/lab/report-agent-teams/run` | `report_id`、`dataset_id`、`sheet_name`、`workspace_path`、`user_requirement`、`team_ids` | 将已挂载团队角色写入受控工作区并创建 Codex 任务；返回团队上下文、工作区路径和任务对象。 |
 
-团队运行请求可包含 `report_id`、`dataset_id`、`sheet_name`、工作区、用户需求和 `team_ids`。使用者必须明确它们只适合可信本机管理员场景。
+Team Run 的首层接口检查是安装器开关，但其后台任务仍需可用 Codex Runtime、CLI、认证与受限工作区；不满足这些条件时任务可能排队后失败。当前服务端将多个角色 Markdown 和协调提示交给单个受控 Codex 任务，并非后端保证的并行多智能体编排。Team 结果不自动生成或发布正式 `management_report.pdf`。使用者必须明确它们只适合可信本机管理员场景。
 
 ## 7. 智能报告、任务与报告目录
 
