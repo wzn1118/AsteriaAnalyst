@@ -380,6 +380,11 @@ exit /b %EXIT_CODE%
 Set-Content -LiteralPath (Join-Path $portableBuildDir "start-asteria.bat") -Value $startBat -Encoding ASCII
 
 $startPs1 = @'
+param(
+    [switch]$NoBrowser,
+    [ValidateRange(1024, 65535)][int]$PreferredPort = 8787
+)
+
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 
@@ -389,7 +394,6 @@ $runtimeDir = Join-Path $scriptDir "runtime"
 $python = Join-Path $runtimeDir "python\python.exe"
 $pythonw = Join-Path $runtimeDir "python\pythonw.exe"
 $runner = Join-Path $backendDir "run_desktop.py"
-$preferredPort = 8787
 $stdoutLog = Join-Path $backendDir "desktop-start.out.log"
 $stderrLog = Join-Path $backendDir "desktop-start.err.log"
 
@@ -447,13 +451,14 @@ function Test-PortAvailable {
 function Resolve-AvailablePort {
     param([int]$PreferredPort = 8787)
 
-    foreach ($candidatePort in $PreferredPort..($PreferredPort + 30)) {
+    $lastCandidatePort = [Math]::Min($PreferredPort + 30, 65535)
+    foreach ($candidatePort in $PreferredPort..$lastCandidatePort) {
         if (Test-PortAvailable -Port $candidatePort) {
             return $candidatePort
         }
     }
 
-    throw "No available local port was found between $PreferredPort and $($PreferredPort + 30)."
+    throw "No available local port was found between $PreferredPort and $lastCandidatePort."
 }
 
 function Get-ManagedPortableProcesses {
@@ -520,13 +525,17 @@ $appUrl = "http://127.0.0.1:$port/analysis"
 $env:ASTERIA_PORT = [string]$port
 
 if (Test-AsteriaHealth -HealthUrl $healthUrl) {
-    Start-Process $appUrl
+    if (-not $NoBrowser) {
+        Start-Process $appUrl
+    }
     exit 0
 }
 
 if ((@(Get-ManagedPortableProcesses)).Count) {
     if (Wait-AsteriaHealth -HealthUrl $healthUrl -TimeoutSeconds 20) {
-        Start-Process $appUrl
+        if (-not $NoBrowser) {
+            Start-Process $appUrl
+        }
         exit 0
     }
 
@@ -554,7 +563,9 @@ if (-not (Wait-AsteriaHealth -HealthUrl $healthUrl -TimeoutSeconds 60)) {
     exit 1
 }
 
-Start-Process $appUrl
+if (-not $NoBrowser) {
+    Start-Process $appUrl
+}
 '@
 Set-Content -LiteralPath (Join-Path $portableBuildDir "start-asteria.ps1") -Value $startPs1 -Encoding UTF8
 

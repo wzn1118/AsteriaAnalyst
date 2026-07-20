@@ -2,6 +2,9 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=20.9.0"
+  },
   "scripts": {
     "dev": "cross-env NEXT_TELEMETRY_DISABLED=1 next dev --webpack --hostname 127.0.0.1",
     "dev:turbo": "cross-env NEXT_TELEMETRY_DISABLED=1 next dev --hostname 127.0.0.1",
