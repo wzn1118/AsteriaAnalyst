@@ -1,5 +1,7 @@
 # Deployment and Public-Use Boundaries
 
+> 中文说明：[安全与部署说明](security-deployment.zh-CN.md)
+
 This repository can be public without becoming a public data service. Asteria Analyst is designed for local, loopback-only, single-user use unless a separate deployment and security design is implemented.
 
 ## What "Public" Means Here

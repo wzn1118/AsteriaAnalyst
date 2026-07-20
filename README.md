@@ -134,7 +134,7 @@ raw data
 - 缺少或无效的 AI trace 时，最多只能生成 <code>debug_report</code> 用于诊断，禁止发布正式 <code>management_report.pdf</code>。
 - 最终质量分低于 90 时，同样禁止正式 PDF 发布。
 
-更多细节见 [正式报告可信机制](docs/report-integrity.zh-CN.md) 与 [AI 强制发布链架构](docs/architecture_ai_mandatory_chain.md)。
+更多细节见 [正式报告可信机制](docs/report-integrity.zh-CN.md)、[AI 强制发布链（中文）](docs/architecture_ai_mandatory_chain.zh-CN.md) 与 [英文原始规范](docs/architecture_ai_mandatory_chain.md)。
 
 ## 快速开始
 
@@ -179,13 +179,22 @@ raw data
 
 ## 文档索引
 
+- [中文技术文档中心](docs/README.md)
+- [系统架构](docs/architecture.zh-CN.md)
+- [API 参考](docs/api-reference.zh-CN.md)
+- [配置参考](docs/configuration-reference.zh-CN.md)
+- [开发与质量指南](docs/development-guide.zh-CN.md)
+- [安全与部署说明](docs/security-deployment.zh-CN.md)
+- [发布与运维指南](docs/release-operations.zh-CN.md)
+- [Windows 便携版离线指南](docs/portable-user-guide.zh-CN.md)
+- [便携版 Codex Runtime（中文）](docs/portable-codex-runtime.zh-CN.md)
 - [完整模块与功能手册](docs/module-guide.zh-CN.md)
 - [功能逐项参考：页面、操作、接口、产物与边界](docs/function-reference.zh-CN.md)
 - [公开项目介绍](docs/public-project-introduction.zh-CN.md)
 - [快速开始](docs/getting-started.zh-CN.md)
 - [详细用户指南](docs/user-guide.zh-CN.md)
 - [正式报告可信机制](docs/report-integrity.zh-CN.md)
-- [AI 强制发布链架构](docs/architecture_ai_mandatory_chain.md)
+- [AI 强制发布链（中文）](docs/architecture_ai_mandatory_chain.zh-CN.md)（[English](docs/architecture_ai_mandatory_chain.md)）
 - [贡献指南](CONTRIBUTING.md)
 - [安全策略](SECURITY.md)
 

@@ -1,5 +1,7 @@
 # Security Policy
 
+> 中文说明：[安全与部署说明](docs/security-deployment.zh-CN.md)
+
 ## Supported use
 
 This repository is intended for local, loopback-only use. It is not a hardened public multi-user service. Do not expose the backend, fallback server, uploaded files, or generated report storage directly to the Internet.

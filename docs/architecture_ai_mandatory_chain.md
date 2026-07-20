@@ -1,5 +1,7 @@
 # AI Mandatory Chain Architecture
 
+> 中文说明：[AI 强制发布链（中文）](architecture_ai_mandatory_chain.zh-CN.md)
+
 ## Purpose
 
 This document defines the mandatory AI/Codex/LLM chain that must run before AsteriaAnalyst releases a formal management report.

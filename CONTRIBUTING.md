@@ -1,5 +1,7 @@
 # Contributing
 
+> 中文说明：[开发与质量指南](docs/development-guide.zh-CN.md)
+
 ## Development setup
 
 - Use Python 3.11 or later and Node.js 20 or later.
