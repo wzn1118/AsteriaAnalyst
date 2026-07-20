@@ -7952,6 +7952,13 @@ def _register_lab_report_catalog(
     shutil.copy2(markdown_path, library_md)
     shutil.copy2(html_path, library_html)
     shutil.copy2(seed_path, library_seed)
+    for asset_dir_name in (CHART_ASSET_DIR, METHOD_ARTIFACT_DIR):
+        source_asset_dir = source_export_dir / asset_dir_name
+        target_asset_dir = report_dir / asset_dir_name
+        if source_asset_dir.is_dir() and source_asset_dir.resolve() != target_asset_dir.resolve():
+            if target_asset_dir.exists():
+                shutil.rmtree(target_asset_dir)
+            shutil.copytree(source_asset_dir, target_asset_dir)
 
     downloadables = [
         {

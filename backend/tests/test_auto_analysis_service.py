@@ -3696,6 +3696,11 @@ def test_auto_analysis_can_export_runtime_packages(tmp_path: Path) -> None:
     assert lab_report_meta["failed_check_count"] == 0
     assert lab_report_meta["json_file_name"] == "lab_report.json"
     assert lab_report_meta["json_path"] == "/storage/auto-analysis/demo/run-1/lab_report.json"
+    report_library = Path(lab_report_meta["report_library"]["report_dir"])
+    catalog_html = report_library / f"{lab_report_meta['report_id']}-management_report.html"
+    catalog_image_sources = re.findall(r'<img[^>]+src="([^"]+)"', catalog_html.read_text(encoding="utf-8"))
+    assert catalog_image_sources
+    assert all((report_library / source).is_file() for source in catalog_image_sources)
     assert lab_report_json["report_id"] == lab_report_meta["report_id"]
     assert lab_report_json["quality_status"] == "passed"
     assert lab_report_json["lab_report_json_downloadable"]["path"] == "/storage/auto-analysis/demo/run-1/lab_report.json"
