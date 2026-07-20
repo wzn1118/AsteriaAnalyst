@@ -874,6 +874,11 @@ def _candidate_visual_assets_for_page(
         candidates.extend(assets_by_type.get("table", []))
         candidates.extend(assets_by_type.get("collage", []))
         candidates.extend(assets_by_type.get("chart", []))
+    elif template in {"thesis_chart_page", "funnel_diagnosis_page", "scatter_diagnosis_page", "heatmap_leverage_page"}:
+        candidates.extend(assets_by_type.get("chart", []))
+        if not candidates:
+            candidates.extend(assets_by_type.get("table", []))
+            candidates.extend(assets_by_type.get("collage", []))
     elif required:
         candidates.extend(assets_by_type.get("chart", []))
         if required in {"right_labeled_index_line", "indexed_multi_line"} and template in {"comparison_matrix_page", "kpi_scorecard_page", "ranking_table_page"}:
@@ -1567,16 +1572,60 @@ def _append_chart_pages_if_needed(
     *,
     chart_assets: list[dict[str, Any]],
 ) -> None:
-    target = min(len(chart_assets), 12)
-    _append_asset_pages_if_needed(
-        pages,
-        assets=chart_assets,
-        asset_type="chart",
-        target=target,
-        template_for_asset=_template_for_chart_asset,
-        module="可视化诊断",
-        conclusion_type="chart_driven_management_thesis",
-    )
+    target_assets = list(chart_assets[:12])
+    if not target_assets:
+        return
+
+    target_keys = {_asset_key(asset) for asset in target_assets if _asset_key(asset)}
+    covered_keys: set[str] = set()
+    for page in pages:
+        source_template = str(
+            page.get("source_page_template_type") or page.get("page_template_type") or ""
+        )
+        if source_template in {"toc_navigation_page", "module_divider_page"}:
+            continue
+        primary_asset = next(
+            (
+                asset
+                for asset in list(page.get("asset_refs") or [])
+                if isinstance(asset, dict) and str(asset.get("asset_type") or "") == "chart"
+            ),
+            None,
+        )
+        if primary_asset is None:
+            continue
+        key = _asset_key(primary_asset)
+        if key and key in target_keys:
+            covered_keys.add(key)
+
+    for asset in target_assets:
+        key = _asset_key(asset)
+        if key and key in covered_keys:
+            continue
+        template_type = _template_for_chart_asset(asset)
+        title = _clean_text(asset.get("title"), fallback=f"Chart Page {len(pages) + 1}")
+        pages.append(
+            {
+                "page_number": len(pages) + 1,
+                "page_template_type": template_type,
+                "source_page_template_type": "auto_added_chart_asset_page",
+                "module": "\u53ef\u89c6\u5316\u8bca\u65ad",
+                "title": title,
+                "density_class": "visual",
+                "expected_conclusion_type": "chart_driven_management_thesis",
+                "asset_refs": [asset],
+                "reader_facing": True,
+                "storyline_source": str(asset.get("source_view") or "asset_index"),
+                "management_thesis": _page_management_thesis(title, template_type),
+                "fallback_points_source": str(asset.get("source_view") or "asset_index"),
+                "primary_asset_role": str(
+                    asset.get("story_role") or asset.get("recommended_page_role") or asset.get("kind") or ""
+                ),
+                "auto_added_reason": "asset_density_floor",
+            }
+        )
+        if key:
+            covered_keys.add(key)
 
 
 def _family_from_reverse_spec(payload: dict[str, Any]) -> str:
@@ -2686,8 +2735,9 @@ def render_historical_deck_layout_pack(
     pages: list[dict[str, Any]] = []
     for index, item in enumerate(sequence, start=1):
         blueprint_for_index = initial_blueprint_pages[index - 1] if index - 1 < len(initial_blueprint_pages) else {}
-        template_type = _template_from_item(item)
-        if template_type in {"toc_navigation_page", "module_divider_page"}:
+        source_template_type = _template_from_item(item)
+        template_type = source_template_type
+        if source_template_type in {"toc_navigation_page", "module_divider_page"}:
             # Navigation-only pages were the main source of title + bullet
             # failures. Keep the logic role, but render it as a visual summary
             # page unless a later source-derived renderer supports a true
@@ -2705,6 +2755,7 @@ def render_historical_deck_layout_pack(
             {
                 "page_number": index,
                 "page_template_type": template_type,
+                "source_page_template_type": source_template_type,
                 "module": _clean_text(item.get("module") or item.get("section"), fallback=""),
                 "title": title,
                 "density_class": _clean_text(item.get("density_class") or item.get("density"), fallback="standard"),
@@ -2746,6 +2797,11 @@ def render_historical_deck_layout_pack(
         pages,
         assets_by_type=assets_by_type,
         data_manifest=data_manifest,
+    )
+    _ensure_family_acceptance_floor(
+        pages,
+        family=family,
+        assets_by_type=assets_by_type,
     )
     pages = _apply_visual_contract_page_bounds(
         pages,

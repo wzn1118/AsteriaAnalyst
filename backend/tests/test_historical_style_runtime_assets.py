@@ -307,12 +307,24 @@ def test_business_analysis_package_multi_table_tracks_table_profiles(tmp_path: P
 
 
 def test_historical_stage_order_uses_reverse_spec_and_layout_packs() -> None:
-    stage_ids = [stage["stage_id"] for stage in _default_stage_order("historical_style_report_cli_pipeline")]
+    stages = _default_stage_order("historical_style_report_cli_pipeline")
+    stage_ids = [stage["stage_id"] for stage in stages]
+    stage_by_id = {stage["stage_id"]: stage for stage in stages}
 
-    assert stage_ids[:5] == ["reverse_spec", "data_context_pack", "data_storyline_scan", "report_logic_blueprint", "page_plan"]
+    assert stage_ids[:6] == [
+        "pdf_visual_parse",
+        "source_region_profile_pack",
+        "text_logic_parse",
+        "visual_semantic_spec",
+        "chart_grammar_compile",
+        "source_chart_grammar_profile_pack",
+    ]
+    assert stage_ids[6:11] == ["reverse_spec", "data_context_pack", "data_storyline_scan", "report_logic_blueprint", "page_plan"]
+    assert stage_by_id["reverse_spec"]["depends_on"] == ["source_chart_grammar_profile_pack"]
     assert "template_intake" not in stage_ids
     assert stage_ids[stage_ids.index("table_asset_pack") + 1] == "collage_asset_pack"
-    assert stage_ids[stage_ids.index("collage_asset_pack") + 1] == "deck_layout_pack"
+    assert stage_ids[stage_ids.index("collage_asset_pack") + 1] == "visual_asset_render"
+    assert stage_ids[stage_ids.index("visual_asset_render") + 1] == "deck_layout_pack"
     assert stage_ids[stage_ids.index("deck_layout_pack") + 1] == "html_css_package"
 
 
@@ -668,7 +680,9 @@ def test_deck_layout_adds_chart_pages_when_plan_underuses_assets(tmp_path: Path)
 
     assert layout_pack["page_count"] >= 10
     assert layout_pack["template_counts"]["thesis_chart_page"] >= 6
-    page = next(item for item in layout_pack["pages"] if item["page_template_type"] == "thesis_chart_page")
+    chart_pages = [item for item in layout_pack["pages"] if item["page_template_type"] == "thesis_chart_page"]
+    assert all(page["asset_refs"] and page["asset_refs"][0]["asset_type"] == "chart" for page in chart_pages)
+    page = chart_pages[0]
     assert "management_thesis" in page
     assert "storyline_source" in page
     assert "fallback_points_source" in page

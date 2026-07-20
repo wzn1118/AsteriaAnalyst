@@ -250,9 +250,18 @@ def test_resume_runtime_process_rebuilds_workspace_and_restarts_pipeline(
     assert start_calls == [{"report_id": report_id, "auto_start": True}]
 
 
+@pytest.mark.parametrize(
+    ("result_resume_strategy", "expected_resume_strategy"),
+    [
+        (None, "start_generic_long_cli_pipeline"),
+        ("resume_existing_bootstrap", "resume_existing_bootstrap"),
+    ],
+)
 def test_resume_runtime_bootstrap_starts_generic_long_cli_pipeline(
     isolated_runtime_paths: Path,
     monkeypatch: pytest.MonkeyPatch,
+    result_resume_strategy: str | None,
+    expected_resume_strategy: str,
 ) -> None:
     report_id = "bootstrap-start-001"
     _seed_report_dir(isolated_runtime_paths, report_id)
@@ -260,11 +269,14 @@ def test_resume_runtime_bootstrap_starts_generic_long_cli_pipeline(
 
     def fake_create_generic_long_cli_pipeline_from_completed_report(target_report_id: str, *, auto_start: bool = True) -> dict[str, object]:
         start_calls.append({"report_id": target_report_id, "auto_start": auto_start})
-        return {
+        result: dict[str, object] = {
             "pipeline_job_id": "pipeline-bootstrap-001",
             "pipeline_type": "generic_long_cli_pipeline",
             "workspace_path": str((isolated_runtime_paths / f"smart-report-{target_report_id}" / "codex_runtime_rebuild").resolve()),
         }
+        if result_resume_strategy:
+            result["resume_strategy"] = result_resume_strategy
+        return result
 
     monkeypatch.setattr(
         runtime_service_module,
@@ -285,7 +297,7 @@ def test_resume_runtime_bootstrap_starts_generic_long_cli_pipeline(
     response = runtime_service_module.resume_runtime_process("runtime_bootstrap", report_id, report_id=report_id)
 
     assert response["action"] == "resume"
-    assert response["resume_strategy"] == "start_generic_long_cli_pipeline"
+    assert response["resume_strategy"] == expected_resume_strategy
     assert response["pipeline_job_id"] == "pipeline-bootstrap-001"
     assert response["pipeline_type"] == "generic_long_cli_pipeline"
     assert start_calls == [{"report_id": report_id, "auto_start": True}]

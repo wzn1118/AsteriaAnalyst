@@ -420,7 +420,8 @@ def _collage_rows_have_reader_value(asset_id: str, rows: list[dict[str, Any]]) -
             if str(row.get("kind") or "").strip().lower() not in {"style", "visual", "theme"}
             and str(row.get("label") or "").strip()
         ]
-        return len(data_tags) >= 3
+        # A dimension and a metric already make a reader-facing tag pair.
+        return len(data_tags) >= 2
     if asset_id == "segment_badges":
         return any(str(row.get("label") or "").strip() and list(row.get("metrics") or []) for row in rows)
     if asset_id == "benchmark_callouts":

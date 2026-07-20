@@ -136,8 +136,8 @@ def test_report_design_spec_unknown_layout_falls_back_with_warning() -> None:
     request = SmartReportRequest(premium_style_preset="unknown_layout")
     spec = build_report_design_spec(request=request)
 
-    assert spec["layout_preset_id"] == "navy_white_premium"
-    assert spec["layout_preset_name"] == "深蓝白高级商务"
+    assert spec["layout_preset_id"] == "chinese_finance_editorial"
+    assert spec["layout_preset_name"] == "中文财经内参"
     assert "unknown premium_style_preset ignored: unknown_layout" in spec["validation_warnings"]
 
 
@@ -232,8 +232,8 @@ def test_runtime_prompts_reference_report_design_spec() -> None:
     assert "visual_signature" in html_prompt
     assert "page_sequence_template" in html_prompt
     assert "component_grammar" in html_prompt
-    assert "financial_times_longform" in html_prompt
-    assert "salmon/off-white" in html_prompt
+    assert "chinese_finance_editorial" in html_prompt
+    assert "cool-white paper tone" in html_prompt
 
 
 def test_specialized_html_prompts_reference_report_design_spec() -> None:

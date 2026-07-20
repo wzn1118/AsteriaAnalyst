@@ -116,7 +116,8 @@ def test_auto_analysis_exports_mounted_external_skill_context(monkeypatch, tmp_p
     external_skill_download = next(item for item in result["downloadables"] if item["name"] == "external_skill_context.json")
     assert external_skill_download["download_kind"] == "external_skill_context"
     assert external_skill_download["external_skill_ids"] == [skill_id]
-    assert external_skill_download["file_path"]
+    assert external_skill_download["path"] == "/storage/auto-analysis/demo/run-skill/external_skill_context.json"
+    assert "file_path" not in external_skill_download
 
 
 def test_smart_merge_prompt_requires_external_skill_application() -> None:
@@ -252,7 +253,7 @@ def test_main_lab_report_renders_knowledge_work_report_flow_integration(monkeypa
             "channel": ["search", "search", "social", "direct", "social"],
         }
     )
-    run_auto_analysis(
+    result = run_auto_analysis(
         frame,
         AutoAnalysisRequest(
             dataset_id="demo",
@@ -279,11 +280,17 @@ def test_main_lab_report_renders_knowledge_work_report_flow_integration(monkeypa
 
     report_text = (tmp_path / "run" / "lab_report.md").read_text(encoding="utf-8")
     report_writer_input = json.loads((tmp_path / "run" / "report_writer_agent_input.json").read_text(encoding="utf-8"))
+    quality_by_id = {
+        str(check.get("id") or ""): str(check.get("status") or "")
+        for check in result["data"]["lab_report"]["quality_checks"]
+        if isinstance(check, dict)
+    }
 
     assert "## Knowledge Work Report-Flow Integration" in report_text
     assert "Selected Knowledge Work plugin functions were applied inside the main Lab report flow" in report_text
     assert "Frontier Brief" in report_text
+    assert quality_by_id["mounted_knowledge_work_report_flow"] == "passed"
     assert report_writer_input["report_flow_requirements"][
         "selected_knowledge_work_features_must_participate_in_main_report_flow"
     ] is True
-    assert report_writer_input["selected_external_skill_features"][0]["name"] == "Frontier Brief"
+    assert report_writer_input["selected_external_skill_features"][0]["feature_name"] == "Frontier Brief"

@@ -1868,7 +1868,7 @@ function PaletteEditor({
 }) {
   const [dragIndex, setDragIndex] = useState<number | null>(null);
   const [selectedColorIndex, setSelectedColorIndex] = useState(0);
-  const [customPresets, setCustomPresets] = useState<SavedPalettePreset[]>([]);
+  const [customPresets, setCustomPresets] = useState<SavedPalettePreset[]>(() => loadSavedPalettePresets());
   const [newPresetName, setNewPresetName] = useState("");
   const activePreset = presets.find((preset) => preset.id === presetId) || presets[0];
   const paletteColors = sanitizePaletteColors(colors);
@@ -1896,14 +1896,6 @@ function PaletteEditor({
     setSelectedColorIndex(0);
     setNewPresetName(preset.label);
   }
-
-  useEffect(() => {
-    setCustomPresets(loadSavedPalettePresets());
-  }, []);
-
-  useEffect(() => {
-    setSelectedColorIndex((current) => Math.min(current, Math.max(paletteColors.length - 1, 0)));
-  }, [paletteColors.length]);
 
   function updateCustomPresets(nextPresets: SavedPalettePreset[]) {
     setCustomPresets(nextPresets);
@@ -2045,7 +2037,7 @@ function PaletteEditor({
             <div className="mt-4 space-y-3">
               {paletteColors.map((color, index) => {
                 const isDragging = dragIndex === index;
-                const isSelected = index === selectedColorIndex;
+                const isSelected = index === activeColorIndex;
                 return (
                   <div
                     className={`flex items-center gap-3 rounded-2xl border px-3 py-3 transition ${

@@ -1473,7 +1473,16 @@ def _render_category_family(
     aggregation = str(category.get("aggregation") or insight_input.get("aggregation") or "").strip()
     share_eligible = category.get("share_eligible")
     if share_eligible is None:
-        share_eligible = aggregation == "sum"
+        if aggregation:
+            share_eligible = aggregation == "sum"
+        else:
+            # Legacy bundles did not annotate aggregation. A non-negative,
+            # non-zero category series still supports composition exhibits.
+            share_eligible = (
+                len(values) >= 2
+                and all(value >= 0 for value in values)
+                and sum(values) > 0
+            )
     path = asset_dir / f"{prefix}.svg"
     if _chart_kind_preferred("paired_horizontal_bar"):
         _write_text(path, _render_paired_horizontal_bars(title, labels, values, insight_input))

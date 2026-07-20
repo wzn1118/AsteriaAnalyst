@@ -540,7 +540,7 @@ $backendProc = Ensure-Service -Name "Backend API" -Port $backendPort -HealthUrl 
 $frontendProc = Ensure-Service -Name "Frontend UI" -Port $frontendPort -HealthUrl $frontendHealthUrl -ExpectedContent "Asteria" -ExpectedCommandPatterns $frontendPatterns -TimeoutSeconds 420 -Starter {
     if ($script:UseDevelopmentFrontend) {
         return Start-Process -FilePath $script:NodeExe `
-            -ArgumentList $nextCli, "dev", "--webpack", "--hostname", "127.0.0.1", "--port", "$frontendPort" `
+            -ArgumentList ('"{0}"' -f $nextCli), "dev", "--webpack", "--hostname", "127.0.0.1", "--port", "$frontendPort" `
             -WorkingDirectory $frontendDir `
             -RedirectStandardOutput $frontendOut `
             -RedirectStandardError $frontendErr `
@@ -549,7 +549,7 @@ $frontendProc = Ensure-Service -Name "Frontend UI" -Port $frontendPort -HealthUr
     }
 
     return Start-Process -FilePath $script:NodeExe `
-        -ArgumentList $nextCli, "start", "--hostname", "127.0.0.1", "--port", "$frontendPort" `
+        -ArgumentList ('"{0}"' -f $nextCli), "start", "--hostname", "127.0.0.1", "--port", "$frontendPort" `
         -WorkingDirectory $frontendDir `
         -RedirectStandardOutput $frontendOut `
         -RedirectStandardError $frontendErr `

@@ -537,8 +537,10 @@ if ((@(Get-ManagedPortableProcesses)).Count) {
 }
 
 Remove-Item -LiteralPath $stdoutLog, $stderrLog -ErrorAction SilentlyContinue
+# Start-Process flattens argument arrays, so the script path must carry its
+# own quotes when the portable folder is extracted under a path with spaces.
 Start-Process -FilePath $launcher `
-    -ArgumentList @($runner) `
+    -ArgumentList ('"{0}"' -f $runner) `
     -WorkingDirectory $backendDir `
     -RedirectStandardOutput $stdoutLog `
     -RedirectStandardError $stderrLog `

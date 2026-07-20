@@ -5,6 +5,8 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
+import pandas as pd
+
 from app.models import SmartReportRequest
 from app.services.r_workflow_service import (
     _build_r_workflow_column_registry,
@@ -14,6 +16,119 @@ from app.services.r_workflow_service import (
     _write_r_workflow_statistics_workbook,
     run_r_workflow,
 )
+
+
+def _fake_rscript(
+    runtime_path: str,
+    script_path: Path,
+    args: list[str],
+    workflow_dir: Path,
+    *,
+    log_prefix: str,
+) -> None:
+    """Provide deterministic R-boundary artifacts for unit-level workflow tests.
+
+    R is an optional user-configured runtime. These tests exercise Asteria's
+    artifact handling and report contract, while real R execution remains an
+    opt-in integration concern.
+    """
+    del runtime_path, script_path
+    (workflow_dir / f"{log_prefix}-stdout.log").write_text("fake R runtime\n", encoding="utf-8")
+    (workflow_dir / f"{log_prefix}-stderr.log").write_text("", encoding="utf-8")
+
+    if log_prefix == "01_clean_prepare":
+        pd.read_csv(args[0], encoding="utf-8-sig").to_csv(
+            workflow_dir / "cleaned_dataset.csv", index=False, encoding="utf-8-sig"
+        )
+        return
+
+    frame = pd.read_csv(workflow_dir / "input-data.csv", encoding="utf-8-sig")
+    numeric_columns = [str(column) for column in frame.select_dtypes(include="number").columns]
+    variable_columns = [
+        column for column in numeric_columns if frame[column].dropna().nunique() > 1
+    ]
+
+    summary_rows = [
+        {
+            "column": column,
+            "n": int(frame[column].notna().sum()),
+            "mean": float(frame[column].mean()),
+        }
+        for column in numeric_columns
+    ]
+    pd.DataFrame(summary_rows, columns=["column", "n", "mean"]).to_csv(
+        workflow_dir / "summary_stats.csv", index=False, encoding="utf-8-sig"
+    )
+
+    category_columns = [
+        str(column)
+        for column in frame.columns
+        if str(frame[column].dtype) in {"object", "string"} and str(column).lower() != "date"
+    ]
+    if category_columns:
+        category = category_columns[0]
+        top_categories = (
+            frame[category]
+            .fillna("(missing)")
+            .astype(str)
+            .value_counts()
+            .rename_axis("category")
+            .reset_index(name="count")
+        )
+    else:
+        top_categories = pd.DataFrame(columns=["category", "count"])
+    top_categories.to_csv(workflow_dir / "top_categories.csv", index=False, encoding="utf-8-sig")
+
+    pd.DataFrame(columns=["period", "metric", "value"]).to_csv(
+        workflow_dir / "temporal_trend.csv", index=False, encoding="utf-8-sig"
+    )
+    pd.DataFrame(columns=["period_from", "period_to", "metric", "growth_rate", "delta"]).to_csv(
+        workflow_dir / "temporal_growth.csv", index=False, encoding="utf-8-sig"
+    )
+    pd.DataFrame(columns=["variable", "correlation"]).to_csv(
+        workflow_dir / "correlation_matrix.csv", index=False, encoding="utf-8-sig"
+    )
+
+    pd.DataFrame(
+        [
+            {"method": "summary_stats", "output": "summary_stats.csv", "status": True, "note": "fixture"},
+            {"method": "temporal_growth", "output": "temporal_growth.csv", "status": True, "note": "single-period-safe"},
+            {"method": "pca_variance", "output": "pca_axis_summary.csv", "status": True, "note": "variable-columns-only"},
+            {"method": "kmeans_clusters", "output": "cluster_member_detail.csv", "status": True, "note": "fixture"},
+        ]
+    ).to_csv(workflow_dir / "method_log.csv", index=False, encoding="utf-8-sig")
+    pd.DataFrame(
+        [{"component": "PC1", "explained_variance": 1.0}]
+        if variable_columns
+        else [],
+        columns=["component", "explained_variance"],
+    ).to_csv(workflow_dir / "pca_axis_summary.csv", index=False, encoding="utf-8-sig")
+    pd.DataFrame(
+        [
+            {"variable": column, "PC1": 1.0 / (index + 1), "PC2": 0.0}
+            for index, column in enumerate(variable_columns)
+        ],
+        columns=["variable", "PC1", "PC2"],
+    ).to_csv(workflow_dir / "pca_loadings.csv", index=False, encoding="utf-8-sig")
+    pd.DataFrame(
+        [{"row_index": index + 1, "cluster": (index % 2) + 1} for index in range(len(frame))]
+    ).to_csv(workflow_dir / "cluster_member_detail.csv", index=False, encoding="utf-8-sig")
+    pd.DataFrame(
+        [
+            {"category": "all", "metric": column, "mean": float(frame[column].mean())}
+            for column in numeric_columns
+        ],
+        columns=["category", "metric", "mean"],
+    ).to_csv(workflow_dir / "category_metric_summary.csv", index=False, encoding="utf-8-sig")
+    if len(numeric_columns) >= 2:
+        gap = float(frame[numeric_columns[0]].mean() - frame[numeric_columns[1]].mean())
+        pair = f"{numeric_columns[0]} / {numeric_columns[1]}"
+        budget_rows = [{"metric_pair": pair, "gap": gap}]
+    else:
+        budget_rows = []
+    pd.DataFrame(budget_rows, columns=["metric_pair", "gap"]).to_csv(
+        workflow_dir / "budget_variance_summary.csv", index=False, encoding="utf-8-sig"
+    )
 
 
 class RWorkflowServiceTests(unittest.TestCase):
@@ -624,6 +739,12 @@ class RWorkflowServiceTests(unittest.TestCase):
             rws, "codex_interpret_r_results", lambda payload: cs._fallback_r_results_interpretation("forced-test", payload)
         ), patch.object(
             rws, "codex_infer_r_workflow_semantics", lambda ctx: ctx["heuristic_registry"]
+        ), patch.object(
+            rws, "_resolve_rscript_path", return_value="fake-rscript"
+        ), patch.object(
+            rws, "_run_rscript", side_effect=_fake_rscript
+        ), patch.object(
+            rws, "_run_r_workflow_codex_sidecar", return_value={"enabled": False, "downloadables": []}
         ):
             result = run_r_workflow(
                 report_dir=report_dir,
@@ -687,6 +808,12 @@ class RWorkflowServiceTests(unittest.TestCase):
             rws, "codex_interpret_r_results", lambda payload: cs._fallback_r_results_interpretation("forced-test", payload)
         ), patch.object(
             rws, "codex_infer_r_workflow_semantics", lambda ctx: ctx["heuristic_registry"]
+        ), patch.object(
+            rws, "_resolve_rscript_path", return_value="fake-rscript"
+        ), patch.object(
+            rws, "_run_rscript", side_effect=_fake_rscript
+        ), patch.object(
+            rws, "_run_r_workflow_codex_sidecar", return_value={"enabled": False, "downloadables": []}
         ):
             result = run_r_workflow(
                 report_dir=report_dir,
@@ -745,6 +872,12 @@ class RWorkflowServiceTests(unittest.TestCase):
             rws, "codex_interpret_r_results", lambda payload: cs._fallback_r_results_interpretation("forced-test", payload)
         ), patch.object(
             rws, "codex_infer_r_workflow_semantics", lambda ctx: ctx["heuristic_registry"]
+        ), patch.object(
+            rws, "_resolve_rscript_path", return_value="fake-rscript"
+        ), patch.object(
+            rws, "_run_rscript", side_effect=_fake_rscript
+        ), patch.object(
+            rws, "_run_r_workflow_codex_sidecar", return_value={"enabled": False, "downloadables": []}
         ):
             result = run_r_workflow(
                 report_dir=report_dir,

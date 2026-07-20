@@ -112,14 +112,14 @@ def test_list_report_agent_session_events_persists_updated_at_when_sync_changes_
 
 
 def _basic_revision_session(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> dict[str, object]:
-    storage_dir = tmp_path / "storage"
-    reports_dir = storage_dir / "reports"
+    public_artifacts_dir = tmp_path / "public"
+    reports_dir = public_artifacts_dir / "reports"
     report_id = "report-pdf"
     session_id = "agent-session-test"
     workspace = reports_dir / f"smart-report-{report_id}" / session_service.SESSION_DIR_NAME / session_id
     working_dir = workspace / "working"
     working_dir.mkdir(parents=True, exist_ok=True)
-    monkeypatch.setattr(session_service, "STORAGE_DIR", storage_dir)
+    monkeypatch.setattr(session_service, "PUBLIC_ARTIFACTS_DIR", public_artifacts_dir)
     monkeypatch.setattr(session_service, "REPORTS_DIR", reports_dir)
 
     md_path = working_dir / "report.md"

@@ -2899,7 +2899,15 @@ def resume_runtime_process(kind: str, process_id: str, *, report_id: str, sessio
         "pipeline_type": (result or {}).get("specialized_pipeline_type") or (result or {}).get("pipeline_type") if isinstance(result, dict) else manifest.get("pipeline_type") if kind == "pipeline" else "",
         "raw_pipeline_type": (result or {}).get("pipeline_type") if isinstance(result, dict) else manifest.get("pipeline_type") if kind == "pipeline" else "",
         "pipeline_label": (result or {}).get("pipeline_label") if isinstance(result, dict) else "",
-        "resume_strategy": preflight.get("resume_strategy") if kind == "pipeline" else (result or {}).get("resume_strategy") if isinstance(result, dict) and kind == "runtime_bootstrap" else "",
+        "resume_strategy": (
+            preflight.get("resume_strategy")
+            if kind == "pipeline"
+            else (
+                (result or {}).get("resume_strategy") or "start_generic_long_cli_pipeline"
+                if isinstance(result, dict) and kind == "runtime_bootstrap"
+                else ""
+            )
+        ),
         "resume_issue_kind": preflight.get("resume_issue_kind") if kind == "pipeline" else "",
         "repair_rule_id": preflight.get("repair_rule_id") if kind == "pipeline" else "",
         "stale_session_id": preflight.get("stale_session_id") if kind == "pipeline" else "",

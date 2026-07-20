@@ -12,6 +12,10 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // These are Node.js CLI utilities, not browser-source modules. They use
+    // CommonJS deliberately and are verified by their dedicated commands.
+    "fallback-server.cjs",
+    "scripts/**/*.cjs",
   ]),
 ]);
 

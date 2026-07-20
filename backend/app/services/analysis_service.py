@@ -5347,6 +5347,7 @@ def run_autocorrelation(frame: pd.DataFrame, request: StatisticRequest) -> dict[
     clean, target, time_field = _time_series_frame(frame, request, test_name="Autocorrelation", min_observations=8)
     lag_count = _safe_lag(request.lag or 12, len(clean), maximum=max(1, len(clean) // 2))
     values = clean[target].to_numpy(dtype=float)
+    acf, _adfuller, _pacf = _statsmodels_tsa()
     acf_values = acf(values, nlags=lag_count, fft=False)
     lag_rows = pd.DataFrame({"lag": list(range(len(acf_values))), "autocorrelation": acf_values}).round(6)
     nonzero = lag_rows[lag_rows["lag"] > 0]
@@ -5375,6 +5376,7 @@ def run_partial_autocorrelation(frame: pd.DataFrame, request: StatisticRequest) 
     clean, target, time_field = _time_series_frame(frame, request, test_name="Partial Autocorrelation", min_observations=10)
     lag_count = _safe_lag(request.lag or 8, len(clean), maximum=max(1, len(clean) // 3))
     values = clean[target].to_numpy(dtype=float)
+    _acf, _adfuller, pacf = _statsmodels_tsa()
     pacf_values = pacf(values, nlags=lag_count, method="yw")
     lag_rows = pd.DataFrame({"lag": list(range(len(pacf_values))), "partial_autocorrelation": pacf_values}).round(6)
     nonzero = lag_rows[lag_rows["lag"] > 0]
@@ -5402,6 +5404,7 @@ def run_partial_autocorrelation(frame: pd.DataFrame, request: StatisticRequest) 
 def run_ljung_box(frame: pd.DataFrame, request: StatisticRequest) -> dict[str, Any]:
     clean, target, time_field = _time_series_frame(frame, request, test_name="Ljung-Box", min_observations=10)
     lag_count = _safe_lag(request.lag or 10, len(clean), maximum=max(1, min(20, len(clean) // 2)))
+    acorr_ljungbox, _het_breuschpagan, _het_white = _statsmodels_diagnostic()
     result = acorr_ljungbox(clean[target].to_numpy(dtype=float), lags=[lag_count], return_df=True)
     statistic = float(result["lb_stat"].iloc[0])
     p_value = float(result["lb_pvalue"].iloc[0])
@@ -5426,6 +5429,7 @@ def run_ljung_box(frame: pd.DataFrame, request: StatisticRequest) -> dict[str, A
 
 def run_adf_test(frame: pd.DataFrame, request: StatisticRequest) -> dict[str, Any]:
     clean, target, time_field = _time_series_frame(frame, request, test_name="ADF Test", min_observations=12)
+    _acf, adfuller, _pacf = _statsmodels_tsa()
     statistic, p_value, used_lag, observations, critical_values, _icbest = adfuller(clean[target].to_numpy(dtype=float), autolag="AIC")
     decision = "stationary" if float(p_value) < request.alpha else "unit_root_not_rejected"
     critical_rows = pd.DataFrame(

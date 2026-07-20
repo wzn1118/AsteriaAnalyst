@@ -57,6 +57,10 @@ def _zh(value: str) -> str:
     return value.encode("ascii").decode("unicode_escape")
 
 
+def _clean_text(value: Any) -> str:
+    return str(value or "").strip()
+
+
 SMART_MERGE_INPUT_FILE = "smart_merge_input.json"
 SMART_MERGE_BRIEF_FILE = "smart_merge_brief.json"
 SMART_MERGE_RESULT_FILE = "smart_merge_result.json"
@@ -5744,6 +5748,7 @@ def _render_lab_report_markdown(
     generated_at: str,
 ) -> str:
     external_skills = _external_skill_items_for_report(external_skill_context)
+    external_skill_report_flow_rows = _external_skill_report_flow_rows(external_skill_context)
     dataset_title = _client_dataset_title(dataset_name or request.dataset_id)
     sheet_title = sheet_name or request.active_sheet or "-"
     time_value = selected.get("time")
@@ -5804,6 +5809,31 @@ def _render_lab_report_markdown(
     narrative = str(executive.get("narrative") or "").strip()
     if narrative:
         lines.extend([narrative, ""])
+    if external_skill_report_flow_rows:
+        lines.extend(["## Knowledge Work Report-Flow Integration", ""])
+        lines.append(
+            "- Selected Knowledge Work plugin functions were applied inside the main Lab report flow, not as standalone trials."
+        )
+        lines.append(
+            "- Their instructions shape method selection, evidence interpretation, recommended actions, and the strict quality review."
+        )
+        lines.extend(
+            _markdown_table(
+                {
+                    "columns": [
+                        "Skill package",
+                        "Skill id",
+                        "Source",
+                        "Selected functions",
+                        "Instruction status",
+                        "Report-flow role",
+                    ],
+                    "rows": external_skill_report_flow_rows,
+                },
+                max_rows=max(12, len(external_skill_report_flow_rows)),
+            )
+        )
+        lines.append("")
     family_counts = _method_family_counts(method_execution_packages)
     method_display_packages = _method_display_packages(method_execution_packages)
     method_display_policy = _method_display_policy(method_execution_packages, method_display_packages)
@@ -8906,6 +8936,8 @@ def _smart_merge_markdown_report(payload: dict[str, Any], brief_payload: dict[st
             lines.append(f"### {skill_name}")
             if selected_features:
                 lines.append(f"- Selected report-flow functions: {', '.join(selected_features)}")
+            else:
+                lines.append("- Selected report-flow functions: entire mounted package")
             if applied_rules:
                 lines.append(f"- Applied rules: {'; '.join(applied_rules[:5])}")
             if output_effect:
@@ -9600,7 +9632,7 @@ def run_auto_analysis(
                 selected=selected,
                 report_parts=report_parts,
                 tables=tables,
-                charts=charts,
+                charts=export_charts,
                 method_execution_packages=method_execution_packages,
                 method_artifact_summary=method_artifact_summary,
                 report_part_asset_manifest=report_part_asset_manifest,

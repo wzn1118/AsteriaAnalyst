@@ -197,7 +197,9 @@ class InternetOpsDailyActionContractTests(unittest.TestCase):
             combined = (
                 "派生指标矩阵 真实投放回报 × 获客成本 点击到注册 激活到付费 毛利率 "
                 "全字段覆盖与派生口径总表 派生指标目录 派生指标图组 "
-                "全字段覆盖矩阵 增长漏斗派生率图（AARRR） 真实投放回报 × 获客成本四象限图（roi / cac）\n"
+                "全字段覆盖矩阵 增长漏斗派生率图（AARRR） 增长漏斗总览（AARRR） "
+                "Top12 渠道 × 流量来源 AARRR 差异图组 Top12 组合漏斗配表 "
+                "真实投放回报 × 获客成本象限解读 真实投放回报 × 获客成本四象限图（roi / cac）\n"
                 + " ".join(required_fields)
                 + "\n"
                 + chart_refs
