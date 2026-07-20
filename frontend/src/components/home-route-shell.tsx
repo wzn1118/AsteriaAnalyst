@@ -58,8 +58,8 @@ export function HomePageBody() {
                 直接进入分析与交付。
               </h1>
               <p className="max-w-3xl text-base leading-8 text-[var(--muted)] md:text-lg">
-                当前首页只保留真正会被使用的入口：上传数据、填写需求、生成报告、查看结果。
-                不再堆叠大段能力宣传，让页面更像一个能直接开工的分析工作台。
+                当前首页提供上传数据、填写需求、生成报告和查看结果四个入口。
+                页面围绕这些操作组织，便于直接开始分析工作。
               </p>
             </div>
 

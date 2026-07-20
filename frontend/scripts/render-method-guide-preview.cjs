@@ -479,11 +479,11 @@ const html = `<!doctype html>
 
       <section class="outcome-wall glass">
         <p class="eyebrow">Final unlock</p>
-        <h2>跑完这套教程，新手不是“看懂了”，而是已经能交付。</h2>
+        <h2>跑完这套教程，新手已经能交付可复用、可审计、可解释的分析证据。</h2>
         <div class="outcomes">
-          <article class="outcome-card"><span>配置闭环</span><h3>方法知道该看谁、看什么、怎么解释</h3><p>对象筛选、字段绑定、实例口径和解释输入全部连起来，不再靠猜。</p></article>
+          <article class="outcome-card"><span>配置闭环</span><h3>方法知道该看谁、看什么、怎么解释</h3><p>对象筛选、字段绑定、实例口径和解释输入共同形成完整配置闭环。</p></article>
           <article class="outcome-card"><span>样例可复制</span><h3>每章都有一套能直接照填的业务样例</h3><p>新手不用从空白开始，先跑通样例，再替换成自己的数据。</p></article>
-          <article class="outcome-card"><span>证据能交付</span><h3>最终产物可以进入报告、图表和附录</h3><p>教程不是只教按钮，而是把第一次配置导向可复用、可审计、可解释的分析证据。</p></article>
+          <article class="outcome-card"><span>证据能交付</span><h3>最终产物可以进入报告、图表和附录</h3><p>教程将第一次配置沉淀为可复用、可审计、可解释的分析证据。</p></article>
         </div>
       </section>
     </main>

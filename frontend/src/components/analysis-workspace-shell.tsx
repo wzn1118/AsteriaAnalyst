@@ -2121,10 +2121,10 @@ function methodBeginnerProfile(method: MethodCatalogItem) {
   if (family === "association" || family === "categorical_association" || has(/correlation|pearson|spearman|kendall|chi[-_\s]?square|chisq|crosstab|fisher|cramer|关联|相关|卡方|列联/)) {
     if (has(/chi[-_\s]?square|chisq|crosstab|fisher|cramer|categorical|分类|列联|卡方/)) {
       return {
-        problem: "用来判断两个分类字段是不是有关联，比如渠道和是否转化、地区和用户类型是否不是随机搭配。",
+        problem: "用来评估两个分类字段的关联程度，例如渠道与转化状态、地区与用户类型的组合结构。",
         when: "当两个字段都是类别或分组，且你关心“不同类别的比例是否明显不同”时使用。",
         how: "选择两个分类字段，先看交叉表里的样本量和占比，再看检验结果。",
-        read: "重点看 p 值、各格子的占比差异和效应量；p 值小只说明有关联，不等于说明谁导致了谁。",
+        read: "重点看 p 值、各格子的占比差异和效应量；因果结论结合研究设计与额外证据评估。",
         caution: "如果某些格子的样本很少，优先用 Fisher 精确检验或合并过细类别。",
       };
     }
@@ -2133,7 +2133,7 @@ function methodBeginnerProfile(method: MethodCatalogItem) {
       when: "当你有两个数值变量，想先确认它们有没有线性或单调关系时使用。",
       how: "选择一对数值字段；先看散点图和异常值，再看 Pearson、Spearman 或 Kendall 等相关系数。",
       read: "相关系数接近 1 或 -1 代表关系更强，接近 0 代表关系弱；方向正负表示同涨同跌或一升一降。",
-      caution: "相关不等于因果；如果关系弯曲、分组混杂或有极端值，要结合分组和图形复查。",
+      caution: "相关结果用于描述共同变化；因果解释结合研究设计、分组和图形复查。关系弯曲、分组混杂和极端值也应纳入检查。",
     };
   }
 
@@ -2143,7 +2143,7 @@ function methodBeginnerProfile(method: MethodCatalogItem) {
         problem: "用来比较不同组的数值水平是否真的有差异，尤其适合数据不服从正态或样本偏小的场景。",
         when: "当你要比较两组或多组，但均值检验假设不稳、异常值较多时使用。",
         how: "选择一个数值结果字段和一个分组字段；配对数据要选择配对检验，独立分组要选择独立样本检验。",
-        read: "重点看每组中位数、秩次差异、p 值和效果大小；显著不代表差异一定有业务价值。",
+        read: "重点看每组中位数、秩次差异、p 值和效果大小；业务价值结合效果大小、业务阈值和使用场景判断。",
         caution: "先确认分组含义、样本量和是否同一对象重复测量，避免把配对数据当独立数据。",
       };
     }
@@ -2182,7 +2182,7 @@ function methodBeginnerProfile(method: MethodCatalogItem) {
         when: "当没有现成标签，但想根据多个特征找自然分组时使用。",
         how: "选择能代表对象特征的数值字段，运行前尽量标准化量纲，并尝试不同聚类数。",
         read: "重点看每一类的样本量、典型特征和可命名性；好聚类应该能说清每类是谁。",
-        caution: "聚类结果不是绝对真相；字段选择和量纲会强烈影响分群。",
+        caution: "聚类结果会随字段选择和量纲变化；请结合业务特征解读分群。",
       };
     }
     return {
@@ -2209,7 +2209,7 @@ function methodBeginnerProfile(method: MethodCatalogItem) {
       problem: "用来观察指标随时间怎么变化，识别趋势、周期、拐点和异常时间段。",
       when: "当数据有明确时间字段，并且你关心过去走势或未来短期变化时使用。",
       how: "选择时间字段和数值指标，确认时间粒度一致；缺失日期、重复日期要先处理。",
-      read: "重点看趋势方向、波动幅度、季节性、异常点和预测区间，而不是只看单个时间点。",
+      read: "综合查看趋势方向、波动幅度、季节性、异常点和预测区间。",
       caution: "时间预测默认未来规律与历史相似；遇到政策、活动或口径变化要单独标注。",
     };
   }
@@ -2258,15 +2258,15 @@ function methodBeginnerProfile(method: MethodCatalogItem) {
       problem: "用来评估某个动作、政策、实验或处理是否可能带来结果变化。",
       when: "当你有处理组和对照组，或有明确干预前后时间点，并且想接近因果解释时使用。",
       how: "明确处理变量、结果变量、时间或分组口径；先检查两组在干预前是否可比。",
-      read: "重点看处理效应大小、置信区间、显著性和稳健性，而不只是平均值差异。",
-      caution: "因果方法依赖假设；如果分组不是随机或存在遗漏变量，结论要写成“可能影响”而不是绝对因果。",
+      read: "结合处理效应大小、置信区间、显著性和稳健性评估结果。",
+      caution: "因果方法依赖假设；观察性分组或遗漏变量存在时，结论宜表述为“可能影响”。",
     };
   }
 
   if (family === "survival" || has(/survival|kaplan|cox|hazard|生存|风险率|留存|流失时间/)) {
     return {
       problem: "用来分析事件发生前能持续多久，比如用户多久流失、设备多久故障、客户多久转化。",
-      when: "当结果不是普通数值，而是“到某事件发生所需时间”，且有些样本还没发生事件时使用。",
+      when: "适用于结果以“到某事件发生所需时间”表示，且部分样本仍处于观察期的情形。",
       how: "选择起止时间、事件是否发生字段和分组或协变量；保留未发生事件的删失信息。",
       read: "重点看生存曲线、风险比和不同组的事件发生速度。",
       caution: "不要把还没发生事件的样本直接删掉；删失处理是这类方法的关键。",
@@ -2279,7 +2279,7 @@ function methodBeginnerProfile(method: MethodCatalogItem) {
       when: "当多个题目共同代表满意度、态度、能力等潜在概念时使用。",
       how: "选择同一量表下的题项字段，先确认题项方向一致，反向题要先反向计分。",
       read: "重点看信度系数、题项相关和删除某题后的变化。",
-      caution: "信度高不代表量表一定有效；还要结合题目内容和维度结构判断。",
+      caution: "量表评估结合信度、题目内容和维度结构判断。",
     };
   }
 
@@ -2309,7 +2309,7 @@ function methodBeginnerProfile(method: MethodCatalogItem) {
       when: "当你的问题天然包含两个变量，比如价格和销量、年龄和收入、预测值和实际值时使用。",
       how: "选择一对字段，先看图形和异常点，再看表格或检验指标。",
       read: "重点看方向、强弱、异常组合和是否存在分组差异。",
-      caution: "两个字段一起变化不代表因果；要留意第三个变量造成的混杂。",
+      caution: "两个字段共同变化用于描述关联；因果评估还要检查第三个变量造成的混杂。",
     };
   }
 
@@ -2512,7 +2512,7 @@ function methodBundleDisplayCopy(bundle: MethodBundle) {
     {
       kind: "bundle_problem",
       label: "这组卡解决什么",
-      value: `「${bundle.title}」是统一方法卡，不是单一算法。它会把 ${bundle.methods.length} 个对应子方法作为一组运行：${childList}${bundle.methods.length > 5 ? " 等" : ""}。`,
+      value: `「${bundle.title}」是一张统一方法卡，会把 ${bundle.methods.length} 个对应子方法作为一组运行：${childList}${bundle.methods.length > 5 ? " 等" : ""}。`,
     },
     {
       kind: "bundle_when",
@@ -7247,7 +7247,7 @@ function MethodWorkspacePanel({
             <div>
               <p className="text-[10px] uppercase tracking-[0.22em] text-[var(--muted)]">重点对象筛选</p>
               <p className="mt-1 text-xs leading-5 text-[var(--muted)]">
-                对象不是指标字段，而是“先锁定谁，再分析它”。适合只看某些基金会、门店、客户、地区或项目的表现。
+                对象用于锁定分析范围，再查看对应对象的指标和结构。适合聚焦基金会、门店、客户、地区或项目的表现。
               </p>
             </div>
             <span className="surface-chip">
@@ -7794,7 +7794,7 @@ function MethodWorkspacePanel({
             <div>
               <p className="text-[10px] uppercase tracking-[0.22em] text-[var(--muted)]">字段角色绑定</p>
               <p className="mt-1 text-xs leading-5 text-[var(--muted)]">
-                这里不是让你再挑一堆指标，而是告诉当前方法：哪列是结果、哪列是解释因素、哪列用来分组或标记对象。
+                在这里为当前方法指定结果列、解释因素列、分组列和对象标记列。
               </p>
             </div>
             <div className="flex flex-wrap gap-2">
@@ -8628,7 +8628,7 @@ function MethodWorkspacePanel({
                       <div className="rounded-[22px] border border-cyan-200/20 bg-cyan-400/8 p-4 text-sm leading-7 text-[var(--muted)]">
                         <p className="font-semibold text-[var(--text-strong)]">The editor layer is open.</p>
                         <p className="mt-2">
-                          Wait for the method catalog to finish loading, then click a concrete method card or selected run. This panel now stays visible instead of failing silently.
+                          Wait for the method catalog to finish loading, then click a concrete method card or selected run. This panel remains available while the catalog loads.
                         </p>
                       </div>
                     )}
@@ -9152,7 +9152,7 @@ function EmptyCanvas({
       <section className="rounded-[30px] border border-[#74d0d9]/18 bg-[#74d0d9]/7 p-6">
         <p className="text-xs uppercase tracking-[0.24em] text-cyan-100/75">Canvas actions</p>
         <h3 className="mt-2 text-2xl font-semibold tracking-[-0.04em] text-[var(--text-strong)]">
-          This area is now a control surface, not a static board.
+          This area provides controls for the selected method and run.
         </h3>
         <p className="mt-3 text-sm leading-7 text-[var(--muted)]">
           Use the chips above to reopen selected-method editing or add a recommended method before running. Result details will replace this area after execution.
@@ -9270,7 +9270,7 @@ function StatsResultCanvas({
               <p className="text-xs uppercase tracking-[0.24em] text-[var(--muted)]">方法前置审计</p>
               <h3 className="mt-1 text-xl font-semibold text-[var(--text-strong)]">先清洗、先派生、再路由方法</h3>
               <p className="mt-2 text-sm leading-7 text-[var(--muted)]">
-                这层审计来自后端实际返回，不是前端文案。它会先完成字段理解、派生字段、关系图谱和语义路由，再进入方法执行。
+                这层审计由后端实际返回。它会先完成字段理解、派生字段、关系图谱和语义路由，再进入方法执行。
               </p>
             </div>
             <span className="surface-chip">7 stages</span>
@@ -9356,7 +9356,7 @@ function ReportPartBlueprintPanel({
           </h3>
           <p className="mt-3 max-w-4xl text-sm leading-7 text-[var(--muted)]">
             Each blueprint describes one report part, its required assets, available evidence and runtime handoff.
-            It is not a method card.
+            It describes a report part and its handoff requirements.
           </p>
         </div>
         <button

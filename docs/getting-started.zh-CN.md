@@ -1,6 +1,6 @@
 # Asteria Analyst 快速开始
 
-本指南帮助你在 Windows 本机启动 Asteria Analyst，并完成第一次可复核的分析。默认使用本地回环地址，不把服务暴露到公网。
+本指南帮助你在 Windows 本机启动 Asteria Analyst，并完成第一次可复核的分析。默认使用本地回环地址；共享或公开部署按独立的架构与安全方案实施。
 
 ## 先选启动方式
 
@@ -9,7 +9,7 @@
 | 源码版 | 开发、二次开发、已经有开发环境的用户 | Python 3.11+、Node.js 20.9+ | `start-asteria.cmd` |
 | Windows 便携版 | 不希望单独安装 Python/Node.js 的 Windows 用户 | 无需预装这两项运行时 | `start-asteria.bat` |
 
-便携版会作为 `AsteriaAnalyst-portable.zip` 发布资产提供。只有仓库所有者实际创建 GitHub Release 后，才可从该 Release 下载；源码仓库本身不是安装器。
+便携版以 `AsteriaAnalyst-portable.zip` 形式作为 GitHub Release 资产提供。创建 Release 后可从对应页面下载；源码仓库提供源码启动方式。
 
 ## 使用前检查
 
@@ -21,7 +21,7 @@
 - 你知道数值字段的单位、币种和时间口径。
 - 你的首个练习文件足够小、字段名清晰，便于先确认流程。
 
-仓库提供 `examples/revenue-smoke.csv` 作为首次演练样本。它不是业务基准，也不能用于证明真实经营结论。
+仓库提供 `examples/revenue-smoke.csv` 作为首次演练样本。真实经营结论应使用当前业务数据、明确口径和完整证据链形成。
 
 ## 源码版启动
 
@@ -99,7 +99,7 @@ start-asteria.bat
 ### 3. 便携版边界
 
 - 便携版面向 Windows 本机单用户使用。
-- 它不等同于云服务，也不应通过端口映射、反向代理或修改监听地址直接公开到互联网。
+- 当前启动方式面向本机回环地址；共享或公网部署需要采用独立的部署架构与安全设计。
 - 便携版中的数据、设置和运行结果应由使用者自行备份和管理。
 - 将便携版升级到新版本前，先导出需要保留的结果和配置，并阅读新版本发布说明。
 
@@ -166,7 +166,7 @@ OPENAI_API_KEY=your-key-here
 
 ### AI 功能不可用或报告无法通过正式发布
 
-检查 `.env` 中的提供方配置、网络可达性、数据口径和任务提示。正式报告还必须具有有效的 AI trace、schema 校验、确定性数值、证据校验和质量门；它不是“有 API Key 就一定可以发布”的功能。详见 [报告可信机制](report-integrity.zh-CN.md)。
+检查 `.env` 中的提供方配置、网络可达性、数据口径和任务提示。正式报告需要有效的 AI trace、schema 校验、确定性数值、证据校验和质量门；API Key 用于提供方连接，发布资格由完整链路确认。详见 [报告可信机制](report-integrity.zh-CN.md)。
 
 ### 能否直接部署到服务器给多人使用
 

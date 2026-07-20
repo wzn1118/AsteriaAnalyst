@@ -661,7 +661,7 @@ export function SmartReportStudio() {
 
           <AccordionPanel
             defaultOpen
-            description="先选数据、表和报告风格；真正低频的上下文配置已经收进下面的折叠区。"
+            description="先选数据、表和报告风格；低频上下文配置位于下方折叠区。"
             eyebrow="Data Source"
             title="数据入口与工作表"
           >

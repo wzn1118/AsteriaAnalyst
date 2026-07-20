@@ -42,7 +42,7 @@
 
 ### 7. 实验评估 Agent
 - 适用数据：A/B 结果表、实验分组、前后对照、增量测量
-- 典型问题：实验是否显著、效果边界在哪、能不能放量、需不需要复验
+- 典型问题：实验是否显著、效果边界在哪、放量条件是什么、复验条件是什么
 - 关键指标：uplift、p-value、CI、power、effect size
 - 适用方法：A/B、t-test、Mann-Whitney、卡方、Fisher、Logit
 
@@ -138,7 +138,7 @@
 
 ## 四、下一步实现建议
 
-下一步不该只是继续加模板，而是按这个 roster 分三层落：
+下一步按这个 roster 分三层推进：
 - 任务族识别：先把 `foundation_review / internet_ops_review / ecommerce_review / saas_review ...` 接到任务建模层
 - 对象识别：给每个行业补对象类型和字段语义本体
 - 报告层：按行业输出不同的管理判断、证据结构和动作建议

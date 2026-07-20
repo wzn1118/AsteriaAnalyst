@@ -178,7 +178,7 @@ def page_cover(c: canvas.Canvas) -> None:
         max_chars=60,
         leading=18,
     )
-    metric(c, 44, h - 258, "9", "主流程步骤", "不再是短流程")
+    metric(c, 44, h - 258, "9", "主流程步骤", "完整业务链路")
     metric(c, 176, h - 258, "5", "业务路径", "路由显式化")
     metric(c, 308, h - 258, "4", "质量门", "返修前置")
     metric(c, 440, h - 258, "5", "交付资产", "复用沉淀")
@@ -201,7 +201,7 @@ def page_cover(c: canvas.Canvas) -> None:
     draw_text(c, "交付口径", 434, 238, 16, COLORS["green"], "bold")
     draw_text(
         c,
-        "这份 PDF 的默认版本是 Premium Low Color。它不是旧图截图合集，而是把业务流程、技术主链和端点附录压成一套可以直接给人看的架构说明。",
+        "这份 PDF 的默认版本是 Premium Low Color，集中呈现业务流程、技术主链和端点附录，形成可直接交付的架构说明。",
         434,
         210,
         10,
@@ -275,7 +275,7 @@ def page_technical(c: canvas.Canvas) -> None:
     w, h = landscape(A4)
     header(c, "技术主链 / 低色彩版", 3)
     draw_text(c, "系统怎么从请求走到结果", 42, h - 102, 24, COLORS["ink"], "bold")
-    draw_text(c, "这一页只保留技术骨架，不把 endpoint 全塞进主图。完整入口放到下一页附录。", 44, h - 132, 10, COLORS["muted"], "regular")
+    draw_text(c, "这一页呈现技术骨架；完整 endpoint 入口位于下一页附录。", 44, h - 132, 10, COLORS["muted"], "regular")
     items = [
         ("1. 工作台界面", "收集数据、需求、背景与批注。"),
         ("2. API 门面", "接住数据、报告、修订和配置入口。"),

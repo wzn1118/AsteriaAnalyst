@@ -360,7 +360,7 @@
         <p class="eyebrow">Launch route</p>
         <h2>发射轨道：第一次配置就按这条线走</h2>
         <div class="launch-route">
-          <div class="route-node"><span>01</span><h3>重点对象筛选</h3><p>得到一个只聚焦目标对象的分析实例，后续图表和报告都不会跑偏。</p></div><div class="route-node"><span>02</span><h3>字段角色绑定</h3><p>得到一组可执行字段绑定，让方法知道结果、解释、分组和对象分别来自哪一列。</p></div><div class="route-node"><span>03</span><h3>运行实例</h3><p>得到多个互不覆盖的执行实例，报告可以把它们当成独立证据一起引用。</p></div><div class="route-node"><span>04</span><h3>解释/建模输入字段</h3><p>得到一组可解释输入，模型和报告都会围绕这些字段解释“为什么是这个结果”。</p></div>
+          <div class="route-node"><span>01</span><h3>重点对象筛选</h3><p>得到聚焦目标对象的分析实例，后续图表和报告围绕该对象展开。</p></div><div class="route-node"><span>02</span><h3>字段角色绑定</h3><p>得到一组可执行字段绑定，让方法知道结果、解释、分组和对象分别来自哪一列。</p></div><div class="route-node"><span>03</span><h3>运行实例</h3><p>得到多个独立执行实例，报告可以将它们作为独立证据一起引用。</p></div><div class="route-node"><span>04</span><h3>解释/建模输入字段</h3><p>得到一组可解释输入，模型和报告都会围绕这些字段解释“为什么是这个结果”。</p></div>
         </div>
       </section>
 
@@ -370,11 +370,11 @@
         <p class="eyebrow">Stage 01 / 锁定对象</p>
         <h2>重点对象筛选</h2>
         <p class="summary">先锁定“分析谁”，再分析它的指标和结构。</p>
-        <p class="why">对象不是指标字段，而是某一列里的具体值。很多对象级方法需要先知道你关心的是哪一个或哪一组对象，否则系统只能做全表统计。</p>
+        <p class="why">对象指某一列里的具体值。对象级方法先明确关注的一个或一组对象，再按该范围生成统计。</p>
         <div class="result-grid">
           <div>
             <span>最终交付</span>
-            <p>得到一个只聚焦目标对象的分析实例，后续图表和报告都不会跑偏。</p>
+            <p>得到聚焦目标对象的分析实例，后续图表和报告围绕该对象展开。</p>
           </div>
           <div>
             <span>最终检查</span>
@@ -426,7 +426,7 @@
       <div class="mission-copy">
         <p class="eyebrow">Stage 02 / 绑定字段</p>
         <h2>字段角色绑定</h2>
-        <p class="summary">告诉方法每一列扮演什么角色，而不是单纯多选指标。</p>
+        <p class="summary">通过字段角色绑定明确每一列的业务用途。</p>
         <p class="why">同一个字段在不同方法里可以扮演不同角色。绑定清楚后，后端统计引擎、图表和报告解释才会使用同一套业务口径。</p>
         <div class="result-grid">
           <div>
@@ -435,7 +435,7 @@
           </div>
           <div>
             <span>最终检查</span>
-            <p>结果指标不为空，解释字段不是纯 ID，分组字段和对象字段没有混在一起。</p>
+            <p>结果指标已填写；解释字段具备业务含义；分组字段和对象字段分工清晰。</p>
           </div>
         </div>
       </div>
@@ -484,15 +484,15 @@
         <p class="eyebrow">Stage 03 / 追加跑法</p>
         <h2>运行实例</h2>
         <p class="summary">同一个方法可以保存多种独立跑法。</p>
-        <p class="why">不要为了换一个对象或字段重新找方法。追加实例后，每个实例都有自己的字段绑定和对象筛选，报告生成时会作为独立证据进入合并。</p>
+        <p class="why">更换对象或字段时可追加实例。每个实例保留自己的字段绑定和对象筛选，报告生成时作为独立证据进入合并。</p>
         <div class="result-grid">
           <div>
             <span>最终交付</span>
-            <p>得到多个互不覆盖的执行实例，报告可以把它们当成独立证据一起引用。</p>
+            <p>得到多个独立执行实例，报告可以将它们作为独立证据一起引用。</p>
           </div>
           <div>
             <span>最终检查</span>
-            <p>每个实例都有独立名称、字段绑定和筛选条件，切换实例时配置不会互相覆盖。</p>
+            <p>每个实例都有独立名称、字段绑定和筛选条件，切换时各实例配置保持独立。</p>
           </div>
         </div>
       </div>
@@ -540,7 +540,7 @@
       <div class="mission-copy">
         <p class="eyebrow">Stage 04 / 解释输入</p>
         <h2>解释/建模输入字段</h2>
-        <p class="summary">这些字段用于解释结果，不是对象名称，也不一定是最终指标。</p>
+        <p class="summary">这些字段用于解释结果，可作为特征、解释变量或辅助证据。</p>
         <p class="why">建模、关联、对比类方法需要一些辅助字段来解释结果指标。这里选择的字段会作为特征、解释变量或辅助证据进入方法执行。</p>
         <div class="result-grid">
           <div>
@@ -596,11 +596,11 @@
 
       <section class="outcome-wall glass">
         <p class="eyebrow">Final unlock</p>
-        <h2>跑完这套教程，新手不是“看懂了”，而是已经能交付。</h2>
+        <h2>跑完这套教程，新手已经能交付可复用、可审计、可解释的分析证据。</h2>
         <div class="outcomes">
-          <article class="outcome-card"><span>配置闭环</span><h3>方法知道该看谁、看什么、怎么解释</h3><p>对象筛选、字段绑定、实例口径和解释输入全部连起来，不再靠猜。</p></article>
+          <article class="outcome-card"><span>配置闭环</span><h3>方法知道该看谁、看什么、怎么解释</h3><p>对象筛选、字段绑定、实例口径和解释输入共同形成完整配置闭环。</p></article>
           <article class="outcome-card"><span>样例可复制</span><h3>每章都有一套能直接照填的业务样例</h3><p>新手不用从空白开始，先跑通样例，再替换成自己的数据。</p></article>
-          <article class="outcome-card"><span>证据能交付</span><h3>最终产物可以进入报告、图表和附录</h3><p>教程不是只教按钮，而是把第一次配置导向可复用、可审计、可解释的分析证据。</p></article>
+          <article class="outcome-card"><span>证据能交付</span><h3>最终产物可以进入报告、图表和附录</h3><p>教程将第一次配置沉淀为可复用、可审计、可解释的分析证据。</p></article>
         </div>
       </section>
     </main>

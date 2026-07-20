@@ -4,7 +4,7 @@
 
 ## 用途与边界
 
-Codex Runtime 仅服务于明确启用后的本机辅助工作流，例如报告修订工作台所需的本机 `codex app-server` 能力。它不是 Asteria Analyst 的基础分析前提：没有 Codex、没有 AI 密钥时，基础的本地文件导入与分析仍应可以使用。
+Codex Runtime 为明确启用后的本机辅助工作流提供能力，例如报告修订工作台所需的本机 `codex app-server`。基础本地文件导入与分析可独立运行，Runtime 和 AI 密钥用于扩展工作流。
 
 公开 Windows 便携包不会把高权限 Runtime 默认暴露给浏览器或网络。任何启用都必须发生在使用者受控的本机环境中，并遵守 [配置参考](configuration-reference.zh-CN.md) 与 [安全与部署说明](security-deployment.zh-CN.md)。若要将 Runtime 用于 Lab 中的 Skill、Feature Trial 或 Report Agent Team，请继续阅读 [本地扩展指南](local-extensions.zh-CN.md)；这些入口已实现，但需要各自的本机开关和输入条件。
 
@@ -51,7 +51,7 @@ GET /api/runtime/codex-health
 常见处理顺序：
 
 1. 先确认基础分析功能可正常启动，避免把 Runtime 问题误判为整个应用无法使用。
-2. 检查环境变量是在启动 Asteria 的同一个终端/桌面会话中设置，而不是只写在其他用户或其他 shell 会话中。
+2. 在启动 Asteria 的同一个终端或桌面会话中设置环境变量。
 3. 设置绝对路径 `ASTERIA_CODEX_CLI_PATH`，避免 PATH 顺序或同名程序造成歧义。
 4. 检查工作区路径与数据目录，确保它们不包含不应交给 Runtime 读取的客户数据或密钥。
 5. 使用健康检查查看解析结果；缺失 Runtime 时，界面应报告不可用状态，不能伪造“已排队”或“已完成”的结果。
@@ -64,4 +64,4 @@ GET /api/runtime/codex-health
 - 使用不带 Runtime 的干净 Windows 环境验证基础本地分析仍可启动。
 - 使用带 Runtime 的隔离测试环境验证健康检查、超时、失败信息和关闭开关均符合预期。
 
-这项能力是可选的本机扩展，不是托管服务承诺，也不改变项目“本机、回环地址、单用户优先”的默认部署边界。
+这项能力作为可选本机扩展运行；项目默认部署保持本机、回环地址和单用户优先的边界。

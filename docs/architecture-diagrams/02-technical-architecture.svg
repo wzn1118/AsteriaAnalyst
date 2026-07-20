@@ -5,7 +5,7 @@
 
   <text x="78" y="84" fill="#8A8078" font-size="16" font-family="Inter, Arial, sans-serif" font-weight="600">TECHNICAL ARCHITECTURE</text>
   <text x="78" y="146" fill="#1F1916" font-size="46" font-family="Inter, Arial, sans-serif" font-weight="700">技术版：系统怎么从请求走到结果</text>
-  <text x="78" y="194" fill="#544B46" font-size="18" font-family="Inter, Arial, sans-serif">给研发和项目协作者看的版本。这一页不再把所有模块名和端点堆在一起，而是只讲系统主链和三条关键工作流。</text>
+  <text x="78" y="194" fill="#544B46" font-size="18" font-family="Inter, Arial, sans-serif">面向研发和项目协作者，聚焦系统主链与三条关键工作流。</text>
   <text x="78" y="220" fill="#544B46" font-size="18" font-family="Inter, Arial, sans-serif">如果需要所有 path 和接口，直接看第 3 页端点附录。</text>
 
   <g>
@@ -17,7 +17,7 @@
   <g>
     <rect x="282" y="250" width="186" height="62" rx="18" fill="#FFFFFF" stroke="#D7CEC4"/>
     <rect x="296" y="266" width="4" height="30" rx="2" fill="#D4A42F"/>
-    <text x="312" y="276" fill="#1F1916" font-size="16" font-family="Inter, Arial, sans-serif" font-weight="600">不看什么</text>
+    <text x="312" y="276" fill="#1F1916" font-size="16" font-family="Inter, Arial, sans-serif" font-weight="600">技术视图范围</text>
     <text x="312" y="296" fill="#6C625C" font-size="11" font-family="Inter, Arial, sans-serif">完整 endpoint 列表</text>
   </g>
   <g>
@@ -73,8 +73,8 @@
     <rect x="1142" y="526" width="6" height="44" rx="3" fill="#8A6F7B"/>
     <text x="1158" y="532" fill="#1F1916" font-size="22" font-family="Inter, Arial, sans-serif" font-weight="600">4. 执行引擎</text>
     <line x1="1142" y1="582" x2="1392" y2="582" stroke="#E7DED5"/>
-    <text x="1158" y="616" fill="#2B2521" font-size="15" font-family="Inter, Arial, sans-serif">在这一步进入真正的分析、生成、专项链、runtime 或 pipeline。</text>
-    <text x="1158" y="644" fill="#2B2521" font-size="15" font-family="Inter, Arial, sans-serif">不同专题能力都挂在这一层，但不需要在主图里一一展开。</text>
+    <text x="1158" y="616" fill="#2B2521" font-size="15" font-family="Inter, Arial, sans-serif">在这一步进入分析、生成、专项链、runtime 或 pipeline。</text>
+    <text x="1158" y="644" fill="#2B2521" font-size="15" font-family="Inter, Arial, sans-serif">不同专题能力均挂在这一层，主图呈现核心入口。</text>
   </g>
 
   <g>
@@ -133,7 +133,7 @@
     <rect x="786" y="1096" width="6" height="42" rx="3" fill="#5D67D9"/>
     <text x="802" y="1102" fill="#1F1916" font-size="18" font-family="Inter, Arial, sans-serif" font-weight="600">接收改动与证据</text>
     <text x="802" y="1132" fill="#2B2521" font-size="14" font-family="Inter, Arial, sans-serif">消息、diff、批注、附件、补图请求都挂到同一个 session 里。</text>
-    <text x="802" y="1156" fill="#2B2521" font-size="14" font-family="Inter, Arial, sans-serif">因此修订不是散的，而是一条可追溯的协作链。</text>
+    <text x="802" y="1156" fill="#2B2521" font-size="14" font-family="Inter, Arial, sans-serif">修订形成一条可追溯的协作链。</text>
   </g>
   <g>
     <rect x="1210" y="1078" width="556" height="142" rx="20" fill="#FFFFFF" stroke="#D8CEC5"/>
@@ -158,8 +158,8 @@
     <rect x="768" y="1314" width="418" height="178" rx="20" fill="#FFFFFF" stroke="#D8CEC5"/>
     <rect x="786" y="1332" width="6" height="42" rx="3" fill="#4E8D77"/>
     <text x="802" y="1338" fill="#1F1916" font-size="18" font-family="Inter, Arial, sans-serif" font-weight="600">质量与审计</text>
-    <text x="802" y="1368" fill="#2B2521" font-size="14" font-family="Inter, Arial, sans-serif">不仅产出结果，也会留下质量门、学习台账和运行痕迹。</text>
-    <text x="802" y="1392" fill="#2B2521" font-size="14" font-family="Inter, Arial, sans-serif">这样后续排错、复盘和改造都不需要重新猜系统做过什么。</text>
+    <text x="802" y="1368" fill="#2B2521" font-size="14" font-family="Inter, Arial, sans-serif">系统产出结果，并保留质量门、学习台账和运行痕迹。</text>
+    <text x="802" y="1392" fill="#2B2521" font-size="14" font-family="Inter, Arial, sans-serif">后续排错、复盘和改造可沿运行痕迹追溯系统处理过程。</text>
   </g>
   <g>
     <rect x="1210" y="1314" width="556" height="178" rx="20" fill="#FFFFFF" stroke="#D8CEC5"/>

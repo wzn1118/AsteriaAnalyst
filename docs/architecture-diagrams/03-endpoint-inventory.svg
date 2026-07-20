@@ -5,7 +5,7 @@
 
   <text x="78" y="84" fill="#8A8078" font-size="16" font-family="Inter, Arial, sans-serif" font-weight="600">ENDPOINT INVENTORY</text>
   <text x="78" y="146" fill="#1F1916" font-size="46" font-family="Inter, Arial, sans-serif" font-weight="700">附录：完整端点清单</text>
-  <text x="78" y="194" fill="#544B46" font-size="18" font-family="Inter, Arial, sans-serif">这一页只负责把 backend/app/main.py 里的 63 个 HTTP surface 和 2 个 mount 按业务域整理出来，不再承担业务说明或技术结构说明。</text>
+  <text x="78" y="194" fill="#544B46" font-size="18" font-family="Inter, Arial, sans-serif">本页按业务域整理 backend/app/main.py 中的 63 个 HTTP surface 与 2 个 mount，作为端点目录。</text>
 
   <g>
     <rect x="78" y="236" width="192" height="62" rx="18" fill="#FFFFFF" stroke="#D7CEC4"/>

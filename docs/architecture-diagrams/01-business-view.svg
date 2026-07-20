@@ -6,7 +6,7 @@
   <text x="78" y="84" fill="#8A8078" font-size="16" font-family="Inter, Arial, sans-serif" font-weight="600">BUSINESS VIEW</text>
   <text x="78" y="146" fill="#1F1916" font-size="48" font-family="Inter, Arial, sans-serif" font-weight="700">业务视角：这套系统怎么把材料变成报告</text>
   <text x="78" y="194" fill="#544B46" font-size="18" font-family="Inter, Arial, sans-serif">给非技术同事看的版本。这一页只回答四个问题：这次输入什么、系统如何判断路径、最后交付什么、后续怎么修订和复用。</text>
-  <text x="78" y="220" fill="#544B46" font-size="18" font-family="Inter, Arial, sans-serif">接口、模块、运行时细节单独放到技术版，不和业务说明混在一起。</text>
+  <text x="78" y="220" fill="#544B46" font-size="18" font-family="Inter, Arial, sans-serif">业务视图聚焦输入、判断、交付与修订；接口、模块和运行时细节列于技术版。</text>
 
   <g>
     <rect x="78" y="250" width="258" height="62" rx="18" fill="#FFFFFF" stroke="#D7CEC4"/>
@@ -23,7 +23,7 @@
   <g>
     <rect x="616" y="250" width="258" height="62" rx="18" fill="#FFFFFF" stroke="#D7CEC4"/>
     <rect x="630" y="266" width="4" height="30" rx="2" fill="#5D67D9"/>
-    <text x="646" y="276" fill="#1F1916" font-size="16" font-family="Inter, Arial, sans-serif" font-weight="600">这页不讲什么</text>
+    <text x="646" y="276" fill="#1F1916" font-size="16" font-family="Inter, Arial, sans-serif" font-weight="600">业务视图范围</text>
     <text x="646" y="296" fill="#6C625C" font-size="11" font-family="Inter, Arial, sans-serif">接口、模块、runtime、endpoint</text>
   </g>
   <g>
@@ -47,7 +47,7 @@
     <rect x="424" y="402" width="352" height="166" rx="20" fill="#FFFFFF" stroke="#D8CEC5"/>
     <rect x="442" y="420" width="6" height="46" rx="3" fill="#D85A3A"/>
     <text x="458" y="426" fill="#1F1916" font-size="20" font-family="Inter, Arial, sans-serif" font-weight="600">数据材料</text>
-    <text x="458" y="452" fill="#6C625C" font-size="12" font-family="Inter, Arial, sans-serif">这次真正要分析的核心数据</text>
+    <text x="458" y="452" fill="#6C625C" font-size="12" font-family="Inter, Arial, sans-serif">本次分析的核心数据</text>
     <line x1="442" y1="478" x2="740" y2="478" stroke="#E7DED5"/>
     <text x="458" y="510" fill="#2B2521" font-size="14" font-family="Inter, Arial, sans-serif">Excel / CSV / TSV / Stata</text>
     <text x="458" y="534" fill="#2B2521" font-size="14" font-family="Inter, Arial, sans-serif">可以是单表，也可以是多表</text>
@@ -138,7 +138,7 @@
     <text x="834" y="930" fill="#1F1916" font-size="20" font-family="Inter, Arial, sans-serif" font-weight="600">解释层</text>
     <text x="834" y="956" fill="#6C625C" font-size="12" font-family="Inter, Arial, sans-serif">说明“为什么会这样”</text>
     <line x1="818" y1="982" x2="1116" y2="982" stroke="#E7DED5"/>
-    <text x="834" y="1014" fill="#2B2521" font-size="14" font-family="Inter, Arial, sans-serif">不只陈列数据，还要解释变化原因</text>
+    <text x="834" y="1014" fill="#2B2521" font-size="14" font-family="Inter, Arial, sans-serif">呈现数据并解释变化原因</text>
     <text x="834" y="1038" fill="#2B2521" font-size="14" font-family="Inter, Arial, sans-serif">指出值得关注的问题、异常和风险</text>
     <text x="834" y="1062" fill="#2B2521" font-size="14" font-family="Inter, Arial, sans-serif">把复杂结果压缩成可读结论</text>
   </g>
@@ -159,7 +159,7 @@
   <rect x="114" y="1174" width="8" height="150" rx="4" fill="#4E8D77"/>
   <text x="146" y="1184" fill="#4E8D77" font-size="14" font-family="Inter, Arial, sans-serif" font-weight="700">04</text>
   <text x="146" y="1218" fill="#1F1916" font-size="26" font-family="Inter, Arial, sans-serif" font-weight="700">交付、修订、复用</text>
-  <text x="146" y="1252" fill="#5C534D" font-size="14" font-family="Inter, Arial, sans-serif">价值不只是一版报告，而是让交付和后续迭代都更顺。</text>
+  <text x="146" y="1252" fill="#5C534D" font-size="14" font-family="Inter, Arial, sans-serif">价值覆盖报告交付与后续迭代。</text>
 
   <g>
     <rect x="424" y="1162" width="352" height="174" rx="20" fill="#FFFFFF" stroke="#D8CEC5"/>

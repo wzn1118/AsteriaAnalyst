@@ -47,17 +47,17 @@ const GUIDE_OUTCOMES = [
   {
     label: "配置闭环",
     title: "方法知道该看谁、看什么、怎么解释",
-    detail: "对象筛选、字段绑定、实例口径和解释输入全部连起来，不再靠猜。",
+    detail: "对象筛选、字段绑定、实例口径和解释输入共同形成完整配置闭环。",
   },
   {
     label: "样例可复制",
     title: "每章都有一套能直接照填的业务样例",
-    detail: "新手不用从空白开始，先跑通 A 基金会/B 基金会这种样例，再替换成自己的数据。",
+    detail: "新手可先跑通 A 基金会/B 基金会样例，再替换成自己的数据。",
   },
   {
     label: "证据能交付",
     title: "最终产物可以进入报告、图表和附录",
-    detail: "教程不是只教按钮，而是把第一次配置导向可复用、可审计、可解释的分析证据。",
+    detail: "教程将第一次配置沉淀为可复用、可审计、可解释的分析证据。",
   },
 ];
 
@@ -66,14 +66,14 @@ export const METHOD_GUIDES: Record<MethodGuideTopic, MethodGuideSpec> = {
     accent: "cool",
     title: "重点对象筛选",
     summary: "先锁定“分析谁”，再分析它的指标和结构。",
-    why: "对象不是指标字段，而是某一列里的具体值。很多对象级方法需要先知道你关心的是哪一个或哪一组对象，否则系统只能做全表统计。",
+    why: "对象指某一列里的具体值。对象级方法先明确关注的一个或一组对象，再按该范围生成统计。",
     steps: [
       "选对象所在列：例如基金会名称、客户名称、门店名称、SKU。",
       "选要分析的对象值：可以点样本值，也可以手动输入多个名称。",
       "选分组口径：例如服务领域、地区、年度，用来比较对象内部结构。",
     ],
     example: "对象列选“基金会名称”，对象值填“某某基金会”，分析指标选“项目收入”，系统就只筛这家基金会的记录，再按服务领域或年度做画像。",
-    artifact: "得到一个只聚焦目标对象的分析实例，后续图表和报告都不会跑偏。",
+    artifact: "得到聚焦目标对象的分析实例，后续图表和报告围绕该对象展开。",
     checkpoint: "能说清楚“我正在分析谁”，并且对象列、对象值、分组口径三项都已填好。",
     demo: [
       { label: "对象列", value: "基金会名称" },
@@ -84,7 +84,7 @@ export const METHOD_GUIDES: Record<MethodGuideTopic, MethodGuideSpec> = {
   fields: {
     accent: "warm",
     title: "字段角色绑定",
-    summary: "告诉方法每一列扮演什么角色，而不是单纯多选指标。",
+    summary: "通过字段角色绑定明确每一列的业务用途。",
     why: "同一个字段在不同方法里可以扮演不同角色。绑定清楚后，后端统计引擎、图表和报告解释才会使用同一套业务口径。",
     steps: [
       "先看问题要解释什么：收入、支出、得分、数量通常放到结果指标。",
@@ -93,7 +93,7 @@ export const METHOD_GUIDES: Record<MethodGuideTopic, MethodGuideSpec> = {
     ],
     example: "做基金会画像时，结果指标选“项目收入”，解释字段可选“项目支出、年度”，分组口径选“服务领域”，对象名称列选“基金会名称”。",
     artifact: "得到一组可执行字段绑定，让方法知道结果、解释、分组和对象分别来自哪一列。",
-    checkpoint: "结果指标不为空，解释字段不是纯 ID，分组字段和对象字段没有混在一起。",
+    checkpoint: "结果指标已填写；解释字段具备业务含义；分组字段和对象字段分工清晰。",
     demo: [
       { label: "结果指标", value: "项目收入" },
       { label: "解释字段", value: "项目支出、年度" },
@@ -104,15 +104,15 @@ export const METHOD_GUIDES: Record<MethodGuideTopic, MethodGuideSpec> = {
     accent: "cool",
     title: "运行实例",
     summary: "同一个方法可以保存多种独立跑法。",
-    why: "不要为了换一个对象或字段重新找方法。追加实例后，每个实例都有自己的字段绑定和对象筛选，报告生成时会作为独立证据进入合并。",
+    why: "更换对象或字段时可追加实例。每个实例保留自己的字段绑定和对象筛选，报告生成时作为独立证据进入合并。",
     steps: [
       "字段绑定口径：只按当前字段角色运行，适合普通统计或图表。",
       "全数据口径：不锁定某个对象，适合总体概览、数据审计、附录证据。",
       "重点对象口径：先筛某个对象值，再分析它自己的表现和结构。",
     ],
     example: "同一个“画像文字解读”方法，可以跑一次“基金会名称 = A 基金会”，再跑一次“基金会名称 = B 基金会”，最后比较两家的服务领域和收入结构。",
-    artifact: "得到多个互不覆盖的执行实例，报告可以把它们当成独立证据一起引用。",
-    checkpoint: "每个实例都有独立名称、字段绑定和筛选条件，切换实例时配置不会互相覆盖。",
+    artifact: "得到多个独立执行实例，报告可以将它们作为独立证据一起引用。",
+    checkpoint: "每个实例都有独立名称、字段绑定和筛选条件，切换时各实例配置保持独立。",
     demo: [
       { label: "实例 01", value: "全数据总体画像" },
       { label: "实例 02", value: "A 基金会重点对象" },
@@ -122,7 +122,7 @@ export const METHOD_GUIDES: Record<MethodGuideTopic, MethodGuideSpec> = {
   features: {
     accent: "warm",
     title: "解释/建模输入字段",
-    summary: "这些字段用于解释结果，不是对象名称，也不一定是最终指标。",
+    summary: "这些字段用于解释结果，可作为特征、解释变量或辅助证据。",
     why: "建模、关联、对比类方法需要一些辅助字段来解释结果指标。这里选择的字段会作为特征、解释变量或辅助证据进入方法执行。",
     steps: [
       "优先选和结果有关的业务字段，例如支出、年度、规模、比例。",
@@ -381,7 +381,7 @@ function GuideOutcomeWall() {
         <div>
           <p className="text-[10px] uppercase tracking-[0.3em] text-[var(--muted)]">Final unlock</p>
           <h2 className="mt-2 max-w-3xl text-3xl font-semibold leading-tight tracking-[-0.06em] text-[var(--text-strong)] md:text-5xl">
-            跑完这套教程，新手不是“看懂了”，而是已经能交付。
+            跑完这套教程，新手已经能交付可复用、可审计、可解释的分析证据。
           </h2>
         </div>
         <span className="rounded-full border border-[#9ec69f]/36 bg-[#9ec69f]/10 px-4 py-2 text-xs uppercase tracking-[0.2em] text-[#d9ffd8]">
@@ -514,7 +514,7 @@ function MethodGuideExperience({
                 方法编辑器新手教程
               </h1>
               <p className="mt-5 max-w-3xl text-base leading-8 text-[var(--muted)]">
-                这不是一份普通说明书，而是可复用的教程控制台：从对象、字段、实例到解释输入，带你把第一次方法配置跑成可交付证据。
+                这是一个可复用的教程控制台：从对象、字段、实例到解释输入，带你把第一次方法配置跑成可交付证据。
               </p>
               <div className="mt-5 flex flex-wrap gap-2">
                 <span className="surface-chip">4 个章节</span>

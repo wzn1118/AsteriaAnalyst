@@ -36,12 +36,12 @@ Copy-Item .env.example .env
 
 | 变量 | 默认值 | 作用 | 使用边界 |
 | --- | --- | --- | --- |
-| `ASTERIA_CORS_ALLOW_ORIGINS` | `http://localhost:3000,http://127.0.0.1:3000` | 指定允许的浏览器 Origin，逗号分隔。 | CORS 不是认证机制；不要用它替代公网访问控制。 |
+| `ASTERIA_CORS_ALLOW_ORIGINS` | `http://localhost:3000,http://127.0.0.1:3000` | 指定允许的浏览器 Origin，逗号分隔。 | CORS 用于浏览器跨域匹配；公网访问控制需要独立的认证和授权方案。 |
 | `ASTERIA_CORS_ALLOW_ORIGIN_REGEX` | 匹配 `localhost`/`127.0.0.1` 与任意端口的本机正则 | 补充 Origin 匹配规则。 | 放宽到公网域名不会使应用变成安全的共享服务。 |
 | `NEXT_PUBLIC_API_BASE_URL` | `http://127.0.0.1:8000` | 前端构建时使用的 API 基地址。 | `NEXT_PUBLIC_` 表示值可能出现在浏览器构建产物中，绝不可放入密钥。 |
 | `NEXT_PUBLIC_API_SAME_ORIGIN` | 构建便携静态导出时由脚本临时设置 | 让导出前端通过同源 API 工作。 | 由 `scripts/build_portable.ps1` 管理，普通源码使用者无需设置。 |
 
-默认启动器故意只绑定回环地址。不要仅通过修改 CORS、端口转发或反向代理把 API 公开到互联网。
+默认启动器保持回环地址绑定。公网部署需要独立完成身份认证、授权、网络隔离和运维设计。
 
 ## 4. 桌面启动变量与 Windows 便携包行为
 
@@ -49,13 +49,13 @@ Copy-Item .env.example .env
 
 | 变量 | 源码启动默认值 | 作用 | 便携包中的实际行为 |
 | --- | --- | --- | --- |
-| `ASTERIA_HOST` | `127.0.0.1` | 后端监听地址。 | 公开便携包按回环地址健康检查和打开页面；不要通过预设此变量把它改成局域网/公网地址。需要其他监听策略时，应为受控部署单独设计。 |
-| `ASTERIA_PORT` | `8787` | 源码/自定义启动器的后端端口。 | 生成的 `start-asteria.ps1` 会从 `8787` 到 `8817` 选择可用端口，并覆盖启动前已有的值。用户不能靠预设此变量固定便携包端口。 |
+| `ASTERIA_HOST` | `127.0.0.1` | 后端监听地址。 | 公开便携包按回环地址健康检查和打开页面；局域网或公网监听需通过受控部署单独设计。 |
+| `ASTERIA_PORT` | `8787` | 源码/自定义启动器的后端端口。 | 生成的 `start-asteria.ps1` 会从 `8787` 到 `8817` 选择可用端口，并覆盖启动前已有的值；便携包按此策略管理端口。 |
 | `ASTERIA_LAUNCH_PATH` | `/revision` | 源码桌面启动器要打开的本机页面路径。 | 生成的便携启动器固定为 `/analysis` 并覆盖启动前已有的值。 |
-| `ASTERIA_OPEN_BROWSER` | `1` | `0`、`false`、`no` 或 `off` 时禁止源码桌面启动器自动打开浏览器。 | 生成的便携启动器将后端自动开浏览器关闭，待健康检查通过后由启动脚本打开 `/analysis`；预设此变量不能改变该行为。 |
+| `ASTERIA_OPEN_BROWSER` | `1` | `0`、`false`、`no` 或 `off` 时关闭源码桌面启动器的自动开浏览器行为。 | 生成的便携启动器在健康检查通过后由启动脚本打开 `/analysis`，并固定使用该流程。 |
 | `ASTERIA_DATA_DIR` | 由路径服务决定；冻结/便携模式通常为 `%APPDATA%\AsteriaAnalyst` | 覆盖用户数据目录。 | 生成的便携启动器固定使用 `%APPDATA%\AsteriaAnalyst`，以避免把用户数据写入解压目录或 Git 仓库。 |
 
-便携 ZIP 是自管理的本机交付物，不把上述变量当作用户配置界面。它的端口、启动页、数据目录和浏览器启动流程由包内 `start-asteria.ps1` 统一控制，以保证双击启动时能使用实际可用的本机地址。需要固定端口、无浏览器模式或自定义存储路径时，应使用源码模式或专门的受控部署脚本，而不是修改公开便携包的默认行为。
+便携 ZIP 是自管理的本机交付物。端口、启动页、数据目录和浏览器启动流程由包内 `start-asteria.ps1` 统一控制，以保证双击启动时使用实际可用的本机地址。固定端口、无浏览器模式和自定义存储路径由源码模式或专门的受控部署脚本提供。
 
 ## 5. R 运行时配置
 
@@ -67,7 +67,7 @@ Copy-Item .env.example .env
 
 ## 6. Codex Runtime 配置
 
-这些变量影响高权限本机运行时。它们默认关闭或受严格限制，不能作为共享服务的授权方案。
+这些变量影响高权限本机运行时。它们用于管理本机启用状态；共享服务需要独立的认证、授权和审计方案。
 
 | 变量 | 默认值 | 作用 | 使用规则 |
 | --- | --- | --- | --- |
@@ -77,11 +77,11 @@ Copy-Item .env.example .env
 | `ASTERIA_CODEX_CLI_PATH` | `codex` | 指定 Codex CLI 可执行文件。 | 使用绝对路径或受信任 PATH，避免命令劫持。 |
 | `ASTERIA_CODEX_WORKSPACE_ROOT` | 源码模式默认仓库根目录；冻结模式默认空 | 限定 Codex 工作区根目录。 | 选择最小必要目录，禁止指向包含无关私密文件的磁盘根目录。 |
 | `ASTERIA_CODEX_SEARCH_ENABLED` | `false` | 允许 Codex 搜索相关能力。 | 可能扩大检索数据范围，应按数据授权开启。 |
-| `ASTERIA_CODEX_TIMEOUT_SEC` | `1800` | Runtime 超时秒数。 | 增大超时会增加资源占用，不等同于提高成功率。 |
+| `ASTERIA_CODEX_TIMEOUT_SEC` | `1800` | Runtime 超时秒数。 | 增大超时会增加资源占用；成功率还取决于工作区、CLI、认证和任务输入。 |
 | `ASTERIA_CODEX_USE_LOGIN_AUTH` | `true` | 使用本机登录认证偏好。 | 不在前端或提交记录中记录认证材料。 |
 | `ASTERIA_CODEX_BYPASS_APPROVALS_AND_SANDBOX` | `false` | 请求跳过审批/沙箱的持久偏好。 | 即使为真，也必须同时有 `ASTERIA_ALLOW_UNSANDBOXED_CODEX_RUNTIME=1` 才可生效。 |
 
-`GET /api/runtime-settings` 只公开脱敏摘要；当前公开 API 没有写入 Runtime 设置的路由。配置后重启服务，再通过本机设置摘要或 `GET /api/runtime/codex-health` 核对可用性。健康检查用于发现 CLI 和错误；能看到健康信息不等于 Runtime 已获准创建或执行任务。
+`GET /api/runtime-settings` 只公开脱敏摘要；当前公开 API 仅提供读取 Runtime 设置的路由。配置后重启服务，再通过本机设置摘要或 `GET /api/runtime/codex-health` 核对可用性。健康检查用于发现 CLI 和错误；创建或执行 Runtime 任务还需启用相应开关并满足工作区、CLI 与认证条件。
 
 ## 7. 外部 Skill、Feature Trial 与本地 Agent Team
 

@@ -26,13 +26,13 @@ npm --version
 | 路径 | 职责 | 修改时必须注意 |
 | --- | --- | --- |
 | `start-asteria.cmd` / `start-asteria.ps1` | 源码版一键启动、依赖检查、端口和日志。 | 保持回环绑定、实际端口输出和不误杀无关进程的策略。 |
-| `frontend/` | Next.js 页面、组件、客户端调用和构建配置。 | 不把密钥或后端私有路径打进浏览器。 |
+| `frontend/` | Next.js 页面、组件、客户端调用和构建配置。 | 浏览器包仅包含可公开的客户端配置；密钥和后端私有路径留在服务端。 |
 | `backend/app/main.py` | 已注册 HTTP 路由、静态工件和前端回退入口。 | 路由变更必须同步更新 API 文档与测试。 |
-| `backend/app/models.py` | Pydantic 请求模型。 | 模型存在不代表路由已公开；不要仅因模型存在而增加执行入口。 |
+| `backend/app/models.py` | Pydantic 请求模型。 | 路由公开状态由路由层和安全策略定义；新增执行入口前完成独立评审。 |
 | `backend/app/services/` | 数据、分析、AI、报告、修订和 Runtime 逻辑。 | 维护数据/证据边界，避免让渲染层理解字段或计算正式数值。 |
 | `backend/tests/` | 单元、集成和发布默认值验证。 | 安全回归应覆盖默认关闭和公开路由面。 |
 | `docs/` | 用户与技术文档。 | 保持路由、配置、启动方式和发布说明与代码一致。 |
-| `scripts/` | 实验、检查和便携版构建。 | 不把实验脚本描述成稳定产品功能。 |
+| `scripts/` | 实验、检查和便携版构建。 | 实验脚本标注为实验用途；稳定产品功能提供独立入口和文档。 |
 
 ## 3. 启动方式
 
@@ -107,7 +107,7 @@ raw data
 - 缺 trace、schema、证据或门禁通过时只允许 `debug_report`，不可发布正式 PDF。
 - 质量分低于 `90` 必须阻断正式 `management_report.pdf`。
 
-任何试图新增 `raw data -> renderer -> management_report.pdf` 快捷路径的变更都属于发布阻断问题，而不是普通功能优化。
+禁止新增 `raw data -> renderer -> management_report.pdf` 快捷路径；此类变更属于发布阻断问题。
 
 ## 6. API、模型与前端联调规则
 
