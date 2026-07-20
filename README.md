@@ -2,7 +2,7 @@
 
 > 本地优先的数据分析与报告交付工作台：从一份结构化数据和一个业务问题，走到可审阅的分析证据、报告资产与修订版本。
 
-[下载 Windows 便携版](https://github.com/wzn1118/AsteriaAnalyst/releases/latest) | [完整模块手册](docs/module-guide.zh-CN.md) | [快速开始](docs/getting-started.zh-CN.md) | [详细用户指南](docs/user-guide.zh-CN.md)
+[下载 Windows 便携版](https://github.com/wzn1118/AsteriaAnalyst/releases/latest) | [完整模块手册](docs/module-guide.zh-CN.md) | [功能逐项参考](docs/function-reference.zh-CN.md) | [快速开始](docs/getting-started.zh-CN.md) | [详细用户指南](docs/user-guide.zh-CN.md)
 
 ## 项目定位
 
@@ -180,6 +180,7 @@ raw data
 ## 文档索引
 
 - [完整模块与功能手册](docs/module-guide.zh-CN.md)
+- [功能逐项参考：页面、操作、接口、产物与边界](docs/function-reference.zh-CN.md)
 - [公开项目介绍](docs/public-project-introduction.zh-CN.md)
 - [快速开始](docs/getting-started.zh-CN.md)
 - [详细用户指南](docs/user-guide.zh-CN.md)
