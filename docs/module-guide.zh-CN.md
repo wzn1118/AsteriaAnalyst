@@ -2,7 +2,7 @@
 
 > 适用于公开仓库和 Windows 本地发布版。本手册说明当前产品模块的用途、入口、输入、输出、启用条件和使用边界；它不把规划中的能力或默认关闭的本地扩展写成所有用户都能直接使用的功能。
 
-[返回项目首页](../README.md) | [快速开始](getting-started.zh-CN.md) | [详细用户指南](user-guide.zh-CN.md) | [正式报告可信机制](report-integrity.zh-CN.md)
+[返回项目首页](../README.md) | [功能逐项参考](function-reference.zh-CN.md) | [快速开始](getting-started.zh-CN.md) | [详细用户指南](user-guide.zh-CN.md) | [正式报告可信机制](report-integrity.zh-CN.md)
 
 ## 1. 阅读方式与能力状态
 
@@ -643,6 +643,7 @@ API 由 <code>backend/app/main.py</code> 统一提供。下面是公开文档中
 ## 19. 相关文档
 
 - [项目首页与发布说明](../README.md)
+- [功能逐项参考：页面、操作、接口、产物与边界](function-reference.zh-CN.md)
 - [公开项目介绍](public-project-introduction.zh-CN.md)
 - [快速开始](getting-started.zh-CN.md)
 - [详细用户指南](user-guide.zh-CN.md)
