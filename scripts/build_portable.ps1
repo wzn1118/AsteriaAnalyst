@@ -578,7 +578,7 @@ Asteria Analyst Portable
 4. Configure an API key, model, and relay/Base URL only before using AI-assisted report features
 5. If runtime\R-4.5.3 exists, Rscript will default to the bundled runtime automatically
 6. Upload Excel/CSV files and start analyzing
-7. Read 使用指南.zh-CN.md for the complete Chinese offline guide
+7. Read USER-GUIDE.zh-CN.md for the complete Chinese offline guide
 
 All user data and runtime settings are stored under:
 %APPDATA%\AsteriaAnalyst
@@ -588,7 +588,7 @@ Set-Content -LiteralPath (Join-Path $portableBuildDir "USER-GUIDE.txt") -Value $
 if (-not (Test-Path -LiteralPath $portableGuideSource)) {
   throw "Portable Chinese guide not found: $portableGuideSource"
 }
-Copy-Item -LiteralPath $portableGuideSource -Destination (Join-Path $portableBuildDir "使用指南.zh-CN.md") -Force
+Copy-Item -LiteralPath $portableGuideSource -Destination (Join-Path $portableBuildDir "USER-GUIDE.zh-CN.md") -Force
 
 Write-Host "==> Publishing portable package"
 Stop-PortableProcesses

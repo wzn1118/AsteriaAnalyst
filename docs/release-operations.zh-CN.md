@@ -118,7 +118,7 @@ workspace\release\AsteriaAnalyst-portable.zip
 start-asteria.bat
 start-asteria.ps1
 USER-GUIDE.txt
-使用指南.zh-CN.md
+USER-GUIDE.zh-CN.md
 backend\run_desktop.py
 runtime\python\python.exe
 ```

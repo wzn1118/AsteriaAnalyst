@@ -85,6 +85,8 @@ jobs:
           foreach ($relativePath in @(
             'start-asteria.ps1',
             'start-asteria.bat',
+            'USER-GUIDE.txt',
+            'USER-GUIDE.zh-CN.md',
             'backend\run_desktop.py',
             'runtime\python\python.exe'
           )) {
@@ -92,10 +94,6 @@ jobs:
               throw "Portable package is missing $relativePath"
             }
           }
-          if (@(Get-ChildItem -LiteralPath $portableRoot -File -Filter '*.md').Count -lt 1) {
-            throw 'Portable package is missing its usage guide.'
-          }
-
           $port = 18787
           if (Get-NetTCPConnection -LocalPort $port -State Listen -ErrorAction SilentlyContinue) {
             throw "Portable smoke-test port is already in use: $port"
