@@ -9,6 +9,21 @@
 
 <img src="docs/assets/asteria-method-guide-preview.png" alt="Asteria Analyst 方法指南、字段绑定与数据分析流程预览" width="100%" />
 
+## 真实产品界面
+
+以下图片来自项目运行页面和项目生成的可访问页面，覆盖数据接入、正式分析、方法选择、方法配置与报告修订。
+
+| 正式分析与数据入口 | Analysis Lab 方法工作台 |
+| --- | --- |
+| <img src="docs/assets/interface-home.png" alt="Asteria Analyst 正式分析与数据入口界面" width="100%" /> | <img src="docs/assets/interface-lab.png" alt="Asteria Analyst Analysis Lab 统计方法工作台界面" width="100%" /> |
+| 方法指南 | 报告修订工作区 |
+| <img src="docs/assets/interface-method-guide.png" alt="Asteria Analyst 方法指南与字段配置教学界面" width="100%" /> | <img src="docs/assets/interface-revision-workspace.png" alt="Asteria Analyst 报告修订工作区与文件预览界面" width="100%" /> |
+
+- **正式分析与数据入口**：导入本地数据、配置分析目标、生成可追溯的管理报告候选内容。
+- **Analysis Lab 方法工作台**：按对象、字段与数据结构选择统计、可视化和数据资产方法，查看执行摘要与可下载产物。
+- **方法指南**：围绕对象筛选、字段绑定、运行实例与解释输入组织方法配置。
+- **报告修订工作区**：集中查看报告、工具调用、文件变更、批注和版本发布状态。
+
 ## 快速开始
 
 ### 使用 Windows 便携发布包
