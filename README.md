@@ -1,163 +1,47 @@
 # Asteria Analyst
 
-> 本地优先的数据分析与报告交付工作台：从一份结构化数据和一个业务问题，走到可审阅的分析证据、报告资产与修订版本。
+Asteria Analyst 是面向业务分析、统计建模与管理报告交付的本地分析工作台。项目将数据接入、字段理解、分析方案、确定性计算、证据校验、报告生成、审阅修订与版本发布串成可追溯流程。
 
-[下载 Windows 便携版](https://github.com/wzn1118/AsteriaAnalyst/releases/latest) | [全部可用功能目录](docs/feature-catalog.zh-CN.md) | [完整模块手册](docs/module-guide.zh-CN.md) | [功能逐项参考](docs/function-reference.zh-CN.md) | [Skill、Agent Team 与 Runtime 指南](docs/local-extensions.zh-CN.md) | [快速开始](docs/getting-started.zh-CN.md) | [详细用户指南](docs/user-guide.zh-CN.md)
+## 统计方法与 Analysis Lab
 
-## 项目定位
+GitHub 中的统计方法说明以当前后端注册表为准，包含方法状态、字段角色、核心问题、Lab 卡片与运行产物。
 
-Asteria Analyst 面向经营分析、运营复盘、研究统计和咨询交付场景，将数据、业务问题、受控分析、证据、报告和后续修改组织成一条本地可追溯的工作流。
+| 目录 | 内容 | 当前规模 |
+| --- | --- | ---: |
+| [统计方法完整目录](docs/statistical_methods_zh.md) | 每个统计方法的 ID、用途、字段角色和可运行状态 | 362 条注册方法，81 条可运行方法 |
+| [Analysis Lab 方法卡索引](docs/lab_method_inventory_zh.md) | Lab 中所有卡片的 ID、方法概念、输出形态、字段角色、状态和来源 | 4,028 张方法卡 |
+| [方法编辑器教程](docs/getting-started.zh-CN.md) | 从对象、字段、实例到结果解释的操作步骤 | 面向首次运行 |
 
-一个典型任务从 CSV、Excel、TSV 或 Stata 数据开始：先确认工作表、行粒度、字段类型、缺失、单位与时间范围；再定义业务问题、目标读者和约束；随后选择受控统计分析或 Analysis Lab 方法实验；最后审阅表格、图表、计算证据与报告资产。需要正式管理报告时，系统还会执行强制 AI 审计链、确定性数值计算、证据校验和 PDF 发布门禁。
+可运行统计方法在 Lab 中按输出形态展开为独立卡片，可使用字段绑定、全表运行或重点对象运行模式。方法卡会保留运行配置与产物合约；默认产物包含 JSON、CSV、XLSX、Markdown，图表型方法还可提供图表、SVG、HTML 或图像规格。
 
-| 面向角色 | 主要问题 | Asteria Analyst 提供的能力 |
+### 可运行方法覆盖范围
+
+- **描述统计**：描述汇总、频数表、列联表、透视汇总、分位数、截尾与缩尾统计、基尼系数、帕累托、分组 KPI。
+- **分布与假设诊断**：正态性、Shapiro-Wilk、D'Agostino K²、Jarque-Bera、KS、Anderson-Darling、方差齐性、异方差与残差自相关。
+- **差异检验**：Welch t 检验、配对 t 检验、单样本 t 检验、Z 检验、单因素/双因素/重复测量 ANOVA、ANCOVA、Welch ANOVA、Tukey HSD。
+- **非参数检验**：Mann-Whitney、Wilcoxon、符号检验、Kruskal-Wallis、Friedman、中位数检验、置换检验与 Bootstrap 置信区间。
+- **分类与关联**：卡方、Fisher、McNemar、Cochran Q、CMH、Cramer's V、Phi、Theil's U、Kappa、Pearson、Spearman、Kendall、偏相关、距离相关。
+- **回归、机器学习与多变量**：OLS、Ridge、Lasso、Elastic Net、Logistic、Poisson、分位数和稳健回归；随机森林、神经网络、深度网络；PCA 与 KMeans。
+- **时间与实验**：移动平均、ACF/PACF、Ljung-Box、ADF；A/B Test。
+
+完整 ID、用途、输入字段和状态请以 [统计方法完整目录](docs/statistical_methods_zh.md) 为准。
+
+## 产品模块
+
+| 页面 | 路径 | 用途 |
 | --- | --- | --- |
-| 经营或运营负责人 | 如何把周期性业务问题变成可讨论的决策材料 | 业务简报、受控分析路径、报告资产与审阅状态 |
-| 数据分析师或研究人员 | 如何理解字段、选择方法并保留验证依据 | 数据画像、统计分析、Analysis Lab、方法卡和结果工件 |
-| 报告或交付负责人 | 如何处理修改而不丢失上下文和证据 | 修订会话、批注、附件、文件差异和本地版本发布 |
-| 工程、治理或审计伙伴 | 如何确认结论来自哪里 | 确定性计算、证据绑定、trace 工件、manifest 和公开边界 |
+| 首页 | `/` | 项目导航、运行状态与本地 AI Provider 设置。 |
+| 正式分析 | `/analysis` | 数据导入、分析目标配置、正式分析运行与报告预览。 |
+| Analysis Lab | `/lab` | 选择统计方法、配置字段、运行方法卡、查看产物、加载数据资产蓝图、调用外部 Skill 与 Agent 团队。 |
+| 方法指南 | `/lab/method-guide` | 方法选择、字段绑定、运行实例与结果解释教程。 |
+| 修订中心 | `/revision` | 查询报告库、创建修订任务并管理交付版本。 |
+| 修订工作区 | `/revision/workspace` | 标注报告、审阅文件改动、跟踪 AI 执行并发布版本。 |
 
-## 从数据到交付
+## 分析与报告链路
 
-<pre>
-数据、工作表与业务问题
-  -> 数据画像与字段语义
-  -> 业务路由、指标与方法规划
-  -> 受控统计或确定性计算
-  -> 证据表、图表与报告部件
-  -> 质量检查与下载资产
-  -> 批注、修订和版本发布
-</pre>
+正式管理报告遵循以下固定链路：
 
-这条路径以可复核性为核心：模型负责字段理解、业务上下文和指标规划，`DeterministicMetricExecutor` 负责正式数值计算。图表、表格、方法结果和报告文本均关联相应的数据与计算证据。
-
-## 六个工作区
-
-| 用户目标 | 页面/路由 | 先准备什么 | 页面内实际操作 | 完成后得到什么 | 状态与下一步 |
-| --- | --- | --- | --- | --- | --- |
-| 快速组织一项报告任务 | 首页 <code>/</code> | 数据、业务问题、目标读者和可选背景材料 | 上传或选择数据，关联材料，填写需求与交付预期，创建任务 | 与正式分析共用的数据画像、任务进度、报告章节和下载资产 | 需要本机后端；要配置统计或正式报告时继续进入 <code>/analysis</code>。 |
-| 做受控统计或生成报告候选 | 正式分析 <code>/analysis</code> | 数据集/工作表；可选目标、特征、分组、时间字段；报告要求 | 选择多表策略，运行受控快速统计，设置报告深度、视觉和交付偏好，提交报告任务 | 统计结果、任务阶段、结构化章节、图表、表格、资产和质量状态 | 基础工作流默认可用；正式 <code>management_report.pdf</code> 仍受后文的强制链与门禁约束。 |
-| 探索、比较和复核方法 | Analysis Lab <code>/lab</code> | 数据集、活动表、字段角色、方法参数和可选重点对象 | 定义派生口径，选择方法卡，创建独立运行实例，单独/批量/合并运行 | 方法可运行性、阻断原因、<code>run_id</code>、方法结果、图表、表格、审计和实际返回工件 | 用于探索和证据复核；正式 PDF 通过独立门禁交付。 |
-| 先理解方法该如何配置 | 方法指南 <code>/lab/method-guide</code> | 待解决的问题与字段角色的初步判断 | 依次学习重点对象、字段绑定、运行实例和模型输入字段 | 可带回 Lab 的配置步骤、适用条件和注意事项 | 默认可用；本页聚焦配置教学，数据上传与方法运行在 Lab 完成。 |
-| 查找已有报告并选择要续改的对象 | 修订中心 <code>/revision</code> | 已有本地报告及其索引元数据 | 按关键词、数据集或业务画像筛选和排序，查看详情，创建或恢复会话 | 报告列表、详情、会话记录和进入工作区的入口 | 空库是合法初始状态；需要实际修改时进入 <code>/revision/workspace</code>。 |
-| 审阅、批注、续改和登记本地版本 | 修订工作区 <code>/revision/workspace</code> | 一份已有报告、修改意见；可选附件、批注和本机运行时 | 提交修改意见，查看 HTML/PDF，添加批注与附件，比较差异，生成并发布修订版 | 会话事件、预览、差异、附件、产物和本地版本状态 | 高级续改依赖可选运行时；此处“发布”登记本地报告版本，GitHub 发布由仓库维护流程处理。 |
-
-各工作区的完整功能、对应后端模块和启用条件见 [模块与功能手册](docs/module-guide.zh-CN.md)。
-
-## 能力状态与边界
-
-公开项目按四类状态说明能力的启动条件、配置方式和交付要求：
-
-| 状态 | 能力 | 使用条件 |
-| --- | --- | --- |
-| 默认可用 | 本地数据导入、数据画像、受控统计、智能报告界面、Analysis Lab、方法指南、报告浏览 | 启动本机前后端即可使用；具体分析结果取决于数据质量和方法适配性 |
-| 可选配置 | AI 辅助字段语义、业务路由、指标规划、报告与修订增强 | 使用者在本地 <code>.env</code> 中配置兼容的 AI 提供方，并承担相应的数据合规责任 |
-| 默认关闭 | Codex Runtime、外部 Skill、本地报告 Agent Team、非沙箱本地执行、Codex 搜索 | 仅可信本机的管理员在明确授权后通过服务端环境变量启用 |
-| 受发布门禁约束 | 正式 <code>management_report.pdf</code> | 完成 AI trace、schema 校验、确定性数值、证据校验和质量门禁；最终质量分为 90 或更高 |
-
-公共版浏览器界面提供受控的数据分析和报告操作；API Key、运行时密钥和脚本执行策略由本地服务端统一配置管理。
-
-## 全部可用功能目录
-
-公开版已经支持的用户能力，均按入口、准备内容、可执行动作、完成结果、启用条件和边界收录在 [全部可用功能目录](docs/feature-catalog.zh-CN.md)。目录以默认可用、数据条件可用、需本机配置、默认关闭的本地扩展和正式受控能力分层，并覆盖当前已注册的公开入口。
-
-| 功能组 | 已覆盖的可用操作 |
-| --- | --- |
-| 启动、页面与诊断 | Windows 便携版和源码启动、六个页面入口、健康检查、能力 manifest、运行时状态、OpenAPI 与生态目录。 |
-| 数据与业务上下文 | 上传/复用数据集、切换工作表、查看画像和多表建议、关联历史报告与背景材料、填写业务简报。 |
-| 分析与自动路线 | 字段角色、受控统计、图表、自动方法建议、确定性结果与分析证据。 |
-| 智能报告与正式发布 | 报告设计、同步/异步任务、阶段与资产、专项业务路线、正式 PDF 的强制链与质量门禁。 |
-| Analysis Lab 与方法指南 | 字段建模、派生指标、方法卡、方法包、多运行实例、四种运行方式、PDCA、结果画布和交互式配置指南。 |
-| 报告库与受治理修订 | 检索、修订会话、事件、附件、预览、批注、差异与本地修订版发布。 |
-| 可选 AI、R 与本地扩展 | AI 提供方、R 工作流、Skill、Feature Trial、Report Agent Team、Codex Runtime、进程、管线和学习账本。 |
-| 本地 API | 数据、分析、报告、实验、修订、扩展和诊断接口；可通过本机 `/docs`、`/redoc`、`/openapi.json` 核对。 |
-
-需要某一项的完整操作、输入、输出和限制时，以 [全部可用功能目录](docs/feature-catalog.zh-CN.md) 为首选入口，再按该页链接进入对应页面结果、模块手册或 API 参考。
-
-## 功能概览：页面、操作、输入与结果
-
-本节概览最常用工作流，说明操作入口、准备内容和完成后的可见结果。页面、API 和本地扩展的逐项清单见 [全部可用功能目录](docs/feature-catalog.zh-CN.md)；接口字段和异常状态见[功能逐项参考](docs/function-reference.zh-CN.md)，逐页交付结果见[逐页结果说明](docs/page-results.zh-CN.md)。
-
-### 1. 工作台入口与正式分析：<code>/</code>、<code>/analysis</code>
-
-根路径和 <code>/analysis</code> 共用智能报告工作台。根路径额外展示公开发布版的本机运行时边界；<code>/analysis</code> 保留正式报告生成入口。两个页面连接已启动的后端后即可加载数据、创建任务和返回产物。
-
-| 可以完成的操作 | 需要选择或填写的内容 | 成功后实际看到或得到的结果 | 使用条件 |
-| --- | --- | --- | --- |
-| 导入或复用数据集 | CSV、TSV、Excel <code>.xlsx</code>、Stata <code>.dta</code> | 数据集标识、文件和工作表信息、行列规模、字段摘要、样本行、缺失提示和当前活动工作表 | 后端分析数据接收范围为 CSV、TSV、<code>.xlsx</code> 和 <code>.dta</code>。旧版 <code>.xls</code> 先转换为 <code>.xlsx</code>；读取完成后确认表头、单位、日期、主键和数据粒度。 |
-| 选择多工作表策略 | 当前工作簿中的工作表，以及单表、合并、分别或组合策略 | 表级数据画像和带入任务的工作表上下文 | 用户确认不同工作表之间的连接键、汇总层级和业务口径，再选择策略。 |
-| 关联历史报告和业务背景 | 本机历史报告、背景材料或明确的业务说明 | 可被任务引用的材料记录和上下文 | 历史材料用于理解任务、结构或交付风格；当前事实和数值以原始数据及验证过程为准。 |
-| 写出业务简报 | 分析对象、时间范围、要回答的问题、目标读者、核心用途、期望结果、约束条件 | 供路线选择、报告结构和修订会话使用的任务上下文 | 将问题写成可检验的业务问题可获得更清晰的路线建议；简报提供任务上下文，数值证据来自原始数据和确定性计算。 |
-| 运行受控快速统计 | 当前数据集/工作表，以及目标、特征、分组或时间字段 | 统计表、模型摘要、诊断、图表规格或计算证据，取决于本次方法和后端返回 | 可直接配置相关性、OLS、随机森林、K-Means、PCA、正态性检验等；一次请求最多选择 8 个特征字段，仍须满足样本量和方法前提。 |
-| 设置报告任务 | 报告深度、视觉风格和说明、交付目标、全文表格偏好，以及上述数据与业务上下文 | 可执行的报告任务请求 | 这些选项组织交付内容；结论由数据、方法和计算证据形成。 |
-| 跟踪任务和审阅资产 | 已提交的任务 | 阶段名称、进度、阶段事件、结构化章节、关键指标、图表、表格和后端实际返回的下载资产 | 任务完成后可审阅请求结果；正式 <code>management_report.pdf</code> 还需完成 AI trace、确定性计算、证据验证和发布门禁。 |
-
-### 2. 受控统计：从方法目录到可复核结果
-
-统计目录覆盖描述与分布、分组与交叉、相关、回归、组间检验、分类变量检验、非参数与重采样、探索预测、时序与稳定性等类别。目录中的方法名称用于检索、解释和路由；字段类型、已选变量、参数和环境共同决定可运行性。Lab 以 <code>live</code>、<code>catalog</code>、<code>planned</code> 和 <code>learned</code> 标记方法状态。
-
-| 分析类别 | 典型可选方法 | 必需或常见输入 | 结果怎样使用 |
-| --- | --- | --- | --- |
-| 描述、分布和 KPI | 描述统计、频数、分位数、截尾均值、Winsorize、基尼、帕累托 | 数值或类别字段，必要时排序或阈值 | 获得统计表、分布摘要或排序结果；原因与因果解释结合业务与研究设计。 |
-| 分组和交叉 | 交叉表、透视表、分群 KPI | 维度、指标、分组字段 | 获得分组汇总、结构占比和对比表；需要先确认分组口径与样本量。 |
-| 关系和模型 | Pearson、Spearman、Kendall、OLS、岭、Lasso、Elastic Net、Logit、Poisson 等 | 适配的目标变量、解释变量、分组或筛选条件 | 获得系数、拟合、显著性和诊断；因果结论需要额外的研究设计和领域审阅。 |
-| 组间和分类检验 | t 检验、A/B、ANOVA、卡方、Fisher、Mann-Whitney、Kruskal-Wallis、Bootstrap、置换检验 | 指标、分组、配对、协变量或类别字段 | 获得差异、区间、列联表或显著性；仍要检查独立性、样本稀疏、正态性、方差和实验设计。 |
-| 探索、预测和时序 | PCA、K-Means、随机森林、基础神经网络、移动平均、ACF/PACF、ADF、Ljung-Box | 多个特征、可选目标或连续时间字段 | 获得成分、分群、特征关系、预测摘要或稳定性提示；生产应用前完成模型验证、业务审阅和监控设计。 |
-
-### 3. Analysis Lab 方法实验台：<code>/lab</code>
-
-Lab 用于把一个问题拆成可单独配置、运行和比较的方法实例。它与正式报告工作台共享数据基础，支持探索、验证和方法复核；正式 PDF 通过独立的发布门禁交付。
-
-| Lab 中的具体动作 | 用户需要配置什么 | 页面或工件会给出什么 | 使用边界 |
-| --- | --- | --- | --- |
-| 准备数据和字段画像 | 数据集、活动工作表，以及需要检查的字段 | 行列和字段画像、候选字段角色、数据质量和可视化提示 | 字段名推断只是辅助；金额、比例、日期、主键和业务维度仍要由使用者确认。 |
-| 绑定字段角色 | 目标、分组、标签、时间、特征、重点对象和图形字段 | 当前方法实例的字段绑定和可运行性提示 | 同名方法的各字段配置保存在独立运行实例中；页面显示字段准备度与校验结果。 |
-| 定义派生指标 | 指标名称、计算口径和依赖字段 | 可被后续方法引用的派生指标定义和审阅上下文 | 派生口径由业务确认，并与已支持的计算方式对应。 |
-| 检索并选择方法 | 方法类别、关键词、数据条件和方法卡说明 | 方法卡、适用条件、阻断原因、推荐组合与执行篮 | 运行状态和前提决定当前数据可执行的方法；先查看方法卡中的字段和数据要求。 |
-| 创建运行实例 | 选择模式：字段、全量行或重点对象；对应字段与统计参数 | 独立的 <code>run_id</code>、实例配置、方法组合或批量执行计划 | 不同对象、参数和方法组合应使用独立实例，避免把结果混为同一口径。 |
-| 自动合并、单方法、批量独立运行或报告试跑 | 一个或多个已配置实例 | 每个实例的运行状态、分析摘要、指标、图表、表格、文本或方法审计；有返回时还会提供可重跑的报告部件蓝图和下载资产 | 批量模式先保留各实例结果再合并；报告试跑提供工作性输出，方法审核和正式 PDF 门禁按各自流程完成。 |
-| 与正式交付对照 | 已准备的 Lab 数据和方法结果 | 可跳转至正式报告生成链路进行试跑或对照 | 正式 <code>management_report.pdf</code> 由完整 AI 强制链、确定性计算、证据校验和发布门禁交付。 |
-
-### 4. 方法指南：<code>/lab/method-guide</code>
-
-方法指南提供进入 Lab 前的学习路径，帮助用户完成四个判断：分析的重点对象、字段绑定方式、独立运行实例的拆分方式，以及不同模型输入字段的角色。完成后可获得带回 Lab 的配置要点和使用注意事项；统计结果由已配置的分析运行生成。
-
-### 5. 报告库与修订工作区：<code>/revision</code>、<code>/revision/workspace</code>
-
-| 页面与动作 | 需要的输入 | 成功后的可见结果 | 完成范围 |
-| --- | --- | --- | --- |
-| 在 <code>/revision</code> 查找已有报告 | 关键词、数据集、业务画像或列表筛选条件 | 已有报告列表、排序/筛选结果、报告详情和已有修订会话 | 本页提供报告检索和会话入口；报告生成在任务工作流中完成。 |
-| 创建或恢复修订会话 | 已有报告，以及新会话或既有会话标识 | 可继续处理的修订上下文、会话状态和历史事件 | 会话记录保存修改上下文，回合产物以任务状态和事件流为准。 |
-| 提交自由意见或快捷修改任务 | 文字修改意见，必要时附带已有报告上下文 | 回合状态、事件流和轮询进度；在可选运行时可继续生成预览或处理结果 | 页面显示服务端返回的运行、验收和异常状态。 |
-| 审阅报告内容 | HTML/PDF 预览、刷新、新窗口、缩放、翻页、整页和适宽操作 | 当前可访问的预览文件和阅读状态 | 预览用于阅读；数值、事实和正式发布资格由审阅流程与质量门禁确认。 |
-| 记录批注与附件 | 浏览、画笔、矩形、高亮、橡皮批注；需要时添加附件和说明 | 可与修订说明关联的批注、附件、事件和文件差异 | 批注用于修订输入和审阅记录，数据证据由数据集与受控计算结果提供。 |
-| 发布修订版 | 可发布的预览、已完成回合和已有验证条件 | 已登记到本地报告工作区的版本、产物和状态 | 此处“发布”创建本地报告版本。GitHub、GitHub Release、网站部署和正式 PDF 门禁使用各自的发布流程。 |
-
-### 6. 专项业务路线与实际产物
-
-系统根据当前数据特征、业务目标和配置选择专项路线。可能命中的方向包括电商商品与经营、互联网运营、采购销售、通用深度经营、市场情报、媒体决策、管理会计和独立行业研究。每条路线都使用对应字段和业务口径：例如采购销售路线确认采购与销售表的粒度和连接逻辑，互联网运营路线使用足够的事件或周期信息。
-
-运行成功后可得到报告正文、图表、表格、CSV/XLSX、HTML、Markdown、JSON、README、manifest 或方法级证据文件；具体清单由本次方法、数据、路线和后端返回结果决定。
-
-### 7. 本地扩展：Skill、Feature Trial、Report Agent Team、Codex Runtime 与 R
-
-以下本机扩展已经实现。它们通过本机目录、受控任务工作区、本机 CLI 或 R 环境工作，因此需要按[本地扩展指南](docs/local-extensions.zh-CN.md)完成安装、变量配置和运行检查。
-
-| 扩展能力 | 从哪里操作、需要什么 | 可以完成的具体动作 | 可见结果或工件 | 启用条件 |
-| --- | --- | --- | --- | --- |
-| 内置/外部 Skill | <code>/lab</code>；仓库内置的 <code>analysis-delivery-workflow</code>，或经审阅的 GitHub 仓库 URL/本机目录 | 查看项目和本机可识别的 Skill；导入、挂载、取消挂载或删除外部 Skill/插件包 | 来源、挂载状态、内嵌 Skill/命令/MCP 元数据；已挂载内容会形成 <code>external_skill_context.json</code> | 公开仓库随源码提供 <code>analysis-delivery-workflow</code>；其他本机 Codex Skill 随用户的 <code>CODEX_HOME</code> 载入。管理操作使用 <code>ASTERIA_ENABLE_LOCAL_SKILL_INSTALLER=1</code>，命令和 MCP 通过受控任务执行。 |
-| Feature Trial | <code>/lab</code>；已选择数据集、工作表、插件、功能和用户目标 | 用真实数据画像评估某项外部功能是否适合当前任务，再给出下一步配置建议 | <code>trial_id</code>、就绪度和原因、推荐动作、建议的 Lab 参数、<code>trial.json</code>、<code>field_scores.csv</code>、<code>trial_report.md</code> | 需要本地扩展安装器开关；试验输出用于适配性评估和后续配置。 |
-| Report Agent Team | <code>/lab</code>；用户自有、已审阅的本机团队目录和 Markdown 角色说明，已选数据集 | 导入、挂载、取消挂载或删除团队；把角色说明和数据上下文交给一个受控 Codex 任务 | 团队/挂载数量、角色摘要、任务 ID、状态、工作区路径，以及实际执行后可用的摘要、差异、文件或错误 | 公开仓库支持导入用户自有 Team；初始列表为空时可先导入团队。导入和管理需要本地扩展开关；运行需要可用 Runtime、CLI 和受限工作区。后端使用受控任务协调多份角色说明。 |
-| Codex Runtime 与管线 | Runtime API、修订工作区和团队任务；受限工作区、可用 CLI 与认证 | 健康检查、创建/查询/取消运行或后台任务、查看日志、管理受控进程、运行多阶段管线和查看学习账本 | CLI 路径/版本、<code>run_id</code> 或 <code>job_id</code>、状态、日志、摘要、文件变化、差异、工件或错误 | 设置 <code>ASTERIA_CODEX_RUNTIME_ENABLED=1</code> 与 <code>ASTERIA_ENABLE_CODEX_RUNTIME_API=1</code> 后，在受控本机工作区运行。 |
-| R 工作流 | 已存在可用 <code>Rscript</code> 的本机环境 | 发起 R 数据准备、统计、可视化和工件关联流程 | 可能的 CSV、XLSX、Markdown、HTML、PDF 或 R 工件索引 | 由本机 `Rscript` 路径和报告请求共同决定可用性。 |
-
-Skill、Trial、Team、Runtime、R 和修订 Agent 用于组织分析、任务和材料；正式管理报告仍按 AI 强制链、确定性数值计算、证据校验和质量门禁交付。
-
-## 正式管理报告的可信机制
-
-正式 <code>management_report.pdf</code> 按以下完整链路生成：
-
-<pre>
+```text
 raw data
 -> DataProfileService
 -> AIFieldSemanticMapper
@@ -168,83 +52,82 @@ raw data
 -> ReportBindingLayer
 -> FormalPDFReleaseGate
 -> management_report.pdf
-</pre>
+```
 
-- <code>AIFieldSemanticMapper</code>、<code>AIBusinessContextRouter</code> 和 <code>AIMetricDerivationPlanner</code> 必须在正式报告绑定前执行，并写入可追溯工件。
-- AI 输出通过 schema 校验；AI 用于结构化理解和规划，最终数值由确定性执行器生成。
-- <code>DeterministicMetricExecutor</code> 负责实际数值计算；<code>EvidenceValidator</code> 校验输入、计算和绑定证据。
-- 条件尚待补齐时，系统生成 <code>debug_report</code> 用于诊断。
-- 正式 PDF 的发布质量分为 90 或更高。
+AI 负责字段语义、业务路由与分析规划；数值计算由确定性执行器完成。每个正式报告保留 AI Trace、结构化校验结果、计算证据与发布门禁结果。质量分数达到 `90` 后，`FormalPDFReleaseGate` 才会放行正式 PDF。
 
-更多细节见 [正式报告可信机制](docs/report-integrity.zh-CN.md)、[AI 强制发布链（中文）](docs/architecture_ai_mandatory_chain.zh-CN.md) 与 [英文原始规范](docs/architecture_ai_mandatory_chain.md)。
+## 技术结构
 
-## 快速开始
+```text
+backend/    FastAPI API、分析编排、统计执行、证据校验、报告与修订服务
+frontend/   Next.js 产品界面、分析工作区、Analysis Lab 与报告修订界面
+docs/       架构说明、统计目录、Lab 索引、工作流与产品文档
+scripts/    验证、打包与方法目录导出脚本
+skills/     可挂载的分析与报告能力定义
+winui/      Windows 本地客户端与打包配置
+```
 
-### Windows 便携版
+核心依赖包括 Next.js、React、FastAPI、Pandas、DuckDB、statsmodels、scikit-learn、ECharts、SheetJS 与 Monaco Editor。
 
-1. 从 [GitHub Releases](https://github.com/wzn1118/AsteriaAnalyst/releases/latest) 下载 <code>AsteriaAnalyst-portable.zip</code>。
-2. 完整解压到可写目录后运行启动器。
-3. 双击解压目录中的 <code>start-asteria.bat</code>。
-4. 等待启动窗口显示实际本地地址并自动打开工作区。
+## 本地启动
 
-便携版面向 Windows 本机单用户使用，采用回环地址运行。
+环境建议：Python 3.11+、Node.js 20+。
 
-### 源码版
+### 1. 启动后端
 
-前置条件：Python 3.11+、Node.js 20.9+，且首次启动可以连接依赖源。
+```powershell
+cd backend
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install -r requirements.txt
+python -m uvicorn app.main:app --reload --port 8000
+```
 
-1. 克隆或解压本仓库。
-2. 在仓库根目录双击 <code>start-asteria.cmd</code>。
-3. 启动器会检查后端与前端、准备依赖、启动仅绑定 <code>127.0.0.1</code> 的服务、打开 <code>/analysis</code>，并在 <code>logs/launcher/</code> 写入日志。
-4. 默认前端地址为 <code>http://127.0.0.1:3000/analysis</code>，后端健康检查为 <code>http://127.0.0.1:8000/health</code>。若端口已占用，启动器会选择附近可用端口并打印实际地址。
+健康检查：`http://127.0.0.1:8000/health`
 
-基础本地分析可直接运行。需要 AI 辅助功能时，从 <code>.env.example</code> 创建本地 <code>.env</code> 并填写兼容提供方配置；GitHub 中仅保留公开代码、示例和掩码配置。
+### 2. 启动前端
 
-完整的首次启动、配置和排障说明见 [快速开始](docs/getting-started.zh-CN.md)。
+```powershell
+cd frontend
+npm ci
+$env:NEXT_PUBLIC_API_BASE_URL = "http://127.0.0.1:8000"
+npm run dev
+```
 
-## 推荐使用流程
+打开 `http://127.0.0.1:3000`，Analysis Lab 位于 `http://127.0.0.1:3000/lab`。
 
-1. **先核对数据**：上传小型、非敏感样本或 <code>examples/revenue-smoke.csv</code>，确认行粒度、字段、缺失、单位和时间范围。
-2. **说明业务问题**：写清希望解释、比较或决策的事项，以及报告读者和约束。
-3. **选择正确工作区**：需要探索和比较方法时使用 Lab；需要受控报告路径时使用正式分析；已有报告要续改时进入修订中心。
-4. **先审阅证据再读摘要**：依次检查方法/计算结果、表格与图表、文字总结和下载资产。
-5. **确认交付等级**：只有全部门禁通过的 <code>management_report.pdf</code> 才是正式管理报告；其他结果是探索性、调试性或修订性材料。
+## API 入口
 
-## 数据、隐私与公开边界
+| API | 用途 |
+| --- | --- |
+| `GET /health` | 后端存活检查。 |
+| `GET /api/statistics/catalog` | 统计方法注册表与统计摘要。 |
+| `GET /api/lab/methods?compact=true` | Analysis Lab 方法卡目录。 |
+| `GET /api/lab/skills` | 可挂载外部 Skill。 |
+| `GET /api/lab/report-agent-teams` | Agent 团队包目录。 |
+| `GET /api/lab/report-agent-teams/runs` | Agent 团队运行记录。 |
 
-- 基础 CSV/Excel 工作可直接在本机完成；AI 辅助工作流使用用户配置的模型提供方。
-- 若主动启用 AI 辅助报告或修订，相关字段上下文、报告上下文或上传的工作簿/PDF 可能发送给本地配置的 OpenAI-compatible 提供方。请先脱敏，并遵循数据授权、合同和组织政策。
-- 默认部署服务于回环地址的单用户使用。公网多用户服务通过独立的身份认证、租户隔离、上传控制和生产托管架构部署。
-- <code>/storage</code> 可提供本地生成工件。公开截图、Issue、演示和提交前都应检查是否含有客户、个人、商业或运行时敏感信息。
+## 更新公开方法文档
 
-非本机部署前，请先阅读 [部署边界](docs/deployment-boundaries.md) 与 [安全策略](SECURITY.md)。
+新增、调整统计方法或 Lab 卡片后，在仓库根目录执行：
 
-## 文档索引
+```powershell
+backend\.venv\Scripts\python.exe scripts\export_method_catalog_docs.py
+```
 
-- [中文技术文档中心](docs/README.md)
-- [系统架构](docs/architecture.zh-CN.md)
-- [API 参考](docs/api-reference.zh-CN.md)
-- [配置参考](docs/configuration-reference.zh-CN.md)
-- [本地扩展指南：Skill、Report Agent Team 与 Codex Runtime](docs/local-extensions.zh-CN.md)
-- [开发与质量指南](docs/development-guide.zh-CN.md)
-- [安全与部署说明](docs/security-deployment.zh-CN.md)
-- [发布与运维指南](docs/release-operations.zh-CN.md)
-- [Windows 便携版离线指南](docs/portable-user-guide.zh-CN.md)
-- [便携版 Codex Runtime（中文）](docs/portable-codex-runtime.zh-CN.md)
-- [全部可用功能目录：入口、操作、输入、结果、条件与边界](docs/feature-catalog.zh-CN.md)
-- [完整模块与功能手册](docs/module-guide.zh-CN.md)
-- [功能逐项参考：页面、操作、接口、产物与边界](docs/function-reference.zh-CN.md)
-- [逐页结果说明：完成后看到什么、得到什么、下一步做什么](docs/page-results.zh-CN.md)
-- [公开项目介绍](docs/public-project-introduction.zh-CN.md)
-- [快速开始](docs/getting-started.zh-CN.md)
-- [详细用户指南](docs/user-guide.zh-CN.md)
-- [正式报告可信机制](docs/report-integrity.zh-CN.md)
-- [AI 强制发布链（中文）](docs/architecture_ai_mandatory_chain.zh-CN.md)（[English](docs/architecture_ai_mandatory_chain.md)）
-- [贡献指南](CONTRIBUTING.md)
-- [安全策略](SECURITY.md)
+该命令会同步更新：
 
-## 公开仓库范围与许可证
+- `docs/statistical_methods_zh.md`
+- `docs/lab_method_inventory_zh.md`
 
-本仓库收录源码、测试、启动脚本、示例和技术文档。客户资料、上传数据、生成报告、运行会话、日志、缓存、凭据和私有作品集材料保留在受保护的本地工作区。
+## 验证
 
-当前仓库未附 <code>LICENSE</code>。复制、修改、再分发或商用需先获得所有者书面许可，或等待后续许可证发布。
+```powershell
+cd backend
+python -m pytest
+
+cd ..\frontend
+npm run build
+```
+
+更多架构说明见 [AI 强制发布链路](docs/architecture_ai_mandatory_chain.md)、[产品概览](docs/product_overview_zh.md) 与 [GitHub 发布说明](docs/github-market-stack.md)。
