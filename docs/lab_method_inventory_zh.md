@@ -14,16 +14,41 @@
 
 每张方法卡保存方法身份、字段角色、可选运行模式与产物合约。`live` 卡可在 Lab 中绑定数据集字段并运行；卡片产物按方法契约输出 JSON、CSV、XLSX、Markdown，部分方法额外提供图表、SVG、HTML 或图像规格。
 
+## 使用场景与操作路径
+
+先从场景找到对应的中文方法名称，再在下方按注册族和状态筛选方法卡。运行前将数据列映射到卡片列出的字段角色；运行后结合中文输出形式下载或查看产物，并保留本次分析的参数与结果。
+
+| 使用场景 | 首选方法卡方向 | 需要映射的字段角色 | 常见产物 | 操作要点 |
+| --- | --- | --- | --- | --- |
+| 数据概览与数据质量检查 | 描述统计、数据质量、缺失与异常值审计 | 数值字段、分类字段、唯一标识、时间字段 | 统计摘要、质量清单、分布图表 | 先完成字段角色映射，再将质量结论作为后续方法选择依据。 |
+| 经营指标分层复盘 | 描述统计、分组汇总、透视与可视化方法卡 | 数值指标、分类分组、时间字段 | 分组汇总、交叉表、图表规格 | 将区域、渠道、产品线等字段设为分组角色，比较同一指标的结构差异。 |
+| 两组或多组效果比较 | 均值检验、非参数检验、实验分析方法卡 | 数值结果、二元或多分类分组、配对标识 | 检验结果、效应量、置信区间、表格 | 根据是否配对、分组数量和数据分布选择对应卡片。 |
+| 转化漏斗与分类交叉分析 | 分类关联、列联分析方法卡 | 两个分类字段、二元结果、分层字段 | 列联表、关联强度、显著性结果 | 将渠道、活动触达、转化结果映射为分类角色，检查样本量与分层条件。 |
+| 驱动因素与预测建模 | 关联分析、回归建模、机器学习方法卡 | 目标字段、特征字段、协变量 | 系数或特征重要性、预测结果、诊断输出 | 先运行特征和数据质量检查，再比较不同模型卡的性能与解释结果。 |
+| 客群细分与结构探索 | 多变量分析、聚类、降维方法卡 | 多个数值字段、分类标签、目标字段 | 分群标签、降维坐标、结构摘要 | 统一指标口径后输入多字段，结合群组规模和特征解释命名客群。 |
+| 趋势监控与预测 | 时间序列方法卡 | 时间字段、数值指标、可选特征字段 | 趋势分解、预测值、残差与回测结果 | 保持时间排序和周期粒度一致，使用历史区间检查预测误差。 |
+| A/B 实验与干预评估 | 实验分析、因果探查方法卡 | 实验分组、结果字段、时间字段、协变量 | 效应估计、功效分析、假设检查 | 明确处理组与对照组字段，记录实验周期、样本量与指标定义。 |
+| 留存与流失研究 | 生存分析方法卡 | 生存时长、事件类型、分层字段、协变量 | 生存曲线、风险比、分层比较结果 | 定义事件发生规则和观察截止点，再比较不同人群的留存曲线。 |
+| 方法结果交付与复核 | 报告部件、可视化与统计推断方法卡 | 已生成的分析结果、指标字段、分组字段 | JSON、CSV、XLSX、Markdown、图表或图像规格 | 选择与下游交付格式匹配的卡片，保存参数、输入范围和结果文件。 |
+
+### 标准操作流程
+
+1. 在 Analysis Lab 中选择状态为“可运行”的方法卡，并阅读卡片中的字段角色与中文输出形式。
+2. 将数据集列映射为数值、分类、时间、目标、特征、分组或配对等角色；字段缺失时回到数据概览场景补齐。
+3. 填写方法参数并执行，查看返回的结构化结果、表格和图表产物。
+4. 按结果中的统计量、置信区间、误差、诊断或分组画像形成业务结论，并将本次输入、参数和产物一并留存。
+5. 对关键结论选择稳健性、敏感性或替代模型方法卡进行复核，再进入后续报告交付流程。
+
 ## 全量方法卡
 
-### 分析方法（注册族：`关联分析`；56 张；可运行 27 张）
+### 关联分析（注册族：`关联分析`；56 张；可运行 27 张）
 
 | 卡片 ID | 中文方法名称 | 原始英文概念 | 中文输出形式 | 字段角色 | 状态 | 来源 |
 | --- | --- | --- | --- | --- | --- | --- |
 | `association_correlation` | 关联分析・相关性 | 相关性 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
 | `association_distance` | 关联分析・距离 | 距离 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
-| `association_mutual_information` | 关联分析・分析方法 | 互信息 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
-| `association_network` | 关联分析・网络 | 关系网络 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
+| `association_mutual_information` | 关联分析・互信息 | 互信息 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
+| `association_network` | 关联分析・关系网络 | 关系网络 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
 | `association_partial` | 关联分析・偏相关 | 偏相关 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
 | `canonical_correlation_data` | 典型相关分析 | Canonical Correlation | 结构化数据 | multi numeric、multi numeric | 目录条目 | 统计目录 |
 | `canonical_correlation_table` | 典型相关分析 | Canonical Correlation | 表格 | multi numeric、multi numeric | 目录条目 | 统计目录 |
@@ -77,7 +102,7 @@
 | `text_embedding_similarity_table` | 文本嵌入相似度分析 | Text Embedding Similarity | 表格 | 字段对 | 目录条目 | 统计目录 |
 | `text_embedding_similarity_text` | 文本嵌入相似度分析 | Text Embedding Similarity | 文字解读 | 字段对 | 目录条目 | 统计目录 |
 
-### 分析方法（注册族：`分布假设`；54 张；可运行 36 张）
+### 分布假设（注册族：`分布假设`；54 张；可运行 36 张）
 
 | 卡片 ID | 中文方法名称 | 原始英文概念 | 中文输出形式 | 字段角色 | 状态 | 来源 |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -136,7 +161,7 @@
 | `zero_inflation_diagnostic_table` | 零膨胀诊断 | Zero-inflation Diagnostic | 表格 | 数值字段 | 目录条目 | 统计目录 |
 | `zero_inflation_diagnostic_text` | 零膨胀诊断 | Zero-inflation Diagnostic | 文字解读 | 数值字段 | 目录条目 | 统计目录 |
 
-### 分析方法（注册族：`分类关联`；39 张；可运行 30 张）
+### 分类关联（注册族：`分类关联`；39 张；可运行 30 张）
 
 | 卡片 ID | 中文方法名称 | 原始英文概念 | 中文输出形式 | 字段角色 | 状态 | 来源 |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -180,2719 +205,2719 @@
 | `theils_u_table` | 泰尔 U 关联系数 | Theil's U | 表格 | 分类字段、分类字段 | 可运行 | 统计目录 |
 | `theils_u_text` | 泰尔 U 关联系数 | Theil's U | 文字解读 | 分类字段、分类字段 | 可运行 | 统计目录 |
 
-### 分析方法（注册族：`可视化`；2685 张；可运行 0 张）
+### 可视化（注册族：`可视化`；2685 张；可运行 0 张）
 
 | 卡片 ID | 中文方法名称 | 原始英文概念 | 中文输出形式 | 字段角色 | 状态 | 来源 |
 | --- | --- | --- | --- | --- | --- | --- |
-| `visual_alluvial` | 可视化分析・可视化・河流图 | 河流图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
-| `visual_area` | 可视化分析・可视化・面积图 | 面积图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
-| `visual_bar` | 可视化分析・可视化・条形图 | 条形图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
-| `visual_beeswarm` | 可视化分析・可视化・蜂群图 | 蜂群图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
-| `visual_boxplot` | 可视化分析・可视化・箱线图 | 箱线图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
-| `visual_bubble` | 可视化分析・可视化・气泡图 | 气泡图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
-| `visual_bullet` | 可视化分析・可视化・子弹图 | 子弹图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
-| `visual_bump_chart` | 可视化分析・可视化 | 排名趋势图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
-| `visual_calendar_heatmap` | 可视化分析・可视化・日历・热力矩阵 | 日历热力图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
-| `visual_candlestick` | 可视化分析・可视化・蜁烛图 | 蜁烛图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
-| `visual_chord` | 可视化分析・可视化・弦图 | 弦图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
-| `visual_choropleth` | 可视化分析・可视化・分级着色地图 | 分级着色地图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
-| `visual_cohort_matrix` | 可视化分析・可视化・队列 | 队列矩阵 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
-| `visual_column` | 可视化分析・可视化・柱状图 | 柱状图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
-| `visual_contour` | 可视化分析・可视化・等高线图 | 等高线图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
-| `visual_control_chart` | 可视化分析・可视化・控制 | 控制图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
-| `visual_density` | 可视化分析・可视化・密度图 | 密度图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
-| `visual_ecdf` | 可视化分析・可视化・经验分布图 | 经验分布图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
-| `visual_flow_map` | 可视化分析・可视化 | 流向地图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
-| `visual_funnel` | 可视化分析・可视化・漏斗 | 漏斗图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
-| `visual_gauge` | 可视化分析・可视化・仪表盘 | 仪表盘 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
-| `visual_geo_map` | 可视化分析・可视化 | 地理地图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
-| `visual_heatmap` | 可视化分析・可视化・热力矩阵 | 热力矩阵 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
-| `visual_hexbin` | 可视化分析・可视化・六边形密度图 | 六边形密度图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
-| `visual_histogram` | 可视化分析・可视化・直方图 | 直方图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
-| `visual_line` | 可视化分析・可视化・折线图 | 折线图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
-| `visual_marimekko` | 可视化分析・可视化・马赛克图 | 马赛克图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
-| `visual_network` | 可视化分析・可视化・网络 | 关系网络 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
-| `visual_pairplot` | 可视化分析・可视化・成对散点矩阵 | 成对散点矩阵 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
-| `visual_parallel_coordinates` | 可视化分析・可视化 | 平行坐标图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
-| `visual_qqplot` | 可视化分析・可视化・正态 Q-Q 图 | 正态 Q-Q 图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
-| `visual_quadrant` | 可视化分析・可视化・象限图 | 象限图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
-| `visual_radar` | 可视化分析・可视化・雷达图 | 雷达图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
-| `visual_sankey` | 可视化分析・可视化・桑基图 | 桑基图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
-| `visual_scatter` | 可视化分析・可视化・散点图 | 散点图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
-| `visual_slopegraph` | 可视化分析・可视化・坡度图 | 坡度图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
-| `visual_small_multiple` | 可视化分析・可视化 | 小多图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
-| `visual_sparkline` | 可视化分析・可视化・迷你趋势线 | 迷你趋势线 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
-| `visual_stacked_area` | 可视化分析・可视化・面积图 | 堆积面积图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
+| `visual_alluvial` | 可视化分析・河流图 | 河流图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
+| `visual_area` | 可视化分析・面积图 | 面积图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
+| `visual_bar` | 可视化分析・条形图 | 条形图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
+| `visual_beeswarm` | 可视化分析・蜂群图 | 蜂群图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
+| `visual_boxplot` | 可视化分析・箱线图 | 箱线图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
+| `visual_bubble` | 可视化分析・气泡图 | 气泡图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
+| `visual_bullet` | 可视化分析・子弹图 | 子弹图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
+| `visual_bump_chart` | 可视化分析・排名趋势图 | 排名趋势图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
+| `visual_calendar_heatmap` | 可视化分析・日历热力图 | 日历热力图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
+| `visual_candlestick` | 可视化分析・蜁烛图 | 蜁烛图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
+| `visual_chord` | 可视化分析・弦图 | 弦图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
+| `visual_choropleth` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
+| `visual_cohort_matrix` | 可视化分析・队列矩阵 | 队列矩阵 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
+| `visual_column` | 可视化分析・柱状图 | 柱状图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
+| `visual_contour` | 可视化分析・等高线图 | 等高线图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
+| `visual_control_chart` | 可视化分析・控制图 | 控制图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
+| `visual_density` | 可视化分析・密度图 | 密度图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
+| `visual_ecdf` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
+| `visual_flow_map` | 可视化分析・流向地图 | 流向地图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
+| `visual_funnel` | 可视化分析・漏斗图 | 漏斗图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
+| `visual_gauge` | 可视化分析・仪表盘 | 仪表盘 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
+| `visual_geo_map` | 可视化分析・地理地图 | 地理地图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
+| `visual_heatmap` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
+| `visual_hexbin` | 可视化分析・六边形密度图 | 六边形密度图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
+| `visual_histogram` | 可视化分析・直方图 | 直方图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
+| `visual_line` | 可视化分析・折线图 | 折线图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
+| `visual_marimekko` | 可视化分析・马赛克图 | 马赛克图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
+| `visual_network` | 可视化分析・关系网络 | 关系网络 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
+| `visual_pairplot` | 可视化分析・成对散点矩阵 | 成对散点矩阵 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
+| `visual_parallel_coordinates` | 可视化分析・平行坐标图 | 平行坐标图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
+| `visual_qqplot` | 可视化分析・正态 Q-Q 图 | 正态 Q-Q 图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
+| `visual_quadrant` | 可视化分析・象限图 | 象限图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
+| `visual_radar` | 可视化分析・雷达图 | 雷达图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
+| `visual_sankey` | 可视化分析・桑基图 | 桑基图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
+| `visual_scatter` | 可视化分析・散点图 | 散点图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
+| `visual_slopegraph` | 可视化分析・坡度图 | 坡度图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
+| `visual_small_multiple` | 可视化分析・小多图 | 小多图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
+| `visual_sparkline` | 可视化分析・迷你趋势线 | 迷你趋势线 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
+| `visual_stacked_area` | 可视化分析・堆积面积图 | 堆积面积图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
 | `visual_stat_agreement_reliability_annotated_reference_view` | 可视化分析・可视化・统计 | Agreement reliability - Annotated reference view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_agreement_reliability_boxen_interval` | 可视化分析・可视化・统计 | Agreement reliability - Boxen interval plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_agreement_reliability_comparative_lollipop` | 可视化分析・可视化・统计 | Agreement reliability - Comparative lollipop plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_agreement_reliability_density_ridge` | 可视化分析・可视化・统计・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_agreement_reliability_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_agreement_reliability_diagnostic_panel` | 可视化分析・可视化・统计・诊断・面板 | Agreement reliability - Diagnostic panel | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_agreement_reliability_ecdf_step_view` | 可视化分析・可视化・统计・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_agreement_reliability_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_agreement_reliability_flow_transition_map` | 可视化分析・可视化・统计 | Agreement reliability - Flow transition map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_agreement_reliability_forest_interval_plot` | 可视化分析・可视化・统计・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_agreement_reliability_heatmap_matrix` | 可视化分析・可视化・统计・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_agreement_reliability_histogram_facets` | 可视化分析・可视化・统计・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_agreement_reliability_map_choropleth_layer` | 可视化分析・可视化・统计・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_agreement_reliability_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_agreement_reliability_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_agreement_reliability_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_agreement_reliability_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_agreement_reliability_mosaic_tile_view` | 可视化分析・可视化・统计 | Agreement reliability - Mosaic tile view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_agreement_reliability_network_node_link` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_agreement_reliability_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_agreement_reliability_qq_reference_plot` | 可视化分析・可视化・统计 | Agreement reliability - Q-Q reference plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_agreement_reliability_quantile_band` | 可视化分析・可视化・统计・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_agreement_reliability_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_agreement_reliability_raincloud_view` | 可视化分析・可视化・统计 | Agreement reliability - Raincloud view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_agreement_reliability_rank_interval_plot` | 可视化分析・可视化・统计・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_agreement_reliability_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_agreement_reliability_residual_annotation_map` | 可视化分析・可视化・统计 | Agreement reliability - Residual annotation map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_agreement_reliability_slope_change_view` | 可视化分析・可视化・统计 | Agreement reliability - Slope change view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_agreement_reliability_small_multiple_grid` | 可视化分析・可视化・统计 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_agreement_reliability_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_agreement_reliability_stratified_dotplot` | 可视化分析・可视化・统计 | Agreement reliability - Stratified dot plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_agreement_reliability_threshold_band` | 可视化分析・可视化・统计 | Agreement reliability - Threshold band | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_agreement_reliability_uncertainty_ribbon` | 可视化分析・可视化・统计 | Agreement reliability - Uncertainty ribbon | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_agreement_reliability_violin_summary` | 可视化分析・可视化・统计・小提琴图・概览 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_agreement_reliability_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_assignment_flow_annotated_reference_view` | 可视化分析・可视化・统计 | Assignment flow - Annotated reference view | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_assignment_flow_boxen_interval` | 可视化分析・可视化・统计 | Assignment flow - Boxen interval plot | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_assignment_flow_comparative_lollipop` | 可视化分析・可视化・统计 | Assignment flow - Comparative lollipop plot | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_assignment_flow_density_ridge` | 可视化分析・可视化・统计・密度图 | 密度图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_assignment_flow_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_assignment_flow_diagnostic_panel` | 可视化分析・可视化・统计・诊断・面板 | Assignment flow - Diagnostic panel | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_assignment_flow_ecdf_step_view` | 可视化分析・可视化・统计・经验分布图 | 经验分布图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_assignment_flow_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_assignment_flow_flow_transition_map` | 可视化分析・可视化・统计 | Assignment flow - Flow transition map | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_assignment_flow_forest_interval_plot` | 可视化分析・可视化・统计・随机森林 | 随机森林 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_assignment_flow_heatmap_matrix` | 可视化分析・可视化・统计・热力矩阵 | 热力矩阵 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_assignment_flow_histogram_facets` | 可视化分析・可视化・统计・直方图 | 直方图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_assignment_flow_map_choropleth_layer` | 可视化分析・可视化・统计・分级着色地图 | 流向地图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_assignment_flow_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_assignment_flow_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_assignment_flow_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_assignment_flow_map_choropleth_layer` | 可视化分析・流向地图 | 流向地图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_assignment_flow_mosaic_tile_view` | 可视化分析・可视化・统计 | Assignment flow - Mosaic tile view | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_assignment_flow_network_node_link` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_assignment_flow_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_assignment_flow_qq_reference_plot` | 可视化分析・可视化・统计 | Assignment flow - Q-Q reference plot | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_assignment_flow_quantile_band` | 可视化分析・可视化・统计・分位数 | 分位数 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_assignment_flow_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_assignment_flow_raincloud_view` | 可视化分析・可视化・统计 | Assignment flow - Raincloud view | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_assignment_flow_rank_interval_plot` | 可视化分析・可视化・统计・排名 | 排名 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_assignment_flow_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_assignment_flow_residual_annotation_map` | 可视化分析・可视化・统计 | Assignment flow - Residual annotation map | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_assignment_flow_slope_change_view` | 可视化分析・可视化・统计 | Assignment flow - Slope change view | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_assignment_flow_small_multiple_grid` | 可视化分析・可视化・统计 | 小多图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_assignment_flow_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_assignment_flow_stratified_dotplot` | 可视化分析・可视化・统计 | Assignment flow - Stratified dot plot | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_assignment_flow_threshold_band` | 可视化分析・可视化・统计 | Assignment flow - Threshold band | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_assignment_flow_uncertainty_ribbon` | 可视化分析・可视化・统计 | Assignment flow - Uncertainty ribbon | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_assignment_flow_violin_summary` | 可视化分析・可视化・统计・小提琴图・概览 | 小提琴图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_assignment_flow_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_autocorrelation_pattern_annotated_reference_view` | 可视化分析・可视化・统计 | Autocorrelation pattern - Annotated reference view | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_autocorrelation_pattern_boxen_interval` | 可视化分析・可视化・统计 | Autocorrelation pattern - Boxen interval plot | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_autocorrelation_pattern_comparative_lollipop` | 可视化分析・可视化・统计 | Autocorrelation pattern - Comparative lollipop plot | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_autocorrelation_pattern_density_ridge` | 可视化分析・可视化・统计・密度图 | 密度图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_autocorrelation_pattern_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_autocorrelation_pattern_diagnostic_panel` | 可视化分析・可视化・统计・诊断・面板 | Autocorrelation pattern - Diagnostic panel | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_autocorrelation_pattern_ecdf_step_view` | 可视化分析・可视化・统计・经验分布图 | 经验分布图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_autocorrelation_pattern_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_autocorrelation_pattern_flow_transition_map` | 可视化分析・可视化・统计 | Autocorrelation pattern - Flow transition map | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_autocorrelation_pattern_forest_interval_plot` | 可视化分析・可视化・统计・随机森林 | 随机森林 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_autocorrelation_pattern_heatmap_matrix` | 可视化分析・可视化・统计・热力矩阵 | 热力矩阵 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_autocorrelation_pattern_histogram_facets` | 可视化分析・可视化・统计・直方图 | 直方图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_autocorrelation_pattern_map_choropleth_layer` | 可视化分析・可视化・统计・分级着色地图 | 分级着色地图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_autocorrelation_pattern_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_autocorrelation_pattern_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_autocorrelation_pattern_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_autocorrelation_pattern_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_autocorrelation_pattern_mosaic_tile_view` | 可视化分析・可视化・统计 | Autocorrelation pattern - Mosaic tile view | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_autocorrelation_pattern_network_node_link` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_autocorrelation_pattern_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_autocorrelation_pattern_qq_reference_plot` | 可视化分析・可视化・统计 | Autocorrelation pattern - Q-Q reference plot | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_autocorrelation_pattern_quantile_band` | 可视化分析・可视化・统计・分位数 | 分位数 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_autocorrelation_pattern_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_autocorrelation_pattern_raincloud_view` | 可视化分析・可视化・统计 | Autocorrelation pattern - Raincloud view | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_autocorrelation_pattern_rank_interval_plot` | 可视化分析・可视化・统计・排名 | 排名 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_autocorrelation_pattern_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_autocorrelation_pattern_residual_annotation_map` | 可视化分析・可视化・统计 | Autocorrelation pattern - Residual annotation map | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_autocorrelation_pattern_slope_change_view` | 可视化分析・可视化・统计 | Autocorrelation pattern - Slope change view | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_autocorrelation_pattern_small_multiple_grid` | 可视化分析・可视化・统计 | 小多图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_autocorrelation_pattern_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_autocorrelation_pattern_stratified_dotplot` | 可视化分析・可视化・统计 | Autocorrelation pattern - Stratified dot plot | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_autocorrelation_pattern_threshold_band` | 可视化分析・可视化・统计 | Autocorrelation pattern - Threshold band | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_autocorrelation_pattern_uncertainty_ribbon` | 可视化分析・可视化・统计 | Autocorrelation pattern - Uncertainty ribbon | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_autocorrelation_pattern_violin_summary` | 可视化分析・可视化・统计・小提琴图・概览 | 小提琴图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_autocorrelation_pattern_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_baseline_covariate_balance_annotated_reference_view` | 可视化分析・可视化・统计・基线 | Baseline covariate balance - Annotated reference view | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_baseline_covariate_balance_boxen_interval` | 可视化分析・可视化・统计・基线 | Baseline covariate balance - Boxen interval plot | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_baseline_covariate_balance_comparative_lollipop` | 可视化分析・可视化・统计・基线 | Baseline covariate balance - Comparative lollipop plot | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_baseline_covariate_balance_density_ridge` | 可视化分析・可视化・统计・基线・密度图 | 密度图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_baseline_covariate_balance_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_baseline_covariate_balance_diagnostic_panel` | 可视化分析・可视化・统计・基线・诊断・面板 | Baseline covariate balance - Diagnostic panel | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_baseline_covariate_balance_ecdf_step_view` | 可视化分析・可视化・统计・基线・经验分布图 | 经验分布图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_baseline_covariate_balance_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_baseline_covariate_balance_flow_transition_map` | 可视化分析・可视化・统计・基线 | Baseline covariate balance - Flow transition map | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_baseline_covariate_balance_forest_interval_plot` | 可视化分析・可视化・统计・基线・随机森林 | 随机森林 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_baseline_covariate_balance_heatmap_matrix` | 可视化分析・可视化・统计・基线・热力矩阵 | 热力矩阵 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_baseline_covariate_balance_histogram_facets` | 可视化分析・可视化・统计・基线・直方图 | 直方图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_baseline_covariate_balance_map_choropleth_layer` | 可视化分析・可视化・统计・基线・分级着色地图 | 分级着色地图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_baseline_covariate_balance_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_baseline_covariate_balance_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_baseline_covariate_balance_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_baseline_covariate_balance_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_baseline_covariate_balance_mosaic_tile_view` | 可视化分析・可视化・统计・基线 | Baseline covariate balance - Mosaic tile view | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_baseline_covariate_balance_network_node_link` | 可视化分析・可视化・统计・基线・网络 | 关系网络 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_baseline_covariate_balance_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_baseline_covariate_balance_qq_reference_plot` | 可视化分析・可视化・统计・基线 | Baseline covariate balance - Q-Q reference plot | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_baseline_covariate_balance_quantile_band` | 可视化分析・可视化・统计・基线・分位数 | 分位数 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_baseline_covariate_balance_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_baseline_covariate_balance_raincloud_view` | 可视化分析・可视化・统计・基线 | Baseline covariate balance - Raincloud view | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_baseline_covariate_balance_rank_interval_plot` | 可视化分析・可视化・统计・基线・排名 | 排名 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_baseline_covariate_balance_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_baseline_covariate_balance_residual_annotation_map` | 可视化分析・可视化・统计・基线 | Baseline covariate balance - Residual annotation map | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_baseline_covariate_balance_slope_change_view` | 可视化分析・可视化・统计・基线 | Baseline covariate balance - Slope change view | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_baseline_covariate_balance_small_multiple_grid` | 可视化分析・可视化・统计・基线 | 小多图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_baseline_covariate_balance_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_baseline_covariate_balance_stratified_dotplot` | 可视化分析・可视化・统计・基线 | Baseline covariate balance - Stratified dot plot | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_baseline_covariate_balance_threshold_band` | 可视化分析・可视化・统计・基线 | Baseline covariate balance - Threshold band | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_baseline_covariate_balance_uncertainty_ribbon` | 可视化分析・可视化・统计・基线 | Baseline covariate balance - Uncertainty ribbon | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_baseline_covariate_balance_violin_summary` | 可视化分析・可视化・统计・基线・小提琴图・概览 | 小提琴图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_baseline_covariate_balance_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_block_design_balance_annotated_reference_view` | 可视化分析・可视化・统计 | Block design balance - Annotated reference view | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_block_design_balance_boxen_interval` | 可视化分析・可视化・统计 | Block design balance - Boxen interval plot | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_block_design_balance_comparative_lollipop` | 可视化分析・可视化・统计 | Block design balance - Comparative lollipop plot | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_block_design_balance_density_ridge` | 可视化分析・可视化・统计・密度图 | 密度图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_block_design_balance_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_block_design_balance_diagnostic_panel` | 可视化分析・可视化・统计・诊断・面板 | Block design balance - Diagnostic panel | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_block_design_balance_ecdf_step_view` | 可视化分析・可视化・统计・经验分布图 | 经验分布图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_block_design_balance_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_block_design_balance_flow_transition_map` | 可视化分析・可视化・统计 | Block design balance - Flow transition map | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_block_design_balance_forest_interval_plot` | 可视化分析・可视化・统计・随机森林 | 随机森林 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_block_design_balance_heatmap_matrix` | 可视化分析・可视化・统计・热力矩阵 | 热力矩阵 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_block_design_balance_histogram_facets` | 可视化分析・可视化・统计・直方图 | 直方图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_block_design_balance_map_choropleth_layer` | 可视化分析・可视化・统计・分级着色地图 | 分级着色地图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_block_design_balance_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_block_design_balance_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_block_design_balance_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_block_design_balance_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_block_design_balance_mosaic_tile_view` | 可视化分析・可视化・统计 | Block design balance - Mosaic tile view | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_block_design_balance_network_node_link` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_block_design_balance_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_block_design_balance_qq_reference_plot` | 可视化分析・可视化・统计 | Block design balance - Q-Q reference plot | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_block_design_balance_quantile_band` | 可视化分析・可视化・统计・分位数 | 分位数 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_block_design_balance_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_block_design_balance_raincloud_view` | 可视化分析・可视化・统计 | Block design balance - Raincloud view | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_block_design_balance_rank_interval_plot` | 可视化分析・可视化・统计・排名 | 排名 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_block_design_balance_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_block_design_balance_residual_annotation_map` | 可视化分析・可视化・统计 | Block design balance - Residual annotation map | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_block_design_balance_slope_change_view` | 可视化分析・可视化・统计 | Block design balance - Slope change view | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_block_design_balance_small_multiple_grid` | 可视化分析・可视化・统计 | 小多图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_block_design_balance_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_block_design_balance_stratified_dotplot` | 可视化分析・可视化・统计 | Block design balance - Stratified dot plot | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_block_design_balance_threshold_band` | 可视化分析・可视化・统计 | Block design balance - Threshold band | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_block_design_balance_uncertainty_ribbon` | 可视化分析・可视化・统计 | Block design balance - Uncertainty ribbon | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_block_design_balance_violin_summary` | 可视化分析・可视化・统计・小提琴图・概览 | 小提琴图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_block_design_balance_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_calibration_annotated_reference_view` | 可视化分析・可视化・统计 | Calibration diagnostic - Annotated reference view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_calibration_boxen_interval` | 可视化分析・可视化・统计 | Calibration diagnostic - Boxen interval plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_calibration_by_group_annotated_reference_view` | 可视化分析・可视化・统计 | Calibration by group - Annotated reference view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_calibration_by_group_boxen_interval` | 可视化分析・可视化・统计 | Calibration by group - Boxen interval plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_calibration_by_group_comparative_lollipop` | 可视化分析・可视化・统计 | Calibration by group - Comparative lollipop plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_calibration_by_group_density_ridge` | 可视化分析・可视化・统计・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_calibration_by_group_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_calibration_by_group_diagnostic_panel` | 可视化分析・可视化・统计・诊断・面板 | Calibration by group - Diagnostic panel | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_calibration_by_group_ecdf_step_view` | 可视化分析・可视化・统计・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_calibration_by_group_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_calibration_by_group_flow_transition_map` | 可视化分析・可视化・统计 | Calibration by group - Flow transition map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_calibration_by_group_forest_interval_plot` | 可视化分析・可视化・统计・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_calibration_by_group_heatmap_matrix` | 可视化分析・可视化・统计・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_calibration_by_group_histogram_facets` | 可视化分析・可视化・统计・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_calibration_by_group_map_choropleth_layer` | 可视化分析・可视化・统计・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_calibration_by_group_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_calibration_by_group_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_calibration_by_group_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_calibration_by_group_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_calibration_by_group_mosaic_tile_view` | 可视化分析・可视化・统计 | Calibration by group - Mosaic tile view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_calibration_by_group_network_node_link` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_calibration_by_group_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_calibration_by_group_qq_reference_plot` | 可视化分析・可视化・统计 | Calibration by group - Q-Q reference plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_calibration_by_group_quantile_band` | 可视化分析・可视化・统计・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_calibration_by_group_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_calibration_by_group_raincloud_view` | 可视化分析・可视化・统计 | Calibration by group - Raincloud view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_calibration_by_group_rank_interval_plot` | 可视化分析・可视化・统计・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_calibration_by_group_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_calibration_by_group_residual_annotation_map` | 可视化分析・可视化・统计 | Calibration by group - Residual annotation map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_calibration_by_group_slope_change_view` | 可视化分析・可视化・统计 | Calibration by group - Slope change view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_calibration_by_group_small_multiple_grid` | 可视化分析・可视化・统计 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_calibration_by_group_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_calibration_by_group_stratified_dotplot` | 可视化分析・可视化・统计 | Calibration by group - Stratified dot plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_calibration_by_group_threshold_band` | 可视化分析・可视化・统计 | Calibration by group - Threshold band | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_calibration_by_group_uncertainty_ribbon` | 可视化分析・可视化・统计 | Calibration by group - Uncertainty ribbon | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_calibration_by_group_violin_summary` | 可视化分析・可视化・统计・小提琴图・概览 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_calibration_by_group_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_calibration_comparative_lollipop` | 可视化分析・可视化・统计 | Calibration diagnostic - Comparative lollipop plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_calibration_density_ridge` | 可视化分析・可视化・统计・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_calibration_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_calibration_diagnostic_panel` | 可视化分析・可视化・统计・诊断・面板 | Calibration diagnostic - Diagnostic panel | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_calibration_ecdf_step_view` | 可视化分析・可视化・统计・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_calibration_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_calibration_flow_transition_map` | 可视化分析・可视化・统计 | Calibration diagnostic - Flow transition map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_calibration_forest_interval_plot` | 可视化分析・可视化・统计・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_calibration_heatmap_matrix` | 可视化分析・可视化・统计・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_calibration_histogram_facets` | 可视化分析・可视化・统计・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_calibration_map_choropleth_layer` | 可视化分析・可视化・统计・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_calibration_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_calibration_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_calibration_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_calibration_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_calibration_mosaic_tile_view` | 可视化分析・可视化・统计 | Calibration diagnostic - Mosaic tile view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_calibration_network_node_link` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_calibration_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_calibration_qq_reference_plot` | 可视化分析・可视化・统计 | Calibration diagnostic - Q-Q reference plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_calibration_quantile_band` | 可视化分析・可视化・统计・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_calibration_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_calibration_raincloud_view` | 可视化分析・可视化・统计 | Calibration diagnostic - Raincloud view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_calibration_rank_interval_plot` | 可视化分析・可视化・统计・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_calibration_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_calibration_residual_annotation_map` | 可视化分析・可视化・统计 | Calibration diagnostic - Residual annotation map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_calibration_slope_change_view` | 可视化分析・可视化・统计 | Calibration diagnostic - Slope change view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_calibration_small_multiple_grid` | 可视化分析・可视化・统计 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_calibration_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_calibration_stratified_dotplot` | 可视化分析・可视化・统计 | Calibration diagnostic - Stratified dot plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_calibration_threshold_band` | 可视化分析・可视化・统计 | Calibration diagnostic - Threshold band | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_calibration_uncertainty_ribbon` | 可视化分析・可视化・统计 | Calibration diagnostic - Uncertainty ribbon | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_calibration_violin_summary` | 可视化分析・可视化・统计・小提琴图・概览 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_calibration_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_categorical_composition_annotated_reference_view` | 可视化分析・可视化・统计 | Categorical composition - Annotated reference view | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_categorical_composition_boxen_interval` | 可视化分析・可视化・统计 | Categorical composition - Boxen interval plot | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_categorical_composition_comparative_lollipop` | 可视化分析・可视化・统计 | Categorical composition - Comparative lollipop plot | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_categorical_composition_density_ridge` | 可视化分析・可视化・统计・密度图 | 密度图 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_categorical_composition_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_categorical_composition_diagnostic_panel` | 可视化分析・可视化・统计・诊断・面板 | Categorical composition - Diagnostic panel | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_categorical_composition_ecdf_step_view` | 可视化分析・可视化・统计・经验分布图 | 经验分布图 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_categorical_composition_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_categorical_composition_flow_transition_map` | 可视化分析・可视化・统计 | Categorical composition - Flow transition map | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_categorical_composition_forest_interval_plot` | 可视化分析・可视化・统计・随机森林 | 随机森林 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_categorical_composition_heatmap_matrix` | 可视化分析・可视化・统计・热力矩阵 | 热力矩阵 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_categorical_composition_histogram_facets` | 可视化分析・可视化・统计・直方图 | 直方图 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_categorical_composition_map_choropleth_layer` | 可视化分析・可视化・统计・分级着色地图 | 分级着色地图 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_categorical_composition_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_categorical_composition_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_categorical_composition_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_categorical_composition_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_categorical_composition_mosaic_tile_view` | 可视化分析・可视化・统计 | Categorical composition - Mosaic tile view | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_categorical_composition_network_node_link` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_categorical_composition_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_categorical_composition_qq_reference_plot` | 可视化分析・可视化・统计 | Categorical composition - Q-Q reference plot | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_categorical_composition_quantile_band` | 可视化分析・可视化・统计・分位数 | 分位数 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_categorical_composition_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_categorical_composition_raincloud_view` | 可视化分析・可视化・统计 | Categorical composition - Raincloud view | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_categorical_composition_rank_interval_plot` | 可视化分析・可视化・统计・排名 | 排名 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_categorical_composition_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_categorical_composition_residual_annotation_map` | 可视化分析・可视化・统计 | Categorical composition - Residual annotation map | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_categorical_composition_slope_change_view` | 可视化分析・可视化・统计 | Categorical composition - Slope change view | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_categorical_composition_small_multiple_grid` | 可视化分析・可视化・统计 | 小多图 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_categorical_composition_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_categorical_composition_stratified_dotplot` | 可视化分析・可视化・统计 | Categorical composition - Stratified dot plot | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_categorical_composition_threshold_band` | 可视化分析・可视化・统计 | Categorical composition - Threshold band | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_categorical_composition_uncertainty_ribbon` | 可视化分析・可视化・统计 | Categorical composition - Uncertainty ribbon | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_categorical_composition_violin_summary` | 可视化分析・可视化・统计・小提琴图・概览 | 小提琴图 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_categorical_composition_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_causal_balance_annotated_reference_view` | 可视化分析・可视化・统计・因果 | Causal balance - Annotated reference view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_causal_balance_boxen_interval` | 可视化分析・可视化・统计・因果 | Causal balance - Boxen interval plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_causal_balance_comparative_lollipop` | 可视化分析・可视化・统计・因果 | Causal balance - Comparative lollipop plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_causal_balance_density_ridge` | 可视化分析・可视化・统计・因果・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_causal_balance_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_causal_balance_diagnostic_panel` | 可视化分析・可视化・统计・因果・诊断・面板 | Causal balance - Diagnostic panel | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_causal_balance_ecdf_step_view` | 可视化分析・可视化・统计・因果・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_causal_balance_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_causal_balance_flow_transition_map` | 可视化分析・可视化・统计・因果 | Causal balance - Flow transition map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_causal_balance_forest_interval_plot` | 可视化分析・可视化・统计・因果・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_causal_balance_heatmap_matrix` | 可视化分析・可视化・统计・因果・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_causal_balance_histogram_facets` | 可视化分析・可视化・统计・因果・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_causal_balance_map_choropleth_layer` | 可视化分析・可视化・统计・因果・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_causal_balance_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_causal_balance_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_causal_balance_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_causal_balance_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_causal_balance_mosaic_tile_view` | 可视化分析・可视化・统计・因果 | Causal balance - Mosaic tile view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_causal_balance_network_node_link` | 可视化分析・可视化・统计・因果・网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_causal_balance_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_causal_balance_qq_reference_plot` | 可视化分析・可视化・统计・因果 | Causal balance - Q-Q reference plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_causal_balance_quantile_band` | 可视化分析・可视化・统计・因果・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_causal_balance_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_causal_balance_raincloud_view` | 可视化分析・可视化・统计・因果 | Causal balance - Raincloud view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_causal_balance_rank_interval_plot` | 可视化分析・可视化・统计・因果・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_causal_balance_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_causal_balance_residual_annotation_map` | 可视化分析・可视化・统计・因果 | Causal balance - Residual annotation map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_causal_balance_slope_change_view` | 可视化分析・可视化・统计・因果 | Causal balance - Slope change view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_causal_balance_small_multiple_grid` | 可视化分析・可视化・统计・因果 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_causal_balance_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_causal_balance_stratified_dotplot` | 可视化分析・可视化・统计・因果 | Causal balance - Stratified dot plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_causal_balance_threshold_band` | 可视化分析・可视化・统计・因果 | Causal balance - Threshold band | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_causal_balance_uncertainty_ribbon` | 可视化分析・可视化・统计・因果 | Causal balance - Uncertainty ribbon | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_causal_balance_violin_summary` | 可视化分析・可视化・统计・因果・小提琴图・概览 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_change_point_annotated_reference_view` | 可视化分析・可视化・统计 | 拐点 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_change_point_boxen_interval` | 可视化分析・可视化・统计 | 拐点 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_change_point_comparative_lollipop` | 可视化分析・可视化・统计 | 拐点 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_change_point_density_ridge` | 可视化分析・可视化・统计・密度图 | 拐点 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_change_point_diagnostic_panel` | 可视化分析・可视化・统计・诊断・面板 | 拐点 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_change_point_ecdf_step_view` | 可视化分析・可视化・统计・经验分布图 | 拐点 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_change_point_flow_transition_map` | 可视化分析・可视化・统计 | 拐点 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_change_point_forest_interval_plot` | 可视化分析・可视化・统计・随机森林 | 拐点 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_change_point_heatmap_matrix` | 可视化分析・可视化・统计・热力矩阵 | 拐点 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_change_point_histogram_facets` | 可视化分析・可视化・统计・直方图 | 拐点 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_change_point_map_choropleth_layer` | 可视化分析・可视化・统计・分级着色地图 | 拐点 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_change_point_mosaic_tile_view` | 可视化分析・可视化・统计 | 拐点 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_change_point_network_node_link` | 可视化分析・可视化・统计・网络 | 拐点 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_change_point_qq_reference_plot` | 可视化分析・可视化・统计 | 拐点 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_change_point_quantile_band` | 可视化分析・可视化・统计・分位数 | 拐点 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_change_point_raincloud_view` | 可视化分析・可视化・统计 | 拐点 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_change_point_rank_interval_plot` | 可视化分析・可视化・统计・排名 | 拐点 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_change_point_residual_annotation_map` | 可视化分析・可视化・统计 | 拐点 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_change_point_slope_change_view` | 可视化分析・可视化・统计 | 拐点 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_change_point_small_multiple_grid` | 可视化分析・可视化・统计 | 拐点 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_change_point_stratified_dotplot` | 可视化分析・可视化・统计 | 拐点 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_change_point_threshold_band` | 可视化分析・可视化・统计 | 拐点 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_change_point_uncertainty_ribbon` | 可视化分析・可视化・统计 | 拐点 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_change_point_violin_summary` | 可视化分析・可视化・统计・小提琴图・概览 | 拐点 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_causal_balance_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_change_point_annotated_reference_view` | 可视化分析・拐点 | 拐点 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_change_point_boxen_interval` | 可视化分析・拐点 | 拐点 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_change_point_comparative_lollipop` | 可视化分析・拐点 | 拐点 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_change_point_density_ridge` | 可视化分析・拐点 | 拐点 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_change_point_diagnostic_panel` | 可视化分析・拐点 | 拐点 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_change_point_ecdf_step_view` | 可视化分析・拐点 | 拐点 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_change_point_flow_transition_map` | 可视化分析・拐点 | 拐点 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_change_point_forest_interval_plot` | 可视化分析・拐点 | 拐点 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_change_point_heatmap_matrix` | 可视化分析・拐点 | 拐点 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_change_point_histogram_facets` | 可视化分析・拐点 | 拐点 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_change_point_map_choropleth_layer` | 可视化分析・拐点 | 拐点 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_change_point_mosaic_tile_view` | 可视化分析・拐点 | 拐点 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_change_point_network_node_link` | 可视化分析・拐点 | 拐点 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_change_point_qq_reference_plot` | 可视化分析・拐点 | 拐点 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_change_point_quantile_band` | 可视化分析・拐点 | 拐点 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_change_point_raincloud_view` | 可视化分析・拐点 | 拐点 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_change_point_rank_interval_plot` | 可视化分析・拐点 | 拐点 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_change_point_residual_annotation_map` | 可视化分析・拐点 | 拐点 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_change_point_slope_change_view` | 可视化分析・拐点 | 拐点 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_change_point_small_multiple_grid` | 可视化分析・拐点 | 拐点 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_change_point_stratified_dotplot` | 可视化分析・拐点 | 拐点 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_change_point_threshold_band` | 可视化分析・拐点 | 拐点 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_change_point_uncertainty_ribbon` | 可视化分析・拐点 | 拐点 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_change_point_violin_summary` | 可视化分析・拐点 | 拐点 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_classifier_threshold_annotated_reference_view` | 可视化分析・可视化・统计 | Classifier threshold - Annotated reference view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_classifier_threshold_boxen_interval` | 可视化分析・可视化・统计 | Classifier threshold - Boxen interval plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_classifier_threshold_comparative_lollipop` | 可视化分析・可视化・统计 | Classifier threshold - Comparative lollipop plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_classifier_threshold_density_ridge` | 可视化分析・可视化・统计・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_classifier_threshold_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_classifier_threshold_diagnostic_panel` | 可视化分析・可视化・统计・诊断・面板 | Classifier threshold - Diagnostic panel | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_classifier_threshold_ecdf_step_view` | 可视化分析・可视化・统计・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_classifier_threshold_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_classifier_threshold_flow_transition_map` | 可视化分析・可视化・统计 | Classifier threshold - Flow transition map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_classifier_threshold_forest_interval_plot` | 可视化分析・可视化・统计・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_classifier_threshold_heatmap_matrix` | 可视化分析・可视化・统计・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_classifier_threshold_histogram_facets` | 可视化分析・可视化・统计・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_classifier_threshold_map_choropleth_layer` | 可视化分析・可视化・统计・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_classifier_threshold_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_classifier_threshold_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_classifier_threshold_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_classifier_threshold_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_classifier_threshold_mosaic_tile_view` | 可视化分析・可视化・统计 | Classifier threshold - Mosaic tile view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_classifier_threshold_network_node_link` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_classifier_threshold_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_classifier_threshold_qq_reference_plot` | 可视化分析・可视化・统计 | Classifier threshold - Q-Q reference plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_classifier_threshold_quantile_band` | 可视化分析・可视化・统计・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_classifier_threshold_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_classifier_threshold_raincloud_view` | 可视化分析・可视化・统计 | Classifier threshold - Raincloud view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_classifier_threshold_rank_interval_plot` | 可视化分析・可视化・统计・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_classifier_threshold_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_classifier_threshold_residual_annotation_map` | 可视化分析・可视化・统计 | Classifier threshold - Residual annotation map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_classifier_threshold_slope_change_view` | 可视化分析・可视化・统计 | Classifier threshold - Slope change view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_classifier_threshold_small_multiple_grid` | 可视化分析・可视化・统计 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_classifier_threshold_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_classifier_threshold_stratified_dotplot` | 可视化分析・可视化・统计 | Classifier threshold - Stratified dot plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_classifier_threshold_threshold_band` | 可视化分析・可视化・统计 | Classifier threshold - Threshold band | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_classifier_threshold_uncertainty_ribbon` | 可视化分析・可视化・统计 | Classifier threshold - Uncertainty ribbon | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_classifier_threshold_violin_summary` | 可视化分析・可视化・统计・小提琴图・概览 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_classifier_threshold_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_classroom_fairness_annotated_reference_view` | 可视化分析・可视化・统计 | Classroom fairness - Annotated reference view | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_classroom_fairness_boxen_interval` | 可视化分析・可视化・统计 | Classroom fairness - Boxen interval plot | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_classroom_fairness_comparative_lollipop` | 可视化分析・可视化・统计 | Classroom fairness - Comparative lollipop plot | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_classroom_fairness_density_ridge` | 可视化分析・可视化・统计・密度图 | 密度图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_classroom_fairness_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_classroom_fairness_diagnostic_panel` | 可视化分析・可视化・统计・诊断・面板 | Classroom fairness - Diagnostic panel | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_classroom_fairness_ecdf_step_view` | 可视化分析・可视化・统计・经验分布图 | 经验分布图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_classroom_fairness_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_classroom_fairness_flow_transition_map` | 可视化分析・可视化・统计 | Classroom fairness - Flow transition map | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_classroom_fairness_forest_interval_plot` | 可视化分析・可视化・统计・随机森林 | 随机森林 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_classroom_fairness_heatmap_matrix` | 可视化分析・可视化・统计・热力矩阵 | 热力矩阵 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_classroom_fairness_histogram_facets` | 可视化分析・可视化・统计・直方图 | 直方图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_classroom_fairness_map_choropleth_layer` | 可视化分析・可视化・统计・分级着色地图 | 分级着色地图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_classroom_fairness_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_classroom_fairness_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_classroom_fairness_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_classroom_fairness_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_classroom_fairness_mosaic_tile_view` | 可视化分析・可视化・统计 | Classroom fairness - Mosaic tile view | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_classroom_fairness_network_node_link` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_classroom_fairness_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_classroom_fairness_qq_reference_plot` | 可视化分析・可视化・统计 | Classroom fairness - Q-Q reference plot | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_classroom_fairness_quantile_band` | 可视化分析・可视化・统计・分位数 | 分位数 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_classroom_fairness_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_classroom_fairness_raincloud_view` | 可视化分析・可视化・统计 | Classroom fairness - Raincloud view | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_classroom_fairness_rank_interval_plot` | 可视化分析・可视化・统计・排名 | 排名 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_classroom_fairness_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_classroom_fairness_residual_annotation_map` | 可视化分析・可视化・统计 | Classroom fairness - Residual annotation map | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_classroom_fairness_slope_change_view` | 可视化分析・可视化・统计 | Classroom fairness - Slope change view | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_classroom_fairness_small_multiple_grid` | 可视化分析・可视化・统计 | 小多图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_classroom_fairness_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_classroom_fairness_stratified_dotplot` | 可视化分析・可视化・统计 | Classroom fairness - Stratified dot plot | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_classroom_fairness_threshold_band` | 可视化分析・可视化・统计 | Classroom fairness - Threshold band | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_classroom_fairness_uncertainty_ribbon` | 可视化分析・可视化・统计 | Classroom fairness - Uncertainty ribbon | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_classroom_fairness_violin_summary` | 可视化分析・可视化・统计・小提琴图・概览 | 小提琴图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_classroom_fairness_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_clinical_endpoint_annotated_reference_view` | 可视化分析・可视化・统计 | Clinical endpoint - Annotated reference view | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_clinical_endpoint_boxen_interval` | 可视化分析・可视化・统计 | Clinical endpoint - Boxen interval plot | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_clinical_endpoint_comparative_lollipop` | 可视化分析・可视化・统计 | Clinical endpoint - Comparative lollipop plot | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_clinical_endpoint_density_ridge` | 可视化分析・可视化・统计・密度图 | 密度图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_clinical_endpoint_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_clinical_endpoint_diagnostic_panel` | 可视化分析・可视化・统计・诊断・面板 | Clinical endpoint - Diagnostic panel | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_clinical_endpoint_ecdf_step_view` | 可视化分析・可视化・统计・经验分布图 | 经验分布图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_clinical_endpoint_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_clinical_endpoint_flow_transition_map` | 可视化分析・可视化・统计 | Clinical endpoint - Flow transition map | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_clinical_endpoint_forest_interval_plot` | 可视化分析・可视化・统计・随机森林 | 随机森林 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_clinical_endpoint_heatmap_matrix` | 可视化分析・可视化・统计・热力矩阵 | 热力矩阵 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_clinical_endpoint_histogram_facets` | 可视化分析・可视化・统计・直方图 | 直方图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_clinical_endpoint_map_choropleth_layer` | 可视化分析・可视化・统计・分级着色地图 | 分级着色地图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_clinical_endpoint_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_clinical_endpoint_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_clinical_endpoint_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_clinical_endpoint_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_clinical_endpoint_mosaic_tile_view` | 可视化分析・可视化・统计 | Clinical endpoint - Mosaic tile view | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_clinical_endpoint_network_node_link` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_clinical_endpoint_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_clinical_endpoint_qq_reference_plot` | 可视化分析・可视化・统计 | Clinical endpoint - Q-Q reference plot | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_clinical_endpoint_quantile_band` | 可视化分析・可视化・统计・分位数 | 分位数 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_clinical_endpoint_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_clinical_endpoint_raincloud_view` | 可视化分析・可视化・统计 | Clinical endpoint - Raincloud view | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_clinical_endpoint_rank_interval_plot` | 可视化分析・可视化・统计・排名 | 排名 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_clinical_endpoint_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_clinical_endpoint_residual_annotation_map` | 可视化分析・可视化・统计 | Clinical endpoint - Residual annotation map | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_clinical_endpoint_slope_change_view` | 可视化分析・可视化・统计 | Clinical endpoint - Slope change view | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_clinical_endpoint_small_multiple_grid` | 可视化分析・可视化・统计 | 小多图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_clinical_endpoint_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_clinical_endpoint_stratified_dotplot` | 可视化分析・可视化・统计 | Clinical endpoint - Stratified dot plot | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_clinical_endpoint_threshold_band` | 可视化分析・可视化・统计 | Clinical endpoint - Threshold band | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_clinical_endpoint_uncertainty_ribbon` | 可视化分析・可视化・统计 | Clinical endpoint - Uncertainty ribbon | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_clinical_endpoint_violin_summary` | 可视化分析・可视化・统计・小提琴图・概览 | 小提琴图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_clinical_endpoint_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_cluster_structure_annotated_reference_view` | 可视化分析・可视化・统计・聚类 | Cluster structure - Annotated reference view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_cluster_structure_boxen_interval` | 可视化分析・可视化・统计・聚类 | Cluster structure - Boxen interval plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_cluster_structure_comparative_lollipop` | 可视化分析・可视化・统计・聚类 | Cluster structure - Comparative lollipop plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_cluster_structure_density_ridge` | 可视化分析・可视化・统计・聚类・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_cluster_structure_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_cluster_structure_diagnostic_panel` | 可视化分析・可视化・统计・聚类・诊断・面板 | Cluster structure - Diagnostic panel | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_cluster_structure_ecdf_step_view` | 可视化分析・可视化・统计・聚类・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_cluster_structure_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_cluster_structure_flow_transition_map` | 可视化分析・可视化・统计・聚类 | Cluster structure - Flow transition map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_cluster_structure_forest_interval_plot` | 可视化分析・可视化・统计・聚类・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_cluster_structure_heatmap_matrix` | 可视化分析・可视化・统计・聚类・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_cluster_structure_histogram_facets` | 可视化分析・可视化・统计・聚类・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_cluster_structure_map_choropleth_layer` | 可视化分析・可视化・统计・聚类・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_cluster_structure_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_cluster_structure_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_cluster_structure_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_cluster_structure_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_cluster_structure_mosaic_tile_view` | 可视化分析・可视化・统计・聚类 | Cluster structure - Mosaic tile view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_cluster_structure_network_node_link` | 可视化分析・可视化・统计・聚类・网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_cluster_structure_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_cluster_structure_qq_reference_plot` | 可视化分析・可视化・统计・聚类 | Cluster structure - Q-Q reference plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_cluster_structure_quantile_band` | 可视化分析・可视化・统计・聚类・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_cluster_structure_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_cluster_structure_raincloud_view` | 可视化分析・可视化・统计・聚类 | Cluster structure - Raincloud view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_cluster_structure_rank_interval_plot` | 可视化分析・可视化・统计・聚类・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_cluster_structure_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_cluster_structure_residual_annotation_map` | 可视化分析・可视化・统计・聚类 | Cluster structure - Residual annotation map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_cluster_structure_slope_change_view` | 可视化分析・可视化・统计・聚类 | Cluster structure - Slope change view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_cluster_structure_small_multiple_grid` | 可视化分析・可视化・统计・聚类 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_cluster_structure_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_cluster_structure_stratified_dotplot` | 可视化分析・可视化・统计・聚类 | Cluster structure - Stratified dot plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_cluster_structure_threshold_band` | 可视化分析・可视化・统计・聚类 | Cluster structure - Threshold band | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_cluster_structure_uncertainty_ribbon` | 可视化分析・可视化・统计・聚类 | Cluster structure - Uncertainty ribbon | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_cluster_structure_violin_summary` | 可视化分析・可视化・统计・聚类・小提琴图・概览 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_cluster_structure_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_community_structure_annotated_reference_view` | 可视化分析・可视化・统计 | Community structure - Annotated reference view | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_community_structure_boxen_interval` | 可视化分析・可视化・统计 | Community structure - Boxen interval plot | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_community_structure_comparative_lollipop` | 可视化分析・可视化・统计 | Community structure - Comparative lollipop plot | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_community_structure_density_ridge` | 可视化分析・可视化・统计・密度图 | 密度图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_community_structure_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_community_structure_diagnostic_panel` | 可视化分析・可视化・统计・诊断・面板 | Community structure - Diagnostic panel | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_community_structure_ecdf_step_view` | 可视化分析・可视化・统计・经验分布图 | 经验分布图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_community_structure_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_community_structure_flow_transition_map` | 可视化分析・可视化・统计 | Community structure - Flow transition map | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_community_structure_forest_interval_plot` | 可视化分析・可视化・统计・随机森林 | 随机森林 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_community_structure_heatmap_matrix` | 可视化分析・可视化・统计・热力矩阵 | 热力矩阵 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_community_structure_histogram_facets` | 可视化分析・可视化・统计・直方图 | 直方图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_community_structure_map_choropleth_layer` | 可视化分析・可视化・统计・分级着色地图 | 分级着色地图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_community_structure_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_community_structure_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_community_structure_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_community_structure_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_community_structure_mosaic_tile_view` | 可视化分析・可视化・统计 | Community structure - Mosaic tile view | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_community_structure_network_node_link` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_community_structure_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_community_structure_qq_reference_plot` | 可视化分析・可视化・统计 | Community structure - Q-Q reference plot | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_community_structure_quantile_band` | 可视化分析・可视化・统计・分位数 | 分位数 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_community_structure_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_community_structure_raincloud_view` | 可视化分析・可视化・统计 | Community structure - Raincloud view | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_community_structure_rank_interval_plot` | 可视化分析・可视化・统计・排名 | 排名 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_community_structure_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_community_structure_residual_annotation_map` | 可视化分析・可视化・统计 | Community structure - Residual annotation map | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_community_structure_slope_change_view` | 可视化分析・可视化・统计 | Community structure - Slope change view | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_community_structure_small_multiple_grid` | 可视化分析・可视化・统计 | 小多图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_community_structure_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_community_structure_stratified_dotplot` | 可视化分析・可视化・统计 | Community structure - Stratified dot plot | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_community_structure_threshold_band` | 可视化分析・可视化・统计 | Community structure - Threshold band | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_community_structure_uncertainty_ribbon` | 可视化分析・可视化・统计 | Community structure - Uncertainty ribbon | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_community_structure_violin_summary` | 可视化分析・可视化・统计・小提琴图・概览 | 小提琴图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_confusion_error_profile_annotated_reference_view` | 可视化分析・可视化・统计・误差・画像 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_confusion_error_profile_boxen_interval` | 可视化分析・可视化・统计・误差・画像 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_confusion_error_profile_comparative_lollipop` | 可视化分析・可视化・统计・误差・画像 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_confusion_error_profile_density_ridge` | 可视化分析・可视化・统计・误差・画像・密度图 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_confusion_error_profile_diagnostic_panel` | 可视化分析・可视化・统计・误差・画像・诊断・面板 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_confusion_error_profile_ecdf_step_view` | 可视化分析・可视化・统计・误差・画像・经验分布图 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_confusion_error_profile_flow_transition_map` | 可视化分析・可视化・统计・误差・画像 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_confusion_error_profile_forest_interval_plot` | 可视化分析・可视化・统计・误差・画像・随机森林 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_confusion_error_profile_heatmap_matrix` | 可视化分析・可视化・统计・误差・画像・热力矩阵 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_confusion_error_profile_histogram_facets` | 可视化分析・可视化・统计・误差・画像・直方图 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_confusion_error_profile_map_choropleth_layer` | 可视化分析・可视化・统计・误差・画像・分级着色地图 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_confusion_error_profile_mosaic_tile_view` | 可视化分析・可视化・统计・误差・画像 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_confusion_error_profile_network_node_link` | 可视化分析・可视化・统计・误差・画像・网络 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_confusion_error_profile_qq_reference_plot` | 可视化分析・可视化・统计・误差・画像 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_confusion_error_profile_quantile_band` | 可视化分析・可视化・统计・误差・画像・分位数 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_confusion_error_profile_raincloud_view` | 可视化分析・可视化・统计・误差・画像 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_confusion_error_profile_rank_interval_plot` | 可视化分析・可视化・统计・误差・画像・排名 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_confusion_error_profile_residual_annotation_map` | 可视化分析・可视化・统计・误差・画像 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_confusion_error_profile_slope_change_view` | 可视化分析・可视化・统计・误差・画像 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_confusion_error_profile_small_multiple_grid` | 可视化分析・可视化・统计・误差・画像 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_confusion_error_profile_stratified_dotplot` | 可视化分析・可视化・统计・误差・画像 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_confusion_error_profile_threshold_band` | 可视化分析・可视化・统计・误差・画像 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_confusion_error_profile_uncertainty_ribbon` | 可视化分析・可视化・统计・误差・画像 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_confusion_error_profile_violin_summary` | 可视化分析・可视化・统计・误差・画像・小提琴图・概览 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_community_structure_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_confusion_error_profile_annotated_reference_view` | 可视化分析・画像 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_confusion_error_profile_boxen_interval` | 可视化分析・画像 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_confusion_error_profile_comparative_lollipop` | 可视化分析・画像 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_confusion_error_profile_density_ridge` | 可视化分析・画像 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_confusion_error_profile_diagnostic_panel` | 可视化分析・画像 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_confusion_error_profile_ecdf_step_view` | 可视化分析・画像 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_confusion_error_profile_flow_transition_map` | 可视化分析・画像 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_confusion_error_profile_forest_interval_plot` | 可视化分析・画像 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_confusion_error_profile_heatmap_matrix` | 可视化分析・画像 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_confusion_error_profile_histogram_facets` | 可视化分析・画像 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_confusion_error_profile_map_choropleth_layer` | 可视化分析・画像 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_confusion_error_profile_mosaic_tile_view` | 可视化分析・画像 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_confusion_error_profile_network_node_link` | 可视化分析・画像 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_confusion_error_profile_qq_reference_plot` | 可视化分析・画像 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_confusion_error_profile_quantile_band` | 可视化分析・画像 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_confusion_error_profile_raincloud_view` | 可视化分析・画像 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_confusion_error_profile_rank_interval_plot` | 可视化分析・画像 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_confusion_error_profile_residual_annotation_map` | 可视化分析・画像 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_confusion_error_profile_slope_change_view` | 可视化分析・画像 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_confusion_error_profile_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_confusion_error_profile_stratified_dotplot` | 可视化分析・画像 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_confusion_error_profile_threshold_band` | 可视化分析・画像 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_confusion_error_profile_uncertainty_ribbon` | 可视化分析・画像 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_confusion_error_profile_violin_summary` | 可视化分析・画像 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_contingency_structure_annotated_reference_view` | 可视化分析・可视化・统计 | Contingency structure - Annotated reference view | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_contingency_structure_boxen_interval` | 可视化分析・可视化・统计 | Contingency structure - Boxen interval plot | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_contingency_structure_comparative_lollipop` | 可视化分析・可视化・统计 | Contingency structure - Comparative lollipop plot | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_contingency_structure_density_ridge` | 可视化分析・可视化・统计・密度图 | 密度图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_contingency_structure_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_contingency_structure_diagnostic_panel` | 可视化分析・可视化・统计・诊断・面板 | Contingency structure - Diagnostic panel | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_contingency_structure_ecdf_step_view` | 可视化分析・可视化・统计・经验分布图 | 经验分布图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_contingency_structure_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_contingency_structure_flow_transition_map` | 可视化分析・可视化・统计 | Contingency structure - Flow transition map | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_contingency_structure_forest_interval_plot` | 可视化分析・可视化・统计・随机森林 | 随机森林 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_contingency_structure_heatmap_matrix` | 可视化分析・可视化・统计・热力矩阵 | 热力矩阵 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_contingency_structure_histogram_facets` | 可视化分析・可视化・统计・直方图 | 直方图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_contingency_structure_map_choropleth_layer` | 可视化分析・可视化・统计・分级着色地图 | 分级着色地图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_contingency_structure_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_contingency_structure_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_contingency_structure_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_contingency_structure_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_contingency_structure_mosaic_tile_view` | 可视化分析・可视化・统计 | Contingency structure - Mosaic tile view | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_contingency_structure_network_node_link` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_contingency_structure_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_contingency_structure_qq_reference_plot` | 可视化分析・可视化・统计 | Contingency structure - Q-Q reference plot | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_contingency_structure_quantile_band` | 可视化分析・可视化・统计・分位数 | 分位数 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_contingency_structure_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_contingency_structure_raincloud_view` | 可视化分析・可视化・统计 | Contingency structure - Raincloud view | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_contingency_structure_rank_interval_plot` | 可视化分析・可视化・统计・排名 | 排名 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_contingency_structure_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_contingency_structure_residual_annotation_map` | 可视化分析・可视化・统计 | Contingency structure - Residual annotation map | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_contingency_structure_slope_change_view` | 可视化分析・可视化・统计 | Contingency structure - Slope change view | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_contingency_structure_small_multiple_grid` | 可视化分析・可视化・统计 | 小多图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_contingency_structure_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_contingency_structure_stratified_dotplot` | 可视化分析・可视化・统计 | Contingency structure - Stratified dot plot | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_contingency_structure_threshold_band` | 可视化分析・可视化・统计 | Contingency structure - Threshold band | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_contingency_structure_uncertainty_ribbon` | 可视化分析・可视化・统计 | Contingency structure - Uncertainty ribbon | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_contingency_structure_violin_summary` | 可视化分析・可视化・统计・小提琴图・概览 | 小提琴图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_correlation_structure_annotated_reference_view` | 可视化分析・可视化・统计・相关性 | 相关性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_correlation_structure_boxen_interval` | 可视化分析・可视化・统计・相关性 | 相关性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_correlation_structure_comparative_lollipop` | 可视化分析・可视化・统计・相关性 | 相关性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_correlation_structure_density_ridge` | 可视化分析・可视化・统计・相关性・密度图 | 相关性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_correlation_structure_diagnostic_panel` | 可视化分析・可视化・统计・相关性・诊断・面板 | 相关性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_correlation_structure_ecdf_step_view` | 可视化分析・可视化・统计・相关性・经验分布图 | 相关性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_correlation_structure_flow_transition_map` | 可视化分析・可视化・统计・相关性 | 相关性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_correlation_structure_forest_interval_plot` | 可视化分析・可视化・统计・相关性・随机森林 | 相关性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_correlation_structure_heatmap_matrix` | 可视化分析・可视化・统计・相关性・热力矩阵 | 相关性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_correlation_structure_histogram_facets` | 可视化分析・可视化・统计・相关性・直方图 | 相关性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_correlation_structure_map_choropleth_layer` | 可视化分析・可视化・统计・相关性・分级着色地图 | 相关性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_correlation_structure_mosaic_tile_view` | 可视化分析・可视化・统计・相关性 | 相关性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_correlation_structure_network_node_link` | 可视化分析・可视化・统计・相关性・网络 | 相关性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_correlation_structure_qq_reference_plot` | 可视化分析・可视化・统计・相关性 | 相关性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_correlation_structure_quantile_band` | 可视化分析・可视化・统计・相关性・分位数 | 相关性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_correlation_structure_raincloud_view` | 可视化分析・可视化・统计・相关性 | 相关性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_correlation_structure_rank_interval_plot` | 可视化分析・可视化・统计・相关性・排名 | 相关性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_correlation_structure_residual_annotation_map` | 可视化分析・可视化・统计・相关性 | 相关性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_correlation_structure_slope_change_view` | 可视化分析・可视化・统计・相关性 | 相关性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_correlation_structure_small_multiple_grid` | 可视化分析・可视化・统计・相关性 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_correlation_structure_stratified_dotplot` | 可视化分析・可视化・统计・相关性 | 相关性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_correlation_structure_threshold_band` | 可视化分析・可视化・统计・相关性 | 相关性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_correlation_structure_uncertainty_ribbon` | 可视化分析・可视化・统计・相关性 | 相关性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_correlation_structure_violin_summary` | 可视化分析・可视化・统计・相关性・小提琴图・概览 | 相关性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_contingency_structure_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_correlation_structure_annotated_reference_view` | 可视化分析・相关性 | 相关性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_correlation_structure_boxen_interval` | 可视化分析・相关性 | 相关性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_correlation_structure_comparative_lollipop` | 可视化分析・相关性 | 相关性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_correlation_structure_density_ridge` | 可视化分析・相关性 | 相关性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_correlation_structure_diagnostic_panel` | 可视化分析・相关性 | 相关性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_correlation_structure_ecdf_step_view` | 可视化分析・相关性 | 相关性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_correlation_structure_flow_transition_map` | 可视化分析・相关性 | 相关性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_correlation_structure_forest_interval_plot` | 可视化分析・相关性 | 相关性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_correlation_structure_heatmap_matrix` | 可视化分析・相关性 | 相关性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_correlation_structure_histogram_facets` | 可视化分析・相关性 | 相关性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_correlation_structure_map_choropleth_layer` | 可视化分析・相关性 | 相关性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_correlation_structure_mosaic_tile_view` | 可视化分析・相关性 | 相关性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_correlation_structure_network_node_link` | 可视化分析・相关性 | 相关性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_correlation_structure_qq_reference_plot` | 可视化分析・相关性 | 相关性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_correlation_structure_quantile_band` | 可视化分析・相关性 | 相关性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_correlation_structure_raincloud_view` | 可视化分析・相关性 | 相关性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_correlation_structure_rank_interval_plot` | 可视化分析・相关性 | 相关性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_correlation_structure_residual_annotation_map` | 可视化分析・相关性 | 相关性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_correlation_structure_slope_change_view` | 可视化分析・相关性 | 相关性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_correlation_structure_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_correlation_structure_stratified_dotplot` | 可视化分析・相关性 | 相关性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_correlation_structure_threshold_band` | 可视化分析・相关性 | 相关性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_correlation_structure_uncertainty_ribbon` | 可视化分析・相关性 | 相关性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_correlation_structure_violin_summary` | 可视化分析・相关性 | 相关性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_counterfactual_contrast_annotated_reference_view` | 可视化分析・可视化・统计 | Counterfactual contrast - Annotated reference view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_counterfactual_contrast_boxen_interval` | 可视化分析・可视化・统计 | Counterfactual contrast - Boxen interval plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_counterfactual_contrast_comparative_lollipop` | 可视化分析・可视化・统计 | Counterfactual contrast - Comparative lollipop plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_counterfactual_contrast_density_ridge` | 可视化分析・可视化・统计・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_counterfactual_contrast_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_counterfactual_contrast_diagnostic_panel` | 可视化分析・可视化・统计・诊断・面板 | Counterfactual contrast - Diagnostic panel | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_counterfactual_contrast_ecdf_step_view` | 可视化分析・可视化・统计・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_counterfactual_contrast_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_counterfactual_contrast_flow_transition_map` | 可视化分析・可视化・统计 | Counterfactual contrast - Flow transition map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_counterfactual_contrast_forest_interval_plot` | 可视化分析・可视化・统计・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_counterfactual_contrast_heatmap_matrix` | 可视化分析・可视化・统计・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_counterfactual_contrast_histogram_facets` | 可视化分析・可视化・统计・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_counterfactual_contrast_map_choropleth_layer` | 可视化分析・可视化・统计・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_counterfactual_contrast_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_counterfactual_contrast_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_counterfactual_contrast_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_counterfactual_contrast_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_counterfactual_contrast_mosaic_tile_view` | 可视化分析・可视化・统计 | Counterfactual contrast - Mosaic tile view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_counterfactual_contrast_network_node_link` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_counterfactual_contrast_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_counterfactual_contrast_qq_reference_plot` | 可视化分析・可视化・统计 | Counterfactual contrast - Q-Q reference plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_counterfactual_contrast_quantile_band` | 可视化分析・可视化・统计・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_counterfactual_contrast_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_counterfactual_contrast_raincloud_view` | 可视化分析・可视化・统计 | Counterfactual contrast - Raincloud view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_counterfactual_contrast_rank_interval_plot` | 可视化分析・可视化・统计・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_counterfactual_contrast_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_counterfactual_contrast_residual_annotation_map` | 可视化分析・可视化・统计 | Counterfactual contrast - Residual annotation map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_counterfactual_contrast_slope_change_view` | 可视化分析・可视化・统计 | Counterfactual contrast - Slope change view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_counterfactual_contrast_small_multiple_grid` | 可视化分析・可视化・统计 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_counterfactual_contrast_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_counterfactual_contrast_stratified_dotplot` | 可视化分析・可视化・统计 | Counterfactual contrast - Stratified dot plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_counterfactual_contrast_threshold_band` | 可视化分析・可视化・统计 | Counterfactual contrast - Threshold band | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_counterfactual_contrast_uncertainty_ribbon` | 可视化分析・可视化・统计 | Counterfactual contrast - Uncertainty ribbon | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_counterfactual_contrast_violin_summary` | 可视化分析・可视化・统计・小提琴图・概览 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_counterfactual_contrast_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_data_quality_annotated_reference_view` | 可视化分析・可视化・统计・数据・质量 | Data quality profile - Annotated reference view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_data_quality_boxen_interval` | 可视化分析・可视化・统计・数据・质量 | Data quality profile - Boxen interval plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_data_quality_comparative_lollipop` | 可视化分析・可视化・统计・数据・质量 | Data quality profile - Comparative lollipop plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_data_quality_density_ridge` | 可视化分析・可视化・统计・数据・质量・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_data_quality_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_data_quality_diagnostic_panel` | 可视化分析・可视化・统计・数据・质量・诊断・面板 | Data quality profile - Diagnostic panel | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_data_quality_ecdf_step_view` | 可视化分析・可视化・统计・数据・质量・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_data_quality_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_data_quality_flow_transition_map` | 可视化分析・可视化・统计・数据・质量 | Data quality profile - Flow transition map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_data_quality_forest_interval_plot` | 可视化分析・可视化・统计・数据・质量・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_data_quality_heatmap_matrix` | 可视化分析・可视化・统计・数据・质量・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_data_quality_histogram_facets` | 可视化分析・可视化・统计・数据・质量・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_data_quality_map_choropleth_layer` | 可视化分析・可视化・统计・数据・质量・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_data_quality_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_data_quality_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_data_quality_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_data_quality_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_data_quality_mosaic_tile_view` | 可视化分析・可视化・统计・数据・质量 | Data quality profile - Mosaic tile view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_data_quality_network_node_link` | 可视化分析・可视化・统计・数据・质量・网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_data_quality_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_data_quality_qq_reference_plot` | 可视化分析・可视化・统计・数据・质量 | Data quality profile - Q-Q reference plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_data_quality_quantile_band` | 可视化分析・可视化・统计・数据・质量・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_data_quality_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_data_quality_raincloud_view` | 可视化分析・可视化・统计・数据・质量 | Data quality profile - Raincloud view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_data_quality_rank_interval_plot` | 可视化分析・可视化・统计・数据・质量・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_data_quality_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_data_quality_residual_annotation_map` | 可视化分析・可视化・统计・数据・质量 | Data quality profile - Residual annotation map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_data_quality_slope_change_view` | 可视化分析・可视化・统计・数据・质量 | Data quality profile - Slope change view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_data_quality_small_multiple_grid` | 可视化分析・可视化・统计・数据・质量 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_data_quality_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_data_quality_stratified_dotplot` | 可视化分析・可视化・统计・数据・质量 | Data quality profile - Stratified dot plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_data_quality_threshold_band` | 可视化分析・可视化・统计・数据・质量 | Data quality profile - Threshold band | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_data_quality_uncertainty_ribbon` | 可视化分析・可视化・统计・数据・质量 | Data quality profile - Uncertainty ribbon | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_data_quality_violin_summary` | 可视化分析・可视化・统计・数据・质量・小提琴图・概览 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_data_quality_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_data_validation_rules_annotated_reference_view` | 可视化分析・可视化・统计・数据・校验 | Data validation rules - Annotated reference view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_data_validation_rules_boxen_interval` | 可视化分析・可视化・统计・数据・校验 | Data validation rules - Boxen interval plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_data_validation_rules_comparative_lollipop` | 可视化分析・可视化・统计・数据・校验 | Data validation rules - Comparative lollipop plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_data_validation_rules_density_ridge` | 可视化分析・可视化・统计・数据・校验・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_data_validation_rules_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_data_validation_rules_diagnostic_panel` | 可视化分析・可视化・统计・数据・校验・诊断・面板 | Data validation rules - Diagnostic panel | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_data_validation_rules_ecdf_step_view` | 可视化分析・可视化・统计・数据・校验・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_data_validation_rules_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_data_validation_rules_flow_transition_map` | 可视化分析・可视化・统计・数据・校验 | Data validation rules - Flow transition map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_data_validation_rules_forest_interval_plot` | 可视化分析・可视化・统计・数据・校验・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_data_validation_rules_heatmap_matrix` | 可视化分析・可视化・统计・数据・校验・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_data_validation_rules_histogram_facets` | 可视化分析・可视化・统计・数据・校验・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_data_validation_rules_map_choropleth_layer` | 可视化分析・可视化・统计・数据・校验・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_data_validation_rules_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_data_validation_rules_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_data_validation_rules_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_data_validation_rules_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_data_validation_rules_mosaic_tile_view` | 可视化分析・可视化・统计・数据・校验 | Data validation rules - Mosaic tile view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_data_validation_rules_network_node_link` | 可视化分析・可视化・统计・数据・校验・网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_data_validation_rules_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_data_validation_rules_qq_reference_plot` | 可视化分析・可视化・统计・数据・校验 | Data validation rules - Q-Q reference plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_data_validation_rules_quantile_band` | 可视化分析・可视化・统计・数据・校验・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_data_validation_rules_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_data_validation_rules_raincloud_view` | 可视化分析・可视化・统计・数据・校验 | Data validation rules - Raincloud view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_data_validation_rules_rank_interval_plot` | 可视化分析・可视化・统计・数据・校验・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_data_validation_rules_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_data_validation_rules_residual_annotation_map` | 可视化分析・可视化・统计・数据・校验 | Data validation rules - Residual annotation map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_data_validation_rules_slope_change_view` | 可视化分析・可视化・统计・数据・校验 | Data validation rules - Slope change view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_data_validation_rules_small_multiple_grid` | 可视化分析・可视化・统计・数据・校验 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_data_validation_rules_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_data_validation_rules_stratified_dotplot` | 可视化分析・可视化・统计・数据・校验 | Data validation rules - Stratified dot plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_data_validation_rules_threshold_band` | 可视化分析・可视化・统计・数据・校验 | Data validation rules - Threshold band | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_data_validation_rules_uncertainty_ribbon` | 可视化分析・可视化・统计・数据・校验 | Data validation rules - Uncertainty ribbon | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_data_validation_rules_violin_summary` | 可视化分析・可视化・统计・数据・校验・小提琴图・概览 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_data_validation_rules_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_defect_classification_annotated_reference_view` | 可视化分析・可视化・统计 | Defect classification - Annotated reference view | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_defect_classification_boxen_interval` | 可视化分析・可视化・统计 | Defect classification - Boxen interval plot | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_defect_classification_comparative_lollipop` | 可视化分析・可视化・统计 | Defect classification - Comparative lollipop plot | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_defect_classification_density_ridge` | 可视化分析・可视化・统计・密度图 | 密度图 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_defect_classification_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_defect_classification_diagnostic_panel` | 可视化分析・可视化・统计・诊断・面板 | Defect classification - Diagnostic panel | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_defect_classification_ecdf_step_view` | 可视化分析・可视化・统计・经验分布图 | 经验分布图 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_defect_classification_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_defect_classification_flow_transition_map` | 可视化分析・可视化・统计 | Defect classification - Flow transition map | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_defect_classification_forest_interval_plot` | 可视化分析・可视化・统计・随机森林 | 随机森林 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_defect_classification_heatmap_matrix` | 可视化分析・可视化・统计・热力矩阵 | 热力矩阵 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_defect_classification_histogram_facets` | 可视化分析・可视化・统计・直方图 | 直方图 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_defect_classification_map_choropleth_layer` | 可视化分析・可视化・统计・分级着色地图 | 分级着色地图 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_defect_classification_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_defect_classification_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_defect_classification_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_defect_classification_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_defect_classification_mosaic_tile_view` | 可视化分析・可视化・统计 | Defect classification - Mosaic tile view | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_defect_classification_network_node_link` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_defect_classification_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_defect_classification_qq_reference_plot` | 可视化分析・可视化・统计 | Defect classification - Q-Q reference plot | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_defect_classification_quantile_band` | 可视化分析・可视化・统计・分位数 | 分位数 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_defect_classification_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_defect_classification_raincloud_view` | 可视化分析・可视化・统计 | Defect classification - Raincloud view | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_defect_classification_rank_interval_plot` | 可视化分析・可视化・统计・排名 | 排名 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_defect_classification_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_defect_classification_residual_annotation_map` | 可视化分析・可视化・统计 | Defect classification - Residual annotation map | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_defect_classification_slope_change_view` | 可视化分析・可视化・统计 | Defect classification - Slope change view | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_defect_classification_small_multiple_grid` | 可视化分析・可视化・统计 | 小多图 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_defect_classification_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_defect_classification_stratified_dotplot` | 可视化分析・可视化・统计 | Defect classification - Stratified dot plot | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_defect_classification_threshold_band` | 可视化分析・可视化・统计 | Defect classification - Threshold band | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_defect_classification_uncertainty_ribbon` | 可视化分析・可视化・统计 | Defect classification - Uncertainty ribbon | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_defect_classification_violin_summary` | 可视化分析・可视化・统计・小提琴图・概览 | 小提琴图 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_defect_classification_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_dimension_reduction_annotated_reference_view` | 可视化分析・可视化・统计 | Dimension reduction - Annotated reference view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_dimension_reduction_boxen_interval` | 可视化分析・可视化・统计 | Dimension reduction - Boxen interval plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_dimension_reduction_comparative_lollipop` | 可视化分析・可视化・统计 | Dimension reduction - Comparative lollipop plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_dimension_reduction_density_ridge` | 可视化分析・可视化・统计・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_dimension_reduction_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_dimension_reduction_diagnostic_panel` | 可视化分析・可视化・统计・诊断・面板 | Dimension reduction - Diagnostic panel | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_dimension_reduction_ecdf_step_view` | 可视化分析・可视化・统计・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_dimension_reduction_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_dimension_reduction_flow_transition_map` | 可视化分析・可视化・统计 | Dimension reduction - Flow transition map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_dimension_reduction_forest_interval_plot` | 可视化分析・可视化・统计・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_dimension_reduction_heatmap_matrix` | 可视化分析・可视化・统计・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_dimension_reduction_histogram_facets` | 可视化分析・可视化・统计・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_dimension_reduction_map_choropleth_layer` | 可视化分析・可视化・统计・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_dimension_reduction_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_dimension_reduction_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_dimension_reduction_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_dimension_reduction_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_dimension_reduction_mosaic_tile_view` | 可视化分析・可视化・统计 | Dimension reduction - Mosaic tile view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_dimension_reduction_network_node_link` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_dimension_reduction_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_dimension_reduction_qq_reference_plot` | 可视化分析・可视化・统计 | Dimension reduction - Q-Q reference plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_dimension_reduction_quantile_band` | 可视化分析・可视化・统计・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_dimension_reduction_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_dimension_reduction_raincloud_view` | 可视化分析・可视化・统计 | Dimension reduction - Raincloud view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_dimension_reduction_rank_interval_plot` | 可视化分析・可视化・统计・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_dimension_reduction_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_dimension_reduction_residual_annotation_map` | 可视化分析・可视化・统计 | Dimension reduction - Residual annotation map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_dimension_reduction_slope_change_view` | 可视化分析・可视化・统计 | Dimension reduction - Slope change view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_dimension_reduction_small_multiple_grid` | 可视化分析・可视化・统计 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_dimension_reduction_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_dimension_reduction_stratified_dotplot` | 可视化分析・可视化・统计 | Dimension reduction - Stratified dot plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_dimension_reduction_threshold_band` | 可视化分析・可视化・统计 | Dimension reduction - Threshold band | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_dimension_reduction_uncertainty_ribbon` | 可视化分析・可视化・统计 | Dimension reduction - Uncertainty ribbon | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_dimension_reduction_violin_summary` | 可视化分析・可视化・统计・小提琴图・概览 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_dimension_reduction_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_discontinuity_window_annotated_reference_view` | 可视化分析・可视化・统计 | Discontinuity window - Annotated reference view | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_discontinuity_window_boxen_interval` | 可视化分析・可视化・统计 | Discontinuity window - Boxen interval plot | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_discontinuity_window_comparative_lollipop` | 可视化分析・可视化・统计 | Discontinuity window - Comparative lollipop plot | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_discontinuity_window_density_ridge` | 可视化分析・可视化・统计・密度图 | 密度图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_discontinuity_window_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_discontinuity_window_diagnostic_panel` | 可视化分析・可视化・统计・诊断・面板 | Discontinuity window - Diagnostic panel | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_discontinuity_window_ecdf_step_view` | 可视化分析・可视化・统计・经验分布图 | 经验分布图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_discontinuity_window_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_discontinuity_window_flow_transition_map` | 可视化分析・可视化・统计 | Discontinuity window - Flow transition map | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_discontinuity_window_forest_interval_plot` | 可视化分析・可视化・统计・随机森林 | 随机森林 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_discontinuity_window_heatmap_matrix` | 可视化分析・可视化・统计・热力矩阵 | 热力矩阵 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_discontinuity_window_histogram_facets` | 可视化分析・可视化・统计・直方图 | 直方图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_discontinuity_window_map_choropleth_layer` | 可视化分析・可视化・统计・分级着色地图 | 分级着色地图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_discontinuity_window_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_discontinuity_window_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_discontinuity_window_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_discontinuity_window_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_discontinuity_window_mosaic_tile_view` | 可视化分析・可视化・统计 | Discontinuity window - Mosaic tile view | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_discontinuity_window_network_node_link` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_discontinuity_window_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_discontinuity_window_qq_reference_plot` | 可视化分析・可视化・统计 | Discontinuity window - Q-Q reference plot | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_discontinuity_window_quantile_band` | 可视化分析・可视化・统计・分位数 | 分位数 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_discontinuity_window_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_discontinuity_window_raincloud_view` | 可视化分析・可视化・统计 | Discontinuity window - Raincloud view | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_discontinuity_window_rank_interval_plot` | 可视化分析・可视化・统计・排名 | 排名 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_discontinuity_window_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_discontinuity_window_residual_annotation_map` | 可视化分析・可视化・统计 | Discontinuity window - Residual annotation map | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_discontinuity_window_slope_change_view` | 可视化分析・可视化・统计 | Discontinuity window - Slope change view | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_discontinuity_window_small_multiple_grid` | 可视化分析・可视化・统计 | 小多图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_discontinuity_window_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_discontinuity_window_stratified_dotplot` | 可视化分析・可视化・统计 | Discontinuity window - Stratified dot plot | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_discontinuity_window_threshold_band` | 可视化分析・可视化・统计 | Discontinuity window - Threshold band | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_discontinuity_window_uncertainty_ribbon` | 可视化分析・可视化・统计 | Discontinuity window - Uncertainty ribbon | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_discontinuity_window_violin_summary` | 可视化分析・可视化・统计・小提琴图・概览 | 小提琴图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_distribution_comparison_annotated_reference_view` | 可视化分析・可视化・统计・分布 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_distribution_comparison_boxen_interval` | 可视化分析・可视化・统计・分布 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_distribution_comparison_comparative_lollipop` | 可视化分析・可视化・统计・分布 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_distribution_comparison_density_ridge` | 可视化分析・可视化・统计・分布・密度图 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_distribution_comparison_diagnostic_panel` | 可视化分析・可视化・统计・分布・诊断・面板 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_distribution_comparison_ecdf_step_view` | 可视化分析・可视化・统计・分布・经验分布图 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_distribution_comparison_flow_transition_map` | 可视化分析・可视化・统计・分布 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_distribution_comparison_forest_interval_plot` | 可视化分析・可视化・统计・分布・随机森林 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_distribution_comparison_heatmap_matrix` | 可视化分析・可视化・统计・分布・热力矩阵 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_distribution_comparison_histogram_facets` | 可视化分析・可视化・统计・分布・直方图 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_distribution_comparison_map_choropleth_layer` | 可视化分析・可视化・统计・分布・分级着色地图 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_distribution_comparison_mosaic_tile_view` | 可视化分析・可视化・统计・分布 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_distribution_comparison_network_node_link` | 可视化分析・可视化・统计・分布・网络 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_distribution_comparison_qq_reference_plot` | 可视化分析・可视化・统计・分布 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_distribution_comparison_quantile_band` | 可视化分析・可视化・统计・分布・分位数 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_distribution_comparison_raincloud_view` | 可视化分析・可视化・统计・分布 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_distribution_comparison_rank_interval_plot` | 可视化分析・可视化・统计・分布・排名 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_distribution_comparison_residual_annotation_map` | 可视化分析・可视化・统计・分布 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_distribution_comparison_slope_change_view` | 可视化分析・可视化・统计・分布 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_distribution_comparison_small_multiple_grid` | 可视化分析・可视化・统计・分布 | 小多图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_distribution_comparison_stratified_dotplot` | 可视化分析・可视化・统计・分布 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_distribution_comparison_threshold_band` | 可视化分析・可视化・统计・分布 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_distribution_comparison_uncertainty_ribbon` | 可视化分析・可视化・统计・分布 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_distribution_comparison_violin_summary` | 可视化分析・可视化・统计・分布・小提琴图・概览 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_distribution_shape_annotated_reference_view` | 可视化分析・可视化・统计・分布 | 分布 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_distribution_shape_boxen_interval` | 可视化分析・可视化・统计・分布 | 分布 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_distribution_shape_comparative_lollipop` | 可视化分析・可视化・统计・分布 | 分布 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_distribution_shape_density_ridge` | 可视化分析・可视化・统计・分布・密度图 | 分布 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_distribution_shape_diagnostic_panel` | 可视化分析・可视化・统计・分布・诊断・面板 | 分布 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_distribution_shape_ecdf_step_view` | 可视化分析・可视化・统计・分布・经验分布图 | 分布 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_distribution_shape_flow_transition_map` | 可视化分析・可视化・统计・分布 | 分布 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_distribution_shape_forest_interval_plot` | 可视化分析・可视化・统计・分布・随机森林 | 分布 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_distribution_shape_heatmap_matrix` | 可视化分析・可视化・统计・分布・热力矩阵 | 分布 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_distribution_shape_histogram_facets` | 可视化分析・可视化・统计・分布・直方图 | 分布 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_distribution_shape_map_choropleth_layer` | 可视化分析・可视化・统计・分布・分级着色地图 | 分布 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_distribution_shape_mosaic_tile_view` | 可视化分析・可视化・统计・分布 | 分布 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_distribution_shape_network_node_link` | 可视化分析・可视化・统计・分布・网络 | 分布 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_distribution_shape_qq_reference_plot` | 可视化分析・可视化・统计・分布 | 分布 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_distribution_shape_quantile_band` | 可视化分析・可视化・统计・分布・分位数 | 分布 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_distribution_shape_raincloud_view` | 可视化分析・可视化・统计・分布 | 分布 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_distribution_shape_rank_interval_plot` | 可视化分析・可视化・统计・分布・排名 | 分布 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_distribution_shape_residual_annotation_map` | 可视化分析・可视化・统计・分布 | 分布 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_distribution_shape_slope_change_view` | 可视化分析・可视化・统计・分布 | 分布 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_distribution_shape_small_multiple_grid` | 可视化分析・可视化・统计・分布 | 小多图 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_distribution_shape_stratified_dotplot` | 可视化分析・可视化・统计・分布 | 分布 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_distribution_shape_threshold_band` | 可视化分析・可视化・统计・分布 | 分布 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_distribution_shape_uncertainty_ribbon` | 可视化分析・可视化・统计・分布 | 分布 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_distribution_shape_violin_summary` | 可视化分析・可视化・统计・分布・小提琴图・概览 | 分布 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_discontinuity_window_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_distribution_comparison_annotated_reference_view` | 可视化分析・分布 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_distribution_comparison_boxen_interval` | 可视化分析・分布 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_distribution_comparison_comparative_lollipop` | 可视化分析・分布 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_distribution_comparison_density_ridge` | 可视化分析・分布 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_distribution_comparison_diagnostic_panel` | 可视化分析・分布 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_distribution_comparison_ecdf_step_view` | 可视化分析・分布 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_distribution_comparison_flow_transition_map` | 可视化分析・分布 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_distribution_comparison_forest_interval_plot` | 可视化分析・分布 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_distribution_comparison_heatmap_matrix` | 可视化分析・分布 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_distribution_comparison_histogram_facets` | 可视化分析・分布 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_distribution_comparison_map_choropleth_layer` | 可视化分析・分布 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_distribution_comparison_mosaic_tile_view` | 可视化分析・分布 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_distribution_comparison_network_node_link` | 可视化分析・分布 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_distribution_comparison_qq_reference_plot` | 可视化分析・分布 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_distribution_comparison_quantile_band` | 可视化分析・分布 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_distribution_comparison_raincloud_view` | 可视化分析・分布 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_distribution_comparison_rank_interval_plot` | 可视化分析・分布 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_distribution_comparison_residual_annotation_map` | 可视化分析・分布 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_distribution_comparison_slope_change_view` | 可视化分析・分布 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_distribution_comparison_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_distribution_comparison_stratified_dotplot` | 可视化分析・分布 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_distribution_comparison_threshold_band` | 可视化分析・分布 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_distribution_comparison_uncertainty_ribbon` | 可视化分析・分布 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_distribution_comparison_violin_summary` | 可视化分析・分布 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_distribution_shape_annotated_reference_view` | 可视化分析・分布 | 分布 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_distribution_shape_boxen_interval` | 可视化分析・分布 | 分布 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_distribution_shape_comparative_lollipop` | 可视化分析・分布 | 分布 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_distribution_shape_density_ridge` | 可视化分析・分布 | 分布 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_distribution_shape_diagnostic_panel` | 可视化分析・分布 | 分布 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_distribution_shape_ecdf_step_view` | 可视化分析・分布 | 分布 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_distribution_shape_flow_transition_map` | 可视化分析・分布 | 分布 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_distribution_shape_forest_interval_plot` | 可视化分析・分布 | 分布 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_distribution_shape_heatmap_matrix` | 可视化分析・分布 | 分布 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_distribution_shape_histogram_facets` | 可视化分析・分布 | 分布 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_distribution_shape_map_choropleth_layer` | 可视化分析・分布 | 分布 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_distribution_shape_mosaic_tile_view` | 可视化分析・分布 | 分布 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_distribution_shape_network_node_link` | 可视化分析・分布 | 分布 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_distribution_shape_qq_reference_plot` | 可视化分析・分布 | 分布 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_distribution_shape_quantile_band` | 可视化分析・分布 | 分布 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_distribution_shape_raincloud_view` | 可视化分析・分布 | 分布 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_distribution_shape_rank_interval_plot` | 可视化分析・分布 | 分布 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_distribution_shape_residual_annotation_map` | 可视化分析・分布 | 分布 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_distribution_shape_slope_change_view` | 可视化分析・分布 | 分布 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_distribution_shape_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_distribution_shape_stratified_dotplot` | 可视化分析・分布 | 分布 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_distribution_shape_threshold_band` | 可视化分析・分布 | 分布 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_distribution_shape_uncertainty_ribbon` | 可视化分析・分布 | 分布 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_distribution_shape_violin_summary` | 可视化分析・分布 | 分布 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_dose_response_annotated_reference_view` | 可视化分析・可视化・统计 | Dose response - Annotated reference view | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_dose_response_boxen_interval` | 可视化分析・可视化・统计 | Dose response - Boxen interval plot | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_dose_response_comparative_lollipop` | 可视化分析・可视化・统计 | Dose response - Comparative lollipop plot | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_dose_response_density_ridge` | 可视化分析・可视化・统计・密度图 | 密度图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_dose_response_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_dose_response_diagnostic_panel` | 可视化分析・可视化・统计・诊断・面板 | Dose response - Diagnostic panel | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_dose_response_ecdf_step_view` | 可视化分析・可视化・统计・经验分布图 | 经验分布图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_dose_response_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_dose_response_flow_transition_map` | 可视化分析・可视化・统计 | Dose response - Flow transition map | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_dose_response_forest_interval_plot` | 可视化分析・可视化・统计・随机森林 | 随机森林 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_dose_response_heatmap_matrix` | 可视化分析・可视化・统计・热力矩阵 | 热力矩阵 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_dose_response_histogram_facets` | 可视化分析・可视化・统计・直方图 | 直方图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_dose_response_map_choropleth_layer` | 可视化分析・可视化・统计・分级着色地图 | 分级着色地图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_dose_response_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_dose_response_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_dose_response_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_dose_response_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_dose_response_mosaic_tile_view` | 可视化分析・可视化・统计 | Dose response - Mosaic tile view | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_dose_response_network_node_link` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_dose_response_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_dose_response_qq_reference_plot` | 可视化分析・可视化・统计 | Dose response - Q-Q reference plot | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_dose_response_quantile_band` | 可视化分析・可视化・统计・分位数 | 分位数 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_dose_response_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_dose_response_raincloud_view` | 可视化分析・可视化・统计 | Dose response - Raincloud view | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_dose_response_rank_interval_plot` | 可视化分析・可视化・统计・排名 | 排名 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_dose_response_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_dose_response_residual_annotation_map` | 可视化分析・可视化・统计 | Dose response - Residual annotation map | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_dose_response_slope_change_view` | 可视化分析・可视化・统计 | Dose response - Slope change view | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_dose_response_small_multiple_grid` | 可视化分析・可视化・统计 | 小多图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_dose_response_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_dose_response_stratified_dotplot` | 可视化分析・可视化・统计 | Dose response - Stratified dot plot | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_dose_response_threshold_band` | 可视化分析・可视化・统计 | Dose response - Threshold band | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_dose_response_uncertainty_ribbon` | 可视化分析・可视化・统计 | Dose response - Uncertainty ribbon | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_dose_response_violin_summary` | 可视化分析・可视化・统计・小提琴图・概览 | 小提琴图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_dose_response_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_duplicate_record_structure_annotated_reference_view` | 可视化分析・可视化・统计 | Duplicate record structure - Annotated reference view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_duplicate_record_structure_boxen_interval` | 可视化分析・可视化・统计 | Duplicate record structure - Boxen interval plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_duplicate_record_structure_comparative_lollipop` | 可视化分析・可视化・统计 | Duplicate record structure - Comparative lollipop plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_duplicate_record_structure_density_ridge` | 可视化分析・可视化・统计・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_duplicate_record_structure_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_duplicate_record_structure_diagnostic_panel` | 可视化分析・可视化・统计・诊断・面板 | Duplicate record structure - Diagnostic panel | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_duplicate_record_structure_ecdf_step_view` | 可视化分析・可视化・统计・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_duplicate_record_structure_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_duplicate_record_structure_flow_transition_map` | 可视化分析・可视化・统计 | Duplicate record structure - Flow transition map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_duplicate_record_structure_forest_interval_plot` | 可视化分析・可视化・统计・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_duplicate_record_structure_heatmap_matrix` | 可视化分析・可视化・统计・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_duplicate_record_structure_histogram_facets` | 可视化分析・可视化・统计・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_duplicate_record_structure_map_choropleth_layer` | 可视化分析・可视化・统计・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_duplicate_record_structure_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_duplicate_record_structure_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_duplicate_record_structure_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_duplicate_record_structure_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_duplicate_record_structure_mosaic_tile_view` | 可视化分析・可视化・统计 | Duplicate record structure - Mosaic tile view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_duplicate_record_structure_network_node_link` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_duplicate_record_structure_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_duplicate_record_structure_qq_reference_plot` | 可视化分析・可视化・统计 | Duplicate record structure - Q-Q reference plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_duplicate_record_structure_quantile_band` | 可视化分析・可视化・统计・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_duplicate_record_structure_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_duplicate_record_structure_raincloud_view` | 可视化分析・可视化・统计 | Duplicate record structure - Raincloud view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_duplicate_record_structure_rank_interval_plot` | 可视化分析・可视化・统计・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_duplicate_record_structure_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_duplicate_record_structure_residual_annotation_map` | 可视化分析・可视化・统计 | Duplicate record structure - Residual annotation map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_duplicate_record_structure_slope_change_view` | 可视化分析・可视化・统计 | Duplicate record structure - Slope change view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_duplicate_record_structure_small_multiple_grid` | 可视化分析・可视化・统计 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_duplicate_record_structure_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_duplicate_record_structure_stratified_dotplot` | 可视化分析・可视化・统计 | Duplicate record structure - Stratified dot plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_duplicate_record_structure_threshold_band` | 可视化分析・可视化・统计 | Duplicate record structure - Threshold band | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_duplicate_record_structure_uncertainty_ribbon` | 可视化分析・可视化・统计 | Duplicate record structure - Uncertainty ribbon | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_duplicate_record_structure_violin_summary` | 可视化分析・可视化・统计・小提琴图・概览 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_duplicate_record_structure_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_eda_categorical_overview_annotated_reference_view` | 可视化分析・可视化・统计 | EDA categorical overview - Annotated reference view | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_eda_categorical_overview_boxen_interval` | 可视化分析・可视化・统计 | EDA categorical overview - Boxen interval plot | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_eda_categorical_overview_comparative_lollipop` | 可视化分析・可视化・统计 | EDA categorical overview - Comparative lollipop plot | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_eda_categorical_overview_density_ridge` | 可视化分析・可视化・统计・密度图 | 密度图 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_eda_categorical_overview_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_eda_categorical_overview_diagnostic_panel` | 可视化分析・可视化・统计・诊断・面板 | EDA categorical overview - Diagnostic panel | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_eda_categorical_overview_ecdf_step_view` | 可视化分析・可视化・统计・经验分布图 | 经验分布图 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_eda_categorical_overview_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_eda_categorical_overview_flow_transition_map` | 可视化分析・可视化・统计 | EDA categorical overview - Flow transition map | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_eda_categorical_overview_forest_interval_plot` | 可视化分析・可视化・统计・随机森林 | 随机森林 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_eda_categorical_overview_heatmap_matrix` | 可视化分析・可视化・统计・热力矩阵 | 热力矩阵 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_eda_categorical_overview_histogram_facets` | 可视化分析・可视化・统计・直方图 | 直方图 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_eda_categorical_overview_map_choropleth_layer` | 可视化分析・可视化・统计・分级着色地图 | 分级着色地图 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_eda_categorical_overview_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_eda_categorical_overview_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_eda_categorical_overview_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_eda_categorical_overview_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_eda_categorical_overview_mosaic_tile_view` | 可视化分析・可视化・统计 | EDA categorical overview - Mosaic tile view | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_eda_categorical_overview_network_node_link` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_eda_categorical_overview_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_eda_categorical_overview_qq_reference_plot` | 可视化分析・可视化・统计 | EDA categorical overview - Q-Q reference plot | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_eda_categorical_overview_quantile_band` | 可视化分析・可视化・统计・分位数 | 分位数 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_eda_categorical_overview_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_eda_categorical_overview_raincloud_view` | 可视化分析・可视化・统计 | EDA categorical overview - Raincloud view | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_eda_categorical_overview_rank_interval_plot` | 可视化分析・可视化・统计・排名 | 排名 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_eda_categorical_overview_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_eda_categorical_overview_residual_annotation_map` | 可视化分析・可视化・统计 | EDA categorical overview - Residual annotation map | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_eda_categorical_overview_slope_change_view` | 可视化分析・可视化・统计 | EDA categorical overview - Slope change view | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_eda_categorical_overview_small_multiple_grid` | 可视化分析・可视化・统计 | 小多图 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_eda_categorical_overview_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_eda_categorical_overview_stratified_dotplot` | 可视化分析・可视化・统计 | EDA categorical overview - Stratified dot plot | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_eda_categorical_overview_threshold_band` | 可视化分析・可视化・统计 | EDA categorical overview - Threshold band | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_eda_categorical_overview_uncertainty_ribbon` | 可视化分析・可视化・统计 | EDA categorical overview - Uncertainty ribbon | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_eda_categorical_overview_violin_summary` | 可视化分析・可视化・统计・小提琴图・概览 | 小提琴图 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_eda_categorical_overview_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_eda_numeric_overview_annotated_reference_view` | 可视化分析・可视化・统计 | EDA numeric overview - Annotated reference view | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_eda_numeric_overview_boxen_interval` | 可视化分析・可视化・统计 | EDA numeric overview - Boxen interval plot | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_eda_numeric_overview_comparative_lollipop` | 可视化分析・可视化・统计 | EDA numeric overview - Comparative lollipop plot | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_eda_numeric_overview_density_ridge` | 可视化分析・可视化・统计・密度图 | 密度图 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_eda_numeric_overview_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_eda_numeric_overview_diagnostic_panel` | 可视化分析・可视化・统计・诊断・面板 | EDA numeric overview - Diagnostic panel | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_eda_numeric_overview_ecdf_step_view` | 可视化分析・可视化・统计・经验分布图 | 经验分布图 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_eda_numeric_overview_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_eda_numeric_overview_flow_transition_map` | 可视化分析・可视化・统计 | EDA numeric overview - Flow transition map | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_eda_numeric_overview_forest_interval_plot` | 可视化分析・可视化・统计・随机森林 | 随机森林 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_eda_numeric_overview_heatmap_matrix` | 可视化分析・可视化・统计・热力矩阵 | 热力矩阵 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_eda_numeric_overview_histogram_facets` | 可视化分析・可视化・统计・直方图 | 直方图 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_eda_numeric_overview_map_choropleth_layer` | 可视化分析・可视化・统计・分级着色地图 | 分级着色地图 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_eda_numeric_overview_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_eda_numeric_overview_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_eda_numeric_overview_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_eda_numeric_overview_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_eda_numeric_overview_mosaic_tile_view` | 可视化分析・可视化・统计 | EDA numeric overview - Mosaic tile view | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_eda_numeric_overview_network_node_link` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_eda_numeric_overview_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_eda_numeric_overview_qq_reference_plot` | 可视化分析・可视化・统计 | EDA numeric overview - Q-Q reference plot | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_eda_numeric_overview_quantile_band` | 可视化分析・可视化・统计・分位数 | 分位数 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_eda_numeric_overview_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_eda_numeric_overview_raincloud_view` | 可视化分析・可视化・统计 | EDA numeric overview - Raincloud view | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_eda_numeric_overview_rank_interval_plot` | 可视化分析・可视化・统计・排名 | 排名 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_eda_numeric_overview_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_eda_numeric_overview_residual_annotation_map` | 可视化分析・可视化・统计 | EDA numeric overview - Residual annotation map | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_eda_numeric_overview_slope_change_view` | 可视化分析・可视化・统计 | EDA numeric overview - Slope change view | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_eda_numeric_overview_small_multiple_grid` | 可视化分析・可视化・统计 | 小多图 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_eda_numeric_overview_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_eda_numeric_overview_stratified_dotplot` | 可视化分析・可视化・统计 | EDA numeric overview - Stratified dot plot | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_eda_numeric_overview_threshold_band` | 可视化分析・可视化・统计 | EDA numeric overview - Threshold band | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_eda_numeric_overview_uncertainty_ribbon` | 可视化分析・可视化・统计 | EDA numeric overview - Uncertainty ribbon | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_eda_numeric_overview_violin_summary` | 可视化分析・可视化・统计・小提琴图・概览 | 小提琴图 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_eda_numeric_overview_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_education_growth_annotated_reference_view` | 可视化分析・可视化・统计 | Education growth - Annotated reference view | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_education_growth_boxen_interval` | 可视化分析・可视化・统计 | Education growth - Boxen interval plot | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_education_growth_comparative_lollipop` | 可视化分析・可视化・统计 | Education growth - Comparative lollipop plot | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_education_growth_density_ridge` | 可视化分析・可视化・统计・密度图 | 密度图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_education_growth_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_education_growth_diagnostic_panel` | 可视化分析・可视化・统计・诊断・面板 | Education growth - Diagnostic panel | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_education_growth_ecdf_step_view` | 可视化分析・可视化・统计・经验分布图 | 经验分布图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_education_growth_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_education_growth_flow_transition_map` | 可视化分析・可视化・统计 | Education growth - Flow transition map | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_education_growth_forest_interval_plot` | 可视化分析・可视化・统计・随机森林 | 随机森林 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_education_growth_heatmap_matrix` | 可视化分析・可视化・统计・热力矩阵 | 热力矩阵 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_education_growth_histogram_facets` | 可视化分析・可视化・统计・直方图 | 直方图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_education_growth_map_choropleth_layer` | 可视化分析・可视化・统计・分级着色地图 | 分级着色地图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_education_growth_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_education_growth_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_education_growth_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_education_growth_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_education_growth_mosaic_tile_view` | 可视化分析・可视化・统计 | Education growth - Mosaic tile view | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_education_growth_network_node_link` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_education_growth_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_education_growth_qq_reference_plot` | 可视化分析・可视化・统计 | Education growth - Q-Q reference plot | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_education_growth_quantile_band` | 可视化分析・可视化・统计・分位数 | 分位数 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_education_growth_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_education_growth_raincloud_view` | 可视化分析・可视化・统计 | Education growth - Raincloud view | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_education_growth_rank_interval_plot` | 可视化分析・可视化・统计・排名 | 排名 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_education_growth_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_education_growth_residual_annotation_map` | 可视化分析・可视化・统计 | Education growth - Residual annotation map | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_education_growth_slope_change_view` | 可视化分析・可视化・统计 | Education growth - Slope change view | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_education_growth_small_multiple_grid` | 可视化分析・可视化・统计 | 小多图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_education_growth_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_education_growth_stratified_dotplot` | 可视化分析・可视化・统计 | Education growth - Stratified dot plot | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_education_growth_threshold_band` | 可视化分析・可视化・统计 | Education growth - Threshold band | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_education_growth_uncertainty_ribbon` | 可视化分析・可视化・统计 | Education growth - Uncertainty ribbon | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_education_growth_violin_summary` | 可视化分析・可视化・统计・小提琴图・概览 | 小提琴图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_education_growth_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_effect_size_annotated_reference_view` | 可视化分析・可视化・统计・效应 | Effect size view - Annotated reference view | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_effect_size_boxen_interval` | 可视化分析・可视化・统计・效应 | Effect size view - Boxen interval plot | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_effect_size_comparative_lollipop` | 可视化分析・可视化・统计・效应 | Effect size view - Comparative lollipop plot | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_effect_size_density_ridge` | 可视化分析・可视化・统计・效应・密度图 | 密度图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_effect_size_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_effect_size_diagnostic_panel` | 可视化分析・可视化・统计・效应・诊断・面板 | Effect size view - Diagnostic panel | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_effect_size_ecdf_step_view` | 可视化分析・可视化・统计・效应・经验分布图 | 经验分布图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_effect_size_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_effect_size_flow_transition_map` | 可视化分析・可视化・统计・效应 | Effect size view - Flow transition map | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_effect_size_forest_interval_plot` | 可视化分析・可视化・统计・效应・随机森林 | 随机森林 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_effect_size_heatmap_matrix` | 可视化分析・可视化・统计・效应・热力矩阵 | 热力矩阵 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_effect_size_histogram_facets` | 可视化分析・可视化・统计・效应・直方图 | 直方图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_effect_size_map_choropleth_layer` | 可视化分析・可视化・统计・效应・分级着色地图 | 分级着色地图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_effect_size_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_effect_size_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_effect_size_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_effect_size_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_effect_size_mosaic_tile_view` | 可视化分析・可视化・统计・效应 | Effect size view - Mosaic tile view | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_effect_size_network_node_link` | 可视化分析・可视化・统计・效应・网络 | 关系网络 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_effect_size_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_effect_size_qq_reference_plot` | 可视化分析・可视化・统计・效应 | Effect size view - Q-Q reference plot | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_effect_size_quantile_band` | 可视化分析・可视化・统计・效应・分位数 | 分位数 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_effect_size_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_effect_size_raincloud_view` | 可视化分析・可视化・统计・效应 | Effect size view - Raincloud view | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_effect_size_rank_interval_plot` | 可视化分析・可视化・统计・效应・排名 | 排名 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_effect_size_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_effect_size_residual_annotation_map` | 可视化分析・可视化・统计・效应 | Effect size view - Residual annotation map | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_effect_size_slope_change_view` | 可视化分析・可视化・统计・效应 | Effect size view - Slope change view | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_effect_size_small_multiple_grid` | 可视化分析・可视化・统计・效应 | 小多图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_effect_size_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_effect_size_stratified_dotplot` | 可视化分析・可视化・统计・效应 | Effect size view - Stratified dot plot | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_effect_size_threshold_band` | 可视化分析・可视化・统计・效应 | Effect size view - Threshold band | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_effect_size_uncertainty_ribbon` | 可视化分析・可视化・统计・效应 | Effect size view - Uncertainty ribbon | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_effect_size_violin_summary` | 可视化分析・可视化・统计・效应・小提琴图・概览 | 小提琴图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_effect_size_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_environmental_exposure_annotated_reference_view` | 可视化分析・可视化・统计 | Environmental exposure - Annotated reference view | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_environmental_exposure_boxen_interval` | 可视化分析・可视化・统计 | Environmental exposure - Boxen interval plot | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_environmental_exposure_comparative_lollipop` | 可视化分析・可视化・统计 | Environmental exposure - Comparative lollipop plot | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_environmental_exposure_density_ridge` | 可视化分析・可视化・统计・密度图 | 密度图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_environmental_exposure_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_environmental_exposure_diagnostic_panel` | 可视化分析・可视化・统计・诊断・面板 | Environmental exposure - Diagnostic panel | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_environmental_exposure_ecdf_step_view` | 可视化分析・可视化・统计・经验分布图 | 经验分布图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_environmental_exposure_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_environmental_exposure_flow_transition_map` | 可视化分析・可视化・统计 | Environmental exposure - Flow transition map | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_environmental_exposure_forest_interval_plot` | 可视化分析・可视化・统计・随机森林 | 随机森林 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_environmental_exposure_heatmap_matrix` | 可视化分析・可视化・统计・热力矩阵 | 热力矩阵 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_environmental_exposure_histogram_facets` | 可视化分析・可视化・统计・直方图 | 直方图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_environmental_exposure_map_choropleth_layer` | 可视化分析・可视化・统计・分级着色地图 | 分级着色地图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_environmental_exposure_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_environmental_exposure_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_environmental_exposure_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_environmental_exposure_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_environmental_exposure_mosaic_tile_view` | 可视化分析・可视化・统计 | Environmental exposure - Mosaic tile view | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_environmental_exposure_network_node_link` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_environmental_exposure_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_environmental_exposure_qq_reference_plot` | 可视化分析・可视化・统计 | Environmental exposure - Q-Q reference plot | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_environmental_exposure_quantile_band` | 可视化分析・可视化・统计・分位数 | 分位数 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_environmental_exposure_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_environmental_exposure_raincloud_view` | 可视化分析・可视化・统计 | Environmental exposure - Raincloud view | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_environmental_exposure_rank_interval_plot` | 可视化分析・可视化・统计・排名 | 排名 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_environmental_exposure_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_environmental_exposure_residual_annotation_map` | 可视化分析・可视化・统计 | Environmental exposure - Residual annotation map | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_environmental_exposure_slope_change_view` | 可视化分析・可视化・统计 | Environmental exposure - Slope change view | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_environmental_exposure_small_multiple_grid` | 可视化分析・可视化・统计 | 小多图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_environmental_exposure_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_environmental_exposure_stratified_dotplot` | 可视化分析・可视化・统计 | Environmental exposure - Stratified dot plot | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_environmental_exposure_threshold_band` | 可视化分析・可视化・统计 | Environmental exposure - Threshold band | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_environmental_exposure_uncertainty_ribbon` | 可视化分析・可视化・统计 | Environmental exposure - Uncertainty ribbon | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_environmental_exposure_violin_summary` | 可视化分析・可视化・统计・小提琴图・概览 | 小提琴图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_environmental_exposure_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_epidemiology_cluster_annotated_reference_view` | 可视化分析・可视化・统计・聚类 | Epidemiology cluster - Annotated reference view | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_epidemiology_cluster_boxen_interval` | 可视化分析・可视化・统计・聚类 | Epidemiology cluster - Boxen interval plot | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_epidemiology_cluster_comparative_lollipop` | 可视化分析・可视化・统计・聚类 | Epidemiology cluster - Comparative lollipop plot | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_epidemiology_cluster_density_ridge` | 可视化分析・可视化・统计・聚类・密度图 | 密度图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_epidemiology_cluster_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_epidemiology_cluster_diagnostic_panel` | 可视化分析・可视化・统计・聚类・诊断・面板 | Epidemiology cluster - Diagnostic panel | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_epidemiology_cluster_ecdf_step_view` | 可视化分析・可视化・统计・聚类・经验分布图 | 经验分布图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_epidemiology_cluster_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_epidemiology_cluster_flow_transition_map` | 可视化分析・可视化・统计・聚类 | Epidemiology cluster - Flow transition map | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_epidemiology_cluster_forest_interval_plot` | 可视化分析・可视化・统计・聚类・随机森林 | 随机森林 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_epidemiology_cluster_heatmap_matrix` | 可视化分析・可视化・统计・聚类・热力矩阵 | 热力矩阵 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_epidemiology_cluster_histogram_facets` | 可视化分析・可视化・统计・聚类・直方图 | 直方图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_epidemiology_cluster_map_choropleth_layer` | 可视化分析・可视化・统计・聚类・分级着色地图 | 分级着色地图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_epidemiology_cluster_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_epidemiology_cluster_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_epidemiology_cluster_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_epidemiology_cluster_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_epidemiology_cluster_mosaic_tile_view` | 可视化分析・可视化・统计・聚类 | Epidemiology cluster - Mosaic tile view | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_epidemiology_cluster_network_node_link` | 可视化分析・可视化・统计・聚类・网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_epidemiology_cluster_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_epidemiology_cluster_qq_reference_plot` | 可视化分析・可视化・统计・聚类 | Epidemiology cluster - Q-Q reference plot | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_epidemiology_cluster_quantile_band` | 可视化分析・可视化・统计・聚类・分位数 | 分位数 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_epidemiology_cluster_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_epidemiology_cluster_raincloud_view` | 可视化分析・可视化・统计・聚类 | Epidemiology cluster - Raincloud view | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_epidemiology_cluster_rank_interval_plot` | 可视化分析・可视化・统计・聚类・排名 | 排名 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_epidemiology_cluster_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_epidemiology_cluster_residual_annotation_map` | 可视化分析・可视化・统计・聚类 | Epidemiology cluster - Residual annotation map | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_epidemiology_cluster_slope_change_view` | 可视化分析・可视化・统计・聚类 | Epidemiology cluster - Slope change view | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_epidemiology_cluster_small_multiple_grid` | 可视化分析・可视化・统计・聚类 | 小多图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_epidemiology_cluster_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_epidemiology_cluster_stratified_dotplot` | 可视化分析・可视化・统计・聚类 | Epidemiology cluster - Stratified dot plot | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_epidemiology_cluster_threshold_band` | 可视化分析・可视化・统计・聚类 | Epidemiology cluster - Threshold band | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_epidemiology_cluster_uncertainty_ribbon` | 可视化分析・可视化・统计・聚类 | Epidemiology cluster - Uncertainty ribbon | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_epidemiology_cluster_violin_summary` | 可视化分析・可视化・统计・聚类・小提琴图・概览 | 小提琴图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_epidemiology_cluster_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_experiment_power_annotated_reference_view` | 可视化分析・可视化・统计・实验 | Experiment power - Annotated reference view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_experiment_power_boxen_interval` | 可视化分析・可视化・统计・实验 | Experiment power - Boxen interval plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_experiment_power_comparative_lollipop` | 可视化分析・可视化・统计・实验 | Experiment power - Comparative lollipop plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_experiment_power_density_ridge` | 可视化分析・可视化・统计・实验・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_experiment_power_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_experiment_power_diagnostic_panel` | 可视化分析・可视化・统计・实验・诊断・面板 | Experiment power - Diagnostic panel | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_experiment_power_ecdf_step_view` | 可视化分析・可视化・统计・实验・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_experiment_power_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_experiment_power_flow_transition_map` | 可视化分析・可视化・统计・实验 | Experiment power - Flow transition map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_experiment_power_forest_interval_plot` | 可视化分析・可视化・统计・实验・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_experiment_power_heatmap_matrix` | 可视化分析・可视化・统计・实验・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_experiment_power_histogram_facets` | 可视化分析・可视化・统计・实验・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_experiment_power_map_choropleth_layer` | 可视化分析・可视化・统计・实验・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_experiment_power_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_experiment_power_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_experiment_power_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_experiment_power_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_experiment_power_mosaic_tile_view` | 可视化分析・可视化・统计・实验 | Experiment power - Mosaic tile view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_experiment_power_network_node_link` | 可视化分析・可视化・统计・实验・网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_experiment_power_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_experiment_power_qq_reference_plot` | 可视化分析・可视化・统计・实验 | Experiment power - Q-Q reference plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_experiment_power_quantile_band` | 可视化分析・可视化・统计・实验・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_experiment_power_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_experiment_power_raincloud_view` | 可视化分析・可视化・统计・实验 | Experiment power - Raincloud view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_experiment_power_rank_interval_plot` | 可视化分析・可视化・统计・实验・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_experiment_power_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_experiment_power_residual_annotation_map` | 可视化分析・可视化・统计・实验 | Experiment power - Residual annotation map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_experiment_power_slope_change_view` | 可视化分析・可视化・统计・实验 | Experiment power - Slope change view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_experiment_power_small_multiple_grid` | 可视化分析・可视化・统计・实验 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_experiment_power_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_experiment_power_stratified_dotplot` | 可视化分析・可视化・统计・实验 | Experiment power - Stratified dot plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_experiment_power_threshold_band` | 可视化分析・可视化・统计・实验 | Experiment power - Threshold band | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_experiment_power_uncertainty_ribbon` | 可视化分析・可视化・统计・实验 | Experiment power - Uncertainty ribbon | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_experiment_power_violin_summary` | 可视化分析・可视化・统计・实验・小提琴图・概览 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_experiment_power_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_experiment_response_annotated_reference_view` | 可视化分析・可视化・统计・实验 | Experiment response - Annotated reference view | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_experiment_response_boxen_interval` | 可视化分析・可视化・统计・实验 | Experiment response - Boxen interval plot | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_experiment_response_comparative_lollipop` | 可视化分析・可视化・统计・实验 | Experiment response - Comparative lollipop plot | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_experiment_response_density_ridge` | 可视化分析・可视化・统计・实验・密度图 | 密度图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_experiment_response_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_experiment_response_diagnostic_panel` | 可视化分析・可视化・统计・实验・诊断・面板 | Experiment response - Diagnostic panel | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_experiment_response_ecdf_step_view` | 可视化分析・可视化・统计・实验・经验分布图 | 经验分布图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_experiment_response_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_experiment_response_flow_transition_map` | 可视化分析・可视化・统计・实验 | Experiment response - Flow transition map | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_experiment_response_forest_interval_plot` | 可视化分析・可视化・统计・实验・随机森林 | 随机森林 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_experiment_response_heatmap_matrix` | 可视化分析・可视化・统计・实验・热力矩阵 | 热力矩阵 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_experiment_response_histogram_facets` | 可视化分析・可视化・统计・实验・直方图 | 直方图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_experiment_response_map_choropleth_layer` | 可视化分析・可视化・统计・实验・分级着色地图 | 分级着色地图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_experiment_response_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_experiment_response_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_experiment_response_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_experiment_response_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_experiment_response_mosaic_tile_view` | 可视化分析・可视化・统计・实验 | Experiment response - Mosaic tile view | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_experiment_response_network_node_link` | 可视化分析・可视化・统计・实验・网络 | 关系网络 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_experiment_response_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_experiment_response_qq_reference_plot` | 可视化分析・可视化・统计・实验 | Experiment response - Q-Q reference plot | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_experiment_response_quantile_band` | 可视化分析・可视化・统计・实验・分位数 | 分位数 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_experiment_response_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_experiment_response_raincloud_view` | 可视化分析・可视化・统计・实验 | Experiment response - Raincloud view | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_experiment_response_rank_interval_plot` | 可视化分析・可视化・统计・实验・排名 | 排名 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_experiment_response_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_experiment_response_residual_annotation_map` | 可视化分析・可视化・统计・实验 | Experiment response - Residual annotation map | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_experiment_response_slope_change_view` | 可视化分析・可视化・统计・实验 | Experiment response - Slope change view | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_experiment_response_small_multiple_grid` | 可视化分析・可视化・统计・实验 | 小多图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_experiment_response_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_experiment_response_stratified_dotplot` | 可视化分析・可视化・统计・实验 | Experiment response - Stratified dot plot | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_experiment_response_threshold_band` | 可视化分析・可视化・统计・实验 | Experiment response - Threshold band | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_experiment_response_uncertainty_ribbon` | 可视化分析・可视化・统计・实验 | Experiment response - Uncertainty ribbon | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_experiment_response_violin_summary` | 可视化分析・可视化・统计・实验・小提琴图・概览 | 小提琴图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_experiment_response_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_factor_loading_annotated_reference_view` | 可视化分析・可视化・统计 | Factor loading pattern - Annotated reference view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_factor_loading_boxen_interval` | 可视化分析・可视化・统计 | Factor loading pattern - Boxen interval plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_factor_loading_comparative_lollipop` | 可视化分析・可视化・统计 | Factor loading pattern - Comparative lollipop plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_factor_loading_density_ridge` | 可视化分析・可视化・统计・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_factor_loading_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_factor_loading_diagnostic_panel` | 可视化分析・可视化・统计・诊断・面板 | Factor loading pattern - Diagnostic panel | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_factor_loading_ecdf_step_view` | 可视化分析・可视化・统计・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_factor_loading_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_factor_loading_flow_transition_map` | 可视化分析・可视化・统计 | Factor loading pattern - Flow transition map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_factor_loading_forest_interval_plot` | 可视化分析・可视化・统计・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_factor_loading_heatmap_matrix` | 可视化分析・可视化・统计・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_factor_loading_histogram_facets` | 可视化分析・可视化・统计・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_factor_loading_map_choropleth_layer` | 可视化分析・可视化・统计・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_factor_loading_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_factor_loading_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_factor_loading_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_factor_loading_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_factor_loading_mosaic_tile_view` | 可视化分析・可视化・统计 | Factor loading pattern - Mosaic tile view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_factor_loading_network_node_link` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_factor_loading_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_factor_loading_qq_reference_plot` | 可视化分析・可视化・统计 | Factor loading pattern - Q-Q reference plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_factor_loading_quantile_band` | 可视化分析・可视化・统计・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_factor_loading_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_factor_loading_raincloud_view` | 可视化分析・可视化・统计 | Factor loading pattern - Raincloud view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_factor_loading_rank_interval_plot` | 可视化分析・可视化・统计・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_factor_loading_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_factor_loading_residual_annotation_map` | 可视化分析・可视化・统计 | Factor loading pattern - Residual annotation map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_factor_loading_slope_change_view` | 可视化分析・可视化・统计 | Factor loading pattern - Slope change view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_factor_loading_small_multiple_grid` | 可视化分析・可视化・统计 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_factor_loading_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_factor_loading_stratified_dotplot` | 可视化分析・可视化・统计 | Factor loading pattern - Stratified dot plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_factor_loading_threshold_band` | 可视化分析・可视化・统计 | Factor loading pattern - Threshold band | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_factor_loading_uncertainty_ribbon` | 可视化分析・可视化・统计 | Factor loading pattern - Uncertainty ribbon | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_factor_loading_violin_summary` | 可视化分析・可视化・统计・小提琴图・概览 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_factor_loading_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_factorial_response_annotated_reference_view` | 可视化分析・可视化・统计 | Factorial response - Annotated reference view | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_factorial_response_boxen_interval` | 可视化分析・可视化・统计 | Factorial response - Boxen interval plot | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_factorial_response_comparative_lollipop` | 可视化分析・可视化・统计 | Factorial response - Comparative lollipop plot | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_factorial_response_density_ridge` | 可视化分析・可视化・统计・密度图 | 密度图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_factorial_response_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_factorial_response_diagnostic_panel` | 可视化分析・可视化・统计・诊断・面板 | Factorial response - Diagnostic panel | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_factorial_response_ecdf_step_view` | 可视化分析・可视化・统计・经验分布图 | 经验分布图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_factorial_response_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_factorial_response_flow_transition_map` | 可视化分析・可视化・统计 | Factorial response - Flow transition map | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_factorial_response_forest_interval_plot` | 可视化分析・可视化・统计・随机森林 | 随机森林 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_factorial_response_heatmap_matrix` | 可视化分析・可视化・统计・热力矩阵 | 热力矩阵 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_factorial_response_histogram_facets` | 可视化分析・可视化・统计・直方图 | 直方图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_factorial_response_map_choropleth_layer` | 可视化分析・可视化・统计・分级着色地图 | 分级着色地图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_factorial_response_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_factorial_response_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_factorial_response_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_factorial_response_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_factorial_response_mosaic_tile_view` | 可视化分析・可视化・统计 | Factorial response - Mosaic tile view | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_factorial_response_network_node_link` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_factorial_response_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_factorial_response_qq_reference_plot` | 可视化分析・可视化・统计 | Factorial response - Q-Q reference plot | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_factorial_response_quantile_band` | 可视化分析・可视化・统计・分位数 | 分位数 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_factorial_response_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_factorial_response_raincloud_view` | 可视化分析・可视化・统计 | Factorial response - Raincloud view | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_factorial_response_rank_interval_plot` | 可视化分析・可视化・统计・排名 | 排名 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_factorial_response_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_factorial_response_residual_annotation_map` | 可视化分析・可视化・统计 | Factorial response - Residual annotation map | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_factorial_response_slope_change_view` | 可视化分析・可视化・统计 | Factorial response - Slope change view | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_factorial_response_small_multiple_grid` | 可视化分析・可视化・统计 | 小多图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_factorial_response_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_factorial_response_stratified_dotplot` | 可视化分析・可视化・统计 | Factorial response - Stratified dot plot | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_factorial_response_threshold_band` | 可视化分析・可视化・统计 | Factorial response - Threshold band | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_factorial_response_uncertainty_ribbon` | 可视化分析・可视化・统计 | Factorial response - Uncertainty ribbon | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_factorial_response_violin_summary` | 可视化分析・可视化・统计・小提琴图・概览 | 小提琴图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_factorial_response_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_feature_contribution_annotated_reference_view` | 可视化分析・可视化・统计・特征 | Feature contribution - Annotated reference view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_feature_contribution_boxen_interval` | 可视化分析・可视化・统计・特征 | Feature contribution - Boxen interval plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_feature_contribution_comparative_lollipop` | 可视化分析・可视化・统计・特征 | Feature contribution - Comparative lollipop plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_feature_contribution_density_ridge` | 可视化分析・可视化・统计・特征・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_feature_contribution_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_feature_contribution_diagnostic_panel` | 可视化分析・可视化・统计・特征・诊断・面板 | Feature contribution - Diagnostic panel | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_feature_contribution_ecdf_step_view` | 可视化分析・可视化・统计・特征・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_feature_contribution_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_feature_contribution_flow_transition_map` | 可视化分析・可视化・统计・特征 | Feature contribution - Flow transition map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_feature_contribution_forest_interval_plot` | 可视化分析・可视化・统计・特征・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_feature_contribution_heatmap_matrix` | 可视化分析・可视化・统计・特征・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_feature_contribution_histogram_facets` | 可视化分析・可视化・统计・特征・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_feature_contribution_map_choropleth_layer` | 可视化分析・可视化・统计・特征・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_feature_contribution_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_feature_contribution_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_feature_contribution_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_feature_contribution_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_feature_contribution_mosaic_tile_view` | 可视化分析・可视化・统计・特征 | Feature contribution - Mosaic tile view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_feature_contribution_network_node_link` | 可视化分析・可视化・统计・特征・网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_feature_contribution_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_feature_contribution_qq_reference_plot` | 可视化分析・可视化・统计・特征 | Feature contribution - Q-Q reference plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_feature_contribution_quantile_band` | 可视化分析・可视化・统计・特征・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_feature_contribution_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_feature_contribution_raincloud_view` | 可视化分析・可视化・统计・特征 | Feature contribution - Raincloud view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_feature_contribution_rank_interval_plot` | 可视化分析・可视化・统计・特征・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_feature_contribution_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_feature_contribution_residual_annotation_map` | 可视化分析・可视化・统计・特征 | Feature contribution - Residual annotation map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_feature_contribution_slope_change_view` | 可视化分析・可视化・统计・特征 | Feature contribution - Slope change view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_feature_contribution_small_multiple_grid` | 可视化分析・可视化・统计・特征 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_feature_contribution_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_feature_contribution_stratified_dotplot` | 可视化分析・可视化・统计・特征 | Feature contribution - Stratified dot plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_feature_contribution_threshold_band` | 可视化分析・可视化・统计・特征 | Feature contribution - Threshold band | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_feature_contribution_uncertainty_ribbon` | 可视化分析・可视化・统计・特征 | Feature contribution - Uncertainty ribbon | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_feature_contribution_violin_summary` | 可视化分析・可视化・统计・特征・小提琴图・概览 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_feature_importance_annotated_reference_view` | 可视化分析・可视化・统计・特征・重要性 | 重要性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_feature_importance_boxen_interval` | 可视化分析・可视化・统计・特征・重要性 | 重要性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_feature_importance_comparative_lollipop` | 可视化分析・可视化・统计・特征・重要性 | 重要性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_feature_importance_density_ridge` | 可视化分析・可视化・统计・特征・重要性・密度图 | 重要性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_feature_importance_diagnostic_panel` | 可视化分析・可视化・统计・特征・重要性・诊断・面板 | 重要性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_feature_importance_ecdf_step_view` | 可视化分析・可视化・统计・特征・重要性・经验分布图 | 重要性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_feature_importance_flow_transition_map` | 可视化分析・可视化・统计・特征・重要性 | 重要性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_feature_importance_forest_interval_plot` | 可视化分析・可视化・统计・特征・重要性・随机森林 | 重要性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_feature_importance_heatmap_matrix` | 可视化分析・可视化・统计・特征・重要性・热力矩阵 | 重要性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_feature_importance_histogram_facets` | 可视化分析・可视化・统计・特征・重要性・直方图 | 重要性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_feature_importance_map_choropleth_layer` | 可视化分析・可视化・统计・特征・重要性・分级着色地图 | 重要性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_feature_importance_mosaic_tile_view` | 可视化分析・可视化・统计・特征・重要性 | 重要性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_feature_importance_network_node_link` | 可视化分析・可视化・统计・特征・重要性・网络 | 重要性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_feature_importance_qq_reference_plot` | 可视化分析・可视化・统计・特征・重要性 | 重要性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_feature_importance_quantile_band` | 可视化分析・可视化・统计・特征・重要性・分位数 | 重要性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_feature_importance_raincloud_view` | 可视化分析・可视化・统计・特征・重要性 | 重要性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_feature_importance_rank_interval_plot` | 可视化分析・可视化・统计・特征・重要性・排名 | 重要性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_feature_importance_residual_annotation_map` | 可视化分析・可视化・统计・特征・重要性 | 重要性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_feature_importance_slope_change_view` | 可视化分析・可视化・统计・特征・重要性 | 重要性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_feature_importance_small_multiple_grid` | 可视化分析・可视化・统计・特征・重要性 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_feature_importance_stratified_dotplot` | 可视化分析・可视化・统计・特征・重要性 | 重要性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_feature_importance_threshold_band` | 可视化分析・可视化・统计・特征・重要性 | 重要性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_feature_importance_uncertainty_ribbon` | 可视化分析・可视化・统计・特征・重要性 | 重要性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_feature_importance_violin_summary` | 可视化分析・可视化・统计・特征・重要性・小提琴图・概览 | 重要性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_forecast_uncertainty_annotated_reference_view` | 可视化分析・可视化・统计・预测 | 预测 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_forecast_uncertainty_boxen_interval` | 可视化分析・可视化・统计・预测 | 预测 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_forecast_uncertainty_comparative_lollipop` | 可视化分析・可视化・统计・预测 | 预测 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_forecast_uncertainty_density_ridge` | 可视化分析・可视化・统计・预测・密度图 | 预测 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_forecast_uncertainty_diagnostic_panel` | 可视化分析・可视化・统计・预测・诊断・面板 | 预测 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_forecast_uncertainty_ecdf_step_view` | 可视化分析・可视化・统计・预测・经验分布图 | 预测 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_forecast_uncertainty_flow_transition_map` | 可视化分析・可视化・统计・预测 | 预测 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_forecast_uncertainty_forest_interval_plot` | 可视化分析・可视化・统计・预测・随机森林 | 预测 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_forecast_uncertainty_heatmap_matrix` | 可视化分析・可视化・统计・预测・热力矩阵 | 预测 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_forecast_uncertainty_histogram_facets` | 可视化分析・可视化・统计・预测・直方图 | 预测 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_forecast_uncertainty_map_choropleth_layer` | 可视化分析・可视化・统计・预测・分级着色地图 | 预测 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_forecast_uncertainty_mosaic_tile_view` | 可视化分析・可视化・统计・预测 | 预测 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_forecast_uncertainty_network_node_link` | 可视化分析・可视化・统计・预测・网络 | 预测 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_forecast_uncertainty_qq_reference_plot` | 可视化分析・可视化・统计・预测 | 预测 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_forecast_uncertainty_quantile_band` | 可视化分析・可视化・统计・预测・分位数 | 预测 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_forecast_uncertainty_raincloud_view` | 可视化分析・可视化・统计・预测 | 预测 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_forecast_uncertainty_rank_interval_plot` | 可视化分析・可视化・统计・预测・排名 | 预测 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_forecast_uncertainty_residual_annotation_map` | 可视化分析・可视化・统计・预测 | 预测 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_forecast_uncertainty_slope_change_view` | 可视化分析・可视化・统计・预测 | 预测 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_forecast_uncertainty_small_multiple_grid` | 可视化分析・可视化・统计・预测 | 小多图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_forecast_uncertainty_stratified_dotplot` | 可视化分析・可视化・统计・预测 | 预测 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_forecast_uncertainty_threshold_band` | 可视化分析・可视化・统计・预测 | 预测 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_forecast_uncertainty_uncertainty_ribbon` | 可视化分析・可视化・统计・预测 | 预测 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_forecast_uncertainty_violin_summary` | 可视化分析・可视化・统计・预测・小提琴图・概览 | 预测 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_feature_contribution_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_feature_importance_annotated_reference_view` | 可视化分析・重要性 | 重要性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_feature_importance_boxen_interval` | 可视化分析・重要性 | 重要性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_feature_importance_comparative_lollipop` | 可视化分析・重要性 | 重要性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_feature_importance_density_ridge` | 可视化分析・重要性 | 重要性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_feature_importance_diagnostic_panel` | 可视化分析・重要性 | 重要性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_feature_importance_ecdf_step_view` | 可视化分析・重要性 | 重要性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_feature_importance_flow_transition_map` | 可视化分析・重要性 | 重要性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_feature_importance_forest_interval_plot` | 可视化分析・重要性 | 重要性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_feature_importance_heatmap_matrix` | 可视化分析・重要性 | 重要性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_feature_importance_histogram_facets` | 可视化分析・重要性 | 重要性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_feature_importance_map_choropleth_layer` | 可视化分析・重要性 | 重要性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_feature_importance_mosaic_tile_view` | 可视化分析・重要性 | 重要性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_feature_importance_network_node_link` | 可视化分析・重要性 | 重要性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_feature_importance_qq_reference_plot` | 可视化分析・重要性 | 重要性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_feature_importance_quantile_band` | 可视化分析・重要性 | 重要性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_feature_importance_raincloud_view` | 可视化分析・重要性 | 重要性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_feature_importance_rank_interval_plot` | 可视化分析・重要性 | 重要性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_feature_importance_residual_annotation_map` | 可视化分析・重要性 | 重要性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_feature_importance_slope_change_view` | 可视化分析・重要性 | 重要性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_feature_importance_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_feature_importance_stratified_dotplot` | 可视化分析・重要性 | 重要性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_feature_importance_threshold_band` | 可视化分析・重要性 | 重要性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_feature_importance_uncertainty_ribbon` | 可视化分析・重要性 | 重要性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_feature_importance_violin_summary` | 可视化分析・重要性 | 重要性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_forecast_uncertainty_annotated_reference_view` | 可视化分析・预测 | 预测 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_forecast_uncertainty_boxen_interval` | 可视化分析・预测 | 预测 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_forecast_uncertainty_comparative_lollipop` | 可视化分析・预测 | 预测 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_forecast_uncertainty_density_ridge` | 可视化分析・预测 | 预测 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_forecast_uncertainty_diagnostic_panel` | 可视化分析・预测 | 预测 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_forecast_uncertainty_ecdf_step_view` | 可视化分析・预测 | 预测 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_forecast_uncertainty_flow_transition_map` | 可视化分析・预测 | 预测 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_forecast_uncertainty_forest_interval_plot` | 可视化分析・预测 | 预测 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_forecast_uncertainty_heatmap_matrix` | 可视化分析・预测 | 预测 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_forecast_uncertainty_histogram_facets` | 可视化分析・预测 | 预测 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_forecast_uncertainty_map_choropleth_layer` | 可视化分析・预测 | 预测 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_forecast_uncertainty_mosaic_tile_view` | 可视化分析・预测 | 预测 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_forecast_uncertainty_network_node_link` | 可视化分析・预测 | 预测 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_forecast_uncertainty_qq_reference_plot` | 可视化分析・预测 | 预测 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_forecast_uncertainty_quantile_band` | 可视化分析・预测 | 预测 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_forecast_uncertainty_raincloud_view` | 可视化分析・预测 | 预测 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_forecast_uncertainty_rank_interval_plot` | 可视化分析・预测 | 预测 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_forecast_uncertainty_residual_annotation_map` | 可视化分析・预测 | 预测 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_forecast_uncertainty_slope_change_view` | 可视化分析・预测 | 预测 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_forecast_uncertainty_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_forecast_uncertainty_stratified_dotplot` | 可视化分析・预测 | 预测 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_forecast_uncertainty_threshold_band` | 可视化分析・预测 | 预测 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_forecast_uncertainty_uncertainty_ribbon` | 可视化分析・预测 | 预测 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_forecast_uncertainty_violin_summary` | 可视化分析・预测 | 预测 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_group_balance_annotated_reference_view` | 可视化分析・可视化・统计 | Group balance diagnostic - Annotated reference view | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_group_balance_boxen_interval` | 可视化分析・可视化・统计 | Group balance diagnostic - Boxen interval plot | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_group_balance_comparative_lollipop` | 可视化分析・可视化・统计 | Group balance diagnostic - Comparative lollipop plot | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_group_balance_density_ridge` | 可视化分析・可视化・统计・密度图 | 密度图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_group_balance_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_group_balance_diagnostic_panel` | 可视化分析・可视化・统计・诊断・面板 | Group balance diagnostic - Diagnostic panel | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_group_balance_ecdf_step_view` | 可视化分析・可视化・统计・经验分布图 | 经验分布图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_group_balance_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_group_balance_flow_transition_map` | 可视化分析・可视化・统计 | Group balance diagnostic - Flow transition map | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_group_balance_forest_interval_plot` | 可视化分析・可视化・统计・随机森林 | 随机森林 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_group_balance_heatmap_matrix` | 可视化分析・可视化・统计・热力矩阵 | 热力矩阵 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_group_balance_histogram_facets` | 可视化分析・可视化・统计・直方图 | 直方图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_group_balance_map_choropleth_layer` | 可视化分析・可视化・统计・分级着色地图 | 分级着色地图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_group_balance_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_group_balance_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_group_balance_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_group_balance_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_group_balance_mosaic_tile_view` | 可视化分析・可视化・统计 | Group balance diagnostic - Mosaic tile view | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_group_balance_network_node_link` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_group_balance_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_group_balance_qq_reference_plot` | 可视化分析・可视化・统计 | Group balance diagnostic - Q-Q reference plot | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_group_balance_quantile_band` | 可视化分析・可视化・统计・分位数 | 分位数 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_group_balance_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_group_balance_raincloud_view` | 可视化分析・可视化・统计 | Group balance diagnostic - Raincloud view | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_group_balance_rank_interval_plot` | 可视化分析・可视化・统计・排名 | 排名 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_group_balance_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_group_balance_residual_annotation_map` | 可视化分析・可视化・统计 | Group balance diagnostic - Residual annotation map | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_group_balance_slope_change_view` | 可视化分析・可视化・统计 | Group balance diagnostic - Slope change view | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_group_balance_small_multiple_grid` | 可视化分析・可视化・统计 | 小多图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_group_balance_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_group_balance_stratified_dotplot` | 可视化分析・可视化・统计 | Group balance diagnostic - Stratified dot plot | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_group_balance_threshold_band` | 可视化分析・可视化・统计 | Group balance diagnostic - Threshold band | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_group_balance_uncertainty_ribbon` | 可视化分析・可视化・统计 | Group balance diagnostic - Uncertainty ribbon | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_group_balance_violin_summary` | 可视化分析・可视化・统计・小提琴图・概览 | 小提琴图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_group_balance_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_group_difference_annotated_reference_view` | 可视化分析・可视化・统计 | Group difference evidence - Annotated reference view | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_group_difference_boxen_interval` | 可视化分析・可视化・统计 | Group difference evidence - Boxen interval plot | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_group_difference_comparative_lollipop` | 可视化分析・可视化・统计 | Group difference evidence - Comparative lollipop plot | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_group_difference_density_ridge` | 可视化分析・可视化・统计・密度图 | 密度图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_group_difference_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_group_difference_diagnostic_panel` | 可视化分析・可视化・统计・诊断・面板 | Group difference evidence - Diagnostic panel | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_group_difference_ecdf_step_view` | 可视化分析・可视化・统计・经验分布图 | 经验分布图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_group_difference_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_group_difference_flow_transition_map` | 可视化分析・可视化・统计 | Group difference evidence - Flow transition map | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_group_difference_forest_interval_plot` | 可视化分析・可视化・统计・随机森林 | 随机森林 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_group_difference_heatmap_matrix` | 可视化分析・可视化・统计・热力矩阵 | 热力矩阵 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_group_difference_histogram_facets` | 可视化分析・可视化・统计・直方图 | 直方图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_group_difference_map_choropleth_layer` | 可视化分析・可视化・统计・分级着色地图 | 分级着色地图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_group_difference_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_group_difference_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_group_difference_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_group_difference_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_group_difference_mosaic_tile_view` | 可视化分析・可视化・统计 | Group difference evidence - Mosaic tile view | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_group_difference_network_node_link` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_group_difference_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_group_difference_qq_reference_plot` | 可视化分析・可视化・统计 | Group difference evidence - Q-Q reference plot | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_group_difference_quantile_band` | 可视化分析・可视化・统计・分位数 | 分位数 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_group_difference_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_group_difference_raincloud_view` | 可视化分析・可视化・统计 | Group difference evidence - Raincloud view | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_group_difference_rank_interval_plot` | 可视化分析・可视化・统计・排名 | 排名 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_group_difference_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_group_difference_residual_annotation_map` | 可视化分析・可视化・统计 | Group difference evidence - Residual annotation map | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_group_difference_slope_change_view` | 可视化分析・可视化・统计 | Group difference evidence - Slope change view | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_group_difference_small_multiple_grid` | 可视化分析・可视化・统计 | 小多图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_group_difference_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_group_difference_stratified_dotplot` | 可视化分析・可视化・统计 | Group difference evidence - Stratified dot plot | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_group_difference_threshold_band` | 可视化分析・可视化・统计 | Group difference evidence - Threshold band | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_group_difference_uncertainty_ribbon` | 可视化分析・可视化・统计 | Group difference evidence - Uncertainty ribbon | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_group_difference_violin_summary` | 可视化分析・可视化・统计・小提琴图・概览 | 小提琴图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_group_difference_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_hazard_comparison_annotated_reference_view` | 可视化分析・可视化・统计 | Hazard comparison - Annotated reference view | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_hazard_comparison_boxen_interval` | 可视化分析・可视化・统计 | Hazard comparison - Boxen interval plot | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_hazard_comparison_comparative_lollipop` | 可视化分析・可视化・统计 | Hazard comparison - Comparative lollipop plot | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_hazard_comparison_density_ridge` | 可视化分析・可视化・统计・密度图 | 密度图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_hazard_comparison_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_hazard_comparison_diagnostic_panel` | 可视化分析・可视化・统计・诊断・面板 | Hazard comparison - Diagnostic panel | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_hazard_comparison_ecdf_step_view` | 可视化分析・可视化・统计・经验分布图 | 经验分布图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_hazard_comparison_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_hazard_comparison_flow_transition_map` | 可视化分析・可视化・统计 | Hazard comparison - Flow transition map | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_hazard_comparison_forest_interval_plot` | 可视化分析・可视化・统计・随机森林 | 随机森林 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_hazard_comparison_heatmap_matrix` | 可视化分析・可视化・统计・热力矩阵 | 热力矩阵 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_hazard_comparison_histogram_facets` | 可视化分析・可视化・统计・直方图 | 直方图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_hazard_comparison_map_choropleth_layer` | 可视化分析・可视化・统计・分级着色地图 | 分级着色地图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_hazard_comparison_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_hazard_comparison_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_hazard_comparison_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_hazard_comparison_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_hazard_comparison_mosaic_tile_view` | 可视化分析・可视化・统计 | Hazard comparison - Mosaic tile view | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_hazard_comparison_network_node_link` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_hazard_comparison_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_hazard_comparison_qq_reference_plot` | 可视化分析・可视化・统计 | Hazard comparison - Q-Q reference plot | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_hazard_comparison_quantile_band` | 可视化分析・可视化・统计・分位数 | 分位数 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_hazard_comparison_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_hazard_comparison_raincloud_view` | 可视化分析・可视化・统计 | Hazard comparison - Raincloud view | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_hazard_comparison_rank_interval_plot` | 可视化分析・可视化・统计・排名 | 排名 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_hazard_comparison_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_hazard_comparison_residual_annotation_map` | 可视化分析・可视化・统计 | Hazard comparison - Residual annotation map | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_hazard_comparison_slope_change_view` | 可视化分析・可视化・统计 | Hazard comparison - Slope change view | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_hazard_comparison_small_multiple_grid` | 可视化分析・可视化・统计 | 小多图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_hazard_comparison_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_hazard_comparison_stratified_dotplot` | 可视化分析・可视化・统计 | Hazard comparison - Stratified dot plot | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_hazard_comparison_threshold_band` | 可视化分析・可视化・统计 | Hazard comparison - Threshold band | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_hazard_comparison_uncertainty_ribbon` | 可视化分析・可视化・统计 | Hazard comparison - Uncertainty ribbon | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_hazard_comparison_violin_summary` | 可视化分析・可视化・统计・小提琴图・概览 | 小提琴图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_hazard_comparison_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_heteroscedasticity_pattern_annotated_reference_view` | 可视化分析・可视化・统计 | Heteroscedasticity pattern - Annotated reference view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_heteroscedasticity_pattern_boxen_interval` | 可视化分析・可视化・统计 | Heteroscedasticity pattern - Boxen interval plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_heteroscedasticity_pattern_comparative_lollipop` | 可视化分析・可视化・统计 | Heteroscedasticity pattern - Comparative lollipop plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_heteroscedasticity_pattern_density_ridge` | 可视化分析・可视化・统计・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_heteroscedasticity_pattern_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_heteroscedasticity_pattern_diagnostic_panel` | 可视化分析・可视化・统计・诊断・面板 | Heteroscedasticity pattern - Diagnostic panel | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_heteroscedasticity_pattern_ecdf_step_view` | 可视化分析・可视化・统计・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_heteroscedasticity_pattern_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_heteroscedasticity_pattern_flow_transition_map` | 可视化分析・可视化・统计 | Heteroscedasticity pattern - Flow transition map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_heteroscedasticity_pattern_forest_interval_plot` | 可视化分析・可视化・统计・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_heteroscedasticity_pattern_heatmap_matrix` | 可视化分析・可视化・统计・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_heteroscedasticity_pattern_histogram_facets` | 可视化分析・可视化・统计・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_heteroscedasticity_pattern_map_choropleth_layer` | 可视化分析・可视化・统计・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_heteroscedasticity_pattern_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_heteroscedasticity_pattern_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_heteroscedasticity_pattern_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_heteroscedasticity_pattern_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_heteroscedasticity_pattern_mosaic_tile_view` | 可视化分析・可视化・统计 | Heteroscedasticity pattern - Mosaic tile view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_heteroscedasticity_pattern_network_node_link` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_heteroscedasticity_pattern_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_heteroscedasticity_pattern_qq_reference_plot` | 可视化分析・可视化・统计 | Heteroscedasticity pattern - Q-Q reference plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_heteroscedasticity_pattern_quantile_band` | 可视化分析・可视化・统计・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_heteroscedasticity_pattern_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_heteroscedasticity_pattern_raincloud_view` | 可视化分析・可视化・统计 | Heteroscedasticity pattern - Raincloud view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_heteroscedasticity_pattern_rank_interval_plot` | 可视化分析・可视化・统计・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_heteroscedasticity_pattern_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_heteroscedasticity_pattern_residual_annotation_map` | 可视化分析・可视化・统计 | Heteroscedasticity pattern - Residual annotation map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_heteroscedasticity_pattern_slope_change_view` | 可视化分析・可视化・统计 | Heteroscedasticity pattern - Slope change view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_heteroscedasticity_pattern_small_multiple_grid` | 可视化分析・可视化・统计 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_heteroscedasticity_pattern_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_heteroscedasticity_pattern_stratified_dotplot` | 可视化分析・可视化・统计 | Heteroscedasticity pattern - Stratified dot plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_heteroscedasticity_pattern_threshold_band` | 可视化分析・可视化・统计 | Heteroscedasticity pattern - Threshold band | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_heteroscedasticity_pattern_uncertainty_ribbon` | 可视化分析・可视化・统计 | Heteroscedasticity pattern - Uncertainty ribbon | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_heteroscedasticity_pattern_violin_summary` | 可视化分析・可视化・统计・小提琴图・概览 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_heteroscedasticity_pattern_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_instrument_strength_annotated_reference_view` | 可视化分析・可视化・统计 | Instrument strength - Annotated reference view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_instrument_strength_boxen_interval` | 可视化分析・可视化・统计 | Instrument strength - Boxen interval plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_instrument_strength_comparative_lollipop` | 可视化分析・可视化・统计 | Instrument strength - Comparative lollipop plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_instrument_strength_density_ridge` | 可视化分析・可视化・统计・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_instrument_strength_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_instrument_strength_diagnostic_panel` | 可视化分析・可视化・统计・诊断・面板 | Instrument strength - Diagnostic panel | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_instrument_strength_ecdf_step_view` | 可视化分析・可视化・统计・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_instrument_strength_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_instrument_strength_flow_transition_map` | 可视化分析・可视化・统计 | Instrument strength - Flow transition map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_instrument_strength_forest_interval_plot` | 可视化分析・可视化・统计・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_instrument_strength_heatmap_matrix` | 可视化分析・可视化・统计・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_instrument_strength_histogram_facets` | 可视化分析・可视化・统计・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_instrument_strength_map_choropleth_layer` | 可视化分析・可视化・统计・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_instrument_strength_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_instrument_strength_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_instrument_strength_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_instrument_strength_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_instrument_strength_mosaic_tile_view` | 可视化分析・可视化・统计 | Instrument strength - Mosaic tile view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_instrument_strength_network_node_link` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_instrument_strength_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_instrument_strength_qq_reference_plot` | 可视化分析・可视化・统计 | Instrument strength - Q-Q reference plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_instrument_strength_quantile_band` | 可视化分析・可视化・统计・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_instrument_strength_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_instrument_strength_raincloud_view` | 可视化分析・可视化・统计 | Instrument strength - Raincloud view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_instrument_strength_rank_interval_plot` | 可视化分析・可视化・统计・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_instrument_strength_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_instrument_strength_residual_annotation_map` | 可视化分析・可视化・统计 | Instrument strength - Residual annotation map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_instrument_strength_slope_change_view` | 可视化分析・可视化・统计 | Instrument strength - Slope change view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_instrument_strength_small_multiple_grid` | 可视化分析・可视化・统计 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_instrument_strength_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_instrument_strength_stratified_dotplot` | 可视化分析・可视化・统计 | Instrument strength - Stratified dot plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_instrument_strength_threshold_band` | 可视化分析・可视化・统计 | Instrument strength - Threshold band | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_instrument_strength_uncertainty_ribbon` | 可视化分析・可视化・统计 | Instrument strength - Uncertainty ribbon | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_instrument_strength_violin_summary` | 可视化分析・可视化・统计・小提琴图・概览 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_instrument_strength_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_inter_rater_agreement_annotated_reference_view` | 可视化分析・可视化・统计 | Inter-rater agreement - Annotated reference view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_inter_rater_agreement_boxen_interval` | 可视化分析・可视化・统计 | Inter-rater agreement - Boxen interval plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_inter_rater_agreement_comparative_lollipop` | 可视化分析・可视化・统计 | Inter-rater agreement - Comparative lollipop plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_inter_rater_agreement_density_ridge` | 可视化分析・可视化・统计・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_inter_rater_agreement_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_inter_rater_agreement_diagnostic_panel` | 可视化分析・可视化・统计・诊断・面板 | Inter-rater agreement - Diagnostic panel | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_inter_rater_agreement_ecdf_step_view` | 可视化分析・可视化・统计・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_inter_rater_agreement_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_inter_rater_agreement_flow_transition_map` | 可视化分析・可视化・统计 | Inter-rater agreement - Flow transition map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_inter_rater_agreement_forest_interval_plot` | 可视化分析・可视化・统计・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_inter_rater_agreement_heatmap_matrix` | 可视化分析・可视化・统计・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_inter_rater_agreement_histogram_facets` | 可视化分析・可视化・统计・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_inter_rater_agreement_map_choropleth_layer` | 可视化分析・可视化・统计・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_inter_rater_agreement_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_inter_rater_agreement_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_inter_rater_agreement_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_inter_rater_agreement_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_inter_rater_agreement_mosaic_tile_view` | 可视化分析・可视化・统计 | Inter-rater agreement - Mosaic tile view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_inter_rater_agreement_network_node_link` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_inter_rater_agreement_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_inter_rater_agreement_qq_reference_plot` | 可视化分析・可视化・统计 | Inter-rater agreement - Q-Q reference plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_inter_rater_agreement_quantile_band` | 可视化分析・可视化・统计・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_inter_rater_agreement_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_inter_rater_agreement_raincloud_view` | 可视化分析・可视化・统计 | Inter-rater agreement - Raincloud view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_inter_rater_agreement_rank_interval_plot` | 可视化分析・可视化・统计・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_inter_rater_agreement_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_inter_rater_agreement_residual_annotation_map` | 可视化分析・可视化・统计 | Inter-rater agreement - Residual annotation map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_inter_rater_agreement_slope_change_view` | 可视化分析・可视化・统计 | Inter-rater agreement - Slope change view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_inter_rater_agreement_small_multiple_grid` | 可视化分析・可视化・统计 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_inter_rater_agreement_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_inter_rater_agreement_stratified_dotplot` | 可视化分析・可视化・统计 | Inter-rater agreement - Stratified dot plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_inter_rater_agreement_threshold_band` | 可视化分析・可视化・统计 | Inter-rater agreement - Threshold band | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_inter_rater_agreement_uncertainty_ribbon` | 可视化分析・可视化・统计 | Inter-rater agreement - Uncertainty ribbon | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_inter_rater_agreement_violin_summary` | 可视化分析・可视化・统计・小提琴图・概览 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_inter_rater_agreement_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_interaction_effect_annotated_reference_view` | 可视化分析・可视化・统计・效应 | Interaction effect - Annotated reference view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_interaction_effect_boxen_interval` | 可视化分析・可视化・统计・效应 | Interaction effect - Boxen interval plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_interaction_effect_comparative_lollipop` | 可视化分析・可视化・统计・效应 | Interaction effect - Comparative lollipop plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_interaction_effect_density_ridge` | 可视化分析・可视化・统计・效应・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_interaction_effect_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_interaction_effect_diagnostic_panel` | 可视化分析・可视化・统计・效应・诊断・面板 | Interaction effect - Diagnostic panel | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_interaction_effect_ecdf_step_view` | 可视化分析・可视化・统计・效应・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_interaction_effect_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_interaction_effect_flow_transition_map` | 可视化分析・可视化・统计・效应 | Interaction effect - Flow transition map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_interaction_effect_forest_interval_plot` | 可视化分析・可视化・统计・效应・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_interaction_effect_heatmap_matrix` | 可视化分析・可视化・统计・效应・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_interaction_effect_histogram_facets` | 可视化分析・可视化・统计・效应・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_interaction_effect_map_choropleth_layer` | 可视化分析・可视化・统计・效应・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_interaction_effect_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_interaction_effect_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_interaction_effect_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_interaction_effect_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_interaction_effect_mosaic_tile_view` | 可视化分析・可视化・统计・效应 | Interaction effect - Mosaic tile view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_interaction_effect_network_node_link` | 可视化分析・可视化・统计・效应・网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_interaction_effect_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_interaction_effect_qq_reference_plot` | 可视化分析・可视化・统计・效应 | Interaction effect - Q-Q reference plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_interaction_effect_quantile_band` | 可视化分析・可视化・统计・效应・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_interaction_effect_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_interaction_effect_raincloud_view` | 可视化分析・可视化・统计・效应 | Interaction effect - Raincloud view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_interaction_effect_rank_interval_plot` | 可视化分析・可视化・统计・效应・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_interaction_effect_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_interaction_effect_residual_annotation_map` | 可视化分析・可视化・统计・效应 | Interaction effect - Residual annotation map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_interaction_effect_slope_change_view` | 可视化分析・可视化・统计・效应 | Interaction effect - Slope change view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_interaction_effect_small_multiple_grid` | 可视化分析・可视化・统计・效应 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_interaction_effect_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_interaction_effect_stratified_dotplot` | 可视化分析・可视化・统计・效应 | Interaction effect - Stratified dot plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_interaction_effect_threshold_band` | 可视化分析・可视化・统计・效应 | Interaction effect - Threshold band | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_interaction_effect_uncertainty_ribbon` | 可视化分析・可视化・统计・效应 | Interaction effect - Uncertainty ribbon | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_interaction_effect_violin_summary` | 可视化分析・可视化・统计・效应・小提琴图・概览 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_interaction_effect_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_inventory_process_variation_annotated_reference_view` | 可视化分析・可视化・统计 | Inventory process variation - Annotated reference view | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_inventory_process_variation_boxen_interval` | 可视化分析・可视化・统计 | Inventory process variation - Boxen interval plot | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_inventory_process_variation_comparative_lollipop` | 可视化分析・可视化・统计 | Inventory process variation - Comparative lollipop plot | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_inventory_process_variation_density_ridge` | 可视化分析・可视化・统计・密度图 | 密度图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_inventory_process_variation_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_inventory_process_variation_diagnostic_panel` | 可视化分析・可视化・统计・诊断・面板 | Inventory process variation - Diagnostic panel | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_inventory_process_variation_ecdf_step_view` | 可视化分析・可视化・统计・经验分布图 | 经验分布图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_inventory_process_variation_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_inventory_process_variation_flow_transition_map` | 可视化分析・可视化・统计 | Inventory process variation - Flow transition map | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_inventory_process_variation_forest_interval_plot` | 可视化分析・可视化・统计・随机森林 | 随机森林 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_inventory_process_variation_heatmap_matrix` | 可视化分析・可视化・统计・热力矩阵 | 热力矩阵 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_inventory_process_variation_histogram_facets` | 可视化分析・可视化・统计・直方图 | 直方图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_inventory_process_variation_map_choropleth_layer` | 可视化分析・可视化・统计・分级着色地图 | 分级着色地图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_inventory_process_variation_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_inventory_process_variation_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_inventory_process_variation_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_inventory_process_variation_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_inventory_process_variation_mosaic_tile_view` | 可视化分析・可视化・统计 | Inventory process variation - Mosaic tile view | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_inventory_process_variation_network_node_link` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_inventory_process_variation_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_inventory_process_variation_qq_reference_plot` | 可视化分析・可视化・统计 | Inventory process variation - Q-Q reference plot | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_inventory_process_variation_quantile_band` | 可视化分析・可视化・统计・分位数 | 分位数 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_inventory_process_variation_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_inventory_process_variation_raincloud_view` | 可视化分析・可视化・统计 | Inventory process variation - Raincloud view | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_inventory_process_variation_rank_interval_plot` | 可视化分析・可视化・统计・排名 | 排名 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_inventory_process_variation_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_inventory_process_variation_residual_annotation_map` | 可视化分析・可视化・统计 | Inventory process variation - Residual annotation map | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_inventory_process_variation_slope_change_view` | 可视化分析・可视化・统计 | Inventory process variation - Slope change view | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_inventory_process_variation_small_multiple_grid` | 可视化分析・可视化・统计 | 小多图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_inventory_process_variation_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_inventory_process_variation_stratified_dotplot` | 可视化分析・可视化・统计 | Inventory process variation - Stratified dot plot | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_inventory_process_variation_threshold_band` | 可视化分析・可视化・统计 | Inventory process variation - Threshold band | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_inventory_process_variation_uncertainty_ribbon` | 可视化分析・可视化・统计 | Inventory process variation - Uncertainty ribbon | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_inventory_process_variation_violin_summary` | 可视化分析・可视化・统计・小提琴图・概览 | 小提琴图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_inventory_process_variation_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_item_response_pattern_annotated_reference_view` | 可视化分析・可视化・统计 | Item response pattern - Annotated reference view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_item_response_pattern_boxen_interval` | 可视化分析・可视化・统计 | Item response pattern - Boxen interval plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_item_response_pattern_comparative_lollipop` | 可视化分析・可视化・统计 | Item response pattern - Comparative lollipop plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_item_response_pattern_density_ridge` | 可视化分析・可视化・统计・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_item_response_pattern_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_item_response_pattern_diagnostic_panel` | 可视化分析・可视化・统计・诊断・面板 | Item response pattern - Diagnostic panel | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_item_response_pattern_ecdf_step_view` | 可视化分析・可视化・统计・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_item_response_pattern_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_item_response_pattern_flow_transition_map` | 可视化分析・可视化・统计 | Item response pattern - Flow transition map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_item_response_pattern_forest_interval_plot` | 可视化分析・可视化・统计・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_item_response_pattern_heatmap_matrix` | 可视化分析・可视化・统计・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_item_response_pattern_histogram_facets` | 可视化分析・可视化・统计・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_item_response_pattern_map_choropleth_layer` | 可视化分析・可视化・统计・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_item_response_pattern_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_item_response_pattern_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_item_response_pattern_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_item_response_pattern_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_item_response_pattern_mosaic_tile_view` | 可视化分析・可视化・统计 | Item response pattern - Mosaic tile view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_item_response_pattern_network_node_link` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_item_response_pattern_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_item_response_pattern_qq_reference_plot` | 可视化分析・可视化・统计 | Item response pattern - Q-Q reference plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_item_response_pattern_quantile_band` | 可视化分析・可视化・统计・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_item_response_pattern_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_item_response_pattern_raincloud_view` | 可视化分析・可视化・统计 | Item response pattern - Raincloud view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_item_response_pattern_rank_interval_plot` | 可视化分析・可视化・统计・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_item_response_pattern_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_item_response_pattern_residual_annotation_map` | 可视化分析・可视化・统计 | Item response pattern - Residual annotation map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_item_response_pattern_slope_change_view` | 可视化分析・可视化・统计 | Item response pattern - Slope change view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_item_response_pattern_small_multiple_grid` | 可视化分析・可视化・统计 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_item_response_pattern_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_item_response_pattern_stratified_dotplot` | 可视化分析・可视化・统计 | Item response pattern - Stratified dot plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_item_response_pattern_threshold_band` | 可视化分析・可视化・统计 | Item response pattern - Threshold band | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_item_response_pattern_uncertainty_ribbon` | 可视化分析・可视化・统计 | Item response pattern - Uncertainty ribbon | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_item_response_pattern_violin_summary` | 可视化分析・可视化・统计・小提琴图・概览 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_item_response_pattern_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_lab_measurement_qc_annotated_reference_view` | 可视化分析・可视化・统计 | Laboratory measurement QC - Annotated reference view | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_lab_measurement_qc_boxen_interval` | 可视化分析・可视化・统计 | Laboratory measurement QC - Boxen interval plot | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_lab_measurement_qc_comparative_lollipop` | 可视化分析・可视化・统计 | Laboratory measurement QC - Comparative lollipop plot | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_lab_measurement_qc_density_ridge` | 可视化分析・可视化・统计・密度图 | 密度图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_lab_measurement_qc_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_lab_measurement_qc_diagnostic_panel` | 可视化分析・可视化・统计・诊断・面板 | Laboratory measurement QC - Diagnostic panel | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_lab_measurement_qc_ecdf_step_view` | 可视化分析・可视化・统计・经验分布图 | 经验分布图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_lab_measurement_qc_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_lab_measurement_qc_flow_transition_map` | 可视化分析・可视化・统计 | Laboratory measurement QC - Flow transition map | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_lab_measurement_qc_forest_interval_plot` | 可视化分析・可视化・统计・随机森林 | 随机森林 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_lab_measurement_qc_heatmap_matrix` | 可视化分析・可视化・统计・热力矩阵 | 热力矩阵 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_lab_measurement_qc_histogram_facets` | 可视化分析・可视化・统计・直方图 | 直方图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_lab_measurement_qc_map_choropleth_layer` | 可视化分析・可视化・统计・分级着色地图 | 分级着色地图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_lab_measurement_qc_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_lab_measurement_qc_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_lab_measurement_qc_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_lab_measurement_qc_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_lab_measurement_qc_mosaic_tile_view` | 可视化分析・可视化・统计 | Laboratory measurement QC - Mosaic tile view | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_lab_measurement_qc_network_node_link` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_lab_measurement_qc_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_lab_measurement_qc_qq_reference_plot` | 可视化分析・可视化・统计 | Laboratory measurement QC - Q-Q reference plot | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_lab_measurement_qc_quantile_band` | 可视化分析・可视化・统计・分位数 | 分位数 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_lab_measurement_qc_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_lab_measurement_qc_raincloud_view` | 可视化分析・可视化・统计 | Laboratory measurement QC - Raincloud view | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_lab_measurement_qc_rank_interval_plot` | 可视化分析・可视化・统计・排名 | 排名 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_lab_measurement_qc_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_lab_measurement_qc_residual_annotation_map` | 可视化分析・可视化・统计 | Laboratory measurement QC - Residual annotation map | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_lab_measurement_qc_slope_change_view` | 可视化分析・可视化・统计 | Laboratory measurement QC - Slope change view | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_lab_measurement_qc_small_multiple_grid` | 可视化分析・可视化・统计 | 小多图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_lab_measurement_qc_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_lab_measurement_qc_stratified_dotplot` | 可视化分析・可视化・统计 | Laboratory measurement QC - Stratified dot plot | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_lab_measurement_qc_threshold_band` | 可视化分析・可视化・统计 | Laboratory measurement QC - Threshold band | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_lab_measurement_qc_uncertainty_ribbon` | 可视化分析・可视化・统计 | Laboratory measurement QC - Uncertainty ribbon | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_lab_measurement_qc_violin_summary` | 可视化分析・可视化・统计・小提琴图・概览 | 小提琴图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_lab_measurement_qc_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_latent_construct_annotated_reference_view` | 可视化分析・可视化・统计 | Latent construct - Annotated reference view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_latent_construct_boxen_interval` | 可视化分析・可视化・统计 | Latent construct - Boxen interval plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_latent_construct_comparative_lollipop` | 可视化分析・可视化・统计 | Latent construct - Comparative lollipop plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_latent_construct_density_ridge` | 可视化分析・可视化・统计・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_latent_construct_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_latent_construct_diagnostic_panel` | 可视化分析・可视化・统计・诊断・面板 | Latent construct - Diagnostic panel | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_latent_construct_ecdf_step_view` | 可视化分析・可视化・统计・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_latent_construct_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_latent_construct_flow_transition_map` | 可视化分析・可视化・统计 | Latent construct - Flow transition map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_latent_construct_forest_interval_plot` | 可视化分析・可视化・统计・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_latent_construct_heatmap_matrix` | 可视化分析・可视化・统计・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_latent_construct_histogram_facets` | 可视化分析・可视化・统计・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_latent_construct_map_choropleth_layer` | 可视化分析・可视化・统计・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_latent_construct_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_latent_construct_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_latent_construct_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_latent_construct_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_latent_construct_mosaic_tile_view` | 可视化分析・可视化・统计 | Latent construct - Mosaic tile view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_latent_construct_network_node_link` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_latent_construct_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_latent_construct_qq_reference_plot` | 可视化分析・可视化・统计 | Latent construct - Q-Q reference plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_latent_construct_quantile_band` | 可视化分析・可视化・统计・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_latent_construct_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_latent_construct_raincloud_view` | 可视化分析・可视化・统计 | Latent construct - Raincloud view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_latent_construct_rank_interval_plot` | 可视化分析・可视化・统计・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_latent_construct_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_latent_construct_residual_annotation_map` | 可视化分析・可视化・统计 | Latent construct - Residual annotation map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_latent_construct_slope_change_view` | 可视化分析・可视化・统计 | Latent construct - Slope change view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_latent_construct_small_multiple_grid` | 可视化分析・可视化・统计 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_latent_construct_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_latent_construct_stratified_dotplot` | 可视化分析・可视化・统计 | Latent construct - Stratified dot plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_latent_construct_threshold_band` | 可视化分析・可视化・统计 | Latent construct - Threshold band | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_latent_construct_uncertainty_ribbon` | 可视化分析・可视化・统计 | Latent construct - Uncertainty ribbon | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_latent_construct_violin_summary` | 可视化分析・可视化・统计・小提琴图・概览 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_latent_construct_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_leverage_structure_annotated_reference_view` | 可视化分析・可视化・统计 | Leverage structure - Annotated reference view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_leverage_structure_boxen_interval` | 可视化分析・可视化・统计 | Leverage structure - Boxen interval plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_leverage_structure_comparative_lollipop` | 可视化分析・可视化・统计 | Leverage structure - Comparative lollipop plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_leverage_structure_density_ridge` | 可视化分析・可视化・统计・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_leverage_structure_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_leverage_structure_diagnostic_panel` | 可视化分析・可视化・统计・诊断・面板 | Leverage structure - Diagnostic panel | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_leverage_structure_ecdf_step_view` | 可视化分析・可视化・统计・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_leverage_structure_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_leverage_structure_flow_transition_map` | 可视化分析・可视化・统计 | Leverage structure - Flow transition map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_leverage_structure_forest_interval_plot` | 可视化分析・可视化・统计・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_leverage_structure_heatmap_matrix` | 可视化分析・可视化・统计・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_leverage_structure_histogram_facets` | 可视化分析・可视化・统计・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_leverage_structure_map_choropleth_layer` | 可视化分析・可视化・统计・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_leverage_structure_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_leverage_structure_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_leverage_structure_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_leverage_structure_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_leverage_structure_mosaic_tile_view` | 可视化分析・可视化・统计 | Leverage structure - Mosaic tile view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_leverage_structure_network_node_link` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_leverage_structure_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_leverage_structure_qq_reference_plot` | 可视化分析・可视化・统计 | Leverage structure - Q-Q reference plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_leverage_structure_quantile_band` | 可视化分析・可视化・统计・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_leverage_structure_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_leverage_structure_raincloud_view` | 可视化分析・可视化・统计 | Leverage structure - Raincloud view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_leverage_structure_rank_interval_plot` | 可视化分析・可视化・统计・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_leverage_structure_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_leverage_structure_residual_annotation_map` | 可视化分析・可视化・统计 | Leverage structure - Residual annotation map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_leverage_structure_slope_change_view` | 可视化分析・可视化・统计 | Leverage structure - Slope change view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_leverage_structure_small_multiple_grid` | 可视化分析・可视化・统计 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_leverage_structure_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_leverage_structure_stratified_dotplot` | 可视化分析・可视化・统计 | Leverage structure - Stratified dot plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_leverage_structure_threshold_band` | 可视化分析・可视化・统计 | Leverage structure - Threshold band | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_leverage_structure_uncertainty_ribbon` | 可视化分析・可视化・统计 | Leverage structure - Uncertainty ribbon | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_leverage_structure_violin_summary` | 可视化分析・可视化・统计・小提琴图・概览 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_leverage_structure_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_longitudinal_trajectory_annotated_reference_view` | 可视化分析・可视化・统计 | Longitudinal trajectory - Annotated reference view | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_longitudinal_trajectory_boxen_interval` | 可视化分析・可视化・统计 | Longitudinal trajectory - Boxen interval plot | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_longitudinal_trajectory_comparative_lollipop` | 可视化分析・可视化・统计 | Longitudinal trajectory - Comparative lollipop plot | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_longitudinal_trajectory_density_ridge` | 可视化分析・可视化・统计・密度图 | 密度图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_longitudinal_trajectory_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_longitudinal_trajectory_diagnostic_panel` | 可视化分析・可视化・统计・诊断・面板 | Longitudinal trajectory - Diagnostic panel | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_longitudinal_trajectory_ecdf_step_view` | 可视化分析・可视化・统计・经验分布图 | 经验分布图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_longitudinal_trajectory_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_longitudinal_trajectory_flow_transition_map` | 可视化分析・可视化・统计 | Longitudinal trajectory - Flow transition map | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_longitudinal_trajectory_forest_interval_plot` | 可视化分析・可视化・统计・随机森林 | 随机森林 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_longitudinal_trajectory_heatmap_matrix` | 可视化分析・可视化・统计・热力矩阵 | 热力矩阵 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_longitudinal_trajectory_histogram_facets` | 可视化分析・可视化・统计・直方图 | 直方图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_longitudinal_trajectory_map_choropleth_layer` | 可视化分析・可视化・统计・分级着色地图 | 分级着色地图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_longitudinal_trajectory_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_longitudinal_trajectory_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_longitudinal_trajectory_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_longitudinal_trajectory_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_longitudinal_trajectory_mosaic_tile_view` | 可视化分析・可视化・统计 | Longitudinal trajectory - Mosaic tile view | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_longitudinal_trajectory_network_node_link` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_longitudinal_trajectory_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_longitudinal_trajectory_qq_reference_plot` | 可视化分析・可视化・统计 | Longitudinal trajectory - Q-Q reference plot | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_longitudinal_trajectory_quantile_band` | 可视化分析・可视化・统计・分位数 | 分位数 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_longitudinal_trajectory_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_longitudinal_trajectory_raincloud_view` | 可视化分析・可视化・统计 | Longitudinal trajectory - Raincloud view | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_longitudinal_trajectory_rank_interval_plot` | 可视化分析・可视化・统计・排名 | 排名 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_longitudinal_trajectory_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_longitudinal_trajectory_residual_annotation_map` | 可视化分析・可视化・统计 | Longitudinal trajectory - Residual annotation map | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_longitudinal_trajectory_slope_change_view` | 可视化分析・可视化・统计 | Longitudinal trajectory - Slope change view | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_longitudinal_trajectory_small_multiple_grid` | 可视化分析・可视化・统计 | 小多图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_longitudinal_trajectory_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_longitudinal_trajectory_stratified_dotplot` | 可视化分析・可视化・统计 | Longitudinal trajectory - Stratified dot plot | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_longitudinal_trajectory_threshold_band` | 可视化分析・可视化・统计 | Longitudinal trajectory - Threshold band | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_longitudinal_trajectory_uncertainty_ribbon` | 可视化分析・可视化・统计 | Longitudinal trajectory - Uncertainty ribbon | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_longitudinal_trajectory_violin_summary` | 可视化分析・可视化・统计・小提琴图・概览 | 小提琴图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_longitudinal_trajectory_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_manifold_structure_annotated_reference_view` | 可视化分析・可视化・统计 | Manifold structure - Annotated reference view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_manifold_structure_boxen_interval` | 可视化分析・可视化・统计 | Manifold structure - Boxen interval plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_manifold_structure_comparative_lollipop` | 可视化分析・可视化・统计 | Manifold structure - Comparative lollipop plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_manifold_structure_density_ridge` | 可视化分析・可视化・统计・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_manifold_structure_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_manifold_structure_diagnostic_panel` | 可视化分析・可视化・统计・诊断・面板 | Manifold structure - Diagnostic panel | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_manifold_structure_ecdf_step_view` | 可视化分析・可视化・统计・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_manifold_structure_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_manifold_structure_flow_transition_map` | 可视化分析・可视化・统计 | Manifold structure - Flow transition map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_manifold_structure_forest_interval_plot` | 可视化分析・可视化・统计・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_manifold_structure_heatmap_matrix` | 可视化分析・可视化・统计・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_manifold_structure_histogram_facets` | 可视化分析・可视化・统计・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_manifold_structure_map_choropleth_layer` | 可视化分析・可视化・统计・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_manifold_structure_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_manifold_structure_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_manifold_structure_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_manifold_structure_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_manifold_structure_mosaic_tile_view` | 可视化分析・可视化・统计 | Manifold structure - Mosaic tile view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_manifold_structure_network_node_link` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_manifold_structure_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_manifold_structure_qq_reference_plot` | 可视化分析・可视化・统计 | Manifold structure - Q-Q reference plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_manifold_structure_quantile_band` | 可视化分析・可视化・统计・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_manifold_structure_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_manifold_structure_raincloud_view` | 可视化分析・可视化・统计 | Manifold structure - Raincloud view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_manifold_structure_rank_interval_plot` | 可视化分析・可视化・统计・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_manifold_structure_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_manifold_structure_residual_annotation_map` | 可视化分析・可视化・统计 | Manifold structure - Residual annotation map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_manifold_structure_slope_change_view` | 可视化分析・可视化・统计 | Manifold structure - Slope change view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_manifold_structure_small_multiple_grid` | 可视化分析・可视化・统计 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_manifold_structure_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_manifold_structure_stratified_dotplot` | 可视化分析・可视化・统计 | Manifold structure - Stratified dot plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_manifold_structure_threshold_band` | 可视化分析・可视化・统计 | Manifold structure - Threshold band | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_manifold_structure_uncertainty_ribbon` | 可视化分析・可视化・统计 | Manifold structure - Uncertainty ribbon | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_manifold_structure_violin_summary` | 可视化分析・可视化・统计・小提琴图・概览 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_manifold_structure_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_manufacturing_process_stability_annotated_reference_view` | 可视化分析・可视化・统计 | Manufacturing process stability - Annotated reference view | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_manufacturing_process_stability_boxen_interval` | 可视化分析・可视化・统计 | Manufacturing process stability - Boxen interval plot | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_manufacturing_process_stability_comparative_lollipop` | 可视化分析・可视化・统计 | Manufacturing process stability - Comparative lollipop plot | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_manufacturing_process_stability_density_ridge` | 可视化分析・可视化・统计・密度图 | 密度图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_manufacturing_process_stability_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_manufacturing_process_stability_diagnostic_panel` | 可视化分析・可视化・统计・诊断・面板 | Manufacturing process stability - Diagnostic panel | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_manufacturing_process_stability_ecdf_step_view` | 可视化分析・可视化・统计・经验分布图 | 经验分布图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_manufacturing_process_stability_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_manufacturing_process_stability_flow_transition_map` | 可视化分析・可视化・统计 | Manufacturing process stability - Flow transition map | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_manufacturing_process_stability_forest_interval_plot` | 可视化分析・可视化・统计・随机森林 | 随机森林 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_manufacturing_process_stability_heatmap_matrix` | 可视化分析・可视化・统计・热力矩阵 | 热力矩阵 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_manufacturing_process_stability_histogram_facets` | 可视化分析・可视化・统计・直方图 | 直方图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_manufacturing_process_stability_map_choropleth_layer` | 可视化分析・可视化・统计・分级着色地图 | 分级着色地图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_manufacturing_process_stability_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_manufacturing_process_stability_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_manufacturing_process_stability_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_manufacturing_process_stability_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_manufacturing_process_stability_mosaic_tile_view` | 可视化分析・可视化・统计 | Manufacturing process stability - Mosaic tile view | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_manufacturing_process_stability_network_node_link` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_manufacturing_process_stability_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_manufacturing_process_stability_qq_reference_plot` | 可视化分析・可视化・统计 | Manufacturing process stability - Q-Q reference plot | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_manufacturing_process_stability_quantile_band` | 可视化分析・可视化・统计・分位数 | 分位数 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_manufacturing_process_stability_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_manufacturing_process_stability_raincloud_view` | 可视化分析・可视化・统计 | Manufacturing process stability - Raincloud view | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_manufacturing_process_stability_rank_interval_plot` | 可视化分析・可视化・统计・排名 | 排名 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_manufacturing_process_stability_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_manufacturing_process_stability_residual_annotation_map` | 可视化分析・可视化・统计 | Manufacturing process stability - Residual annotation map | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_manufacturing_process_stability_slope_change_view` | 可视化分析・可视化・统计 | Manufacturing process stability - Slope change view | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_manufacturing_process_stability_small_multiple_grid` | 可视化分析・可视化・统计 | 小多图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_manufacturing_process_stability_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_manufacturing_process_stability_stratified_dotplot` | 可视化分析・可视化・统计 | Manufacturing process stability - Stratified dot plot | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_manufacturing_process_stability_threshold_band` | 可视化分析・可视化・统计 | Manufacturing process stability - Threshold band | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_manufacturing_process_stability_uncertainty_ribbon` | 可视化分析・可视化・统计 | Manufacturing process stability - Uncertainty ribbon | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_manufacturing_process_stability_violin_summary` | 可视化分析・可视化・统计・小提琴图・概览 | 小提琴图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_manufacturing_process_stability_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_measurement_error_annotated_reference_view` | 可视化分析・可视化・统计・误差 | Measurement error - Annotated reference view | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_measurement_error_boxen_interval` | 可视化分析・可视化・统计・误差 | Measurement error - Boxen interval plot | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_measurement_error_comparative_lollipop` | 可视化分析・可视化・统计・误差 | Measurement error - Comparative lollipop plot | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_measurement_error_density_ridge` | 可视化分析・可视化・统计・误差・密度图 | 密度图 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_measurement_error_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_measurement_error_diagnostic_panel` | 可视化分析・可视化・统计・误差・诊断・面板 | Measurement error - Diagnostic panel | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_measurement_error_ecdf_step_view` | 可视化分析・可视化・统计・误差・经验分布图 | 经验分布图 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_measurement_error_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_measurement_error_flow_transition_map` | 可视化分析・可视化・统计・误差 | Measurement error - Flow transition map | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_measurement_error_forest_interval_plot` | 可视化分析・可视化・统计・误差・随机森林 | 随机森林 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_measurement_error_heatmap_matrix` | 可视化分析・可视化・统计・误差・热力矩阵 | 热力矩阵 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_measurement_error_histogram_facets` | 可视化分析・可视化・统计・误差・直方图 | 直方图 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_measurement_error_map_choropleth_layer` | 可视化分析・可视化・统计・误差・分级着色地图 | 分级着色地图 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_measurement_error_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_measurement_error_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_measurement_error_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_measurement_error_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_measurement_error_mosaic_tile_view` | 可视化分析・可视化・统计・误差 | Measurement error - Mosaic tile view | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_measurement_error_network_node_link` | 可视化分析・可视化・统计・误差・网络 | 关系网络 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_measurement_error_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_measurement_error_qq_reference_plot` | 可视化分析・可视化・统计・误差 | Measurement error - Q-Q reference plot | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_measurement_error_quantile_band` | 可视化分析・可视化・统计・误差・分位数 | 分位数 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_measurement_error_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_measurement_error_raincloud_view` | 可视化分析・可视化・统计・误差 | Measurement error - Raincloud view | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_measurement_error_rank_interval_plot` | 可视化分析・可视化・统计・误差・排名 | 排名 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_measurement_error_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_measurement_error_residual_annotation_map` | 可视化分析・可视化・统计・误差 | Measurement error - Residual annotation map | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_measurement_error_slope_change_view` | 可视化分析・可视化・统计・误差 | Measurement error - Slope change view | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_measurement_error_small_multiple_grid` | 可视化分析・可视化・统计・误差 | 小多图 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_measurement_error_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_measurement_error_stratified_dotplot` | 可视化分析・可视化・统计・误差 | Measurement error - Stratified dot plot | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_measurement_error_threshold_band` | 可视化分析・可视化・统计・误差 | Measurement error - Threshold band | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_measurement_error_uncertainty_ribbon` | 可视化分析・可视化・统计・误差 | Measurement error - Uncertainty ribbon | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_measurement_error_violin_summary` | 可视化分析・可视化・统计・误差・小提琴图・概览 | 小提琴图 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_measurement_error_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_mediation_path_annotated_reference_view` | 可视化分析・可视化・统计 | Mediation path - Annotated reference view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_mediation_path_boxen_interval` | 可视化分析・可视化・统计 | Mediation path - Boxen interval plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_mediation_path_comparative_lollipop` | 可视化分析・可视化・统计 | Mediation path - Comparative lollipop plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_mediation_path_density_ridge` | 可视化分析・可视化・统计・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_mediation_path_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_mediation_path_diagnostic_panel` | 可视化分析・可视化・统计・诊断・面板 | Mediation path - Diagnostic panel | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_mediation_path_ecdf_step_view` | 可视化分析・可视化・统计・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_mediation_path_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_mediation_path_flow_transition_map` | 可视化分析・可视化・统计 | Mediation path - Flow transition map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_mediation_path_forest_interval_plot` | 可视化分析・可视化・统计・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_mediation_path_heatmap_matrix` | 可视化分析・可视化・统计・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_mediation_path_histogram_facets` | 可视化分析・可视化・统计・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_mediation_path_map_choropleth_layer` | 可视化分析・可视化・统计・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_mediation_path_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_mediation_path_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_mediation_path_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_mediation_path_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_mediation_path_mosaic_tile_view` | 可视化分析・可视化・统计 | Mediation path - Mosaic tile view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_mediation_path_network_node_link` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_mediation_path_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_mediation_path_qq_reference_plot` | 可视化分析・可视化・统计 | Mediation path - Q-Q reference plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_mediation_path_quantile_band` | 可视化分析・可视化・统计・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_mediation_path_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_mediation_path_raincloud_view` | 可视化分析・可视化・统计 | Mediation path - Raincloud view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_mediation_path_rank_interval_plot` | 可视化分析・可视化・统计・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_mediation_path_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_mediation_path_residual_annotation_map` | 可视化分析・可视化・统计 | Mediation path - Residual annotation map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_mediation_path_slope_change_view` | 可视化分析・可视化・统计 | Mediation path - Slope change view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_mediation_path_small_multiple_grid` | 可视化分析・可视化・统计 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_mediation_path_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_mediation_path_stratified_dotplot` | 可视化分析・可视化・统计 | Mediation path - Stratified dot plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_mediation_path_threshold_band` | 可视化分析・可视化・统计 | Mediation path - Threshold band | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_mediation_path_uncertainty_ribbon` | 可视化分析・可视化・统计 | Mediation path - Uncertainty ribbon | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_mediation_path_violin_summary` | 可视化分析・可视化・统计・小提琴图・概览 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_missingness_pattern_annotated_reference_view` | 可视化分析・可视化・统计・缺失情况 | 缺失情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_missingness_pattern_boxen_interval` | 可视化分析・可视化・统计・缺失情况 | 缺失情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_missingness_pattern_comparative_lollipop` | 可视化分析・可视化・统计・缺失情况 | 缺失情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_missingness_pattern_density_ridge` | 可视化分析・可视化・统计・缺失情况・密度图 | 缺失情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_missingness_pattern_diagnostic_panel` | 可视化分析・可视化・统计・缺失情况・诊断・面板 | 缺失情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_missingness_pattern_ecdf_step_view` | 可视化分析・可视化・统计・缺失情况・经验分布图 | 缺失情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_missingness_pattern_flow_transition_map` | 可视化分析・可视化・统计・缺失情况 | 缺失情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_missingness_pattern_forest_interval_plot` | 可视化分析・可视化・统计・缺失情况・随机森林 | 缺失情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_missingness_pattern_heatmap_matrix` | 可视化分析・可视化・统计・缺失情况・热力矩阵 | 缺失情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_missingness_pattern_histogram_facets` | 可视化分析・可视化・统计・缺失情况・直方图 | 缺失情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_missingness_pattern_map_choropleth_layer` | 可视化分析・可视化・统计・缺失情况・分级着色地图 | 缺失情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_missingness_pattern_mosaic_tile_view` | 可视化分析・可视化・统计・缺失情况 | 缺失情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_missingness_pattern_network_node_link` | 可视化分析・可视化・统计・缺失情况・网络 | 缺失情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_missingness_pattern_qq_reference_plot` | 可视化分析・可视化・统计・缺失情况 | 缺失情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_missingness_pattern_quantile_band` | 可视化分析・可视化・统计・缺失情况・分位数 | 缺失情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_missingness_pattern_raincloud_view` | 可视化分析・可视化・统计・缺失情况 | 缺失情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_missingness_pattern_rank_interval_plot` | 可视化分析・可视化・统计・缺失情况・排名 | 缺失情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_missingness_pattern_residual_annotation_map` | 可视化分析・可视化・统计・缺失情况 | 缺失情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_missingness_pattern_slope_change_view` | 可视化分析・可视化・统计・缺失情况 | 缺失情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_missingness_pattern_small_multiple_grid` | 可视化分析・可视化・统计・缺失情况 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_missingness_pattern_stratified_dotplot` | 可视化分析・可视化・统计・缺失情况 | 缺失情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_missingness_pattern_threshold_band` | 可视化分析・可视化・统计・缺失情况 | 缺失情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_missingness_pattern_uncertainty_ribbon` | 可视化分析・可视化・统计・缺失情况 | 缺失情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_missingness_pattern_violin_summary` | 可视化分析・可视化・统计・缺失情况・小提琴图・概览 | 缺失情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_mediation_path_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_missingness_pattern_annotated_reference_view` | 可视化分析・缺失情况 | 缺失情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_missingness_pattern_boxen_interval` | 可视化分析・缺失情况 | 缺失情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_missingness_pattern_comparative_lollipop` | 可视化分析・缺失情况 | 缺失情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_missingness_pattern_density_ridge` | 可视化分析・缺失情况 | 缺失情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_missingness_pattern_diagnostic_panel` | 可视化分析・缺失情况 | 缺失情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_missingness_pattern_ecdf_step_view` | 可视化分析・缺失情况 | 缺失情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_missingness_pattern_flow_transition_map` | 可视化分析・缺失情况 | 缺失情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_missingness_pattern_forest_interval_plot` | 可视化分析・缺失情况 | 缺失情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_missingness_pattern_heatmap_matrix` | 可视化分析・缺失情况 | 缺失情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_missingness_pattern_histogram_facets` | 可视化分析・缺失情况 | 缺失情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_missingness_pattern_map_choropleth_layer` | 可视化分析・缺失情况 | 缺失情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_missingness_pattern_mosaic_tile_view` | 可视化分析・缺失情况 | 缺失情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_missingness_pattern_network_node_link` | 可视化分析・缺失情况 | 缺失情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_missingness_pattern_qq_reference_plot` | 可视化分析・缺失情况 | 缺失情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_missingness_pattern_quantile_band` | 可视化分析・缺失情况 | 缺失情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_missingness_pattern_raincloud_view` | 可视化分析・缺失情况 | 缺失情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_missingness_pattern_rank_interval_plot` | 可视化分析・缺失情况 | 缺失情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_missingness_pattern_residual_annotation_map` | 可视化分析・缺失情况 | 缺失情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_missingness_pattern_slope_change_view` | 可视化分析・缺失情况 | 缺失情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_missingness_pattern_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_missingness_pattern_stratified_dotplot` | 可视化分析・缺失情况 | 缺失情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_missingness_pattern_threshold_band` | 可视化分析・缺失情况 | 缺失情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_missingness_pattern_uncertainty_ribbon` | 可视化分析・缺失情况 | 缺失情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_missingness_pattern_violin_summary` | 可视化分析・缺失情况 | 缺失情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_mobility_flow_annotated_reference_view` | 可视化分析・可视化・统计 | Mobility flow - Annotated reference view | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_mobility_flow_boxen_interval` | 可视化分析・可视化・统计 | Mobility flow - Boxen interval plot | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_mobility_flow_comparative_lollipop` | 可视化分析・可视化・统计 | Mobility flow - Comparative lollipop plot | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_mobility_flow_density_ridge` | 可视化分析・可视化・统计・密度图 | 密度图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_mobility_flow_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_mobility_flow_diagnostic_panel` | 可视化分析・可视化・统计・诊断・面板 | Mobility flow - Diagnostic panel | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_mobility_flow_ecdf_step_view` | 可视化分析・可视化・统计・经验分布图 | 经验分布图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_mobility_flow_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_mobility_flow_flow_transition_map` | 可视化分析・可视化・统计 | Mobility flow - Flow transition map | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_mobility_flow_forest_interval_plot` | 可视化分析・可视化・统计・随机森林 | 随机森林 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_mobility_flow_heatmap_matrix` | 可视化分析・可视化・统计・热力矩阵 | 热力矩阵 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_mobility_flow_histogram_facets` | 可视化分析・可视化・统计・直方图 | 直方图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_mobility_flow_map_choropleth_layer` | 可视化分析・可视化・统计・分级着色地图 | 流向地图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_mobility_flow_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_mobility_flow_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_mobility_flow_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_mobility_flow_map_choropleth_layer` | 可视化分析・流向地图 | 流向地图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_mobility_flow_mosaic_tile_view` | 可视化分析・可视化・统计 | Mobility flow - Mosaic tile view | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_mobility_flow_network_node_link` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_mobility_flow_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_mobility_flow_qq_reference_plot` | 可视化分析・可视化・统计 | Mobility flow - Q-Q reference plot | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_mobility_flow_quantile_band` | 可视化分析・可视化・统计・分位数 | 分位数 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_mobility_flow_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_mobility_flow_raincloud_view` | 可视化分析・可视化・统计 | Mobility flow - Raincloud view | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_mobility_flow_rank_interval_plot` | 可视化分析・可视化・统计・排名 | 排名 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_mobility_flow_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_mobility_flow_residual_annotation_map` | 可视化分析・可视化・统计 | Mobility flow - Residual annotation map | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_mobility_flow_slope_change_view` | 可视化分析・可视化・统计 | Mobility flow - Slope change view | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_mobility_flow_small_multiple_grid` | 可视化分析・可视化・统计 | 小多图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_mobility_flow_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_mobility_flow_stratified_dotplot` | 可视化分析・可视化・统计 | Mobility flow - Stratified dot plot | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_mobility_flow_threshold_band` | 可视化分析・可视化・统计 | Mobility flow - Threshold band | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_mobility_flow_uncertainty_ribbon` | 可视化分析・可视化・统计 | Mobility flow - Uncertainty ribbon | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_mobility_flow_violin_summary` | 可视化分析・可视化・统计・小提琴图・概览 | 小提琴图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_mobility_flow_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_model_fit_annotated_reference_view` | 可视化分析・可视化・统计・模型 | Model fit diagnostic - Annotated reference view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_model_fit_boxen_interval` | 可视化分析・可视化・统计・模型 | Model fit diagnostic - Boxen interval plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_model_fit_comparative_lollipop` | 可视化分析・可视化・统计・模型 | Model fit diagnostic - Comparative lollipop plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_model_fit_density_ridge` | 可视化分析・可视化・统计・模型・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_model_fit_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_model_fit_diagnostic_panel` | 可视化分析・可视化・统计・模型・诊断・面板 | Model fit diagnostic - Diagnostic panel | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_model_fit_ecdf_step_view` | 可视化分析・可视化・统计・模型・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_model_fit_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_model_fit_flow_transition_map` | 可视化分析・可视化・统计・模型 | Model fit diagnostic - Flow transition map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_model_fit_forest_interval_plot` | 可视化分析・可视化・统计・模型・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_model_fit_heatmap_matrix` | 可视化分析・可视化・统计・模型・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_model_fit_histogram_facets` | 可视化分析・可视化・统计・模型・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_model_fit_map_choropleth_layer` | 可视化分析・可视化・统计・模型・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_model_fit_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_model_fit_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_model_fit_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_model_fit_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_model_fit_mosaic_tile_view` | 可视化分析・可视化・统计・模型 | Model fit diagnostic - Mosaic tile view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_model_fit_network_node_link` | 可视化分析・可视化・统计・模型・网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_model_fit_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_model_fit_qq_reference_plot` | 可视化分析・可视化・统计・模型 | Model fit diagnostic - Q-Q reference plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_model_fit_quantile_band` | 可视化分析・可视化・统计・模型・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_model_fit_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_model_fit_raincloud_view` | 可视化分析・可视化・统计・模型 | Model fit diagnostic - Raincloud view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_model_fit_rank_interval_plot` | 可视化分析・可视化・统计・模型・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_model_fit_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_model_fit_residual_annotation_map` | 可视化分析・可视化・统计・模型 | Model fit diagnostic - Residual annotation map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_model_fit_slope_change_view` | 可视化分析・可视化・统计・模型 | Model fit diagnostic - Slope change view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_model_fit_small_multiple_grid` | 可视化分析・可视化・统计・模型 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_model_fit_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_model_fit_stratified_dotplot` | 可视化分析・可视化・统计・模型 | Model fit diagnostic - Stratified dot plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_model_fit_threshold_band` | 可视化分析・可视化・统计・模型 | Model fit diagnostic - Threshold band | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_model_fit_uncertainty_ribbon` | 可视化分析・可视化・统计・模型 | Model fit diagnostic - Uncertainty ribbon | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_model_fit_violin_summary` | 可视化分析・可视化・统计・模型・小提琴图・概览 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_model_fit_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_multivariate_projection_annotated_reference_view` | 可视化分析・可视化・统计 | Multivariate projection - Annotated reference view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_multivariate_projection_boxen_interval` | 可视化分析・可视化・统计 | Multivariate projection - Boxen interval plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_multivariate_projection_comparative_lollipop` | 可视化分析・可视化・统计 | Multivariate projection - Comparative lollipop plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_multivariate_projection_density_ridge` | 可视化分析・可视化・统计・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_multivariate_projection_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_multivariate_projection_diagnostic_panel` | 可视化分析・可视化・统计・诊断・面板 | Multivariate projection - Diagnostic panel | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_multivariate_projection_ecdf_step_view` | 可视化分析・可视化・统计・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_multivariate_projection_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_multivariate_projection_flow_transition_map` | 可视化分析・可视化・统计 | Multivariate projection - Flow transition map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_multivariate_projection_forest_interval_plot` | 可视化分析・可视化・统计・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_multivariate_projection_heatmap_matrix` | 可视化分析・可视化・统计・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_multivariate_projection_histogram_facets` | 可视化分析・可视化・统计・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_multivariate_projection_map_choropleth_layer` | 可视化分析・可视化・统计・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_multivariate_projection_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_multivariate_projection_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_multivariate_projection_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_multivariate_projection_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_multivariate_projection_mosaic_tile_view` | 可视化分析・可视化・统计 | Multivariate projection - Mosaic tile view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_multivariate_projection_network_node_link` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_multivariate_projection_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_multivariate_projection_qq_reference_plot` | 可视化分析・可视化・统计 | Multivariate projection - Q-Q reference plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_multivariate_projection_quantile_band` | 可视化分析・可视化・统计・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_multivariate_projection_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_multivariate_projection_raincloud_view` | 可视化分析・可视化・统计 | Multivariate projection - Raincloud view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_multivariate_projection_rank_interval_plot` | 可视化分析・可视化・统计・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_multivariate_projection_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_multivariate_projection_residual_annotation_map` | 可视化分析・可视化・统计 | Multivariate projection - Residual annotation map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_multivariate_projection_slope_change_view` | 可视化分析・可视化・统计 | Multivariate projection - Slope change view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_multivariate_projection_small_multiple_grid` | 可视化分析・可视化・统计 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_multivariate_projection_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_multivariate_projection_stratified_dotplot` | 可视化分析・可视化・统计 | Multivariate projection - Stratified dot plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_multivariate_projection_threshold_band` | 可视化分析・可视化・统计 | Multivariate projection - Threshold band | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_multivariate_projection_uncertainty_ribbon` | 可视化分析・可视化・统计 | Multivariate projection - Uncertainty ribbon | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_multivariate_projection_violin_summary` | 可视化分析・可视化・统计・小提琴图・概览 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_network_bridge_annotated_reference_view` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_network_bridge_boxen_interval` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_network_bridge_comparative_lollipop` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_network_bridge_density_ridge` | 可视化分析・可视化・统计・网络・密度图 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_network_bridge_diagnostic_panel` | 可视化分析・可视化・统计・网络・诊断・面板 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_network_bridge_ecdf_step_view` | 可视化分析・可视化・统计・网络・经验分布图 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_network_bridge_flow_transition_map` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_network_bridge_forest_interval_plot` | 可视化分析・可视化・统计・网络・随机森林 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_network_bridge_heatmap_matrix` | 可视化分析・可视化・统计・网络・热力矩阵 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_network_bridge_histogram_facets` | 可视化分析・可视化・统计・网络・直方图 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_network_bridge_map_choropleth_layer` | 可视化分析・可视化・统计・网络・分级着色地图 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_network_bridge_mosaic_tile_view` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_network_bridge_network_node_link` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_network_bridge_qq_reference_plot` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_network_bridge_quantile_band` | 可视化分析・可视化・统计・网络・分位数 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_network_bridge_raincloud_view` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_network_bridge_rank_interval_plot` | 可视化分析・可视化・统计・网络・排名 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_network_bridge_residual_annotation_map` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_network_bridge_slope_change_view` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_network_bridge_small_multiple_grid` | 可视化分析・可视化・统计・网络 | 小多图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_network_bridge_stratified_dotplot` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_network_bridge_threshold_band` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_network_bridge_uncertainty_ribbon` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_network_bridge_violin_summary` | 可视化分析・可视化・统计・网络・小提琴图・概览 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_network_centrality_annotated_reference_view` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_network_centrality_boxen_interval` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_network_centrality_comparative_lollipop` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_network_centrality_density_ridge` | 可视化分析・可视化・统计・网络・密度图 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_network_centrality_diagnostic_panel` | 可视化分析・可视化・统计・网络・诊断・面板 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_network_centrality_ecdf_step_view` | 可视化分析・可视化・统计・网络・经验分布图 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_network_centrality_flow_transition_map` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_network_centrality_forest_interval_plot` | 可视化分析・可视化・统计・网络・随机森林 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_network_centrality_heatmap_matrix` | 可视化分析・可视化・统计・网络・热力矩阵 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_network_centrality_histogram_facets` | 可视化分析・可视化・统计・网络・直方图 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_network_centrality_map_choropleth_layer` | 可视化分析・可视化・统计・网络・分级着色地图 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_network_centrality_mosaic_tile_view` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_network_centrality_network_node_link` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_network_centrality_qq_reference_plot` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_network_centrality_quantile_band` | 可视化分析・可视化・统计・网络・分位数 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_network_centrality_raincloud_view` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_network_centrality_rank_interval_plot` | 可视化分析・可视化・统计・网络・排名 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_network_centrality_residual_annotation_map` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_network_centrality_slope_change_view` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_network_centrality_small_multiple_grid` | 可视化分析・可视化・统计・网络 | 小多图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_network_centrality_stratified_dotplot` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_network_centrality_threshold_band` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_network_centrality_uncertainty_ribbon` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_network_centrality_violin_summary` | 可视化分析・可视化・统计・网络・小提琴图・概览 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_network_diffusion_annotated_reference_view` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_network_diffusion_boxen_interval` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_network_diffusion_comparative_lollipop` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_network_diffusion_density_ridge` | 可视化分析・可视化・统计・网络・密度图 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_network_diffusion_diagnostic_panel` | 可视化分析・可视化・统计・网络・诊断・面板 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_network_diffusion_ecdf_step_view` | 可视化分析・可视化・统计・网络・经验分布图 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_network_diffusion_flow_transition_map` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_network_diffusion_forest_interval_plot` | 可视化分析・可视化・统计・网络・随机森林 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_network_diffusion_heatmap_matrix` | 可视化分析・可视化・统计・网络・热力矩阵 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_network_diffusion_histogram_facets` | 可视化分析・可视化・统计・网络・直方图 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_network_diffusion_map_choropleth_layer` | 可视化分析・可视化・统计・网络・分级着色地图 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_network_diffusion_mosaic_tile_view` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_network_diffusion_network_node_link` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_network_diffusion_qq_reference_plot` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_network_diffusion_quantile_band` | 可视化分析・可视化・统计・网络・分位数 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_network_diffusion_raincloud_view` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_network_diffusion_rank_interval_plot` | 可视化分析・可视化・统计・网络・排名 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_network_diffusion_residual_annotation_map` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_network_diffusion_slope_change_view` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_network_diffusion_small_multiple_grid` | 可视化分析・可视化・统计・网络 | 小多图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_network_diffusion_stratified_dotplot` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_network_diffusion_threshold_band` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_network_diffusion_uncertainty_ribbon` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_network_diffusion_violin_summary` | 可视化分析・可视化・统计・网络・小提琴图・概览 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_multivariate_projection_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_network_bridge_annotated_reference_view` | 可视化分析・关系网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_network_bridge_boxen_interval` | 可视化分析・关系网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_network_bridge_comparative_lollipop` | 可视化分析・关系网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_network_bridge_density_ridge` | 可视化分析・关系网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_network_bridge_diagnostic_panel` | 可视化分析・关系网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_network_bridge_ecdf_step_view` | 可视化分析・关系网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_network_bridge_flow_transition_map` | 可视化分析・关系网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_network_bridge_forest_interval_plot` | 可视化分析・关系网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_network_bridge_heatmap_matrix` | 可视化分析・关系网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_network_bridge_histogram_facets` | 可视化分析・关系网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_network_bridge_map_choropleth_layer` | 可视化分析・关系网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_network_bridge_mosaic_tile_view` | 可视化分析・关系网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_network_bridge_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_network_bridge_qq_reference_plot` | 可视化分析・关系网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_network_bridge_quantile_band` | 可视化分析・关系网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_network_bridge_raincloud_view` | 可视化分析・关系网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_network_bridge_rank_interval_plot` | 可视化分析・关系网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_network_bridge_residual_annotation_map` | 可视化分析・关系网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_network_bridge_slope_change_view` | 可视化分析・关系网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_network_bridge_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_network_bridge_stratified_dotplot` | 可视化分析・关系网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_network_bridge_threshold_band` | 可视化分析・关系网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_network_bridge_uncertainty_ribbon` | 可视化分析・关系网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_network_bridge_violin_summary` | 可视化分析・关系网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_network_centrality_annotated_reference_view` | 可视化分析・关系网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_network_centrality_boxen_interval` | 可视化分析・关系网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_network_centrality_comparative_lollipop` | 可视化分析・关系网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_network_centrality_density_ridge` | 可视化分析・关系网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_network_centrality_diagnostic_panel` | 可视化分析・关系网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_network_centrality_ecdf_step_view` | 可视化分析・关系网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_network_centrality_flow_transition_map` | 可视化分析・关系网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_network_centrality_forest_interval_plot` | 可视化分析・关系网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_network_centrality_heatmap_matrix` | 可视化分析・关系网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_network_centrality_histogram_facets` | 可视化分析・关系网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_network_centrality_map_choropleth_layer` | 可视化分析・关系网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_network_centrality_mosaic_tile_view` | 可视化分析・关系网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_network_centrality_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_network_centrality_qq_reference_plot` | 可视化分析・关系网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_network_centrality_quantile_band` | 可视化分析・关系网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_network_centrality_raincloud_view` | 可视化分析・关系网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_network_centrality_rank_interval_plot` | 可视化分析・关系网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_network_centrality_residual_annotation_map` | 可视化分析・关系网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_network_centrality_slope_change_view` | 可视化分析・关系网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_network_centrality_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_network_centrality_stratified_dotplot` | 可视化分析・关系网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_network_centrality_threshold_band` | 可视化分析・关系网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_network_centrality_uncertainty_ribbon` | 可视化分析・关系网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_network_centrality_violin_summary` | 可视化分析・关系网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_network_diffusion_annotated_reference_view` | 可视化分析・关系网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_network_diffusion_boxen_interval` | 可视化分析・关系网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_network_diffusion_comparative_lollipop` | 可视化分析・关系网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_network_diffusion_density_ridge` | 可视化分析・关系网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_network_diffusion_diagnostic_panel` | 可视化分析・关系网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_network_diffusion_ecdf_step_view` | 可视化分析・关系网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_network_diffusion_flow_transition_map` | 可视化分析・关系网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_network_diffusion_forest_interval_plot` | 可视化分析・关系网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_network_diffusion_heatmap_matrix` | 可视化分析・关系网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_network_diffusion_histogram_facets` | 可视化分析・关系网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_network_diffusion_map_choropleth_layer` | 可视化分析・关系网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_network_diffusion_mosaic_tile_view` | 可视化分析・关系网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_network_diffusion_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_network_diffusion_qq_reference_plot` | 可视化分析・关系网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_network_diffusion_quantile_band` | 可视化分析・关系网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_network_diffusion_raincloud_view` | 可视化分析・关系网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_network_diffusion_rank_interval_plot` | 可视化分析・关系网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_network_diffusion_residual_annotation_map` | 可视化分析・关系网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_network_diffusion_slope_change_view` | 可视化分析・关系网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_network_diffusion_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_network_diffusion_stratified_dotplot` | 可视化分析・关系网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_network_diffusion_threshold_band` | 可视化分析・关系网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_network_diffusion_uncertainty_ribbon` | 可视化分析・关系网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_network_diffusion_violin_summary` | 可视化分析・关系网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_nonlinear_fit_shape_annotated_reference_view` | 可视化分析・可视化・统计 | Nonlinear fit shape - Annotated reference view | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_nonlinear_fit_shape_boxen_interval` | 可视化分析・可视化・统计 | Nonlinear fit shape - Boxen interval plot | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_nonlinear_fit_shape_comparative_lollipop` | 可视化分析・可视化・统计 | Nonlinear fit shape - Comparative lollipop plot | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_nonlinear_fit_shape_density_ridge` | 可视化分析・可视化・统计・密度图 | 密度图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_nonlinear_fit_shape_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_nonlinear_fit_shape_diagnostic_panel` | 可视化分析・可视化・统计・诊断・面板 | Nonlinear fit shape - Diagnostic panel | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_nonlinear_fit_shape_ecdf_step_view` | 可视化分析・可视化・统计・经验分布图 | 经验分布图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_nonlinear_fit_shape_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_nonlinear_fit_shape_flow_transition_map` | 可视化分析・可视化・统计 | Nonlinear fit shape - Flow transition map | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_nonlinear_fit_shape_forest_interval_plot` | 可视化分析・可视化・统计・随机森林 | 随机森林 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_nonlinear_fit_shape_heatmap_matrix` | 可视化分析・可视化・统计・热力矩阵 | 热力矩阵 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_nonlinear_fit_shape_histogram_facets` | 可视化分析・可视化・统计・直方图 | 直方图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_nonlinear_fit_shape_map_choropleth_layer` | 可视化分析・可视化・统计・分级着色地图 | 分级着色地图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_nonlinear_fit_shape_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_nonlinear_fit_shape_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_nonlinear_fit_shape_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_nonlinear_fit_shape_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_nonlinear_fit_shape_mosaic_tile_view` | 可视化分析・可视化・统计 | Nonlinear fit shape - Mosaic tile view | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_nonlinear_fit_shape_network_node_link` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_nonlinear_fit_shape_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_nonlinear_fit_shape_qq_reference_plot` | 可视化分析・可视化・统计 | Nonlinear fit shape - Q-Q reference plot | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_nonlinear_fit_shape_quantile_band` | 可视化分析・可视化・统计・分位数 | 分位数 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_nonlinear_fit_shape_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_nonlinear_fit_shape_raincloud_view` | 可视化分析・可视化・统计 | Nonlinear fit shape - Raincloud view | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_nonlinear_fit_shape_rank_interval_plot` | 可视化分析・可视化・统计・排名 | 排名 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_nonlinear_fit_shape_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_nonlinear_fit_shape_residual_annotation_map` | 可视化分析・可视化・统计 | Nonlinear fit shape - Residual annotation map | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_nonlinear_fit_shape_slope_change_view` | 可视化分析・可视化・统计 | Nonlinear fit shape - Slope change view | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_nonlinear_fit_shape_small_multiple_grid` | 可视化分析・可视化・统计 | 小多图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_nonlinear_fit_shape_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_nonlinear_fit_shape_stratified_dotplot` | 可视化分析・可视化・统计 | Nonlinear fit shape - Stratified dot plot | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_nonlinear_fit_shape_threshold_band` | 可视化分析・可视化・统计 | Nonlinear fit shape - Threshold band | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_nonlinear_fit_shape_uncertainty_ribbon` | 可视化分析・可视化・统计 | Nonlinear fit shape - Uncertainty ribbon | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_nonlinear_fit_shape_violin_summary` | 可视化分析・可视化・统计・小提琴图・概览 | 小提琴图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_nonlinear_fit_shape_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_nonlinear_relationship_annotated_reference_view` | 可视化分析・可视化・统计 | Nonlinear relationship - Annotated reference view | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_nonlinear_relationship_boxen_interval` | 可视化分析・可视化・统计 | Nonlinear relationship - Boxen interval plot | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_nonlinear_relationship_comparative_lollipop` | 可视化分析・可视化・统计 | Nonlinear relationship - Comparative lollipop plot | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_nonlinear_relationship_density_ridge` | 可视化分析・可视化・统计・密度图 | 密度图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_nonlinear_relationship_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_nonlinear_relationship_diagnostic_panel` | 可视化分析・可视化・统计・诊断・面板 | Nonlinear relationship - Diagnostic panel | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_nonlinear_relationship_ecdf_step_view` | 可视化分析・可视化・统计・经验分布图 | 经验分布图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_nonlinear_relationship_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_nonlinear_relationship_flow_transition_map` | 可视化分析・可视化・统计 | Nonlinear relationship - Flow transition map | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_nonlinear_relationship_forest_interval_plot` | 可视化分析・可视化・统计・随机森林 | 随机森林 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_nonlinear_relationship_heatmap_matrix` | 可视化分析・可视化・统计・热力矩阵 | 热力矩阵 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_nonlinear_relationship_histogram_facets` | 可视化分析・可视化・统计・直方图 | 直方图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_nonlinear_relationship_map_choropleth_layer` | 可视化分析・可视化・统计・分级着色地图 | 分级着色地图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_nonlinear_relationship_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_nonlinear_relationship_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_nonlinear_relationship_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_nonlinear_relationship_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_nonlinear_relationship_mosaic_tile_view` | 可视化分析・可视化・统计 | Nonlinear relationship - Mosaic tile view | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_nonlinear_relationship_network_node_link` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_nonlinear_relationship_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_nonlinear_relationship_qq_reference_plot` | 可视化分析・可视化・统计 | Nonlinear relationship - Q-Q reference plot | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_nonlinear_relationship_quantile_band` | 可视化分析・可视化・统计・分位数 | 分位数 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_nonlinear_relationship_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_nonlinear_relationship_raincloud_view` | 可视化分析・可视化・统计 | Nonlinear relationship - Raincloud view | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_nonlinear_relationship_rank_interval_plot` | 可视化分析・可视化・统计・排名 | 排名 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_nonlinear_relationship_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_nonlinear_relationship_residual_annotation_map` | 可视化分析・可视化・统计 | Nonlinear relationship - Residual annotation map | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_nonlinear_relationship_slope_change_view` | 可视化分析・可视化・统计 | Nonlinear relationship - Slope change view | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_nonlinear_relationship_small_multiple_grid` | 可视化分析・可视化・统计 | 小多图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_nonlinear_relationship_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_nonlinear_relationship_stratified_dotplot` | 可视化分析・可视化・统计 | Nonlinear relationship - Stratified dot plot | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_nonlinear_relationship_threshold_band` | 可视化分析・可视化・统计 | Nonlinear relationship - Threshold band | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_nonlinear_relationship_uncertainty_ribbon` | 可视化分析・可视化・统计 | Nonlinear relationship - Uncertainty ribbon | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_nonlinear_relationship_violin_summary` | 可视化分析・可视化・统计・小提琴图・概览 | 小提琴图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_nonlinear_relationship_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_nonresponse_pattern_annotated_reference_view` | 可视化分析・可视化・统计 | Nonresponse pattern - Annotated reference view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_nonresponse_pattern_boxen_interval` | 可视化分析・可视化・统计 | Nonresponse pattern - Boxen interval plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_nonresponse_pattern_comparative_lollipop` | 可视化分析・可视化・统计 | Nonresponse pattern - Comparative lollipop plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_nonresponse_pattern_density_ridge` | 可视化分析・可视化・统计・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_nonresponse_pattern_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_nonresponse_pattern_diagnostic_panel` | 可视化分析・可视化・统计・诊断・面板 | Nonresponse pattern - Diagnostic panel | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_nonresponse_pattern_ecdf_step_view` | 可视化分析・可视化・统计・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_nonresponse_pattern_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_nonresponse_pattern_flow_transition_map` | 可视化分析・可视化・统计 | Nonresponse pattern - Flow transition map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_nonresponse_pattern_forest_interval_plot` | 可视化分析・可视化・统计・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_nonresponse_pattern_heatmap_matrix` | 可视化分析・可视化・统计・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_nonresponse_pattern_histogram_facets` | 可视化分析・可视化・统计・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_nonresponse_pattern_map_choropleth_layer` | 可视化分析・可视化・统计・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_nonresponse_pattern_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_nonresponse_pattern_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_nonresponse_pattern_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_nonresponse_pattern_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_nonresponse_pattern_mosaic_tile_view` | 可视化分析・可视化・统计 | Nonresponse pattern - Mosaic tile view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_nonresponse_pattern_network_node_link` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_nonresponse_pattern_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_nonresponse_pattern_qq_reference_plot` | 可视化分析・可视化・统计 | Nonresponse pattern - Q-Q reference plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_nonresponse_pattern_quantile_band` | 可视化分析・可视化・统计・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_nonresponse_pattern_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_nonresponse_pattern_raincloud_view` | 可视化分析・可视化・统计 | Nonresponse pattern - Raincloud view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_nonresponse_pattern_rank_interval_plot` | 可视化分析・可视化・统计・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_nonresponse_pattern_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_nonresponse_pattern_residual_annotation_map` | 可视化分析・可视化・统计 | Nonresponse pattern - Residual annotation map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_nonresponse_pattern_slope_change_view` | 可视化分析・可视化・统计 | Nonresponse pattern - Slope change view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_nonresponse_pattern_small_multiple_grid` | 可视化分析・可视化・统计 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_nonresponse_pattern_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_nonresponse_pattern_stratified_dotplot` | 可视化分析・可视化・统计 | Nonresponse pattern - Stratified dot plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_nonresponse_pattern_threshold_band` | 可视化分析・可视化・统计 | Nonresponse pattern - Threshold band | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_nonresponse_pattern_uncertainty_ribbon` | 可视化分析・可视化・统计 | Nonresponse pattern - Uncertainty ribbon | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_nonresponse_pattern_violin_summary` | 可视化分析・可视化・统计・小提琴图・概览 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_nonresponse_pattern_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_operations_capacity_annotated_reference_view` | 可视化分析・可视化・统计 | Operations capacity - Annotated reference view | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_operations_capacity_boxen_interval` | 可视化分析・可视化・统计 | Operations capacity - Boxen interval plot | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_operations_capacity_comparative_lollipop` | 可视化分析・可视化・统计 | Operations capacity - Comparative lollipop plot | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_operations_capacity_density_ridge` | 可视化分析・可视化・统计・密度图 | 密度图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_operations_capacity_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_operations_capacity_diagnostic_panel` | 可视化分析・可视化・统计・诊断・面板 | Operations capacity - Diagnostic panel | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_operations_capacity_ecdf_step_view` | 可视化分析・可视化・统计・经验分布图 | 经验分布图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_operations_capacity_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_operations_capacity_flow_transition_map` | 可视化分析・可视化・统计 | Operations capacity - Flow transition map | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_operations_capacity_forest_interval_plot` | 可视化分析・可视化・统计・随机森林 | 随机森林 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_operations_capacity_heatmap_matrix` | 可视化分析・可视化・统计・热力矩阵 | 热力矩阵 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_operations_capacity_histogram_facets` | 可视化分析・可视化・统计・直方图 | 直方图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_operations_capacity_map_choropleth_layer` | 可视化分析・可视化・统计・分级着色地图 | 分级着色地图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_operations_capacity_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_operations_capacity_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_operations_capacity_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_operations_capacity_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_operations_capacity_mosaic_tile_view` | 可视化分析・可视化・统计 | Operations capacity - Mosaic tile view | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_operations_capacity_network_node_link` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_operations_capacity_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_operations_capacity_qq_reference_plot` | 可视化分析・可视化・统计 | Operations capacity - Q-Q reference plot | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_operations_capacity_quantile_band` | 可视化分析・可视化・统计・分位数 | 分位数 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_operations_capacity_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_operations_capacity_raincloud_view` | 可视化分析・可视化・统计 | Operations capacity - Raincloud view | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_operations_capacity_rank_interval_plot` | 可视化分析・可视化・统计・排名 | 排名 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_operations_capacity_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_operations_capacity_residual_annotation_map` | 可视化分析・可视化・统计 | Operations capacity - Residual annotation map | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_operations_capacity_slope_change_view` | 可视化分析・可视化・统计 | Operations capacity - Slope change view | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_operations_capacity_small_multiple_grid` | 可视化分析・可视化・统计 | 小多图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_operations_capacity_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_operations_capacity_stratified_dotplot` | 可视化分析・可视化・统计 | Operations capacity - Stratified dot plot | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_operations_capacity_threshold_band` | 可视化分析・可视化・统计 | Operations capacity - Threshold band | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_operations_capacity_uncertainty_ribbon` | 可视化分析・可视化・统计 | Operations capacity - Uncertainty ribbon | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_operations_capacity_violin_summary` | 可视化分析・可视化・统计・小提琴图・概览 | 小提琴图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_operations_capacity_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_ordinal_response_annotated_reference_view` | 可视化分析・可视化・统计 | Ordinal response profile - Annotated reference view | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_ordinal_response_boxen_interval` | 可视化分析・可视化・统计 | Ordinal response profile - Boxen interval plot | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_ordinal_response_comparative_lollipop` | 可视化分析・可视化・统计 | Ordinal response profile - Comparative lollipop plot | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_ordinal_response_density_ridge` | 可视化分析・可视化・统计・密度图 | 密度图 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_ordinal_response_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_ordinal_response_diagnostic_panel` | 可视化分析・可视化・统计・诊断・面板 | Ordinal response profile - Diagnostic panel | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_ordinal_response_ecdf_step_view` | 可视化分析・可视化・统计・经验分布图 | 经验分布图 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_ordinal_response_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_ordinal_response_flow_transition_map` | 可视化分析・可视化・统计 | Ordinal response profile - Flow transition map | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_ordinal_response_forest_interval_plot` | 可视化分析・可视化・统计・随机森林 | 随机森林 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_ordinal_response_heatmap_matrix` | 可视化分析・可视化・统计・热力矩阵 | 热力矩阵 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_ordinal_response_histogram_facets` | 可视化分析・可视化・统计・直方图 | 直方图 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_ordinal_response_map_choropleth_layer` | 可视化分析・可视化・统计・分级着色地图 | 分级着色地图 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_ordinal_response_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_ordinal_response_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_ordinal_response_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_ordinal_response_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_ordinal_response_mosaic_tile_view` | 可视化分析・可视化・统计 | Ordinal response profile - Mosaic tile view | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_ordinal_response_network_node_link` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_ordinal_response_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_ordinal_response_qq_reference_plot` | 可视化分析・可视化・统计 | Ordinal response profile - Q-Q reference plot | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_ordinal_response_quantile_band` | 可视化分析・可视化・统计・分位数 | 分位数 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_ordinal_response_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_ordinal_response_raincloud_view` | 可视化分析・可视化・统计 | Ordinal response profile - Raincloud view | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_ordinal_response_rank_interval_plot` | 可视化分析・可视化・统计・排名 | 排名 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_ordinal_response_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_ordinal_response_residual_annotation_map` | 可视化分析・可视化・统计 | Ordinal response profile - Residual annotation map | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_ordinal_response_slope_change_view` | 可视化分析・可视化・统计 | Ordinal response profile - Slope change view | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_ordinal_response_small_multiple_grid` | 可视化分析・可视化・统计 | 小多图 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_ordinal_response_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_ordinal_response_stratified_dotplot` | 可视化分析・可视化・统计 | Ordinal response profile - Stratified dot plot | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_ordinal_response_threshold_band` | 可视化分析・可视化・统计 | Ordinal response profile - Threshold band | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_ordinal_response_uncertainty_ribbon` | 可视化分析・可视化・统计 | Ordinal response profile - Uncertainty ribbon | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_ordinal_response_violin_summary` | 可视化分析・可视化・统计・小提琴图・概览 | 小提琴图 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_ordinal_response_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 分类字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_outlier_influence_annotated_reference_view` | 可视化分析・可视化・统计・离群值 | Outlier influence - Annotated reference view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_outlier_influence_boxen_interval` | 可视化分析・可视化・统计・离群值 | Outlier influence - Boxen interval plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_outlier_influence_comparative_lollipop` | 可视化分析・可视化・统计・离群值 | Outlier influence - Comparative lollipop plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_outlier_influence_density_ridge` | 可视化分析・可视化・统计・离群值・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_outlier_influence_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_outlier_influence_diagnostic_panel` | 可视化分析・可视化・统计・离群值・诊断・面板 | Outlier influence - Diagnostic panel | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_outlier_influence_ecdf_step_view` | 可视化分析・可视化・统计・离群值・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_outlier_influence_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_outlier_influence_flow_transition_map` | 可视化分析・可视化・统计・离群值 | Outlier influence - Flow transition map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_outlier_influence_forest_interval_plot` | 可视化分析・可视化・统计・离群值・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_outlier_influence_heatmap_matrix` | 可视化分析・可视化・统计・离群值・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_outlier_influence_histogram_facets` | 可视化分析・可视化・统计・离群值・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_outlier_influence_map_choropleth_layer` | 可视化分析・可视化・统计・离群值・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_outlier_influence_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_outlier_influence_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_outlier_influence_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_outlier_influence_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_outlier_influence_mosaic_tile_view` | 可视化分析・可视化・统计・离群值 | Outlier influence - Mosaic tile view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_outlier_influence_network_node_link` | 可视化分析・可视化・统计・离群值・网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_outlier_influence_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_outlier_influence_qq_reference_plot` | 可视化分析・可视化・统计・离群值 | Outlier influence - Q-Q reference plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_outlier_influence_quantile_band` | 可视化分析・可视化・统计・离群值・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_outlier_influence_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_outlier_influence_raincloud_view` | 可视化分析・可视化・统计・离群值 | Outlier influence - Raincloud view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_outlier_influence_rank_interval_plot` | 可视化分析・可视化・统计・离群值・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_outlier_influence_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_outlier_influence_residual_annotation_map` | 可视化分析・可视化・统计・离群值 | Outlier influence - Residual annotation map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_outlier_influence_slope_change_view` | 可视化分析・可视化・统计・离群值 | Outlier influence - Slope change view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_outlier_influence_small_multiple_grid` | 可视化分析・可视化・统计・离群值 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_outlier_influence_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_outlier_influence_stratified_dotplot` | 可视化分析・可视化・统计・离群值 | Outlier influence - Stratified dot plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_outlier_influence_threshold_band` | 可视化分析・可视化・统计・离群值 | Outlier influence - Threshold band | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_outlier_influence_uncertainty_ribbon` | 可视化分析・可视化・统计・离群值 | Outlier influence - Uncertainty ribbon | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_outlier_influence_violin_summary` | 可视化分析・可视化・统计・离群值・小提琴图・概览 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_outlier_influence_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_paired_change_annotated_reference_view` | 可视化分析・可视化・统计 | Paired change - Annotated reference view | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_paired_change_boxen_interval` | 可视化分析・可视化・统计 | Paired change - Boxen interval plot | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_paired_change_comparative_lollipop` | 可视化分析・可视化・统计 | Paired change - Comparative lollipop plot | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_paired_change_density_ridge` | 可视化分析・可视化・统计・密度图 | 密度图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_paired_change_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_paired_change_diagnostic_panel` | 可视化分析・可视化・统计・诊断・面板 | Paired change - Diagnostic panel | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_paired_change_ecdf_step_view` | 可视化分析・可视化・统计・经验分布图 | 经验分布图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_paired_change_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_paired_change_flow_transition_map` | 可视化分析・可视化・统计 | Paired change - Flow transition map | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_paired_change_forest_interval_plot` | 可视化分析・可视化・统计・随机森林 | 随机森林 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_paired_change_heatmap_matrix` | 可视化分析・可视化・统计・热力矩阵 | 热力矩阵 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_paired_change_histogram_facets` | 可视化分析・可视化・统计・直方图 | 直方图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_paired_change_map_choropleth_layer` | 可视化分析・可视化・统计・分级着色地图 | 分级着色地图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_paired_change_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_paired_change_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_paired_change_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_paired_change_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_paired_change_mosaic_tile_view` | 可视化分析・可视化・统计 | Paired change - Mosaic tile view | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_paired_change_network_node_link` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_paired_change_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_paired_change_qq_reference_plot` | 可视化分析・可视化・统计 | Paired change - Q-Q reference plot | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_paired_change_quantile_band` | 可视化分析・可视化・统计・分位数 | 分位数 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_paired_change_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_paired_change_raincloud_view` | 可视化分析・可视化・统计 | Paired change - Raincloud view | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_paired_change_rank_interval_plot` | 可视化分析・可视化・统计・排名 | 排名 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_paired_change_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_paired_change_residual_annotation_map` | 可视化分析・可视化・统计 | Paired change - Residual annotation map | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_paired_change_slope_change_view` | 可视化分析・可视化・统计 | Paired change - Slope change view | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_paired_change_small_multiple_grid` | 可视化分析・可视化・统计 | 小多图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_paired_change_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_paired_change_stratified_dotplot` | 可视化分析・可视化・统计 | Paired change - Stratified dot plot | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_paired_change_threshold_band` | 可视化分析・可视化・统计 | Paired change - Threshold band | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_paired_change_uncertainty_ribbon` | 可视化分析・可视化・统计 | Paired change - Uncertainty ribbon | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_paired_change_violin_summary` | 可视化分析・可视化・统计・小提琴图・概览 | 小提琴图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_partial_association_annotated_reference_view` | 可视化分析・可视化・统计・偏相关 | 偏相关 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_partial_association_boxen_interval` | 可视化分析・可视化・统计・偏相关 | 偏相关 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_partial_association_comparative_lollipop` | 可视化分析・可视化・统计・偏相关 | 偏相关 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_partial_association_density_ridge` | 可视化分析・可视化・统计・偏相关・密度图 | 偏相关 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_partial_association_diagnostic_panel` | 可视化分析・可视化・统计・偏相关・诊断・面板 | 偏相关 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_partial_association_ecdf_step_view` | 可视化分析・可视化・统计・偏相关・经验分布图 | 偏相关 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_partial_association_flow_transition_map` | 可视化分析・可视化・统计・偏相关 | 偏相关 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_partial_association_forest_interval_plot` | 可视化分析・可视化・统计・偏相关・随机森林 | 偏相关 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_partial_association_heatmap_matrix` | 可视化分析・可视化・统计・偏相关・热力矩阵 | 偏相关 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_partial_association_histogram_facets` | 可视化分析・可视化・统计・偏相关・直方图 | 偏相关 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_partial_association_map_choropleth_layer` | 可视化分析・可视化・统计・偏相关・分级着色地图 | 偏相关 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_partial_association_mosaic_tile_view` | 可视化分析・可视化・统计・偏相关 | 偏相关 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_partial_association_network_node_link` | 可视化分析・可视化・统计・偏相关・网络 | 偏相关 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_partial_association_qq_reference_plot` | 可视化分析・可视化・统计・偏相关 | 偏相关 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_partial_association_quantile_band` | 可视化分析・可视化・统计・偏相关・分位数 | 偏相关 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_partial_association_raincloud_view` | 可视化分析・可视化・统计・偏相关 | 偏相关 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_partial_association_rank_interval_plot` | 可视化分析・可视化・统计・偏相关・排名 | 偏相关 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_partial_association_residual_annotation_map` | 可视化分析・可视化・统计・偏相关 | 偏相关 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_partial_association_slope_change_view` | 可视化分析・可视化・统计・偏相关 | 偏相关 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_partial_association_small_multiple_grid` | 可视化分析・可视化・统计・偏相关 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_partial_association_stratified_dotplot` | 可视化分析・可视化・统计・偏相关 | 偏相关 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_partial_association_threshold_band` | 可视化分析・可视化・统计・偏相关 | 偏相关 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_partial_association_uncertainty_ribbon` | 可视化分析・可视化・统计・偏相关 | 偏相关 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_partial_association_violin_summary` | 可视化分析・可视化・统计・偏相关・小提琴图・概览 | 偏相关 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_paired_change_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_partial_association_annotated_reference_view` | 可视化分析・偏相关 | 偏相关 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_partial_association_boxen_interval` | 可视化分析・偏相关 | 偏相关 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_partial_association_comparative_lollipop` | 可视化分析・偏相关 | 偏相关 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_partial_association_density_ridge` | 可视化分析・偏相关 | 偏相关 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_partial_association_diagnostic_panel` | 可视化分析・偏相关 | 偏相关 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_partial_association_ecdf_step_view` | 可视化分析・偏相关 | 偏相关 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_partial_association_flow_transition_map` | 可视化分析・偏相关 | 偏相关 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_partial_association_forest_interval_plot` | 可视化分析・偏相关 | 偏相关 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_partial_association_heatmap_matrix` | 可视化分析・偏相关 | 偏相关 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_partial_association_histogram_facets` | 可视化分析・偏相关 | 偏相关 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_partial_association_map_choropleth_layer` | 可视化分析・偏相关 | 偏相关 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_partial_association_mosaic_tile_view` | 可视化分析・偏相关 | 偏相关 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_partial_association_network_node_link` | 可视化分析・偏相关 | 偏相关 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_partial_association_qq_reference_plot` | 可视化分析・偏相关 | 偏相关 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_partial_association_quantile_band` | 可视化分析・偏相关 | 偏相关 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_partial_association_raincloud_view` | 可视化分析・偏相关 | 偏相关 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_partial_association_rank_interval_plot` | 可视化分析・偏相关 | 偏相关 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_partial_association_residual_annotation_map` | 可视化分析・偏相关 | 偏相关 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_partial_association_slope_change_view` | 可视化分析・偏相关 | 偏相关 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_partial_association_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_partial_association_stratified_dotplot` | 可视化分析・偏相关 | 偏相关 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_partial_association_threshold_band` | 可视化分析・偏相关 | 偏相关 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_partial_association_uncertainty_ribbon` | 可视化分析・偏相关 | 偏相关 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_partial_association_violin_summary` | 可视化分析・偏相关 | 偏相关 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_patient_trajectory_annotated_reference_view` | 可视化分析・可视化・统计 | Patient trajectory - Annotated reference view | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_patient_trajectory_boxen_interval` | 可视化分析・可视化・统计 | Patient trajectory - Boxen interval plot | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_patient_trajectory_comparative_lollipop` | 可视化分析・可视化・统计 | Patient trajectory - Comparative lollipop plot | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_patient_trajectory_density_ridge` | 可视化分析・可视化・统计・密度图 | 密度图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_patient_trajectory_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_patient_trajectory_diagnostic_panel` | 可视化分析・可视化・统计・诊断・面板 | Patient trajectory - Diagnostic panel | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_patient_trajectory_ecdf_step_view` | 可视化分析・可视化・统计・经验分布图 | 经验分布图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_patient_trajectory_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_patient_trajectory_flow_transition_map` | 可视化分析・可视化・统计 | Patient trajectory - Flow transition map | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_patient_trajectory_forest_interval_plot` | 可视化分析・可视化・统计・随机森林 | 随机森林 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_patient_trajectory_heatmap_matrix` | 可视化分析・可视化・统计・热力矩阵 | 热力矩阵 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_patient_trajectory_histogram_facets` | 可视化分析・可视化・统计・直方图 | 直方图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_patient_trajectory_map_choropleth_layer` | 可视化分析・可视化・统计・分级着色地图 | 分级着色地图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_patient_trajectory_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_patient_trajectory_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_patient_trajectory_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_patient_trajectory_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_patient_trajectory_mosaic_tile_view` | 可视化分析・可视化・统计 | Patient trajectory - Mosaic tile view | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_patient_trajectory_network_node_link` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_patient_trajectory_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_patient_trajectory_qq_reference_plot` | 可视化分析・可视化・统计 | Patient trajectory - Q-Q reference plot | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_patient_trajectory_quantile_band` | 可视化分析・可视化・统计・分位数 | 分位数 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_patient_trajectory_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_patient_trajectory_raincloud_view` | 可视化分析・可视化・统计 | Patient trajectory - Raincloud view | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_patient_trajectory_rank_interval_plot` | 可视化分析・可视化・统计・排名 | 排名 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_patient_trajectory_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_patient_trajectory_residual_annotation_map` | 可视化分析・可视化・统计 | Patient trajectory - Residual annotation map | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_patient_trajectory_slope_change_view` | 可视化分析・可视化・统计 | Patient trajectory - Slope change view | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_patient_trajectory_small_multiple_grid` | 可视化分析・可视化・统计 | 小多图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_patient_trajectory_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_patient_trajectory_stratified_dotplot` | 可视化分析・可视化・统计 | Patient trajectory - Stratified dot plot | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_patient_trajectory_threshold_band` | 可视化分析・可视化・统计 | Patient trajectory - Threshold band | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_patient_trajectory_uncertainty_ribbon` | 可视化分析・可视化・统计 | Patient trajectory - Uncertainty ribbon | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_patient_trajectory_violin_summary` | 可视化分析・可视化・统计・小提琴图・概览 | 小提琴图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_patient_trajectory_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_prediction_error_annotated_reference_view` | 可视化分析・可视化・统计・误差 | Prediction error - Annotated reference view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_prediction_error_boxen_interval` | 可视化分析・可视化・统计・误差 | Prediction error - Boxen interval plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_prediction_error_comparative_lollipop` | 可视化分析・可视化・统计・误差 | Prediction error - Comparative lollipop plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_prediction_error_density_ridge` | 可视化分析・可视化・统计・误差・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_prediction_error_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_prediction_error_diagnostic_panel` | 可视化分析・可视化・统计・误差・诊断・面板 | Prediction error - Diagnostic panel | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_prediction_error_ecdf_step_view` | 可视化分析・可视化・统计・误差・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_prediction_error_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_prediction_error_flow_transition_map` | 可视化分析・可视化・统计・误差 | Prediction error - Flow transition map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_prediction_error_forest_interval_plot` | 可视化分析・可视化・统计・误差・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_prediction_error_heatmap_matrix` | 可视化分析・可视化・统计・误差・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_prediction_error_histogram_facets` | 可视化分析・可视化・统计・误差・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_prediction_error_map_choropleth_layer` | 可视化分析・可视化・统计・误差・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_prediction_error_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_prediction_error_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_prediction_error_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_prediction_error_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_prediction_error_mosaic_tile_view` | 可视化分析・可视化・统计・误差 | Prediction error - Mosaic tile view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_prediction_error_network_node_link` | 可视化分析・可视化・统计・误差・网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_prediction_error_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_prediction_error_qq_reference_plot` | 可视化分析・可视化・统计・误差 | Prediction error - Q-Q reference plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_prediction_error_quantile_band` | 可视化分析・可视化・统计・误差・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_prediction_error_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_prediction_error_raincloud_view` | 可视化分析・可视化・统计・误差 | Prediction error - Raincloud view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_prediction_error_rank_interval_plot` | 可视化分析・可视化・统计・误差・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_prediction_error_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_prediction_error_residual_annotation_map` | 可视化分析・可视化・统计・误差 | Prediction error - Residual annotation map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_prediction_error_slope_change_view` | 可视化分析・可视化・统计・误差 | Prediction error - Slope change view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_prediction_error_small_multiple_grid` | 可视化分析・可视化・统计・误差 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_prediction_error_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_prediction_error_stratified_dotplot` | 可视化分析・可视化・统计・误差 | Prediction error - Stratified dot plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_prediction_error_threshold_band` | 可视化分析・可视化・统计・误差 | Prediction error - Threshold band | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_prediction_error_uncertainty_ribbon` | 可视化分析・可视化・统计・误差 | Prediction error - Uncertainty ribbon | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_prediction_error_violin_summary` | 可视化分析・可视化・统计・误差・小提琴图・概览 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_prediction_error_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_prediction_interval_annotated_reference_view` | 可视化分析・可视化・统计 | Prediction interval - Annotated reference view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_prediction_interval_boxen_interval` | 可视化分析・可视化・统计 | Prediction interval - Boxen interval plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_prediction_interval_comparative_lollipop` | 可视化分析・可视化・统计 | Prediction interval - Comparative lollipop plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_prediction_interval_density_ridge` | 可视化分析・可视化・统计・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_prediction_interval_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_prediction_interval_diagnostic_panel` | 可视化分析・可视化・统计・诊断・面板 | Prediction interval - Diagnostic panel | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_prediction_interval_ecdf_step_view` | 可视化分析・可视化・统计・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_prediction_interval_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_prediction_interval_flow_transition_map` | 可视化分析・可视化・统计 | Prediction interval - Flow transition map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_prediction_interval_forest_interval_plot` | 可视化分析・可视化・统计・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_prediction_interval_heatmap_matrix` | 可视化分析・可视化・统计・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_prediction_interval_histogram_facets` | 可视化分析・可视化・统计・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_prediction_interval_map_choropleth_layer` | 可视化分析・可视化・统计・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_prediction_interval_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_prediction_interval_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_prediction_interval_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_prediction_interval_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_prediction_interval_mosaic_tile_view` | 可视化分析・可视化・统计 | Prediction interval - Mosaic tile view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_prediction_interval_network_node_link` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_prediction_interval_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_prediction_interval_qq_reference_plot` | 可视化分析・可视化・统计 | Prediction interval - Q-Q reference plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_prediction_interval_quantile_band` | 可视化分析・可视化・统计・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_prediction_interval_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_prediction_interval_raincloud_view` | 可视化分析・可视化・统计 | Prediction interval - Raincloud view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_prediction_interval_rank_interval_plot` | 可视化分析・可视化・统计・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_prediction_interval_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_prediction_interval_residual_annotation_map` | 可视化分析・可视化・统计 | Prediction interval - Residual annotation map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_prediction_interval_slope_change_view` | 可视化分析・可视化・统计 | Prediction interval - Slope change view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_prediction_interval_small_multiple_grid` | 可视化分析・可视化・统计 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_prediction_interval_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_prediction_interval_stratified_dotplot` | 可视化分析・可视化・统计 | Prediction interval - Stratified dot plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_prediction_interval_threshold_band` | 可视化分析・可视化・统计 | Prediction interval - Threshold band | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_prediction_interval_uncertainty_ribbon` | 可视化分析・可视化・统计 | Prediction interval - Uncertainty ribbon | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_prediction_interval_violin_summary` | 可视化分析・可视化・统计・小提琴图・概览 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_principal_component_variance_annotated_reference_view` | 可视化分析・可视化・统计・方差 | 方差 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_principal_component_variance_boxen_interval` | 可视化分析・可视化・统计・方差 | 方差 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_principal_component_variance_comparative_lollipop` | 可视化分析・可视化・统计・方差 | 方差 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_principal_component_variance_density_ridge` | 可视化分析・可视化・统计・方差・密度图 | 方差 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_principal_component_variance_diagnostic_panel` | 可视化分析・可视化・统计・方差・诊断・面板 | 方差 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_principal_component_variance_ecdf_step_view` | 可视化分析・可视化・统计・方差・经验分布图 | 方差 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_principal_component_variance_flow_transition_map` | 可视化分析・可视化・统计・方差 | 方差 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_principal_component_variance_forest_interval_plot` | 可视化分析・可视化・统计・方差・随机森林 | 方差 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_principal_component_variance_heatmap_matrix` | 可视化分析・可视化・统计・方差・热力矩阵 | 方差 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_principal_component_variance_histogram_facets` | 可视化分析・可视化・统计・方差・直方图 | 方差 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_principal_component_variance_map_choropleth_layer` | 可视化分析・可视化・统计・方差・分级着色地图 | 方差 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_principal_component_variance_mosaic_tile_view` | 可视化分析・可视化・统计・方差 | 方差 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_principal_component_variance_network_node_link` | 可视化分析・可视化・统计・方差・网络 | 方差 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_principal_component_variance_qq_reference_plot` | 可视化分析・可视化・统计・方差 | 方差 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_principal_component_variance_quantile_band` | 可视化分析・可视化・统计・方差・分位数 | 方差 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_principal_component_variance_raincloud_view` | 可视化分析・可视化・统计・方差 | 方差 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_principal_component_variance_rank_interval_plot` | 可视化分析・可视化・统计・方差・排名 | 方差 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_principal_component_variance_residual_annotation_map` | 可视化分析・可视化・统计・方差 | 方差 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_principal_component_variance_slope_change_view` | 可视化分析・可视化・统计・方差 | 方差 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_principal_component_variance_small_multiple_grid` | 可视化分析・可视化・统计・方差 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_principal_component_variance_stratified_dotplot` | 可视化分析・可视化・统计・方差 | 方差 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_principal_component_variance_threshold_band` | 可视化分析・可视化・统计・方差 | 方差 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_principal_component_variance_uncertainty_ribbon` | 可视化分析・可视化・统计・方差 | 方差 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_principal_component_variance_violin_summary` | 可视化分析・可视化・统计・方差・小提琴图・概览 | 方差 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_prediction_interval_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_principal_component_variance_annotated_reference_view` | 可视化分析・方差 | 方差 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_principal_component_variance_boxen_interval` | 可视化分析・方差 | 方差 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_principal_component_variance_comparative_lollipop` | 可视化分析・方差 | 方差 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_principal_component_variance_density_ridge` | 可视化分析・方差 | 方差 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_principal_component_variance_diagnostic_panel` | 可视化分析・方差 | 方差 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_principal_component_variance_ecdf_step_view` | 可视化分析・方差 | 方差 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_principal_component_variance_flow_transition_map` | 可视化分析・方差 | 方差 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_principal_component_variance_forest_interval_plot` | 可视化分析・方差 | 方差 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_principal_component_variance_heatmap_matrix` | 可视化分析・方差 | 方差 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_principal_component_variance_histogram_facets` | 可视化分析・方差 | 方差 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_principal_component_variance_map_choropleth_layer` | 可视化分析・方差 | 方差 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_principal_component_variance_mosaic_tile_view` | 可视化分析・方差 | 方差 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_principal_component_variance_network_node_link` | 可视化分析・方差 | 方差 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_principal_component_variance_qq_reference_plot` | 可视化分析・方差 | 方差 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_principal_component_variance_quantile_band` | 可视化分析・方差 | 方差 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_principal_component_variance_raincloud_view` | 可视化分析・方差 | 方差 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_principal_component_variance_rank_interval_plot` | 可视化分析・方差 | 方差 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_principal_component_variance_residual_annotation_map` | 可视化分析・方差 | 方差 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_principal_component_variance_slope_change_view` | 可视化分析・方差 | 方差 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_principal_component_variance_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_principal_component_variance_stratified_dotplot` | 可视化分析・方差 | 方差 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_principal_component_variance_threshold_band` | 可视化分析・方差 | 方差 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_principal_component_variance_uncertainty_ribbon` | 可视化分析・方差 | 方差 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_principal_component_variance_violin_summary` | 可视化分析・方差 | 方差 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_propensity_overlap_annotated_reference_view` | 可视化分析・可视化・统计 | Propensity overlap - Annotated reference view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_propensity_overlap_boxen_interval` | 可视化分析・可视化・统计 | Propensity overlap - Boxen interval plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_propensity_overlap_comparative_lollipop` | 可视化分析・可视化・统计 | Propensity overlap - Comparative lollipop plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_propensity_overlap_density_ridge` | 可视化分析・可视化・统计・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_propensity_overlap_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_propensity_overlap_diagnostic_panel` | 可视化分析・可视化・统计・诊断・面板 | Propensity overlap - Diagnostic panel | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_propensity_overlap_ecdf_step_view` | 可视化分析・可视化・统计・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_propensity_overlap_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_propensity_overlap_flow_transition_map` | 可视化分析・可视化・统计 | Propensity overlap - Flow transition map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_propensity_overlap_forest_interval_plot` | 可视化分析・可视化・统计・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_propensity_overlap_heatmap_matrix` | 可视化分析・可视化・统计・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_propensity_overlap_histogram_facets` | 可视化分析・可视化・统计・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_propensity_overlap_map_choropleth_layer` | 可视化分析・可视化・统计・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_propensity_overlap_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_propensity_overlap_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_propensity_overlap_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_propensity_overlap_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_propensity_overlap_mosaic_tile_view` | 可视化分析・可视化・统计 | Propensity overlap - Mosaic tile view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_propensity_overlap_network_node_link` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_propensity_overlap_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_propensity_overlap_qq_reference_plot` | 可视化分析・可视化・统计 | Propensity overlap - Q-Q reference plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_propensity_overlap_quantile_band` | 可视化分析・可视化・统计・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_propensity_overlap_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_propensity_overlap_raincloud_view` | 可视化分析・可视化・统计 | Propensity overlap - Raincloud view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_propensity_overlap_rank_interval_plot` | 可视化分析・可视化・统计・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_propensity_overlap_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_propensity_overlap_residual_annotation_map` | 可视化分析・可视化・统计 | Propensity overlap - Residual annotation map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_propensity_overlap_slope_change_view` | 可视化分析・可视化・统计 | Propensity overlap - Slope change view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_propensity_overlap_small_multiple_grid` | 可视化分析・可视化・统计 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_propensity_overlap_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_propensity_overlap_stratified_dotplot` | 可视化分析・可视化・统计 | Propensity overlap - Stratified dot plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_propensity_overlap_threshold_band` | 可视化分析・可视化・统计 | Propensity overlap - Threshold band | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_propensity_overlap_uncertainty_ribbon` | 可视化分析・可视化・统计 | Propensity overlap - Uncertainty ribbon | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_propensity_overlap_violin_summary` | 可视化分析・可视化・统计・小提琴图・概览 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_propensity_overlap_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_public_health_incidence_annotated_reference_view` | 可视化分析・可视化・统计・健康度 | Public health incidence - Annotated reference view | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_public_health_incidence_boxen_interval` | 可视化分析・可视化・统计・健康度 | Public health incidence - Boxen interval plot | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_public_health_incidence_comparative_lollipop` | 可视化分析・可视化・统计・健康度 | Public health incidence - Comparative lollipop plot | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_public_health_incidence_density_ridge` | 可视化分析・可视化・统计・健康度・密度图 | 密度图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_public_health_incidence_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_public_health_incidence_diagnostic_panel` | 可视化分析・可视化・统计・健康度・诊断・面板 | Public health incidence - Diagnostic panel | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_public_health_incidence_ecdf_step_view` | 可视化分析・可视化・统计・健康度・经验分布图 | 经验分布图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_public_health_incidence_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_public_health_incidence_flow_transition_map` | 可视化分析・可视化・统计・健康度 | Public health incidence - Flow transition map | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_public_health_incidence_forest_interval_plot` | 可视化分析・可视化・统计・健康度・随机森林 | 随机森林 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_public_health_incidence_heatmap_matrix` | 可视化分析・可视化・统计・健康度・热力矩阵 | 热力矩阵 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_public_health_incidence_histogram_facets` | 可视化分析・可视化・统计・健康度・直方图 | 直方图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_public_health_incidence_map_choropleth_layer` | 可视化分析・可视化・统计・健康度・分级着色地图 | 分级着色地图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_public_health_incidence_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_public_health_incidence_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_public_health_incidence_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_public_health_incidence_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_public_health_incidence_mosaic_tile_view` | 可视化分析・可视化・统计・健康度 | Public health incidence - Mosaic tile view | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_public_health_incidence_network_node_link` | 可视化分析・可视化・统计・健康度・网络 | 关系网络 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_public_health_incidence_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_public_health_incidence_qq_reference_plot` | 可视化分析・可视化・统计・健康度 | Public health incidence - Q-Q reference plot | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_public_health_incidence_quantile_band` | 可视化分析・可视化・统计・健康度・分位数 | 分位数 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_public_health_incidence_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_public_health_incidence_raincloud_view` | 可视化分析・可视化・统计・健康度 | Public health incidence - Raincloud view | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_public_health_incidence_rank_interval_plot` | 可视化分析・可视化・统计・健康度・排名 | 排名 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_public_health_incidence_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_public_health_incidence_residual_annotation_map` | 可视化分析・可视化・统计・健康度 | Public health incidence - Residual annotation map | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_public_health_incidence_slope_change_view` | 可视化分析・可视化・统计・健康度 | Public health incidence - Slope change view | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_public_health_incidence_small_multiple_grid` | 可视化分析・可视化・统计・健康度 | 小多图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_public_health_incidence_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_public_health_incidence_stratified_dotplot` | 可视化分析・可视化・统计・健康度 | Public health incidence - Stratified dot plot | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_public_health_incidence_threshold_band` | 可视化分析・可视化・统计・健康度 | Public health incidence - Threshold band | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_public_health_incidence_uncertainty_ribbon` | 可视化分析・可视化・统计・健康度 | Public health incidence - Uncertainty ribbon | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_public_health_incidence_violin_summary` | 可视化分析・可视化・统计・健康度・小提琴图・概览 | 小提琴图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_public_health_incidence_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_quality_control_annotated_reference_view` | 可视化分析・可视化・统计・质量・控制 | Quality control - Annotated reference view | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_quality_control_boxen_interval` | 可视化分析・可视化・统计・质量・控制 | Quality control - Boxen interval plot | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_quality_control_comparative_lollipop` | 可视化分析・可视化・统计・质量・控制 | Quality control - Comparative lollipop plot | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_quality_control_density_ridge` | 可视化分析・可视化・统计・质量・控制・密度图 | 密度图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_quality_control_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_quality_control_diagnostic_panel` | 可视化分析・可视化・统计・质量・控制・诊断・面板 | Quality control - Diagnostic panel | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_quality_control_ecdf_step_view` | 可视化分析・可视化・统计・质量・控制・经验分布图 | 经验分布图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_quality_control_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_quality_control_flow_transition_map` | 可视化分析・可视化・统计・质量・控制 | Quality control - Flow transition map | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_quality_control_forest_interval_plot` | 可视化分析・可视化・统计・质量・控制・随机森林 | 随机森林 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_quality_control_heatmap_matrix` | 可视化分析・可视化・统计・质量・控制・热力矩阵 | 热力矩阵 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_quality_control_histogram_facets` | 可视化分析・可视化・统计・质量・控制・直方图 | 直方图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_quality_control_map_choropleth_layer` | 可视化分析・可视化・统计・质量・控制・分级着色地图 | 分级着色地图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_quality_control_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_quality_control_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_quality_control_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_quality_control_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_quality_control_mosaic_tile_view` | 可视化分析・可视化・统计・质量・控制 | Quality control - Mosaic tile view | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_quality_control_network_node_link` | 可视化分析・可视化・统计・质量・控制・网络 | 关系网络 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_quality_control_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_quality_control_qq_reference_plot` | 可视化分析・可视化・统计・质量・控制 | Quality control - Q-Q reference plot | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_quality_control_quantile_band` | 可视化分析・可视化・统计・质量・控制・分位数 | 分位数 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_quality_control_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_quality_control_raincloud_view` | 可视化分析・可视化・统计・质量・控制 | Quality control - Raincloud view | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_quality_control_rank_interval_plot` | 可视化分析・可视化・统计・质量・控制・排名 | 排名 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_quality_control_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_quality_control_residual_annotation_map` | 可视化分析・可视化・统计・质量・控制 | Quality control - Residual annotation map | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_quality_control_slope_change_view` | 可视化分析・可视化・统计・质量・控制 | Quality control - Slope change view | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_quality_control_small_multiple_grid` | 可视化分析・可视化・统计・质量・控制 | 小多图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_quality_control_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_quality_control_stratified_dotplot` | 可视化分析・可视化・统计・质量・控制 | Quality control - Stratified dot plot | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_quality_control_threshold_band` | 可视化分析・可视化・统计・质量・控制 | Quality control - Threshold band | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_quality_control_uncertainty_ribbon` | 可视化分析・可视化・统计・质量・控制 | Quality control - Uncertainty ribbon | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_quality_control_violin_summary` | 可视化分析・可视化・统计・质量・控制・小提琴图・概览 | 小提琴图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_quality_control_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_questionnaire_item_quality_annotated_reference_view` | 可视化分析・可视化・统计・质量 | Questionnaire item quality - Annotated reference view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_questionnaire_item_quality_boxen_interval` | 可视化分析・可视化・统计・质量 | Questionnaire item quality - Boxen interval plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_questionnaire_item_quality_comparative_lollipop` | 可视化分析・可视化・统计・质量 | Questionnaire item quality - Comparative lollipop plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_questionnaire_item_quality_density_ridge` | 可视化分析・可视化・统计・质量・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_questionnaire_item_quality_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_questionnaire_item_quality_diagnostic_panel` | 可视化分析・可视化・统计・质量・诊断・面板 | Questionnaire item quality - Diagnostic panel | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_questionnaire_item_quality_ecdf_step_view` | 可视化分析・可视化・统计・质量・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_questionnaire_item_quality_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_questionnaire_item_quality_flow_transition_map` | 可视化分析・可视化・统计・质量 | Questionnaire item quality - Flow transition map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_questionnaire_item_quality_forest_interval_plot` | 可视化分析・可视化・统计・质量・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_questionnaire_item_quality_heatmap_matrix` | 可视化分析・可视化・统计・质量・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_questionnaire_item_quality_histogram_facets` | 可视化分析・可视化・统计・质量・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_questionnaire_item_quality_map_choropleth_layer` | 可视化分析・可视化・统计・质量・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_questionnaire_item_quality_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_questionnaire_item_quality_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_questionnaire_item_quality_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_questionnaire_item_quality_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_questionnaire_item_quality_mosaic_tile_view` | 可视化分析・可视化・统计・质量 | Questionnaire item quality - Mosaic tile view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_questionnaire_item_quality_network_node_link` | 可视化分析・可视化・统计・质量・网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_questionnaire_item_quality_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_questionnaire_item_quality_qq_reference_plot` | 可视化分析・可视化・统计・质量 | Questionnaire item quality - Q-Q reference plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_questionnaire_item_quality_quantile_band` | 可视化分析・可视化・统计・质量・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_questionnaire_item_quality_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_questionnaire_item_quality_raincloud_view` | 可视化分析・可视化・统计・质量 | Questionnaire item quality - Raincloud view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_questionnaire_item_quality_rank_interval_plot` | 可视化分析・可视化・统计・质量・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_questionnaire_item_quality_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_questionnaire_item_quality_residual_annotation_map` | 可视化分析・可视化・统计・质量 | Questionnaire item quality - Residual annotation map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_questionnaire_item_quality_slope_change_view` | 可视化分析・可视化・统计・质量 | Questionnaire item quality - Slope change view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_questionnaire_item_quality_small_multiple_grid` | 可视化分析・可视化・统计・质量 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_questionnaire_item_quality_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_questionnaire_item_quality_stratified_dotplot` | 可视化分析・可视化・统计・质量 | Questionnaire item quality - Stratified dot plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_questionnaire_item_quality_threshold_band` | 可视化分析・可视化・统计・质量 | Questionnaire item quality - Threshold band | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_questionnaire_item_quality_uncertainty_ribbon` | 可视化分析・可视化・统计・质量 | Questionnaire item quality - Uncertainty ribbon | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_questionnaire_item_quality_violin_summary` | 可视化分析・可视化・统计・质量・小提琴图・概览 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_questionnaire_item_quality_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_randomization_check_annotated_reference_view` | 可视化分析・可视化・统计 | Randomization check - Annotated reference view | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_randomization_check_boxen_interval` | 可视化分析・可视化・统计 | Randomization check - Boxen interval plot | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_randomization_check_comparative_lollipop` | 可视化分析・可视化・统计 | Randomization check - Comparative lollipop plot | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_randomization_check_density_ridge` | 可视化分析・可视化・统计・密度图 | 密度图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_randomization_check_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_randomization_check_diagnostic_panel` | 可视化分析・可视化・统计・诊断・面板 | Randomization check - Diagnostic panel | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_randomization_check_ecdf_step_view` | 可视化分析・可视化・统计・经验分布图 | 经验分布图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_randomization_check_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_randomization_check_flow_transition_map` | 可视化分析・可视化・统计 | Randomization check - Flow transition map | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_randomization_check_forest_interval_plot` | 可视化分析・可视化・统计・随机森林 | 随机森林 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_randomization_check_heatmap_matrix` | 可视化分析・可视化・统计・热力矩阵 | 热力矩阵 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_randomization_check_histogram_facets` | 可视化分析・可视化・统计・直方图 | 直方图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_randomization_check_map_choropleth_layer` | 可视化分析・可视化・统计・分级着色地图 | 分级着色地图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_randomization_check_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_randomization_check_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_randomization_check_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_randomization_check_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_randomization_check_mosaic_tile_view` | 可视化分析・可视化・统计 | Randomization check - Mosaic tile view | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_randomization_check_network_node_link` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_randomization_check_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_randomization_check_qq_reference_plot` | 可视化分析・可视化・统计 | Randomization check - Q-Q reference plot | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_randomization_check_quantile_band` | 可视化分析・可视化・统计・分位数 | 分位数 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_randomization_check_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_randomization_check_raincloud_view` | 可视化分析・可视化・统计 | Randomization check - Raincloud view | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_randomization_check_rank_interval_plot` | 可视化分析・可视化・统计・排名 | 排名 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_randomization_check_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_randomization_check_residual_annotation_map` | 可视化分析・可视化・统计 | Randomization check - Residual annotation map | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_randomization_check_slope_change_view` | 可视化分析・可视化・统计 | Randomization check - Slope change view | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_randomization_check_small_multiple_grid` | 可视化分析・可视化・统计 | 小多图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_randomization_check_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_randomization_check_stratified_dotplot` | 可视化分析・可视化・统计 | Randomization check - Stratified dot plot | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_randomization_check_threshold_band` | 可视化分析・可视化・统计 | Randomization check - Threshold band | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_randomization_check_uncertainty_ribbon` | 可视化分析・可视化・统计 | Randomization check - Uncertainty ribbon | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_randomization_check_violin_summary` | 可视化分析・可视化・统计・小提琴图・概览 | 小提琴图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_randomization_check_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_regional_inequality_annotated_reference_view` | 可视化分析・可视化・统计 | Regional inequality - Annotated reference view | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_regional_inequality_boxen_interval` | 可视化分析・可视化・统计 | Regional inequality - Boxen interval plot | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_regional_inequality_comparative_lollipop` | 可视化分析・可视化・统计 | Regional inequality - Comparative lollipop plot | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_regional_inequality_density_ridge` | 可视化分析・可视化・统计・密度图 | 密度图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_regional_inequality_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_regional_inequality_diagnostic_panel` | 可视化分析・可视化・统计・诊断・面板 | Regional inequality - Diagnostic panel | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_regional_inequality_ecdf_step_view` | 可视化分析・可视化・统计・经验分布图 | 经验分布图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_regional_inequality_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_regional_inequality_flow_transition_map` | 可视化分析・可视化・统计 | Regional inequality - Flow transition map | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_regional_inequality_forest_interval_plot` | 可视化分析・可视化・统计・随机森林 | 随机森林 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_regional_inequality_heatmap_matrix` | 可视化分析・可视化・统计・热力矩阵 | 热力矩阵 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_regional_inequality_histogram_facets` | 可视化分析・可视化・统计・直方图 | 直方图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_regional_inequality_map_choropleth_layer` | 可视化分析・可视化・统计・分级着色地图 | 分级着色地图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_regional_inequality_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_regional_inequality_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_regional_inequality_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_regional_inequality_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_regional_inequality_mosaic_tile_view` | 可视化分析・可视化・统计 | Regional inequality - Mosaic tile view | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_regional_inequality_network_node_link` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_regional_inequality_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_regional_inequality_qq_reference_plot` | 可视化分析・可视化・统计 | Regional inequality - Q-Q reference plot | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_regional_inequality_quantile_band` | 可视化分析・可视化・统计・分位数 | 分位数 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_regional_inequality_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_regional_inequality_raincloud_view` | 可视化分析・可视化・统计 | Regional inequality - Raincloud view | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_regional_inequality_rank_interval_plot` | 可视化分析・可视化・统计・排名 | 排名 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_regional_inequality_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_regional_inequality_residual_annotation_map` | 可视化分析・可视化・统计 | Regional inequality - Residual annotation map | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_regional_inequality_slope_change_view` | 可视化分析・可视化・统计 | Regional inequality - Slope change view | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_regional_inequality_small_multiple_grid` | 可视化分析・可视化・统计 | 小多图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_regional_inequality_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_regional_inequality_stratified_dotplot` | 可视化分析・可视化・统计 | Regional inequality - Stratified dot plot | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_regional_inequality_threshold_band` | 可视化分析・可视化・统计 | Regional inequality - Threshold band | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_regional_inequality_uncertainty_ribbon` | 可视化分析・可视化・统计 | Regional inequality - Uncertainty ribbon | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_regional_inequality_violin_summary` | 可视化分析・可视化・统计・小提琴图・概览 | 小提琴图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_regional_inequality_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_regularization_path_annotated_reference_view` | 可视化分析・可视化・统计 | Regularization path - Annotated reference view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_regularization_path_boxen_interval` | 可视化分析・可视化・统计 | Regularization path - Boxen interval plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_regularization_path_comparative_lollipop` | 可视化分析・可视化・统计 | Regularization path - Comparative lollipop plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_regularization_path_density_ridge` | 可视化分析・可视化・统计・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_regularization_path_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_regularization_path_diagnostic_panel` | 可视化分析・可视化・统计・诊断・面板 | Regularization path - Diagnostic panel | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_regularization_path_ecdf_step_view` | 可视化分析・可视化・统计・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_regularization_path_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_regularization_path_flow_transition_map` | 可视化分析・可视化・统计 | Regularization path - Flow transition map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_regularization_path_forest_interval_plot` | 可视化分析・可视化・统计・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_regularization_path_heatmap_matrix` | 可视化分析・可视化・统计・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_regularization_path_histogram_facets` | 可视化分析・可视化・统计・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_regularization_path_map_choropleth_layer` | 可视化分析・可视化・统计・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_regularization_path_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_regularization_path_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_regularization_path_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_regularization_path_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_regularization_path_mosaic_tile_view` | 可视化分析・可视化・统计 | Regularization path - Mosaic tile view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_regularization_path_network_node_link` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_regularization_path_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_regularization_path_qq_reference_plot` | 可视化分析・可视化・统计 | Regularization path - Q-Q reference plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_regularization_path_quantile_band` | 可视化分析・可视化・统计・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_regularization_path_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_regularization_path_raincloud_view` | 可视化分析・可视化・统计 | Regularization path - Raincloud view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_regularization_path_rank_interval_plot` | 可视化分析・可视化・统计・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_regularization_path_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_regularization_path_residual_annotation_map` | 可视化分析・可视化・统计 | Regularization path - Residual annotation map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_regularization_path_slope_change_view` | 可视化分析・可视化・统计 | Regularization path - Slope change view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_regularization_path_small_multiple_grid` | 可视化分析・可视化・统计 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_regularization_path_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_regularization_path_stratified_dotplot` | 可视化分析・可视化・统计 | Regularization path - Stratified dot plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_regularization_path_threshold_band` | 可视化分析・可视化・统计 | Regularization path - Threshold band | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_regularization_path_uncertainty_ribbon` | 可视化分析・可视化・统计 | Regularization path - Uncertainty ribbon | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_regularization_path_violin_summary` | 可视化分析・可视化・统计・小提琴图・概览 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_regularization_path_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_relationship_strength_annotated_reference_view` | 可视化分析・可视化・统计 | Relationship strength - Annotated reference view | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_relationship_strength_boxen_interval` | 可视化分析・可视化・统计 | Relationship strength - Boxen interval plot | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_relationship_strength_comparative_lollipop` | 可视化分析・可视化・统计 | Relationship strength - Comparative lollipop plot | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_relationship_strength_density_ridge` | 可视化分析・可视化・统计・密度图 | 密度图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_relationship_strength_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_relationship_strength_diagnostic_panel` | 可视化分析・可视化・统计・诊断・面板 | Relationship strength - Diagnostic panel | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_relationship_strength_ecdf_step_view` | 可视化分析・可视化・统计・经验分布图 | 经验分布图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_relationship_strength_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_relationship_strength_flow_transition_map` | 可视化分析・可视化・统计 | Relationship strength - Flow transition map | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_relationship_strength_forest_interval_plot` | 可视化分析・可视化・统计・随机森林 | 随机森林 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_relationship_strength_heatmap_matrix` | 可视化分析・可视化・统计・热力矩阵 | 热力矩阵 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_relationship_strength_histogram_facets` | 可视化分析・可视化・统计・直方图 | 直方图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_relationship_strength_map_choropleth_layer` | 可视化分析・可视化・统计・分级着色地图 | 分级着色地图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_relationship_strength_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_relationship_strength_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_relationship_strength_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_relationship_strength_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_relationship_strength_mosaic_tile_view` | 可视化分析・可视化・统计 | Relationship strength - Mosaic tile view | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_relationship_strength_network_node_link` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_relationship_strength_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_relationship_strength_qq_reference_plot` | 可视化分析・可视化・统计 | Relationship strength - Q-Q reference plot | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_relationship_strength_quantile_band` | 可视化分析・可视化・统计・分位数 | 分位数 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_relationship_strength_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_relationship_strength_raincloud_view` | 可视化分析・可视化・统计 | Relationship strength - Raincloud view | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_relationship_strength_rank_interval_plot` | 可视化分析・可视化・统计・排名 | 排名 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_relationship_strength_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_relationship_strength_residual_annotation_map` | 可视化分析・可视化・统计 | Relationship strength - Residual annotation map | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_relationship_strength_slope_change_view` | 可视化分析・可视化・统计 | Relationship strength - Slope change view | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_relationship_strength_small_multiple_grid` | 可视化分析・可视化・统计 | 小多图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_relationship_strength_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_relationship_strength_stratified_dotplot` | 可视化分析・可视化・统计 | Relationship strength - Stratified dot plot | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_relationship_strength_threshold_band` | 可视化分析・可视化・统计 | Relationship strength - Threshold band | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_relationship_strength_uncertainty_ribbon` | 可视化分析・可视化・统计 | Relationship strength - Uncertainty ribbon | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
-| `visual_stat_relationship_strength_violin_summary` | 可视化分析・可视化・统计・小提琴图・概览 | 小提琴图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
+| `visual_stat_relationship_strength_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 字段对 | 规划条目 | 统计可视化目录 |
 | `visual_stat_reliability_scale_annotated_reference_view` | 可视化分析・可视化・统计 | Reliability scale - Annotated reference view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_reliability_scale_boxen_interval` | 可视化分析・可视化・统计 | Reliability scale - Boxen interval plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_reliability_scale_comparative_lollipop` | 可视化分析・可视化・统计 | Reliability scale - Comparative lollipop plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_reliability_scale_density_ridge` | 可视化分析・可视化・统计・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_reliability_scale_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_reliability_scale_diagnostic_panel` | 可视化分析・可视化・统计・诊断・面板 | Reliability scale - Diagnostic panel | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_reliability_scale_ecdf_step_view` | 可视化分析・可视化・统计・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_reliability_scale_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_reliability_scale_flow_transition_map` | 可视化分析・可视化・统计 | Reliability scale - Flow transition map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_reliability_scale_forest_interval_plot` | 可视化分析・可视化・统计・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_reliability_scale_heatmap_matrix` | 可视化分析・可视化・统计・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_reliability_scale_histogram_facets` | 可视化分析・可视化・统计・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_reliability_scale_map_choropleth_layer` | 可视化分析・可视化・统计・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_reliability_scale_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_reliability_scale_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_reliability_scale_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_reliability_scale_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_reliability_scale_mosaic_tile_view` | 可视化分析・可视化・统计 | Reliability scale - Mosaic tile view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_reliability_scale_network_node_link` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_reliability_scale_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_reliability_scale_qq_reference_plot` | 可视化分析・可视化・统计 | Reliability scale - Q-Q reference plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_reliability_scale_quantile_band` | 可视化分析・可视化・统计・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_reliability_scale_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_reliability_scale_raincloud_view` | 可视化分析・可视化・统计 | Reliability scale - Raincloud view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_reliability_scale_rank_interval_plot` | 可视化分析・可视化・统计・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_reliability_scale_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_reliability_scale_residual_annotation_map` | 可视化分析・可视化・统计 | Reliability scale - Residual annotation map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_reliability_scale_slope_change_view` | 可视化分析・可视化・统计 | Reliability scale - Slope change view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_reliability_scale_small_multiple_grid` | 可视化分析・可视化・统计 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_reliability_scale_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_reliability_scale_stratified_dotplot` | 可视化分析・可视化・统计 | Reliability scale - Stratified dot plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_reliability_scale_threshold_band` | 可视化分析・可视化・统计 | Reliability scale - Threshold band | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_reliability_scale_uncertainty_ribbon` | 可视化分析・可视化・统计 | Reliability scale - Uncertainty ribbon | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_reliability_scale_violin_summary` | 可视化分析・可视化・统计・小提琴图・概览 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_reliability_scale_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_residual_pattern_annotated_reference_view` | 可视化分析・可视化・统计 | Residual pattern - Annotated reference view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_residual_pattern_boxen_interval` | 可视化分析・可视化・统计 | Residual pattern - Boxen interval plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_residual_pattern_comparative_lollipop` | 可视化分析・可视化・统计 | Residual pattern - Comparative lollipop plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_residual_pattern_density_ridge` | 可视化分析・可视化・统计・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_residual_pattern_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_residual_pattern_diagnostic_panel` | 可视化分析・可视化・统计・诊断・面板 | Residual pattern - Diagnostic panel | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_residual_pattern_ecdf_step_view` | 可视化分析・可视化・统计・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_residual_pattern_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_residual_pattern_flow_transition_map` | 可视化分析・可视化・统计 | Residual pattern - Flow transition map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_residual_pattern_forest_interval_plot` | 可视化分析・可视化・统计・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_residual_pattern_heatmap_matrix` | 可视化分析・可视化・统计・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_residual_pattern_histogram_facets` | 可视化分析・可视化・统计・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_residual_pattern_map_choropleth_layer` | 可视化分析・可视化・统计・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_residual_pattern_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_residual_pattern_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_residual_pattern_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_residual_pattern_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_residual_pattern_mosaic_tile_view` | 可视化分析・可视化・统计 | Residual pattern - Mosaic tile view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_residual_pattern_network_node_link` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_residual_pattern_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_residual_pattern_qq_reference_plot` | 可视化分析・可视化・统计 | Residual pattern - Q-Q reference plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_residual_pattern_quantile_band` | 可视化分析・可视化・统计・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_residual_pattern_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_residual_pattern_raincloud_view` | 可视化分析・可视化・统计 | Residual pattern - Raincloud view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_residual_pattern_rank_interval_plot` | 可视化分析・可视化・统计・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_residual_pattern_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_residual_pattern_residual_annotation_map` | 可视化分析・可视化・统计 | Residual pattern - Residual annotation map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_residual_pattern_slope_change_view` | 可视化分析・可视化・统计 | Residual pattern - Slope change view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_residual_pattern_small_multiple_grid` | 可视化分析・可视化・统计 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_residual_pattern_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_residual_pattern_stratified_dotplot` | 可视化分析・可视化・统计 | Residual pattern - Stratified dot plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_residual_pattern_threshold_band` | 可视化分析・可视化・统计 | Residual pattern - Threshold band | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_residual_pattern_uncertainty_ribbon` | 可视化分析・可视化・统计 | Residual pattern - Uncertainty ribbon | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_residual_pattern_violin_summary` | 可视化分析・可视化・统计・小提琴图・概览 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_robust_summary_annotated_reference_view` | 可视化分析・可视化・统计・稳健・概览 | 稳健 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_robust_summary_boxen_interval` | 可视化分析・可视化・统计・稳健・概览 | 稳健 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_robust_summary_comparative_lollipop` | 可视化分析・可视化・统计・稳健・概览 | 稳健 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_robust_summary_density_ridge` | 可视化分析・可视化・统计・稳健・概览・密度图 | 稳健 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_robust_summary_diagnostic_panel` | 可视化分析・可视化・统计・稳健・概览・诊断・面板 | 稳健 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_robust_summary_ecdf_step_view` | 可视化分析・可视化・统计・稳健・概览・经验分布图 | 稳健 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_robust_summary_flow_transition_map` | 可视化分析・可视化・统计・稳健・概览 | 稳健 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_robust_summary_forest_interval_plot` | 可视化分析・可视化・统计・稳健・概览・随机森林 | 稳健 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_robust_summary_heatmap_matrix` | 可视化分析・可视化・统计・稳健・概览・热力矩阵 | 稳健 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_robust_summary_histogram_facets` | 可视化分析・可视化・统计・稳健・概览・直方图 | 稳健 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_robust_summary_map_choropleth_layer` | 可视化分析・可视化・统计・稳健・概览・分级着色地图 | 稳健 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_robust_summary_mosaic_tile_view` | 可视化分析・可视化・统计・稳健・概览 | 稳健 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_robust_summary_network_node_link` | 可视化分析・可视化・统计・稳健・概览・网络 | 稳健 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_robust_summary_qq_reference_plot` | 可视化分析・可视化・统计・稳健・概览 | 稳健 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_robust_summary_quantile_band` | 可视化分析・可视化・统计・稳健・概览・分位数 | 稳健 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_robust_summary_raincloud_view` | 可视化分析・可视化・统计・稳健・概览 | 稳健 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_robust_summary_rank_interval_plot` | 可视化分析・可视化・统计・稳健・概览・排名 | 稳健 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_robust_summary_residual_annotation_map` | 可视化分析・可视化・统计・稳健・概览 | 稳健 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_robust_summary_slope_change_view` | 可视化分析・可视化・统计・稳健・概览 | 稳健 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_robust_summary_small_multiple_grid` | 可视化分析・可视化・统计・稳健・概览 | 小多图 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_robust_summary_stratified_dotplot` | 可视化分析・可视化・统计・稳健・概览 | 稳健 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_robust_summary_threshold_band` | 可视化分析・可视化・统计・稳健・概览 | 稳健 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_robust_summary_uncertainty_ribbon` | 可视化分析・可视化・统计・稳健・概览 | 稳健 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_robust_summary_violin_summary` | 可视化分析・可视化・统计・稳健・概览・小提琴图 | 稳健 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sample_coverage_annotated_reference_view` | 可视化分析・可视化・统计・覆盖情况 | 覆盖情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sample_coverage_boxen_interval` | 可视化分析・可视化・统计・覆盖情况 | 覆盖情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sample_coverage_comparative_lollipop` | 可视化分析・可视化・统计・覆盖情况 | 覆盖情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sample_coverage_density_ridge` | 可视化分析・可视化・统计・覆盖情况・密度图 | 覆盖情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sample_coverage_diagnostic_panel` | 可视化分析・可视化・统计・覆盖情况・诊断・面板 | 覆盖情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sample_coverage_ecdf_step_view` | 可视化分析・可视化・统计・覆盖情况・经验分布图 | 覆盖情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sample_coverage_flow_transition_map` | 可视化分析・可视化・统计・覆盖情况 | 覆盖情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sample_coverage_forest_interval_plot` | 可视化分析・可视化・统计・覆盖情况・随机森林 | 覆盖情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sample_coverage_heatmap_matrix` | 可视化分析・可视化・统计・覆盖情况・热力矩阵 | 覆盖情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sample_coverage_histogram_facets` | 可视化分析・可视化・统计・覆盖情况・直方图 | 覆盖情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sample_coverage_map_choropleth_layer` | 可视化分析・可视化・统计・覆盖情况・分级着色地图 | 覆盖情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sample_coverage_mosaic_tile_view` | 可视化分析・可视化・统计・覆盖情况 | 覆盖情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sample_coverage_network_node_link` | 可视化分析・可视化・统计・覆盖情况・网络 | 覆盖情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sample_coverage_qq_reference_plot` | 可视化分析・可视化・统计・覆盖情况 | 覆盖情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sample_coverage_quantile_band` | 可视化分析・可视化・统计・覆盖情况・分位数 | 覆盖情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sample_coverage_raincloud_view` | 可视化分析・可视化・统计・覆盖情况 | 覆盖情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sample_coverage_rank_interval_plot` | 可视化分析・可视化・统计・覆盖情况・排名 | 覆盖情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sample_coverage_residual_annotation_map` | 可视化分析・可视化・统计・覆盖情况 | 覆盖情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sample_coverage_slope_change_view` | 可视化分析・可视化・统计・覆盖情况 | 覆盖情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sample_coverage_small_multiple_grid` | 可视化分析・可视化・统计・覆盖情况 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sample_coverage_stratified_dotplot` | 可视化分析・可视化・统计・覆盖情况 | 覆盖情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sample_coverage_threshold_band` | 可视化分析・可视化・统计・覆盖情况 | 覆盖情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sample_coverage_uncertainty_ribbon` | 可视化分析・可视化・统计・覆盖情况 | 覆盖情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sample_coverage_violin_summary` | 可视化分析・可视化・统计・覆盖情况・小提琴图・概览 | 覆盖情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_residual_pattern_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_robust_summary_annotated_reference_view` | 可视化分析・稳健 | 稳健 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_robust_summary_boxen_interval` | 可视化分析・稳健 | 稳健 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_robust_summary_comparative_lollipop` | 可视化分析・稳健 | 稳健 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_robust_summary_density_ridge` | 可视化分析・稳健 | 稳健 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_robust_summary_diagnostic_panel` | 可视化分析・稳健 | 稳健 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_robust_summary_ecdf_step_view` | 可视化分析・稳健 | 稳健 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_robust_summary_flow_transition_map` | 可视化分析・稳健 | 稳健 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_robust_summary_forest_interval_plot` | 可视化分析・稳健 | 稳健 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_robust_summary_heatmap_matrix` | 可视化分析・稳健 | 稳健 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_robust_summary_histogram_facets` | 可视化分析・稳健 | 稳健 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_robust_summary_map_choropleth_layer` | 可视化分析・稳健 | 稳健 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_robust_summary_mosaic_tile_view` | 可视化分析・稳健 | 稳健 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_robust_summary_network_node_link` | 可视化分析・稳健 | 稳健 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_robust_summary_qq_reference_plot` | 可视化分析・稳健 | 稳健 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_robust_summary_quantile_band` | 可视化分析・稳健 | 稳健 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_robust_summary_raincloud_view` | 可视化分析・稳健 | 稳健 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_robust_summary_rank_interval_plot` | 可视化分析・稳健 | 稳健 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_robust_summary_residual_annotation_map` | 可视化分析・稳健 | 稳健 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_robust_summary_slope_change_view` | 可视化分析・稳健 | 稳健 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_robust_summary_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_robust_summary_stratified_dotplot` | 可视化分析・稳健 | 稳健 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_robust_summary_threshold_band` | 可视化分析・稳健 | 稳健 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_robust_summary_uncertainty_ribbon` | 可视化分析・稳健 | 稳健 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_robust_summary_violin_summary` | 可视化分析・稳健 | 稳健 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sample_coverage_annotated_reference_view` | 可视化分析・覆盖情况 | 覆盖情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sample_coverage_boxen_interval` | 可视化分析・覆盖情况 | 覆盖情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sample_coverage_comparative_lollipop` | 可视化分析・覆盖情况 | 覆盖情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sample_coverage_density_ridge` | 可视化分析・覆盖情况 | 覆盖情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sample_coverage_diagnostic_panel` | 可视化分析・覆盖情况 | 覆盖情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sample_coverage_ecdf_step_view` | 可视化分析・覆盖情况 | 覆盖情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sample_coverage_flow_transition_map` | 可视化分析・覆盖情况 | 覆盖情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sample_coverage_forest_interval_plot` | 可视化分析・覆盖情况 | 覆盖情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sample_coverage_heatmap_matrix` | 可视化分析・覆盖情况 | 覆盖情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sample_coverage_histogram_facets` | 可视化分析・覆盖情况 | 覆盖情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sample_coverage_map_choropleth_layer` | 可视化分析・覆盖情况 | 覆盖情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sample_coverage_mosaic_tile_view` | 可视化分析・覆盖情况 | 覆盖情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sample_coverage_network_node_link` | 可视化分析・覆盖情况 | 覆盖情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sample_coverage_qq_reference_plot` | 可视化分析・覆盖情况 | 覆盖情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sample_coverage_quantile_band` | 可视化分析・覆盖情况 | 覆盖情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sample_coverage_raincloud_view` | 可视化分析・覆盖情况 | 覆盖情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sample_coverage_rank_interval_plot` | 可视化分析・覆盖情况 | 覆盖情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sample_coverage_residual_annotation_map` | 可视化分析・覆盖情况 | 覆盖情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sample_coverage_slope_change_view` | 可视化分析・覆盖情况 | 覆盖情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sample_coverage_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sample_coverage_stratified_dotplot` | 可视化分析・覆盖情况 | 覆盖情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sample_coverage_threshold_band` | 可视化分析・覆盖情况 | 覆盖情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sample_coverage_uncertainty_ribbon` | 可视化分析・覆盖情况 | 覆盖情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sample_coverage_violin_summary` | 可视化分析・覆盖情况 | 覆盖情况 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_sample_weight_effect_annotated_reference_view` | 可视化分析・可视化・统计・效应 | Sample weight effect - Annotated reference view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_sample_weight_effect_boxen_interval` | 可视化分析・可视化・统计・效应 | Sample weight effect - Boxen interval plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_sample_weight_effect_comparative_lollipop` | 可视化分析・可视化・统计・效应 | Sample weight effect - Comparative lollipop plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sample_weight_effect_density_ridge` | 可视化分析・可视化・统计・效应・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sample_weight_effect_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_sample_weight_effect_diagnostic_panel` | 可视化分析・可视化・统计・效应・诊断・面板 | Sample weight effect - Diagnostic panel | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sample_weight_effect_ecdf_step_view` | 可视化分析・可视化・统计・效应・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sample_weight_effect_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_sample_weight_effect_flow_transition_map` | 可视化分析・可视化・统计・效应 | Sample weight effect - Flow transition map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sample_weight_effect_forest_interval_plot` | 可视化分析・可视化・统计・效应・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sample_weight_effect_heatmap_matrix` | 可视化分析・可视化・统计・效应・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sample_weight_effect_histogram_facets` | 可视化分析・可视化・统计・效应・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sample_weight_effect_map_choropleth_layer` | 可视化分析・可视化・统计・效应・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sample_weight_effect_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sample_weight_effect_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sample_weight_effect_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sample_weight_effect_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_sample_weight_effect_mosaic_tile_view` | 可视化分析・可视化・统计・效应 | Sample weight effect - Mosaic tile view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sample_weight_effect_network_node_link` | 可视化分析・可视化・统计・效应・网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sample_weight_effect_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_sample_weight_effect_qq_reference_plot` | 可视化分析・可视化・统计・效应 | Sample weight effect - Q-Q reference plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sample_weight_effect_quantile_band` | 可视化分析・可视化・统计・效应・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sample_weight_effect_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_sample_weight_effect_raincloud_view` | 可视化分析・可视化・统计・效应 | Sample weight effect - Raincloud view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sample_weight_effect_rank_interval_plot` | 可视化分析・可视化・统计・效应・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sample_weight_effect_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_sample_weight_effect_residual_annotation_map` | 可视化分析・可视化・统计・效应 | Sample weight effect - Residual annotation map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_sample_weight_effect_slope_change_view` | 可视化分析・可视化・统计・效应 | Sample weight effect - Slope change view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sample_weight_effect_small_multiple_grid` | 可视化分析・可视化・统计・效应 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sample_weight_effect_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_sample_weight_effect_stratified_dotplot` | 可视化分析・可视化・统计・效应 | Sample weight effect - Stratified dot plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_sample_weight_effect_threshold_band` | 可视化分析・可视化・统计・效应 | Sample weight effect - Threshold band | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_sample_weight_effect_uncertainty_ribbon` | 可视化分析・可视化・统计・效应 | Sample weight effect - Uncertainty ribbon | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sample_weight_effect_violin_summary` | 可视化分析・可视化・统计・效应・小提琴图・概览 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_scale_score_profile_annotated_reference_view` | 可视化分析・可视化・统计・评分・画像 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_scale_score_profile_boxen_interval` | 可视化分析・可视化・统计・评分・画像 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_scale_score_profile_comparative_lollipop` | 可视化分析・可视化・统计・评分・画像 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_scale_score_profile_density_ridge` | 可视化分析・可视化・统计・评分・画像・密度图 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_scale_score_profile_diagnostic_panel` | 可视化分析・可视化・统计・评分・画像・诊断・面板 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_scale_score_profile_ecdf_step_view` | 可视化分析・可视化・统计・评分・画像・经验分布图 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_scale_score_profile_flow_transition_map` | 可视化分析・可视化・统计・评分・画像 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_scale_score_profile_forest_interval_plot` | 可视化分析・可视化・统计・评分・画像・随机森林 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_scale_score_profile_heatmap_matrix` | 可视化分析・可视化・统计・评分・画像・热力矩阵 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_scale_score_profile_histogram_facets` | 可视化分析・可视化・统计・评分・画像・直方图 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_scale_score_profile_map_choropleth_layer` | 可视化分析・可视化・统计・评分・画像・分级着色地图 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_scale_score_profile_mosaic_tile_view` | 可视化分析・可视化・统计・评分・画像 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_scale_score_profile_network_node_link` | 可视化分析・可视化・统计・评分・画像・网络 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_scale_score_profile_qq_reference_plot` | 可视化分析・可视化・统计・评分・画像 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_scale_score_profile_quantile_band` | 可视化分析・可视化・统计・评分・画像・分位数 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_scale_score_profile_raincloud_view` | 可视化分析・可视化・统计・评分・画像 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_scale_score_profile_rank_interval_plot` | 可视化分析・可视化・统计・评分・画像・排名 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_scale_score_profile_residual_annotation_map` | 可视化分析・可视化・统计・评分・画像 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_scale_score_profile_slope_change_view` | 可视化分析・可视化・统计・评分・画像 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_scale_score_profile_small_multiple_grid` | 可视化分析・可视化・统计・评分・画像 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_scale_score_profile_stratified_dotplot` | 可视化分析・可视化・统计・评分・画像 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_scale_score_profile_threshold_band` | 可视化分析・可视化・统计・评分・画像 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_scale_score_profile_uncertainty_ribbon` | 可视化分析・可视化・统计・评分・画像 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_scale_score_profile_violin_summary` | 可视化分析・可视化・统计・评分・画像・小提琴图・概览 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_seasonality_pattern_annotated_reference_view` | 可视化分析・可视化・统计・季节性 | 季节性 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_seasonality_pattern_boxen_interval` | 可视化分析・可视化・统计・季节性 | 季节性 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_seasonality_pattern_comparative_lollipop` | 可视化分析・可视化・统计・季节性 | 季节性 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_seasonality_pattern_density_ridge` | 可视化分析・可视化・统计・季节性・密度图 | 季节性 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_seasonality_pattern_diagnostic_panel` | 可视化分析・可视化・统计・季节性・诊断・面板 | 季节性 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_seasonality_pattern_ecdf_step_view` | 可视化分析・可视化・统计・季节性・经验分布图 | 季节性 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_seasonality_pattern_flow_transition_map` | 可视化分析・可视化・统计・季节性 | 季节性 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_seasonality_pattern_forest_interval_plot` | 可视化分析・可视化・统计・季节性・随机森林 | 季节性 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_seasonality_pattern_heatmap_matrix` | 可视化分析・可视化・统计・季节性・热力矩阵 | 季节性 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_seasonality_pattern_histogram_facets` | 可视化分析・可视化・统计・季节性・直方图 | 季节性 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_seasonality_pattern_map_choropleth_layer` | 可视化分析・可视化・统计・季节性・分级着色地图 | 季节性 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_seasonality_pattern_mosaic_tile_view` | 可视化分析・可视化・统计・季节性 | 季节性 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_seasonality_pattern_network_node_link` | 可视化分析・可视化・统计・季节性・网络 | 季节性 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_seasonality_pattern_qq_reference_plot` | 可视化分析・可视化・统计・季节性 | 季节性 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_seasonality_pattern_quantile_band` | 可视化分析・可视化・统计・季节性・分位数 | 季节性 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_seasonality_pattern_raincloud_view` | 可视化分析・可视化・统计・季节性 | 季节性 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_seasonality_pattern_rank_interval_plot` | 可视化分析・可视化・统计・季节性・排名 | 季节性 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_seasonality_pattern_residual_annotation_map` | 可视化分析・可视化・统计・季节性 | 季节性 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_seasonality_pattern_slope_change_view` | 可视化分析・可视化・统计・季节性 | 季节性 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_seasonality_pattern_small_multiple_grid` | 可视化分析・可视化・统计・季节性 | 小多图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_seasonality_pattern_stratified_dotplot` | 可视化分析・可视化・统计・季节性 | 季节性 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_seasonality_pattern_threshold_band` | 可视化分析・可视化・统计・季节性 | 季节性 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_seasonality_pattern_uncertainty_ribbon` | 可视化分析・可视化・统计・季节性 | 季节性 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_seasonality_pattern_violin_summary` | 可视化分析・可视化・统计・季节性・小提琴图・概览 | 季节性 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sensitivity_bounds_annotated_reference_view` | 可视化分析・可视化・统计・敏感性 | 敏感性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sensitivity_bounds_boxen_interval` | 可视化分析・可视化・统计・敏感性 | 敏感性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sensitivity_bounds_comparative_lollipop` | 可视化分析・可视化・统计・敏感性 | 敏感性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sensitivity_bounds_density_ridge` | 可视化分析・可视化・统计・敏感性・密度图 | 敏感性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sensitivity_bounds_diagnostic_panel` | 可视化分析・可视化・统计・敏感性・诊断・面板 | 敏感性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sensitivity_bounds_ecdf_step_view` | 可视化分析・可视化・统计・敏感性・经验分布图 | 敏感性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sensitivity_bounds_flow_transition_map` | 可视化分析・可视化・统计・敏感性 | 敏感性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sensitivity_bounds_forest_interval_plot` | 可视化分析・可视化・统计・敏感性・随机森林 | 敏感性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sensitivity_bounds_heatmap_matrix` | 可视化分析・可视化・统计・敏感性・热力矩阵 | 敏感性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sensitivity_bounds_histogram_facets` | 可视化分析・可视化・统计・敏感性・直方图 | 敏感性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sensitivity_bounds_map_choropleth_layer` | 可视化分析・可视化・统计・敏感性・分级着色地图 | 敏感性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sensitivity_bounds_mosaic_tile_view` | 可视化分析・可视化・统计・敏感性 | 敏感性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sensitivity_bounds_network_node_link` | 可视化分析・可视化・统计・敏感性・网络 | 敏感性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sensitivity_bounds_qq_reference_plot` | 可视化分析・可视化・统计・敏感性 | 敏感性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sensitivity_bounds_quantile_band` | 可视化分析・可视化・统计・敏感性・分位数 | 敏感性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sensitivity_bounds_raincloud_view` | 可视化分析・可视化・统计・敏感性 | 敏感性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sensitivity_bounds_rank_interval_plot` | 可视化分析・可视化・统计・敏感性・排名 | 敏感性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sensitivity_bounds_residual_annotation_map` | 可视化分析・可视化・统计・敏感性 | 敏感性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sensitivity_bounds_slope_change_view` | 可视化分析・可视化・统计・敏感性 | 敏感性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sensitivity_bounds_small_multiple_grid` | 可视化分析・可视化・统计・敏感性 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sensitivity_bounds_stratified_dotplot` | 可视化分析・可视化・统计・敏感性 | 敏感性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sensitivity_bounds_threshold_band` | 可视化分析・可视化・统计・敏感性 | 敏感性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sensitivity_bounds_uncertainty_ribbon` | 可视化分析・可视化・统计・敏感性 | 敏感性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sensitivity_bounds_violin_summary` | 可视化分析・可视化・统计・敏感性・小提琴图・概览 | 敏感性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sentiment_distribution_annotated_reference_view` | 可视化分析・可视化・统计・分布 | 分布 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sentiment_distribution_boxen_interval` | 可视化分析・可视化・统计・分布 | 分布 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sentiment_distribution_comparative_lollipop` | 可视化分析・可视化・统计・分布 | 分布 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sentiment_distribution_density_ridge` | 可视化分析・可视化・统计・分布・密度图 | 分布 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sentiment_distribution_diagnostic_panel` | 可视化分析・可视化・统计・分布・诊断・面板 | 分布 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sentiment_distribution_ecdf_step_view` | 可视化分析・可视化・统计・分布・经验分布图 | 分布 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sentiment_distribution_flow_transition_map` | 可视化分析・可视化・统计・分布 | 分布 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sentiment_distribution_forest_interval_plot` | 可视化分析・可视化・统计・分布・随机森林 | 分布 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sentiment_distribution_heatmap_matrix` | 可视化分析・可视化・统计・分布・热力矩阵 | 分布 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sentiment_distribution_histogram_facets` | 可视化分析・可视化・统计・分布・直方图 | 分布 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sentiment_distribution_map_choropleth_layer` | 可视化分析・可视化・统计・分布・分级着色地图 | 分布 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sentiment_distribution_mosaic_tile_view` | 可视化分析・可视化・统计・分布 | 分布 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sentiment_distribution_network_node_link` | 可视化分析・可视化・统计・分布・网络 | 分布 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sentiment_distribution_qq_reference_plot` | 可视化分析・可视化・统计・分布 | 分布 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sentiment_distribution_quantile_band` | 可视化分析・可视化・统计・分布・分位数 | 分布 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sentiment_distribution_raincloud_view` | 可视化分析・可视化・统计・分布 | 分布 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sentiment_distribution_rank_interval_plot` | 可视化分析・可视化・统计・分布・排名 | 分布 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sentiment_distribution_residual_annotation_map` | 可视化分析・可视化・统计・分布 | 分布 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sentiment_distribution_slope_change_view` | 可视化分析・可视化・统计・分布 | 分布 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sentiment_distribution_small_multiple_grid` | 可视化分析・可视化・统计・分布 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sentiment_distribution_stratified_dotplot` | 可视化分析・可视化・统计・分布 | 分布 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sentiment_distribution_threshold_band` | 可视化分析・可视化・统计・分布 | 分布 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sentiment_distribution_uncertainty_ribbon` | 可视化分析・可视化・统计・分布 | 分布 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sentiment_distribution_violin_summary` | 可视化分析・可视化・统计・分布・小提琴图・概览 | 分布 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sample_weight_effect_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_scale_score_profile_annotated_reference_view` | 可视化分析・画像 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_scale_score_profile_boxen_interval` | 可视化分析・画像 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_scale_score_profile_comparative_lollipop` | 可视化分析・画像 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_scale_score_profile_density_ridge` | 可视化分析・画像 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_scale_score_profile_diagnostic_panel` | 可视化分析・画像 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_scale_score_profile_ecdf_step_view` | 可视化分析・画像 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_scale_score_profile_flow_transition_map` | 可视化分析・画像 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_scale_score_profile_forest_interval_plot` | 可视化分析・画像 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_scale_score_profile_heatmap_matrix` | 可视化分析・画像 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_scale_score_profile_histogram_facets` | 可视化分析・画像 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_scale_score_profile_map_choropleth_layer` | 可视化分析・画像 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_scale_score_profile_mosaic_tile_view` | 可视化分析・画像 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_scale_score_profile_network_node_link` | 可视化分析・画像 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_scale_score_profile_qq_reference_plot` | 可视化分析・画像 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_scale_score_profile_quantile_band` | 可视化分析・画像 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_scale_score_profile_raincloud_view` | 可视化分析・画像 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_scale_score_profile_rank_interval_plot` | 可视化分析・画像 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_scale_score_profile_residual_annotation_map` | 可视化分析・画像 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_scale_score_profile_slope_change_view` | 可视化分析・画像 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_scale_score_profile_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_scale_score_profile_stratified_dotplot` | 可视化分析・画像 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_scale_score_profile_threshold_band` | 可视化分析・画像 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_scale_score_profile_uncertainty_ribbon` | 可视化分析・画像 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_scale_score_profile_violin_summary` | 可视化分析・画像 | 画像 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_seasonality_pattern_annotated_reference_view` | 可视化分析・季节性 | 季节性 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_seasonality_pattern_boxen_interval` | 可视化分析・季节性 | 季节性 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_seasonality_pattern_comparative_lollipop` | 可视化分析・季节性 | 季节性 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_seasonality_pattern_density_ridge` | 可视化分析・季节性 | 季节性 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_seasonality_pattern_diagnostic_panel` | 可视化分析・季节性 | 季节性 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_seasonality_pattern_ecdf_step_view` | 可视化分析・季节性 | 季节性 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_seasonality_pattern_flow_transition_map` | 可视化分析・季节性 | 季节性 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_seasonality_pattern_forest_interval_plot` | 可视化分析・季节性 | 季节性 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_seasonality_pattern_heatmap_matrix` | 可视化分析・季节性 | 季节性 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_seasonality_pattern_histogram_facets` | 可视化分析・季节性 | 季节性 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_seasonality_pattern_map_choropleth_layer` | 可视化分析・季节性 | 季节性 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_seasonality_pattern_mosaic_tile_view` | 可视化分析・季节性 | 季节性 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_seasonality_pattern_network_node_link` | 可视化分析・季节性 | 季节性 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_seasonality_pattern_qq_reference_plot` | 可视化分析・季节性 | 季节性 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_seasonality_pattern_quantile_band` | 可视化分析・季节性 | 季节性 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_seasonality_pattern_raincloud_view` | 可视化分析・季节性 | 季节性 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_seasonality_pattern_rank_interval_plot` | 可视化分析・季节性 | 季节性 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_seasonality_pattern_residual_annotation_map` | 可视化分析・季节性 | 季节性 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_seasonality_pattern_slope_change_view` | 可视化分析・季节性 | 季节性 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_seasonality_pattern_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_seasonality_pattern_stratified_dotplot` | 可视化分析・季节性 | 季节性 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_seasonality_pattern_threshold_band` | 可视化分析・季节性 | 季节性 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_seasonality_pattern_uncertainty_ribbon` | 可视化分析・季节性 | 季节性 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_seasonality_pattern_violin_summary` | 可视化分析・季节性 | 季节性 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sensitivity_bounds_annotated_reference_view` | 可视化分析・敏感性 | 敏感性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sensitivity_bounds_boxen_interval` | 可视化分析・敏感性 | 敏感性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sensitivity_bounds_comparative_lollipop` | 可视化分析・敏感性 | 敏感性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sensitivity_bounds_density_ridge` | 可视化分析・敏感性 | 敏感性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sensitivity_bounds_diagnostic_panel` | 可视化分析・敏感性 | 敏感性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sensitivity_bounds_ecdf_step_view` | 可视化分析・敏感性 | 敏感性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sensitivity_bounds_flow_transition_map` | 可视化分析・敏感性 | 敏感性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sensitivity_bounds_forest_interval_plot` | 可视化分析・敏感性 | 敏感性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sensitivity_bounds_heatmap_matrix` | 可视化分析・敏感性 | 敏感性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sensitivity_bounds_histogram_facets` | 可视化分析・敏感性 | 敏感性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sensitivity_bounds_map_choropleth_layer` | 可视化分析・敏感性 | 敏感性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sensitivity_bounds_mosaic_tile_view` | 可视化分析・敏感性 | 敏感性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sensitivity_bounds_network_node_link` | 可视化分析・敏感性 | 敏感性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sensitivity_bounds_qq_reference_plot` | 可视化分析・敏感性 | 敏感性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sensitivity_bounds_quantile_band` | 可视化分析・敏感性 | 敏感性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sensitivity_bounds_raincloud_view` | 可视化分析・敏感性 | 敏感性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sensitivity_bounds_rank_interval_plot` | 可视化分析・敏感性 | 敏感性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sensitivity_bounds_residual_annotation_map` | 可视化分析・敏感性 | 敏感性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sensitivity_bounds_slope_change_view` | 可视化分析・敏感性 | 敏感性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sensitivity_bounds_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sensitivity_bounds_stratified_dotplot` | 可视化分析・敏感性 | 敏感性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sensitivity_bounds_threshold_band` | 可视化分析・敏感性 | 敏感性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sensitivity_bounds_uncertainty_ribbon` | 可视化分析・敏感性 | 敏感性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sensitivity_bounds_violin_summary` | 可视化分析・敏感性 | 敏感性 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sentiment_distribution_annotated_reference_view` | 可视化分析・分布 | 分布 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sentiment_distribution_boxen_interval` | 可视化分析・分布 | 分布 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sentiment_distribution_comparative_lollipop` | 可视化分析・分布 | 分布 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sentiment_distribution_density_ridge` | 可视化分析・分布 | 分布 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sentiment_distribution_diagnostic_panel` | 可视化分析・分布 | 分布 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sentiment_distribution_ecdf_step_view` | 可视化分析・分布 | 分布 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sentiment_distribution_flow_transition_map` | 可视化分析・分布 | 分布 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sentiment_distribution_forest_interval_plot` | 可视化分析・分布 | 分布 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sentiment_distribution_heatmap_matrix` | 可视化分析・分布 | 分布 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sentiment_distribution_histogram_facets` | 可视化分析・分布 | 分布 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sentiment_distribution_map_choropleth_layer` | 可视化分析・分布 | 分布 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sentiment_distribution_mosaic_tile_view` | 可视化分析・分布 | 分布 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sentiment_distribution_network_node_link` | 可视化分析・分布 | 分布 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sentiment_distribution_qq_reference_plot` | 可视化分析・分布 | 分布 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sentiment_distribution_quantile_band` | 可视化分析・分布 | 分布 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sentiment_distribution_raincloud_view` | 可视化分析・分布 | 分布 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sentiment_distribution_rank_interval_plot` | 可视化分析・分布 | 分布 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sentiment_distribution_residual_annotation_map` | 可视化分析・分布 | 分布 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sentiment_distribution_slope_change_view` | 可视化分析・分布 | 分布 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sentiment_distribution_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sentiment_distribution_stratified_dotplot` | 可视化分析・分布 | 分布 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sentiment_distribution_threshold_band` | 可视化分析・分布 | 分布 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sentiment_distribution_uncertainty_ribbon` | 可视化分析・分布 | 分布 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sentiment_distribution_violin_summary` | 可视化分析・分布 | 分布 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_sequential_monitoring_annotated_reference_view` | 可视化分析・可视化・统计 | Sequential monitoring - Annotated reference view | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_sequential_monitoring_boxen_interval` | 可视化分析・可视化・统计 | Sequential monitoring - Boxen interval plot | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_sequential_monitoring_comparative_lollipop` | 可视化分析・可视化・统计 | Sequential monitoring - Comparative lollipop plot | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sequential_monitoring_density_ridge` | 可视化分析・可视化・统计・密度图 | 密度图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sequential_monitoring_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_sequential_monitoring_diagnostic_panel` | 可视化分析・可视化・统计・诊断・面板 | Sequential monitoring - Diagnostic panel | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sequential_monitoring_ecdf_step_view` | 可视化分析・可视化・统计・经验分布图 | 经验分布图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sequential_monitoring_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_sequential_monitoring_flow_transition_map` | 可视化分析・可视化・统计 | Sequential monitoring - Flow transition map | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sequential_monitoring_forest_interval_plot` | 可视化分析・可视化・统计・随机森林 | 随机森林 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sequential_monitoring_heatmap_matrix` | 可视化分析・可视化・统计・热力矩阵 | 热力矩阵 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sequential_monitoring_histogram_facets` | 可视化分析・可视化・统计・直方图 | 直方图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sequential_monitoring_map_choropleth_layer` | 可视化分析・可视化・统计・分级着色地图 | 分级着色地图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sequential_monitoring_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sequential_monitoring_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sequential_monitoring_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sequential_monitoring_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_sequential_monitoring_mosaic_tile_view` | 可视化分析・可视化・统计 | Sequential monitoring - Mosaic tile view | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sequential_monitoring_network_node_link` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sequential_monitoring_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_sequential_monitoring_qq_reference_plot` | 可视化分析・可视化・统计 | Sequential monitoring - Q-Q reference plot | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sequential_monitoring_quantile_band` | 可视化分析・可视化・统计・分位数 | 分位数 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sequential_monitoring_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_sequential_monitoring_raincloud_view` | 可视化分析・可视化・统计 | Sequential monitoring - Raincloud view | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sequential_monitoring_rank_interval_plot` | 可视化分析・可视化・统计・排名 | 排名 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sequential_monitoring_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_sequential_monitoring_residual_annotation_map` | 可视化分析・可视化・统计 | Sequential monitoring - Residual annotation map | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_sequential_monitoring_slope_change_view` | 可视化分析・可视化・统计 | Sequential monitoring - Slope change view | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sequential_monitoring_small_multiple_grid` | 可视化分析・可视化・统计 | 小多图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sequential_monitoring_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_sequential_monitoring_stratified_dotplot` | 可视化分析・可视化・统计 | Sequential monitoring - Stratified dot plot | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_sequential_monitoring_threshold_band` | 可视化分析・可视化・统计 | Sequential monitoring - Threshold band | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_sequential_monitoring_uncertainty_ribbon` | 可视化分析・可视化・统计 | Sequential monitoring - Uncertainty ribbon | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_sequential_monitoring_violin_summary` | 可视化分析・可视化・统计・小提琴图・概览 | 小提琴图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_sequential_monitoring_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_service_queue_pattern_annotated_reference_view` | 可视化分析・可视化・统计 | Service queue pattern - Annotated reference view | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_service_queue_pattern_boxen_interval` | 可视化分析・可视化・统计 | Service queue pattern - Boxen interval plot | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_service_queue_pattern_comparative_lollipop` | 可视化分析・可视化・统计 | Service queue pattern - Comparative lollipop plot | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_service_queue_pattern_density_ridge` | 可视化分析・可视化・统计・密度图 | 密度图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_service_queue_pattern_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_service_queue_pattern_diagnostic_panel` | 可视化分析・可视化・统计・诊断・面板 | Service queue pattern - Diagnostic panel | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_service_queue_pattern_ecdf_step_view` | 可视化分析・可视化・统计・经验分布图 | 经验分布图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_service_queue_pattern_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_service_queue_pattern_flow_transition_map` | 可视化分析・可视化・统计 | Service queue pattern - Flow transition map | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_service_queue_pattern_forest_interval_plot` | 可视化分析・可视化・统计・随机森林 | 随机森林 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_service_queue_pattern_heatmap_matrix` | 可视化分析・可视化・统计・热力矩阵 | 热力矩阵 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_service_queue_pattern_histogram_facets` | 可视化分析・可视化・统计・直方图 | 直方图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_service_queue_pattern_map_choropleth_layer` | 可视化分析・可视化・统计・分级着色地图 | 分级着色地图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_service_queue_pattern_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_service_queue_pattern_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_service_queue_pattern_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_service_queue_pattern_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_service_queue_pattern_mosaic_tile_view` | 可视化分析・可视化・统计 | Service queue pattern - Mosaic tile view | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_service_queue_pattern_network_node_link` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_service_queue_pattern_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_service_queue_pattern_qq_reference_plot` | 可视化分析・可视化・统计 | Service queue pattern - Q-Q reference plot | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_service_queue_pattern_quantile_band` | 可视化分析・可视化・统计・分位数 | 分位数 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_service_queue_pattern_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_service_queue_pattern_raincloud_view` | 可视化分析・可视化・统计 | Service queue pattern - Raincloud view | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_service_queue_pattern_rank_interval_plot` | 可视化分析・可视化・统计・排名 | 排名 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_service_queue_pattern_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_service_queue_pattern_residual_annotation_map` | 可视化分析・可视化・统计 | Service queue pattern - Residual annotation map | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_service_queue_pattern_slope_change_view` | 可视化分析・可视化・统计 | Service queue pattern - Slope change view | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_service_queue_pattern_small_multiple_grid` | 可视化分析・可视化・统计 | 小多图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_service_queue_pattern_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_service_queue_pattern_stratified_dotplot` | 可视化分析・可视化・统计 | Service queue pattern - Stratified dot plot | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_service_queue_pattern_threshold_band` | 可视化分析・可视化・统计 | Service queue pattern - Threshold band | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_service_queue_pattern_uncertainty_ribbon` | 可视化分析・可视化・统计 | Service queue pattern - Uncertainty ribbon | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_service_queue_pattern_violin_summary` | 可视化分析・可视化・统计・小提琴图・概览 | 小提琴图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_service_queue_pattern_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_spatial_accessibility_annotated_reference_view` | 可视化分析・可视化・统计・空间 | Spatial accessibility - Annotated reference view | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_spatial_accessibility_boxen_interval` | 可视化分析・可视化・统计・空间 | Spatial accessibility - Boxen interval plot | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_spatial_accessibility_comparative_lollipop` | 可视化分析・可视化・统计・空间 | Spatial accessibility - Comparative lollipop plot | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_spatial_accessibility_density_ridge` | 可视化分析・可视化・统计・空间・密度图 | 密度图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_spatial_accessibility_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_spatial_accessibility_diagnostic_panel` | 可视化分析・可视化・统计・空间・诊断・面板 | Spatial accessibility - Diagnostic panel | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_spatial_accessibility_ecdf_step_view` | 可视化分析・可视化・统计・空间・经验分布图 | 经验分布图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_spatial_accessibility_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_spatial_accessibility_flow_transition_map` | 可视化分析・可视化・统计・空间 | Spatial accessibility - Flow transition map | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_spatial_accessibility_forest_interval_plot` | 可视化分析・可视化・统计・空间・随机森林 | 随机森林 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_spatial_accessibility_heatmap_matrix` | 可视化分析・可视化・统计・空间・热力矩阵 | 热力矩阵 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_spatial_accessibility_histogram_facets` | 可视化分析・可视化・统计・空间・直方图 | 直方图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_spatial_accessibility_map_choropleth_layer` | 可视化分析・可视化・统计・空间・分级着色地图 | 分级着色地图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_spatial_accessibility_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_spatial_accessibility_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_spatial_accessibility_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_spatial_accessibility_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_spatial_accessibility_mosaic_tile_view` | 可视化分析・可视化・统计・空间 | Spatial accessibility - Mosaic tile view | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_spatial_accessibility_network_node_link` | 可视化分析・可视化・统计・空间・网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_spatial_accessibility_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_spatial_accessibility_qq_reference_plot` | 可视化分析・可视化・统计・空间 | Spatial accessibility - Q-Q reference plot | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_spatial_accessibility_quantile_band` | 可视化分析・可视化・统计・空间・分位数 | 分位数 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_spatial_accessibility_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_spatial_accessibility_raincloud_view` | 可视化分析・可视化・统计・空间 | Spatial accessibility - Raincloud view | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_spatial_accessibility_rank_interval_plot` | 可视化分析・可视化・统计・空间・排名 | 排名 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_spatial_accessibility_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_spatial_accessibility_residual_annotation_map` | 可视化分析・可视化・统计・空间 | Spatial accessibility - Residual annotation map | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_spatial_accessibility_slope_change_view` | 可视化分析・可视化・统计・空间 | Spatial accessibility - Slope change view | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_spatial_accessibility_small_multiple_grid` | 可视化分析・可视化・统计・空间 | 小多图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_spatial_accessibility_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_spatial_accessibility_stratified_dotplot` | 可视化分析・可视化・统计・空间 | Spatial accessibility - Stratified dot plot | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_spatial_accessibility_threshold_band` | 可视化分析・可视化・统计・空间 | Spatial accessibility - Threshold band | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_spatial_accessibility_uncertainty_ribbon` | 可视化分析・可视化・统计・空间 | Spatial accessibility - Uncertainty ribbon | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_spatial_accessibility_violin_summary` | 可视化分析・可视化・统计・空间・小提琴图・概览 | 小提琴图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_spatial_accessibility_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_spatial_autocorrelation_annotated_reference_view` | 可视化分析・可视化・统计・空间 | Spatial autocorrelation - Annotated reference view | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_spatial_autocorrelation_boxen_interval` | 可视化分析・可视化・统计・空间 | Spatial autocorrelation - Boxen interval plot | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_spatial_autocorrelation_comparative_lollipop` | 可视化分析・可视化・统计・空间 | Spatial autocorrelation - Comparative lollipop plot | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_spatial_autocorrelation_density_ridge` | 可视化分析・可视化・统计・空间・密度图 | 密度图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_spatial_autocorrelation_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_spatial_autocorrelation_diagnostic_panel` | 可视化分析・可视化・统计・空间・诊断・面板 | Spatial autocorrelation - Diagnostic panel | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_spatial_autocorrelation_ecdf_step_view` | 可视化分析・可视化・统计・空间・经验分布图 | 经验分布图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_spatial_autocorrelation_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_spatial_autocorrelation_flow_transition_map` | 可视化分析・可视化・统计・空间 | Spatial autocorrelation - Flow transition map | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_spatial_autocorrelation_forest_interval_plot` | 可视化分析・可视化・统计・空间・随机森林 | 随机森林 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_spatial_autocorrelation_heatmap_matrix` | 可视化分析・可视化・统计・空间・热力矩阵 | 热力矩阵 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_spatial_autocorrelation_histogram_facets` | 可视化分析・可视化・统计・空间・直方图 | 直方图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_spatial_autocorrelation_map_choropleth_layer` | 可视化分析・可视化・统计・空间・分级着色地图 | 分级着色地图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_spatial_autocorrelation_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_spatial_autocorrelation_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_spatial_autocorrelation_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_spatial_autocorrelation_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_spatial_autocorrelation_mosaic_tile_view` | 可视化分析・可视化・统计・空间 | Spatial autocorrelation - Mosaic tile view | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_spatial_autocorrelation_network_node_link` | 可视化分析・可视化・统计・空间・网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_spatial_autocorrelation_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_spatial_autocorrelation_qq_reference_plot` | 可视化分析・可视化・统计・空间 | Spatial autocorrelation - Q-Q reference plot | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_spatial_autocorrelation_quantile_band` | 可视化分析・可视化・统计・空间・分位数 | 分位数 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_spatial_autocorrelation_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_spatial_autocorrelation_raincloud_view` | 可视化分析・可视化・统计・空间 | Spatial autocorrelation - Raincloud view | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_spatial_autocorrelation_rank_interval_plot` | 可视化分析・可视化・统计・空间・排名 | 排名 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_spatial_autocorrelation_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_spatial_autocorrelation_residual_annotation_map` | 可视化分析・可视化・统计・空间 | Spatial autocorrelation - Residual annotation map | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_spatial_autocorrelation_slope_change_view` | 可视化分析・可视化・统计・空间 | Spatial autocorrelation - Slope change view | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_spatial_autocorrelation_small_multiple_grid` | 可视化分析・可视化・统计・空间 | 小多图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_spatial_autocorrelation_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_spatial_autocorrelation_stratified_dotplot` | 可视化分析・可视化・统计・空间 | Spatial autocorrelation - Stratified dot plot | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_spatial_autocorrelation_threshold_band` | 可视化分析・可视化・统计・空间 | Spatial autocorrelation - Threshold band | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_spatial_autocorrelation_uncertainty_ribbon` | 可视化分析・可视化・统计・空间 | Spatial autocorrelation - Uncertainty ribbon | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_spatial_autocorrelation_violin_summary` | 可视化分析・可视化・统计・空间・小提琴图・概览 | 小提琴图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_spatial_autocorrelation_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_spatial_hotspot_annotated_reference_view` | 可视化分析・可视化・统计・空间 | Spatial hotspot - Annotated reference view | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_spatial_hotspot_boxen_interval` | 可视化分析・可视化・统计・空间 | Spatial hotspot - Boxen interval plot | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_spatial_hotspot_comparative_lollipop` | 可视化分析・可视化・统计・空间 | Spatial hotspot - Comparative lollipop plot | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_spatial_hotspot_density_ridge` | 可视化分析・可视化・统计・空间・密度图 | 密度图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_spatial_hotspot_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_spatial_hotspot_diagnostic_panel` | 可视化分析・可视化・统计・空间・诊断・面板 | Spatial hotspot - Diagnostic panel | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_spatial_hotspot_ecdf_step_view` | 可视化分析・可视化・统计・空间・经验分布图 | 经验分布图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_spatial_hotspot_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_spatial_hotspot_flow_transition_map` | 可视化分析・可视化・统计・空间 | Spatial hotspot - Flow transition map | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_spatial_hotspot_forest_interval_plot` | 可视化分析・可视化・统计・空间・随机森林 | 随机森林 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_spatial_hotspot_heatmap_matrix` | 可视化分析・可视化・统计・空间・热力矩阵 | 热力矩阵 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_spatial_hotspot_histogram_facets` | 可视化分析・可视化・统计・空间・直方图 | 直方图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_spatial_hotspot_map_choropleth_layer` | 可视化分析・可视化・统计・空间・分级着色地图 | 分级着色地图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_spatial_hotspot_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_spatial_hotspot_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_spatial_hotspot_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_spatial_hotspot_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_spatial_hotspot_mosaic_tile_view` | 可视化分析・可视化・统计・空间 | Spatial hotspot - Mosaic tile view | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_spatial_hotspot_network_node_link` | 可视化分析・可视化・统计・空间・网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_spatial_hotspot_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_spatial_hotspot_qq_reference_plot` | 可视化分析・可视化・统计・空间 | Spatial hotspot - Q-Q reference plot | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_spatial_hotspot_quantile_band` | 可视化分析・可视化・统计・空间・分位数 | 分位数 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_spatial_hotspot_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_spatial_hotspot_raincloud_view` | 可视化分析・可视化・统计・空间 | Spatial hotspot - Raincloud view | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_spatial_hotspot_rank_interval_plot` | 可视化分析・可视化・统计・空间・排名 | 排名 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_spatial_hotspot_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_spatial_hotspot_residual_annotation_map` | 可视化分析・可视化・统计・空间 | Spatial hotspot - Residual annotation map | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_spatial_hotspot_slope_change_view` | 可视化分析・可视化・统计・空间 | Spatial hotspot - Slope change view | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_spatial_hotspot_small_multiple_grid` | 可视化分析・可视化・统计・空间 | 小多图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_spatial_hotspot_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_spatial_hotspot_stratified_dotplot` | 可视化分析・可视化・统计・空间 | Spatial hotspot - Stratified dot plot | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_spatial_hotspot_threshold_band` | 可视化分析・可视化・统计・空间 | Spatial hotspot - Threshold band | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
 | `visual_stat_spatial_hotspot_uncertainty_ribbon` | 可视化分析・可视化・统计・空间 | Spatial hotspot - Uncertainty ribbon | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_spatial_hotspot_violin_summary` | 可视化分析・可视化・统计・空间・小提琴图・概览 | 小提琴图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
-| `visual_stat_student_performance_distribution_annotated_reference_view` | 可视化分析・可视化・统计・性能・分布 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_student_performance_distribution_boxen_interval` | 可视化分析・可视化・统计・性能・分布 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_student_performance_distribution_comparative_lollipop` | 可视化分析・可视化・统计・性能・分布 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_student_performance_distribution_density_ridge` | 可视化分析・可视化・统计・性能・分布・密度图 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_student_performance_distribution_diagnostic_panel` | 可视化分析・可视化・统计・性能・分布・诊断・面板 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_student_performance_distribution_ecdf_step_view` | 可视化分析・可视化・统计・性能・分布・经验分布图 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_student_performance_distribution_flow_transition_map` | 可视化分析・可视化・统计・性能・分布 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_student_performance_distribution_forest_interval_plot` | 可视化分析・可视化・统计・性能・分布・随机森林 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_student_performance_distribution_heatmap_matrix` | 可视化分析・可视化・统计・性能・分布・热力矩阵 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_student_performance_distribution_histogram_facets` | 可视化分析・可视化・统计・性能・分布・直方图 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_student_performance_distribution_map_choropleth_layer` | 可视化分析・可视化・统计・性能・分布・分级着色地图 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_student_performance_distribution_mosaic_tile_view` | 可视化分析・可视化・统计・性能・分布 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_student_performance_distribution_network_node_link` | 可视化分析・可视化・统计・性能・分布・网络 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_student_performance_distribution_qq_reference_plot` | 可视化分析・可视化・统计・性能・分布 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_student_performance_distribution_quantile_band` | 可视化分析・可视化・统计・性能・分布・分位数 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_student_performance_distribution_raincloud_view` | 可视化分析・可视化・统计・性能・分布 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_student_performance_distribution_rank_interval_plot` | 可视化分析・可视化・统计・性能・分布・排名 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_student_performance_distribution_residual_annotation_map` | 可视化分析・可视化・统计・性能・分布 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_student_performance_distribution_slope_change_view` | 可视化分析・可视化・统计・性能・分布 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_student_performance_distribution_small_multiple_grid` | 可视化分析・可视化・统计・性能・分布 | 小多图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_student_performance_distribution_stratified_dotplot` | 可视化分析・可视化・统计・性能・分布 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_student_performance_distribution_threshold_band` | 可视化分析・可视化・统计・性能・分布 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_student_performance_distribution_uncertainty_ribbon` | 可视化分析・可视化・统计・性能・分布 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_student_performance_distribution_violin_summary` | 可视化分析・可视化・统计・性能・分布・小提琴图・概览 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_spatial_hotspot_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 对象级 | 规划条目 | 统计可视化目录 |
+| `visual_stat_student_performance_distribution_annotated_reference_view` | 可视化分析・分布 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_student_performance_distribution_boxen_interval` | 可视化分析・分布 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_student_performance_distribution_comparative_lollipop` | 可视化分析・分布 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_student_performance_distribution_density_ridge` | 可视化分析・分布 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_student_performance_distribution_diagnostic_panel` | 可视化分析・分布 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_student_performance_distribution_ecdf_step_view` | 可视化分析・分布 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_student_performance_distribution_flow_transition_map` | 可视化分析・分布 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_student_performance_distribution_forest_interval_plot` | 可视化分析・分布 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_student_performance_distribution_heatmap_matrix` | 可视化分析・分布 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_student_performance_distribution_histogram_facets` | 可视化分析・分布 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_student_performance_distribution_map_choropleth_layer` | 可视化分析・分布 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_student_performance_distribution_mosaic_tile_view` | 可视化分析・分布 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_student_performance_distribution_network_node_link` | 可视化分析・分布 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_student_performance_distribution_qq_reference_plot` | 可视化分析・分布 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_student_performance_distribution_quantile_band` | 可视化分析・分布 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_student_performance_distribution_raincloud_view` | 可视化分析・分布 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_student_performance_distribution_rank_interval_plot` | 可视化分析・分布 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_student_performance_distribution_residual_annotation_map` | 可视化分析・分布 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_student_performance_distribution_slope_change_view` | 可视化分析・分布 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_student_performance_distribution_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_student_performance_distribution_stratified_dotplot` | 可视化分析・分布 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_student_performance_distribution_threshold_band` | 可视化分析・分布 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_student_performance_distribution_uncertainty_ribbon` | 可视化分析・分布 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_student_performance_distribution_violin_summary` | 可视化分析・分布 | 分布 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_subgroup_variability_annotated_reference_view` | 可视化分析・可视化・统计 | Subgroup variability - Annotated reference view | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_subgroup_variability_boxen_interval` | 可视化分析・可视化・统计 | Subgroup variability - Boxen interval plot | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_subgroup_variability_comparative_lollipop` | 可视化分析・可视化・统计 | Subgroup variability - Comparative lollipop plot | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_subgroup_variability_density_ridge` | 可视化分析・可视化・统计・密度图 | 密度图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_subgroup_variability_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_subgroup_variability_diagnostic_panel` | 可视化分析・可视化・统计・诊断・面板 | Subgroup variability - Diagnostic panel | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_subgroup_variability_ecdf_step_view` | 可视化分析・可视化・统计・经验分布图 | 经验分布图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_subgroup_variability_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_subgroup_variability_flow_transition_map` | 可视化分析・可视化・统计 | Subgroup variability - Flow transition map | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_subgroup_variability_forest_interval_plot` | 可视化分析・可视化・统计・随机森林 | 随机森林 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_subgroup_variability_heatmap_matrix` | 可视化分析・可视化・统计・热力矩阵 | 热力矩阵 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_subgroup_variability_histogram_facets` | 可视化分析・可视化・统计・直方图 | 直方图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_subgroup_variability_map_choropleth_layer` | 可视化分析・可视化・统计・分级着色地图 | 分级着色地图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_subgroup_variability_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_subgroup_variability_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_subgroup_variability_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_subgroup_variability_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_subgroup_variability_mosaic_tile_view` | 可视化分析・可视化・统计 | Subgroup variability - Mosaic tile view | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_subgroup_variability_network_node_link` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_subgroup_variability_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_subgroup_variability_qq_reference_plot` | 可视化分析・可视化・统计 | Subgroup variability - Q-Q reference plot | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_subgroup_variability_quantile_band` | 可视化分析・可视化・统计・分位数 | 分位数 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_subgroup_variability_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_subgroup_variability_raincloud_view` | 可视化分析・可视化・统计 | Subgroup variability - Raincloud view | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_subgroup_variability_rank_interval_plot` | 可视化分析・可视化・统计・排名 | 排名 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_subgroup_variability_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_subgroup_variability_residual_annotation_map` | 可视化分析・可视化・统计 | Subgroup variability - Residual annotation map | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_subgroup_variability_slope_change_view` | 可视化分析・可视化・统计 | Subgroup variability - Slope change view | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_subgroup_variability_small_multiple_grid` | 可视化分析・可视化・统计 | 小多图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_subgroup_variability_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_subgroup_variability_stratified_dotplot` | 可视化分析・可视化・统计 | Subgroup variability - Stratified dot plot | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_subgroup_variability_threshold_band` | 可视化分析・可视化・统计 | Subgroup variability - Threshold band | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_subgroup_variability_uncertainty_ribbon` | 可视化分析・可视化・统计 | Subgroup variability - Uncertainty ribbon | 图表 | 分组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_subgroup_variability_violin_summary` | 可视化分析・可视化・统计・小提琴图・概览 | 小提琴图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_subgroup_variability_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 分组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_survey_response_pattern_annotated_reference_view` | 可视化分析・可视化・统计 | Survey response pattern - Annotated reference view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_survey_response_pattern_boxen_interval` | 可视化分析・可视化・统计 | Survey response pattern - Boxen interval plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_survey_response_pattern_comparative_lollipop` | 可视化分析・可视化・统计 | Survey response pattern - Comparative lollipop plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_survey_response_pattern_density_ridge` | 可视化分析・可视化・统计・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_survey_response_pattern_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_survey_response_pattern_diagnostic_panel` | 可视化分析・可视化・统计・诊断・面板 | Survey response pattern - Diagnostic panel | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_survey_response_pattern_ecdf_step_view` | 可视化分析・可视化・统计・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_survey_response_pattern_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_survey_response_pattern_flow_transition_map` | 可视化分析・可视化・统计 | Survey response pattern - Flow transition map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_survey_response_pattern_forest_interval_plot` | 可视化分析・可视化・统计・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_survey_response_pattern_heatmap_matrix` | 可视化分析・可视化・统计・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_survey_response_pattern_histogram_facets` | 可视化分析・可视化・统计・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_survey_response_pattern_map_choropleth_layer` | 可视化分析・可视化・统计・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_survey_response_pattern_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_survey_response_pattern_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_survey_response_pattern_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_survey_response_pattern_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_survey_response_pattern_mosaic_tile_view` | 可视化分析・可视化・统计 | Survey response pattern - Mosaic tile view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_survey_response_pattern_network_node_link` | 可视化分析・可视化・统计・网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_survey_response_pattern_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_survey_response_pattern_qq_reference_plot` | 可视化分析・可视化・统计 | Survey response pattern - Q-Q reference plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_survey_response_pattern_quantile_band` | 可视化分析・可视化・统计・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_survey_response_pattern_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_survey_response_pattern_raincloud_view` | 可视化分析・可视化・统计 | Survey response pattern - Raincloud view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_survey_response_pattern_rank_interval_plot` | 可视化分析・可视化・统计・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_survey_response_pattern_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_survey_response_pattern_residual_annotation_map` | 可视化分析・可视化・统计 | Survey response pattern - Residual annotation map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_survey_response_pattern_slope_change_view` | 可视化分析・可视化・统计 | Survey response pattern - Slope change view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_survey_response_pattern_small_multiple_grid` | 可视化分析・可视化・统计 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_survey_response_pattern_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_survey_response_pattern_stratified_dotplot` | 可视化分析・可视化・统计 | Survey response pattern - Stratified dot plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_survey_response_pattern_threshold_band` | 可视化分析・可视化・统计 | Survey response pattern - Threshold band | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_survey_response_pattern_uncertainty_ribbon` | 可视化分析・可视化・统计 | Survey response pattern - Uncertainty ribbon | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_survey_response_pattern_violin_summary` | 可视化分析・可视化・统计・小提琴图・概览 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_survey_response_pattern_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_survey_weighting_annotated_reference_view` | 可视化分析・可视化・统计・加权 | Survey weighting - Annotated reference view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_survey_weighting_boxen_interval` | 可视化分析・可视化・统计・加权 | Survey weighting - Boxen interval plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_survey_weighting_comparative_lollipop` | 可视化分析・可视化・统计・加权 | Survey weighting - Comparative lollipop plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_survey_weighting_density_ridge` | 可视化分析・可视化・统计・加权・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_survey_weighting_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_survey_weighting_diagnostic_panel` | 可视化分析・可视化・统计・加权・诊断・面板 | Survey weighting - Diagnostic panel | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_survey_weighting_ecdf_step_view` | 可视化分析・可视化・统计・加权・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_survey_weighting_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_survey_weighting_flow_transition_map` | 可视化分析・可视化・统计・加权 | Survey weighting - Flow transition map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_survey_weighting_forest_interval_plot` | 可视化分析・可视化・统计・加权・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_survey_weighting_heatmap_matrix` | 可视化分析・可视化・统计・加权・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_survey_weighting_histogram_facets` | 可视化分析・可视化・统计・加权・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_survey_weighting_map_choropleth_layer` | 可视化分析・可视化・统计・加权・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_survey_weighting_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_survey_weighting_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_survey_weighting_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_survey_weighting_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_survey_weighting_mosaic_tile_view` | 可视化分析・可视化・统计・加权 | Survey weighting - Mosaic tile view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_survey_weighting_network_node_link` | 可视化分析・可视化・统计・加权・网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_survey_weighting_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_survey_weighting_qq_reference_plot` | 可视化分析・可视化・统计・加权 | Survey weighting - Q-Q reference plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_survey_weighting_quantile_band` | 可视化分析・可视化・统计・加权・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_survey_weighting_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_survey_weighting_raincloud_view` | 可视化分析・可视化・统计・加权 | Survey weighting - Raincloud view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_survey_weighting_rank_interval_plot` | 可视化分析・可视化・统计・加权・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_survey_weighting_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_survey_weighting_residual_annotation_map` | 可视化分析・可视化・统计・加权 | Survey weighting - Residual annotation map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_survey_weighting_slope_change_view` | 可视化分析・可视化・统计・加权 | Survey weighting - Slope change view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_survey_weighting_small_multiple_grid` | 可视化分析・可视化・统计・加权 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_survey_weighting_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_survey_weighting_stratified_dotplot` | 可视化分析・可视化・统计・加权 | Survey weighting - Stratified dot plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_survey_weighting_threshold_band` | 可视化分析・可视化・统计・加权 | Survey weighting - Threshold band | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_survey_weighting_uncertainty_ribbon` | 可视化分析・可视化・统计・加权 | Survey weighting - Uncertainty ribbon | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_survey_weighting_violin_summary` | 可视化分析・可视化・统计・加权・小提琴图・概览 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_survey_weighting_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_survival_curve_annotated_reference_view` | 可视化分析・可视化・统计・生存 | Survival curve - Annotated reference view | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_survival_curve_boxen_interval` | 可视化分析・可视化・统计・生存 | Survival curve - Boxen interval plot | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_survival_curve_comparative_lollipop` | 可视化分析・可视化・统计・生存 | Survival curve - Comparative lollipop plot | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_survival_curve_density_ridge` | 可视化分析・可视化・统计・生存・密度图 | 密度图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_survival_curve_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_survival_curve_diagnostic_panel` | 可视化分析・可视化・统计・生存・诊断・面板 | Survival curve - Diagnostic panel | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_survival_curve_ecdf_step_view` | 可视化分析・可视化・统计・生存・经验分布图 | 经验分布图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_survival_curve_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_survival_curve_flow_transition_map` | 可视化分析・可视化・统计・生存 | Survival curve - Flow transition map | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_survival_curve_forest_interval_plot` | 可视化分析・可视化・统计・生存・随机森林 | 随机森林 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_survival_curve_heatmap_matrix` | 可视化分析・可视化・统计・生存・热力矩阵 | 热力矩阵 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_survival_curve_histogram_facets` | 可视化分析・可视化・统计・生存・直方图 | 直方图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_survival_curve_map_choropleth_layer` | 可视化分析・可视化・统计・生存・分级着色地图 | 分级着色地图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_survival_curve_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_survival_curve_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_survival_curve_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_survival_curve_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_survival_curve_mosaic_tile_view` | 可视化分析・可视化・统计・生存 | Survival curve - Mosaic tile view | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_survival_curve_network_node_link` | 可视化分析・可视化・统计・生存・网络 | 关系网络 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_survival_curve_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_survival_curve_qq_reference_plot` | 可视化分析・可视化・统计・生存 | Survival curve - Q-Q reference plot | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_survival_curve_quantile_band` | 可视化分析・可视化・统计・生存・分位数 | 分位数 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_survival_curve_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_survival_curve_raincloud_view` | 可视化分析・可视化・统计・生存 | Survival curve - Raincloud view | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_survival_curve_rank_interval_plot` | 可视化分析・可视化・统计・生存・排名 | 排名 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_survival_curve_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_survival_curve_residual_annotation_map` | 可视化分析・可视化・统计・生存 | Survival curve - Residual annotation map | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_survival_curve_slope_change_view` | 可视化分析・可视化・统计・生存 | Survival curve - Slope change view | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_survival_curve_small_multiple_grid` | 可视化分析・可视化・统计・生存 | 小多图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_survival_curve_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_survival_curve_stratified_dotplot` | 可视化分析・可视化・统计・生存 | Survival curve - Stratified dot plot | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_survival_curve_threshold_band` | 可视化分析・可视化・统计・生存 | Survival curve - Threshold band | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_survival_curve_uncertainty_ribbon` | 可视化分析・可视化・统计・生存 | Survival curve - Uncertainty ribbon | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_survival_curve_violin_summary` | 可视化分析・可视化・统计・生存・小提琴图・概览 | 小提琴图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_survival_curve_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_survival_strata_annotated_reference_view` | 可视化分析・可视化・统计・生存 | Survival strata - Annotated reference view | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_survival_strata_boxen_interval` | 可视化分析・可视化・统计・生存 | Survival strata - Boxen interval plot | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_survival_strata_comparative_lollipop` | 可视化分析・可视化・统计・生存 | Survival strata - Comparative lollipop plot | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_survival_strata_density_ridge` | 可视化分析・可视化・统计・生存・密度图 | 密度图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_survival_strata_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_survival_strata_diagnostic_panel` | 可视化分析・可视化・统计・生存・诊断・面板 | Survival strata - Diagnostic panel | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_survival_strata_ecdf_step_view` | 可视化分析・可视化・统计・生存・经验分布图 | 经验分布图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_survival_strata_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_survival_strata_flow_transition_map` | 可视化分析・可视化・统计・生存 | Survival strata - Flow transition map | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_survival_strata_forest_interval_plot` | 可视化分析・可视化・统计・生存・随机森林 | 随机森林 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_survival_strata_heatmap_matrix` | 可视化分析・可视化・统计・生存・热力矩阵 | 热力矩阵 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_survival_strata_histogram_facets` | 可视化分析・可视化・统计・生存・直方图 | 直方图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_survival_strata_map_choropleth_layer` | 可视化分析・可视化・统计・生存・分级着色地图 | 分级着色地图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_survival_strata_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_survival_strata_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_survival_strata_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_survival_strata_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_survival_strata_mosaic_tile_view` | 可视化分析・可视化・统计・生存 | Survival strata - Mosaic tile view | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_survival_strata_network_node_link` | 可视化分析・可视化・统计・生存・网络 | 关系网络 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_survival_strata_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_survival_strata_qq_reference_plot` | 可视化分析・可视化・统计・生存 | Survival strata - Q-Q reference plot | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_survival_strata_quantile_band` | 可视化分析・可视化・统计・生存・分位数 | 分位数 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_survival_strata_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_survival_strata_raincloud_view` | 可视化分析・可视化・统计・生存 | Survival strata - Raincloud view | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_survival_strata_rank_interval_plot` | 可视化分析・可视化・统计・生存・排名 | 排名 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_survival_strata_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_survival_strata_residual_annotation_map` | 可视化分析・可视化・统计・生存 | Survival strata - Residual annotation map | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_survival_strata_slope_change_view` | 可视化分析・可视化・统计・生存 | Survival strata - Slope change view | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_survival_strata_small_multiple_grid` | 可视化分析・可视化・统计・生存 | 小多图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_survival_strata_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_survival_strata_stratified_dotplot` | 可视化分析・可视化・统计・生存 | Survival strata - Stratified dot plot | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_survival_strata_threshold_band` | 可视化分析・可视化・统计・生存 | Survival strata - Threshold band | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_survival_strata_uncertainty_ribbon` | 可视化分析・可视化・统计・生存 | Survival strata - Uncertainty ribbon | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_survival_strata_violin_summary` | 可视化分析・可视化・统计・生存・小提琴图・概览 | 小提琴图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_survival_strata_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_tail_outlier_annotated_reference_view` | 可视化分析・可视化・统计・离群值 | Tail and outlier structure - Annotated reference view | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_tail_outlier_boxen_interval` | 可视化分析・可视化・统计・离群值 | Tail and outlier structure - Boxen interval plot | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_tail_outlier_comparative_lollipop` | 可视化分析・可视化・统计・离群值 | Tail and outlier structure - Comparative lollipop plot | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_tail_outlier_density_ridge` | 可视化分析・可视化・统计・离群值・密度图 | 密度图 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_tail_outlier_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_tail_outlier_diagnostic_panel` | 可视化分析・可视化・统计・离群值・诊断・面板 | Tail and outlier structure - Diagnostic panel | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_tail_outlier_ecdf_step_view` | 可视化分析・可视化・统计・离群值・经验分布图 | 经验分布图 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_tail_outlier_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_tail_outlier_flow_transition_map` | 可视化分析・可视化・统计・离群值 | Tail and outlier structure - Flow transition map | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_tail_outlier_forest_interval_plot` | 可视化分析・可视化・统计・离群值・随机森林 | 随机森林 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_tail_outlier_heatmap_matrix` | 可视化分析・可视化・统计・离群值・热力矩阵 | 热力矩阵 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_tail_outlier_histogram_facets` | 可视化分析・可视化・统计・离群值・直方图 | 直方图 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_tail_outlier_map_choropleth_layer` | 可视化分析・可视化・统计・离群值・分级着色地图 | 分级着色地图 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_tail_outlier_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_tail_outlier_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_tail_outlier_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_tail_outlier_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_tail_outlier_mosaic_tile_view` | 可视化分析・可视化・统计・离群值 | Tail and outlier structure - Mosaic tile view | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_tail_outlier_network_node_link` | 可视化分析・可视化・统计・离群值・网络 | 关系网络 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_tail_outlier_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_tail_outlier_qq_reference_plot` | 可视化分析・可视化・统计・离群值 | Tail and outlier structure - Q-Q reference plot | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_tail_outlier_quantile_band` | 可视化分析・可视化・统计・离群值・分位数 | 分位数 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_tail_outlier_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_tail_outlier_raincloud_view` | 可视化分析・可视化・统计・离群值 | Tail and outlier structure - Raincloud view | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_tail_outlier_rank_interval_plot` | 可视化分析・可视化・统计・离群值・排名 | 排名 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_tail_outlier_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_tail_outlier_residual_annotation_map` | 可视化分析・可视化・统计・离群值 | Tail and outlier structure - Residual annotation map | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_tail_outlier_slope_change_view` | 可视化分析・可视化・统计・离群值 | Tail and outlier structure - Slope change view | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_tail_outlier_small_multiple_grid` | 可视化分析・可视化・统计・离群值 | 小多图 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_tail_outlier_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_tail_outlier_stratified_dotplot` | 可视化分析・可视化・统计・离群值 | Tail and outlier structure - Stratified dot plot | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_tail_outlier_threshold_band` | 可视化分析・可视化・统计・离群值 | Tail and outlier structure - Threshold band | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_tail_outlier_uncertainty_ribbon` | 可视化分析・可视化・统计・离群值 | Tail and outlier structure - Uncertainty ribbon | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
-| `visual_stat_tail_outlier_violin_summary` | 可视化分析・可视化・统计・离群值・小提琴图・概览 | 小提琴图 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
+| `visual_stat_tail_outlier_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 单字段 | 规划条目 | 统计可视化目录 |
 | `visual_stat_text_frequency_annotated_reference_view` | 可视化分析・可视化・统计・文本 | Text frequency - Annotated reference view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_text_frequency_boxen_interval` | 可视化分析・可视化・统计・文本 | Text frequency - Boxen interval plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_text_frequency_comparative_lollipop` | 可视化分析・可视化・统计・文本 | Text frequency - Comparative lollipop plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_text_frequency_density_ridge` | 可视化分析・可视化・统计・文本・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_text_frequency_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_text_frequency_diagnostic_panel` | 可视化分析・可视化・统计・文本・诊断・面板 | Text frequency - Diagnostic panel | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_text_frequency_ecdf_step_view` | 可视化分析・可视化・统计・文本・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_text_frequency_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_text_frequency_flow_transition_map` | 可视化分析・可视化・统计・文本 | Text frequency - Flow transition map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_text_frequency_forest_interval_plot` | 可视化分析・可视化・统计・文本・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_text_frequency_heatmap_matrix` | 可视化分析・可视化・统计・文本・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_text_frequency_histogram_facets` | 可视化分析・可视化・统计・文本・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_text_frequency_map_choropleth_layer` | 可视化分析・可视化・统计・文本・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_text_frequency_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_text_frequency_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_text_frequency_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_text_frequency_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_text_frequency_mosaic_tile_view` | 可视化分析・可视化・统计・文本 | Text frequency - Mosaic tile view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_text_frequency_network_node_link` | 可视化分析・可视化・统计・文本・网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_text_frequency_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_text_frequency_qq_reference_plot` | 可视化分析・可视化・统计・文本 | Text frequency - Q-Q reference plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_text_frequency_quantile_band` | 可视化分析・可视化・统计・文本・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_text_frequency_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_text_frequency_raincloud_view` | 可视化分析・可视化・统计・文本 | Text frequency - Raincloud view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_text_frequency_rank_interval_plot` | 可视化分析・可视化・统计・文本・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_text_frequency_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_text_frequency_residual_annotation_map` | 可视化分析・可视化・统计・文本 | Text frequency - Residual annotation map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_text_frequency_slope_change_view` | 可视化分析・可视化・统计・文本 | Text frequency - Slope change view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_text_frequency_small_multiple_grid` | 可视化分析・可视化・统计・文本 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_text_frequency_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_text_frequency_stratified_dotplot` | 可视化分析・可视化・统计・文本 | Text frequency - Stratified dot plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_text_frequency_threshold_band` | 可视化分析・可视化・统计・文本 | Text frequency - Threshold band | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_text_frequency_uncertainty_ribbon` | 可视化分析・可视化・统计・文本 | Text frequency - Uncertainty ribbon | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_text_frequency_violin_summary` | 可视化分析・可视化・统计・文本・小提琴图・概览 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_text_frequency_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_text_topic_annotated_reference_view` | 可视化分析・可视化・统计・文本・主题 | Text topic structure - Annotated reference view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_text_topic_boxen_interval` | 可视化分析・可视化・统计・文本・主题 | Text topic structure - Boxen interval plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_text_topic_comparative_lollipop` | 可视化分析・可视化・统计・文本・主题 | Text topic structure - Comparative lollipop plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_text_topic_density_ridge` | 可视化分析・可视化・统计・文本・主题・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_text_topic_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_text_topic_diagnostic_panel` | 可视化分析・可视化・统计・文本・主题・诊断・面板 | Text topic structure - Diagnostic panel | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_text_topic_ecdf_step_view` | 可视化分析・可视化・统计・文本・主题・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_text_topic_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_text_topic_flow_transition_map` | 可视化分析・可视化・统计・文本・主题 | Text topic structure - Flow transition map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_text_topic_forest_interval_plot` | 可视化分析・可视化・统计・文本・主题・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_text_topic_heatmap_matrix` | 可视化分析・可视化・统计・文本・主题・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_text_topic_histogram_facets` | 可视化分析・可视化・统计・文本・主题・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_text_topic_map_choropleth_layer` | 可视化分析・可视化・统计・文本・主题・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_text_topic_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_text_topic_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_text_topic_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_text_topic_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_text_topic_mosaic_tile_view` | 可视化分析・可视化・统计・文本・主题 | Text topic structure - Mosaic tile view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_text_topic_network_node_link` | 可视化分析・可视化・统计・文本・主题・网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_text_topic_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_text_topic_qq_reference_plot` | 可视化分析・可视化・统计・文本・主题 | Text topic structure - Q-Q reference plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_text_topic_quantile_band` | 可视化分析・可视化・统计・文本・主题・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_text_topic_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_text_topic_raincloud_view` | 可视化分析・可视化・统计・文本・主题 | Text topic structure - Raincloud view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_text_topic_rank_interval_plot` | 可视化分析・可视化・统计・文本・主题・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_text_topic_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_text_topic_residual_annotation_map` | 可视化分析・可视化・统计・文本・主题 | Text topic structure - Residual annotation map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_text_topic_slope_change_view` | 可视化分析・可视化・统计・文本・主题 | Text topic structure - Slope change view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_text_topic_small_multiple_grid` | 可视化分析・可视化・统计・文本・主题 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_text_topic_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_text_topic_stratified_dotplot` | 可视化分析・可视化・统计・文本・主题 | Text topic structure - Stratified dot plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_text_topic_threshold_band` | 可视化分析・可视化・统计・文本・主题 | Text topic structure - Threshold band | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_text_topic_uncertainty_ribbon` | 可视化分析・可视化・统计・文本・主题 | Text topic structure - Uncertainty ribbon | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_text_topic_violin_summary` | 可视化分析・可视化・统计・文本・主题・小提琴图・概览 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_time_trend_annotated_reference_view` | 可视化分析・可视化・统计・时间・趋势 | 趋势 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_time_trend_boxen_interval` | 可视化分析・可视化・统计・时间・趋势 | 趋势 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_time_trend_comparative_lollipop` | 可视化分析・可视化・统计・时间・趋势 | 趋势 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_time_trend_density_ridge` | 可视化分析・可视化・统计・时间・趋势・密度图 | 趋势 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_time_trend_diagnostic_panel` | 可视化分析・可视化・统计・时间・趋势・诊断・面板 | 趋势 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_time_trend_ecdf_step_view` | 可视化分析・可视化・统计・时间・趋势・经验分布图 | 趋势 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_time_trend_flow_transition_map` | 可视化分析・可视化・统计・时间・趋势 | 趋势 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_time_trend_forest_interval_plot` | 可视化分析・可视化・统计・时间・趋势・随机森林 | 趋势 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_time_trend_heatmap_matrix` | 可视化分析・可视化・统计・时间・趋势・热力矩阵 | 趋势 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_time_trend_histogram_facets` | 可视化分析・可视化・统计・时间・趋势・直方图 | 趋势 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_time_trend_map_choropleth_layer` | 可视化分析・可视化・统计・时间・趋势・分级着色地图 | 趋势 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_time_trend_mosaic_tile_view` | 可视化分析・可视化・统计・时间・趋势 | 趋势 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_time_trend_network_node_link` | 可视化分析・可视化・统计・时间・趋势・网络 | 趋势 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_time_trend_qq_reference_plot` | 可视化分析・可视化・统计・时间・趋势 | 趋势 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_time_trend_quantile_band` | 可视化分析・可视化・统计・时间・趋势・分位数 | 趋势 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_time_trend_raincloud_view` | 可视化分析・可视化・统计・时间・趋势 | 趋势 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_time_trend_rank_interval_plot` | 可视化分析・可视化・统计・时间・趋势・排名 | 趋势 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_time_trend_residual_annotation_map` | 可视化分析・可视化・统计・时间・趋势 | 趋势 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_time_trend_slope_change_view` | 可视化分析・可视化・统计・时间・趋势 | 趋势 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_time_trend_small_multiple_grid` | 可视化分析・可视化・统计・时间・趋势 | 小多图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_time_trend_stratified_dotplot` | 可视化分析・可视化・统计・时间・趋势 | 趋势 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_time_trend_threshold_band` | 可视化分析・可视化・统计・时间・趋势 | 趋势 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_time_trend_uncertainty_ribbon` | 可视化分析・可视化・统计・时间・趋势 | 趋势 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
-| `visual_stat_time_trend_violin_summary` | 可视化分析・可视化・统计・时间・趋势・小提琴图・概览 | 趋势 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_text_topic_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_time_trend_annotated_reference_view` | 可视化分析・趋势 | 趋势 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_time_trend_boxen_interval` | 可视化分析・趋势 | 趋势 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_time_trend_comparative_lollipop` | 可视化分析・趋势 | 趋势 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_time_trend_density_ridge` | 可视化分析・趋势 | 趋势 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_time_trend_diagnostic_panel` | 可视化分析・趋势 | 趋势 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_time_trend_ecdf_step_view` | 可视化分析・趋势 | 趋势 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_time_trend_flow_transition_map` | 可视化分析・趋势 | 趋势 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_time_trend_forest_interval_plot` | 可视化分析・趋势 | 趋势 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_time_trend_heatmap_matrix` | 可视化分析・趋势 | 趋势 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_time_trend_histogram_facets` | 可视化分析・趋势 | 趋势 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_time_trend_map_choropleth_layer` | 可视化分析・趋势 | 趋势 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_time_trend_mosaic_tile_view` | 可视化分析・趋势 | 趋势 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_time_trend_network_node_link` | 可视化分析・趋势 | 趋势 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_time_trend_qq_reference_plot` | 可视化分析・趋势 | 趋势 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_time_trend_quantile_band` | 可视化分析・趋势 | 趋势 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_time_trend_raincloud_view` | 可视化分析・趋势 | 趋势 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_time_trend_rank_interval_plot` | 可视化分析・趋势 | 趋势 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_time_trend_residual_annotation_map` | 可视化分析・趋势 | 趋势 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_time_trend_slope_change_view` | 可视化分析・趋势 | 趋势 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_time_trend_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_time_trend_stratified_dotplot` | 可视化分析・趋势 | 趋势 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_time_trend_threshold_band` | 可视化分析・趋势 | 趋势 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_time_trend_uncertainty_ribbon` | 可视化分析・趋势 | 趋势 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
+| `visual_stat_time_trend_violin_summary` | 可视化分析・趋势 | 趋势 | 图表 | 时间窗口 | 规划条目 | 统计可视化目录 |
 | `visual_stat_treatment_effect_annotated_reference_view` | 可视化分析・可视化・统计・处理・效应 | Treatment effect heterogeneity - Annotated reference view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_treatment_effect_boxen_interval` | 可视化分析・可视化・统计・处理・效应 | Treatment effect heterogeneity - Boxen interval plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_treatment_effect_comparative_lollipop` | 可视化分析・可视化・统计・处理・效应 | Treatment effect heterogeneity - Comparative lollipop plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_treatment_effect_density_ridge` | 可视化分析・可视化・统计・处理・效应・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_treatment_effect_density_ridge` | 可视化分析・密度图 | 密度图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_treatment_effect_diagnostic_panel` | 可视化分析・可视化・统计・处理・效应・诊断・面板 | Treatment effect heterogeneity - Diagnostic panel | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_treatment_effect_ecdf_step_view` | 可视化分析・可视化・统计・处理・效应・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_treatment_effect_ecdf_step_view` | 可视化分析・经验分布图 | 经验分布图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_treatment_effect_flow_transition_map` | 可视化分析・可视化・统计・处理・效应 | Treatment effect heterogeneity - Flow transition map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_treatment_effect_forest_interval_plot` | 可视化分析・可视化・统计・处理・效应・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_treatment_effect_heatmap_matrix` | 可视化分析・可视化・统计・处理・效应・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_treatment_effect_histogram_facets` | 可视化分析・可视化・统计・处理・效应・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_treatment_effect_map_choropleth_layer` | 可视化分析・可视化・统计・处理・效应・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_treatment_effect_forest_interval_plot` | 可视化分析・随机森林 | 随机森林 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_treatment_effect_heatmap_matrix` | 可视化分析・热力矩阵 | 热力矩阵 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_treatment_effect_histogram_facets` | 可视化分析・直方图 | 直方图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_treatment_effect_map_choropleth_layer` | 可视化分析・分级着色地图 | 分级着色地图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_treatment_effect_mosaic_tile_view` | 可视化分析・可视化・统计・处理・效应 | Treatment effect heterogeneity - Mosaic tile view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_treatment_effect_network_node_link` | 可视化分析・可视化・统计・处理・效应・网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_treatment_effect_network_node_link` | 可视化分析・关系网络 | 关系网络 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_treatment_effect_qq_reference_plot` | 可视化分析・可视化・统计・处理・效应 | Treatment effect heterogeneity - Q-Q reference plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_treatment_effect_quantile_band` | 可视化分析・可视化・统计・处理・效应・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_treatment_effect_quantile_band` | 可视化分析・分位数 | 分位数 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_treatment_effect_raincloud_view` | 可视化分析・可视化・统计・处理・效应 | Treatment effect heterogeneity - Raincloud view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_treatment_effect_rank_interval_plot` | 可视化分析・可视化・统计・处理・效应・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_treatment_effect_rank_interval_plot` | 可视化分析・排名 | 排名 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_treatment_effect_residual_annotation_map` | 可视化分析・可视化・统计・处理・效应 | Treatment effect heterogeneity - Residual annotation map | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_treatment_effect_slope_change_view` | 可视化分析・可视化・统计・处理・效应 | Treatment effect heterogeneity - Slope change view | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_treatment_effect_small_multiple_grid` | 可视化分析・可视化・统计・处理・效应 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_stat_treatment_effect_small_multiple_grid` | 可视化分析・小多图 | 小多图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_treatment_effect_stratified_dotplot` | 可视化分析・可视化・统计・处理・效应 | Treatment effect heterogeneity - Stratified dot plot | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_treatment_effect_threshold_band` | 可视化分析・可视化・统计・处理・效应 | Treatment effect heterogeneity - Threshold band | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
 | `visual_stat_treatment_effect_uncertainty_ribbon` | 可视化分析・可视化・统计・处理・效应 | Treatment effect heterogeneity - Uncertainty ribbon | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_stat_treatment_effect_violin_summary` | 可视化分析・可视化・统计・处理・效应・小提琴图・概览 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
-| `visual_streamgraph` | 可视化分析・可视化・流形图 | 流形图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
-| `visual_strip` | 可视化分析・可视化・条带散点图 | 条带散点图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
-| `visual_sunburst` | 可视化分析・可视化・旭日图 | 旭日图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
-| `visual_treemap` | 可视化分析・可视化・树图 | 树图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
-| `visual_violin` | 可视化分析・可视化・小提琴图 | 小提琴图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
-| `visual_waterfall` | 可视化分析・可视化・瀑布图 | 瀑布图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
+| `visual_stat_treatment_effect_violin_summary` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 字段组 | 规划条目 | 统计可视化目录 |
+| `visual_streamgraph` | 可视化分析・流形图 | 流形图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
+| `visual_strip` | 可视化分析・条带散点图 | 条带散点图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
+| `visual_sunburst` | 可视化分析・旭日图 | 旭日图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
+| `visual_treemap` | 可视化分析・树图 | 树图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
+| `visual_violin` | 可视化分析・小提琴图 | 小提琴图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
+| `visual_waterfall` | 可视化分析・瀑布图 | 瀑布图 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
 
-### 分析方法（注册族：`回归建模`；6 张；可运行 0 张）
-
-| 卡片 ID | 中文方法名称 | 原始英文概念 | 中文输出形式 | 字段角色 | 状态 | 来源 |
-| --- | --- | --- | --- | --- | --- | --- |
-| `regression_linear` | 分析方法・回归・线性 | 线性 | 文字解读 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
-| `regression_logistic` | 分析方法・回归・逻辑 | 逻辑 | 文字解读 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
-| `regression_poisson` | 分析方法・回归・泊松 | 泊松 | 文字解读 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
-| `regression_quantile` | 分析方法・回归・分位数 | 分位数 | 文字解读 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
-| `regression_regularized` | 分析方法・回归・正则化 | 正则化 | 文字解读 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
-| `regression_robust` | 分析方法・回归・稳健 | 稳健 | 文字解读 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
-
-### 分析方法（注册族：`因果探查`；47 张；可运行 0 张）
+### 回归建模（注册族：`回归建模`；6 张；可运行 0 张）
 
 | 卡片 ID | 中文方法名称 | 原始英文概念 | 中文输出形式 | 字段角色 | 状态 | 来源 |
 | --- | --- | --- | --- | --- | --- | --- |
-| `causal_did` | 因果探查・因果・双重差分 | 双重差分 | 文字解读 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
+| `regression_linear` | 分析方法・线性 | 线性 | 文字解读 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
+| `regression_logistic` | 分析方法・逻辑 | 逻辑 | 文字解读 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
+| `regression_poisson` | 分析方法・泊松 | 泊松 | 文字解读 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
+| `regression_quantile` | 分析方法・分位数 | 分位数 | 文字解读 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
+| `regression_regularized` | 分析方法・正则化 | 正则化 | 文字解读 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
+| `regression_robust` | 分析方法・稳健 | 稳健 | 文字解读 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
+
+### 因果探查（注册族：`因果探查`；47 张；可运行 0 张）
+
+| 卡片 ID | 中文方法名称 | 原始英文概念 | 中文输出形式 | 字段角色 | 状态 | 来源 |
+| --- | --- | --- | --- | --- | --- | --- |
+| `causal_did` | 因果探查・双重差分 | 双重差分 | 文字解读 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
 | `causal_forest_data` | 因果森林 | Causal Forest | 结构化数据 | group、outcome、features | 目录条目 | 统计目录 |
 | `causal_forest_table` | 因果森林 | Causal Forest | 表格 | group、outcome、features | 目录条目 | 统计目录 |
 | `causal_forest_text` | 因果森林 | Causal Forest | 文字解读 | group、outcome、features | 目录条目 | 统计目录 |
-| `causal_matching` | 因果探查・因果・匹配 | 匹配 | 文字解读 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
-| `causal_sensitivity` | 因果探查・因果・敏感性 | 敏感性 | 文字解读 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
-| `causal_synthetic_control` | 因果探查・因果・控制 | 合成控制 | 文字解读 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
-| `causal_uplift` | 因果探查・因果・增量 | 增量 | 文字解读 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
+| `causal_matching` | 因果探查・匹配 | 匹配 | 文字解读 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
+| `causal_sensitivity` | 因果探查・敏感性 | 敏感性 | 文字解读 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
+| `causal_synthetic_control` | 因果探查・合成控制 | 合成控制 | 文字解读 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
+| `causal_uplift` | 因果探查・增量 | 增量 | 文字解读 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
 | `dag_assumption_review_data` | 因果图假设评审 | DAG Assumption Review | 结构化数据 | target、features | 目录条目 | 统计目录 |
 | `dag_assumption_review_table` | 因果图假设评审 | DAG Assumption Review | 表格 | target、features | 目录条目 | 统计目录 |
 | `dag_assumption_review_text` | 因果图假设评审 | DAG Assumption Review | 文字解读 | target、features | 目录条目 | 统计目录 |
@@ -2933,7 +2958,7 @@
 | `unobserved_confounding_sensitivity_table` | 未观测混杂敏感性分析 | Unobserved Confounding Sensitivity | 表格 | target、features | 目录条目 | 统计目录 |
 | `unobserved_confounding_sensitivity_text` | 未观测混杂敏感性分析 | Unobserved Confounding Sensitivity | 文字解读 | target、features | 目录条目 | 统计目录 |
 
-### 分析方法（注册族：`均值检验`；39 张；可运行 30 张）
+### 均值检验（注册族：`均值检验`；39 张；可运行 30 张）
 
 | 卡片 ID | 中文方法名称 | 原始英文概念 | 中文输出形式 | 字段角色 | 状态 | 来源 |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -2977,7 +3002,7 @@
 | `z_test_mean_table` | 均值 Z 检验 | Z-test for Mean | 表格 | 数值字段 | 可运行 | 统计目录 |
 | `z_test_mean_text` | 均值 Z 检验 | Z-test for Mean | 文字解读 | 数值字段 | 可运行 | 统计目录 |
 
-### 分析方法（注册族：`多变量分析`；114 张；可运行 12 张）
+### 多变量分析（注册族：`多变量分析`；114 张；可运行 12 张）
 
 | 卡片 ID | 中文方法名称 | 原始英文概念 | 中文输出形式 | 字段角色 | 状态 | 来源 |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -3096,7 +3121,7 @@
 | `umap_projection_table` | UMAP 降维投影 | UMAP Projection | 表格 | multi numeric | 目录条目 | 统计目录 |
 | `umap_projection_text` | UMAP 降维投影 | UMAP Projection | 文字解读 | multi numeric | 目录条目 | 统计目录 |
 
-### 分析方法（注册族：`实验分析`；78 张；可运行 3 张）
+### 实验分析（注册族：`实验分析`；78 张；可运行 3 张）
 
 | 卡片 ID | 中文方法名称 | 原始英文概念 | 中文输出形式 | 字段角色 | 状态 | 来源 |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -3179,7 +3204,7 @@
 | `uplift_modeling_table` | 增量效应建模 | Uplift Modeling | 表格 | group、outcome、features | 目录条目 | 统计目录 |
 | `uplift_modeling_text` | 增量效应建模 | Uplift Modeling | 文字解读 | group、outcome、features | 目录条目 | 统计目录 |
 
-### 分析方法（注册族：`差异比较`；14 张；可运行 0 张）
+### 差异比较（注册族：`差异比较`；14 张；可运行 0 张）
 
 | 卡片 ID | 中文方法名称 | 原始英文概念 | 中文输出形式 | 字段角色 | 状态 | 来源 |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -3188,7 +3213,7 @@
 | `cohens_d_effect_size_text` | 科恩 d 效应量 | Cohen's d Effect Size | 文字解读 | 数值字段、binary group | 目录条目 | 统计目录 |
 | `comparison_mean` | 差异比较・均值 | 均值 | 文字解读 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
 | `comparison_median` | 差异比较・中位数 | 中位数 | 文字解读 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
-| `comparison_post_hoc` | 差异比较・分析方法 | 事后检验 | 文字解读 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
+| `comparison_post_hoc` | 差异比较・事后检验 | 事后检验 | 文字解读 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
 | `comparison_proportion` | 差异比较・占比 | 占比 | 文字解读 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
 | `comparison_variance` | 差异比较・方差 | 方差 | 文字解读 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
 | `glass_delta_effect_size_data` | 格拉斯 Delta 效应量 | Glass Delta Effect Size | 结构化数据 | 数值字段、binary group | 目录条目 | 统计目录 |
@@ -3198,7 +3223,7 @@
 | `hedges_g_effect_size_table` | 赫奇斯 g 效应量 | Hedges g Effect Size | 表格 | 数值字段、binary group | 目录条目 | 统计目录 |
 | `hedges_g_effect_size_text` | 赫奇斯 g 效应量 | Hedges g Effect Size | 文字解读 | 数值字段、binary group | 目录条目 | 统计目录 |
 
-### 分析方法（注册族：`广义线性模型`；108 张；可运行 24 张）
+### 广义线性模型（注册族：`广义线性模型`；108 张；可运行 24 张）
 
 | 卡片 ID | 中文方法名称 | 原始英文概念 | 中文输出形式 | 字段角色 | 状态 | 来源 |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -3311,7 +3336,7 @@
 | `zero_inflated_poisson_table` | 零膨胀泊松模型 | Zero-inflated Poisson | 表格 | count、multi numeric | 目录条目 | 统计目录 |
 | `zero_inflated_poisson_text` | 零膨胀泊松模型 | Zero-inflated Poisson | 文字解读 | count、multi numeric | 目录条目 | 统计目录 |
 
-### 分析方法（注册族：`心理测量`；24 张；可运行 0 张）
+### 心理测量（注册族：`心理测量`；24 张；可运行 0 张）
 
 | 卡片 ID | 中文方法名称 | 原始英文概念 | 中文输出形式 | 字段角色 | 状态 | 来源 |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -3340,7 +3365,7 @@
 | `split_half_reliability_table` | 折半信度 | Split-half Reliability | 表格 | multi item scale | 目录条目 | 统计目录 |
 | `split_half_reliability_text` | 折半信度 | Split-half Reliability | 文字解读 | multi item scale | 目录条目 | 统计目录 |
 
-### 分析方法（注册族：`报告部件`；14 张；可运行 0 张）
+### 报告部件（注册族：`报告部件`；14 张；可运行 0 张）
 
 | 卡片 ID | 中文方法名称 | 原始英文概念 | 中文输出形式 | 字段角色 | 状态 | 来源 |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -3350,16 +3375,16 @@
 | `explainable_dashboard_narrative_report_section` | 可解释仪表盘叙述 | Explainable Dashboard Narrative | 报告段落 | 全数据集 | 目录条目 | 统计目录 |
 | `explainable_dashboard_narrative_table` | 可解释仪表盘叙述 | Explainable Dashboard Narrative | 表格 | 全数据集 | 目录条目 | 统计目录 |
 | `explainable_dashboard_narrative_text` | 可解释仪表盘叙述 | Explainable Dashboard Narrative | 文字解读 | 全数据集 | 目录条目 | 统计目录 |
-| `report_part_action_plan` | 报告部件・分析方法 | 行动建议 | 报告段落 | 全数据集 | 规划条目 | 自动分析规格目录 |
-| `report_part_appendix` | 报告部件・附录 | 分析附录 | 报告段落 | 全数据集 | 规划条目 | 自动分析规格目录 |
-| `report_part_chapter` | 报告部件・章节 | 分析章节 | 报告段落 | 全数据集 | 规划条目 | 自动分析规格目录 |
-| `report_part_evidence_index` | 报告部件・分析方法 | 证据索引 | 报告段落 | 全数据集 | 规划条目 | 自动分析规格目录 |
-| `report_part_executive_summary` | 报告部件・概览 | 管理摘要 | 报告段落 | 全数据集 | 规划条目 | 自动分析规格目录 |
-| `report_part_field_glossary` | 报告部件・分析方法 | 字段解释 | 报告段落 | 全数据集 | 规划条目 | 自动分析规格目录 |
-| `report_part_method_note` | 报告部件・分析方法 | 方法说明 | 报告段落 | 全数据集 | 规划条目 | 自动分析规格目录 |
-| `report_part_visual_gallery` | 报告部件・可视化 | 图组解读 | 报告段落 | 全数据集 | 规划条目 | 自动分析规格目录 |
+| `report_part_action_plan` | 报告部件・行动建议 | 行动建议 | 报告段落 | 全数据集 | 规划条目 | 自动分析规格目录 |
+| `report_part_appendix` | 报告部件・分析附录 | 分析附录 | 报告段落 | 全数据集 | 规划条目 | 自动分析规格目录 |
+| `report_part_chapter` | 报告部件・分析章节 | 分析章节 | 报告段落 | 全数据集 | 规划条目 | 自动分析规格目录 |
+| `report_part_evidence_index` | 报告部件・证据索引 | 证据索引 | 报告段落 | 全数据集 | 规划条目 | 自动分析规格目录 |
+| `report_part_executive_summary` | 报告部件・管理摘要 | 管理摘要 | 报告段落 | 全数据集 | 规划条目 | 自动分析规格目录 |
+| `report_part_field_glossary` | 报告部件・字段解释 | 字段解释 | 报告段落 | 全数据集 | 规划条目 | 自动分析规格目录 |
+| `report_part_method_note` | 报告部件・方法说明 | 方法说明 | 报告段落 | 全数据集 | 规划条目 | 自动分析规格目录 |
+| `report_part_visual_gallery` | 报告部件・图组解读 | 图组解读 | 报告段落 | 全数据集 | 规划条目 | 自动分析规格目录 |
 
-### 分析方法（注册族：`描述统计`；210 张；可运行 36 张）
+### 描述统计（注册族：`描述统计`；210 张；可运行 36 张）
 
 | 卡片 ID | 中文方法名称 | 原始英文概念 | 中文输出形式 | 字段角色 | 状态 | 来源 |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -3574,7 +3599,7 @@
 | `yeo_johnson_transformation_table` | Yeo-Johnson 变换 | Yeo-Johnson Transformation | 表格 | 数值字段 | 目录条目 | 统计目录 |
 | `yeo_johnson_transformation_text` | Yeo-Johnson 变换 | Yeo-Johnson Transformation | 文字解读 | 数值字段 | 目录条目 | 统计目录 |
 
-### 分析方法（注册族：`时间序列`；198 张；可运行 30 张）
+### 时间序列（注册族：`时间序列`；198 张；可运行 30 张）
 
 | 卡片 ID | 中文方法名称 | 原始英文概念 | 中文输出形式 | 字段角色 | 状态 | 来源 |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -3770,14 +3795,14 @@
 | `stl_decomposition_report_section` | STL 季节趋势分解 | STL Decomposition | 报告段落 | time、数值字段 | 目录条目 | 统计目录 |
 | `stl_decomposition_table` | STL 季节趋势分解 | STL Decomposition | 表格 | time、数值字段 | 目录条目 | 统计目录 |
 | `stl_decomposition_text` | STL 季节趋势分解 | STL Decomposition | 文字解读 | time、数值字段 | 目录条目 | 统计目录 |
-| `time_series_calendar` | 时间序列・时间・序列・日历 | 日历 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
-| `time_series_change_point` | 时间序列・时间・序列 | 拐点 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
-| `time_series_forecast` | 时间序列・时间・序列・预测 | 预测 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
-| `time_series_lag` | 时间序列・时间・序列・滞后 | 滞后 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
-| `time_series_seasonality` | 时间序列・时间・序列・季节性 | 季节性 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
-| `time_series_trend` | 时间序列・时间・序列・趋势 | 趋势 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
+| `time_series_calendar` | 时间序列・日历 | 日历 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
+| `time_series_change_point` | 时间序列・拐点 | 拐点 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
+| `time_series_forecast` | 时间序列・预测 | 预测 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
+| `time_series_lag` | 时间序列・滞后 | 滞后 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
+| `time_series_seasonality` | 时间序列・季节性 | 季节性 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
+| `time_series_trend` | 时间序列・趋势 | 趋势 | 图表 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
 
-### 分析方法（注册族：`机器学习`；120 张；可运行 9 张）
+### 机器学习（注册族：`机器学习`；120 张；可运行 9 张）
 
 | 卡片 ID | 中文方法名称 | 原始英文概念 | 中文输出形式 | 字段角色 | 状态 | 来源 |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -3838,12 +3863,12 @@
 | `link_prediction_baseline_data` | 链接预测基线 | Link Prediction Baseline | 结构化数据 | 对象级 | 目录条目 | 统计目录 |
 | `link_prediction_baseline_table` | 链接预测基线 | Link Prediction Baseline | 表格 | 对象级 | 目录条目 | 统计目录 |
 | `link_prediction_baseline_text` | 链接预测基线 | Link Prediction Baseline | 文字解读 | 对象级 | 目录条目 | 统计目录 |
-| `machine_learning_boosting` | 机器学习・机器・提升模型 | 提升模型 | 文字解读 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
-| `machine_learning_forest` | 机器学习・机器・随机森林 | 随机森林 | 文字解读 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
-| `machine_learning_importance` | 机器学习・机器・重要性 | 重要性 | 文字解读 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
-| `machine_learning_neighbors` | 机器学习・机器・近邻 | 近邻 | 文字解读 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
-| `machine_learning_neural` | 机器学习・机器・神经网络 | 神经网络 | 文字解读 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
-| `machine_learning_tree` | 机器学习・机器・决策树 | 决策树 | 文字解读 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
+| `machine_learning_boosting` | 机器学习・提升模型 | 提升模型 | 文字解读 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
+| `machine_learning_forest` | 机器学习・随机森林 | 随机森林 | 文字解读 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
+| `machine_learning_importance` | 机器学习・重要性 | 重要性 | 文字解读 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
+| `machine_learning_neighbors` | 机器学习・近邻 | 近邻 | 文字解读 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
+| `machine_learning_neural` | 机器学习・神经网络 | 神经网络 | 文字解读 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
+| `machine_learning_tree` | 机器学习・决策树 | 决策树 | 文字解读 | 单字段、字段对、字段组、分组、时间窗口、对象级、全数据集、派生指标 | 规划条目 | 自动分析规格目录 |
 | `model_calibration_data` | 模型校准 | Model Calibration | 结构化数据 | binary、features | 目录条目 | 统计目录 |
 | `model_calibration_table` | 模型校准 | Model Calibration | 表格 | binary、features | 目录条目 | 统计目录 |
 | `model_calibration_text` | 模型校准 | Model Calibration | 文字解读 | binary、features | 目录条目 | 统计目录 |
@@ -3902,7 +3927,7 @@
 | `train_test_split_audit_table` | 训练集与测试集切分审计 | Train / Test Split Audit | 表格 | target、features | 目录条目 | 统计目录 |
 | `train_test_split_audit_text` | 训练集与测试集切分审计 | Train / Test Split Audit | 文字解读 | target、features | 目录条目 | 统计目录 |
 
-### 分析方法（注册族：`生存分析`；78 张；可运行 0 张）
+### 生存分析（注册族：`生存分析`；78 张；可运行 0 张）
 
 | 卡片 ID | 中文方法名称 | 原始英文概念 | 中文输出形式 | 字段角色 | 状态 | 来源 |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -3985,7 +4010,7 @@
 | `time_dependent_covariates_table` | 时变协变量 | Time-dependent Covariates | 表格 | time to event、features | 目录条目 | 统计目录 |
 | `time_dependent_covariates_text` | 时变协变量 | Time-dependent Covariates | 文字解读 | time to event、features | 目录条目 | 统计目录 |
 
-### 分析方法（注册族：`统计方法`；54 张；可运行 0 张）
+### 统计方法（注册族：`统计方法`；54 张；可运行 0 张）
 
 | 卡片 ID | 中文方法名称 | 原始英文概念 | 中文输出形式 | 字段角色 | 状态 | 来源 |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -4044,7 +4069,7 @@
 | `sensitivity_to_outliers_table` | 异常值敏感性分析 | Sensitivity to Outliers | 表格 | 字段组 | 目录条目 | 统计目录 |
 | `sensitivity_to_outliers_text` | 异常值敏感性分析 | Sensitivity to Outliers | 文字解读 | 字段组 | 目录条目 | 统计目录 |
 
-### 分析方法（注册族：`非参数检验`；42 张；可运行 36 张）
+### 非参数检验（注册族：`非参数检验`；42 张；可运行 36 张）
 
 | 卡片 ID | 中文方法名称 | 原始英文概念 | 中文输出形式 | 字段角色 | 状态 | 来源 |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -4091,7 +4116,7 @@
 | `wilcoxon_signed_rank_table` | 威尔科克森符号秩检验 | Wilcoxon Signed-rank Test | 表格 | 数值字段、paired | 可运行 | 统计目录 |
 | `wilcoxon_signed_rank_text` | 威尔科克森符号秩检验 | Wilcoxon Signed-rank Test | 文字解读 | 数值字段、paired | 可运行 | 统计目录 |
 
-### 分析方法（注册族：`面板因果`；48 张；可运行 0 张）
+### 面板因果（注册族：`面板因果`；48 张；可运行 0 张）
 
 | 卡片 ID | 中文方法名称 | 原始英文概念 | 中文输出形式 | 字段角色 | 状态 | 来源 |
 | --- | --- | --- | --- | --- | --- | --- |
