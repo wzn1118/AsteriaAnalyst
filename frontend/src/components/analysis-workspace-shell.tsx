@@ -361,6 +361,12 @@ type LabReportAgentTeamResponse = {
 
 type RunMode = "auto" | "method" | "batch" | "smart_report";
 type MethodFilter = "all" | "visual" | "live" | "catalog" | "planned" | "selected" | "recommended";
+type MethodGoalPreset = {
+  id: string;
+  title: string;
+  description: string;
+  families: string[];
+};
 
 const RUN_MODE_LABELS: Record<RunMode, string> = {
   auto: "合并运行",
@@ -560,10 +566,10 @@ const METHOD_TEXTUAL_DEFAULT_OUTPUTS = ["text", "table", "data"];
 const METHOD_VISUAL_DEFAULT_OUTPUTS = ["chart", "text"];
 const METHOD_REPORT_DEFAULT_OUTPUTS = ["report_section", "text"];
 const METHOD_CHART_OUTPUTS = new Set(["chart", "image_spec"]);
-const DEFAULT_SELECTED_METHOD_RUNS = 20;
+const DEFAULT_SELECTED_METHOD_RUNS = 6;
 const MAX_SELECTED_METHOD_RUNS = 24;
-const INITIAL_VISIBLE_METHOD_LIMIT = 72;
-const METHOD_LOAD_MORE_STEP = 120;
+const INITIAL_VISIBLE_METHOD_LIMIT = 24;
+const METHOD_LOAD_MORE_STEP = 48;
 const AUTO_PREPROCESS_MAX_ROWS = 12_000;
 const AUTO_PREPROCESS_MAX_CELLS = 250_000;
 const CJK_TEXT_PATTERN = /[\u3400-\u9fff]/;
@@ -591,6 +597,39 @@ const METHOD_FAMILY_LABELS: Record<string, string> = {
   learned: "已学习方法",
   statistical: "统计方法",
 };
+
+const METHOD_GOAL_PRESETS: MethodGoalPreset[] = [
+  {
+    id: "overview",
+    title: "了解数据现状",
+    description: "查看规模、分布、缺失和异常",
+    families: ["descriptive", "distribution_assumption", "visual"],
+  },
+  {
+    id: "compare",
+    title: "比较不同分组",
+    description: "判断两组或多组之间是否存在差异",
+    families: ["comparison", "mean_tests", "nonparametric"],
+  },
+  {
+    id: "relationship",
+    title: "寻找影响因素",
+    description: "查看变量关系并定位关键因素",
+    families: ["association", "categorical_association", "regression", "regression_glm", "multivariate", "causal"],
+  },
+  {
+    id: "trend",
+    title: "查看趋势与效果",
+    description: "分析时间变化、实验表现或因果线索",
+    families: ["time_series", "experimentation", "causal_panel"],
+  },
+  {
+    id: "visualize",
+    title: "制作图表与摘要",
+    description: "快速生成适合展示和沟通的图表",
+    families: ["visual", "report_part"],
+  },
+];
 
 const METHOD_OUTPUT_LABELS: Record<string, string> = {
   chart: "图表",
@@ -6821,6 +6860,7 @@ function MethodWorkspacePanel({
   const recommendedIds = useMemo(() => new Set(recommendedMethodSlice.map((method) => method.id)), [recommendedMethodSlice]);
   const searchActive = Boolean(methodSearch.trim());
   const [expandedBundleIds, setExpandedBundleIds] = useState<Set<string>>(() => new Set());
+  const [selectedMethodGoalId, setSelectedMethodGoalId] = useState(METHOD_GOAL_PRESETS[0].id);
   const [methodGuideTopic, setMethodGuideTopic] = useState<MethodGuideTopic>("object");
   const [methodGuideOpen, setMethodGuideOpen] = useState(false);
   const methodsById = useMemo(() => new Map(methods.map((method) => [method.id, method])), [methods]);
@@ -6852,6 +6892,17 @@ function MethodWorkspacePanel({
     () => buildMethodBundles(recommendedMethodSlice),
     [recommendedMethodSlice],
   );
+  const selectedMethodGoal = useMemo(
+    () => METHOD_GOAL_PRESETS.find((goal) => goal.id === selectedMethodGoalId) || METHOD_GOAL_PRESETS[0],
+    [selectedMethodGoalId],
+  );
+  const goalMethodBundles = useMemo(() => {
+    const matchingMethods = methods.filter((method) => selectedMethodGoal.families.includes(method.family));
+    const preferredMethods = matchingMethods.filter((method) => recommendedIds.has(method.id));
+    const remainingMethods = matchingMethods.filter((method) => !recommendedIds.has(method.id));
+    return buildMethodBundles([...preferredMethods, ...remainingMethods]).slice(0, 4);
+  }, [methods, recommendedIds, selectedMethodGoal]);
+  const quickStartBundles = goalMethodBundles.length ? goalMethodBundles : recommendedBundles.slice(0, 4);
   const visibleBundles = useMemo(
     () => (searchActive ? buildMethodBundles(visibleMethods) : visibleGroupedMethods.flatMap(([, bundles]) => bundles)),
     [searchActive, visibleGroupedMethods, visibleMethods],
@@ -6879,6 +6930,14 @@ function MethodWorkspacePanel({
   function openMethodGuide(topic: MethodGuideTopic) {
     setMethodGuideTopic(topic);
     setMethodGuideOpen(true);
+  }
+
+  function chooseMethodGoal(goalId: string) {
+    setSelectedMethodGoalId(goalId);
+    setMethodSearch("");
+    setMethodFilter("all");
+    setActiveMethodFamily("");
+    setActiveMethodSource("");
   }
 
   function toggleBundleDetails(bundleId: string) {
@@ -8328,22 +8387,52 @@ function MethodWorkspacePanel({
         <section className="rounded-[28px] border border-white/10 bg-white/5 p-4">
           <div className="flex items-start justify-between gap-3">
             <div>
-              <p className="text-xs uppercase tracking-[0.24em] text-[var(--muted)]">推荐方法</p>
+              <p className="text-xs uppercase tracking-[0.24em] text-[var(--muted)]">快速开始</p>
               <h3 className="mt-1 text-lg font-semibold text-[var(--text-strong)]">
-                {formatNumber(recommendedMethodSlice.length)} 个推荐项
+                先选择想解决的问题
               </h3>
             </div>
-            <button className="surface-chip" onClick={() => setMethodFilter("recommended")} type="button">
-              筛到推荐
+            <button className="surface-chip" onClick={() => openMethodGuide("object")} type="button">
+              查看使用指引
             </button>
           </div>
 
           <p className="mt-2 text-sm leading-7 text-[var(--muted)]">
-            这里优先放能直接上手、对当前数据更容易出结论的方法。点一下就能加入批量执行。
+            用日常工作目标开始选择。下方只保留少量匹配的方法组，加入后再补充字段和对象。
           </p>
 
-          <div className="mt-4 grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
-            {(recommendedBundles.length ? recommendedBundles.slice(0, 12) : []).map((bundle, index) => {
+          <div className="mt-4 grid gap-2 sm:grid-cols-2">
+            {METHOD_GOAL_PRESETS.map((goal) => {
+              const active = goal.id === selectedMethodGoal.id;
+              return (
+                <button
+                  aria-pressed={active}
+                  className={`rounded-[18px] border px-3 py-3 text-left transition ${
+                    active
+                      ? "border-[#74d0d9]/55 bg-[#74d0d9]/12 text-[var(--text-strong)]"
+                      : "border-white/10 bg-black/18 text-[var(--muted)] hover:bg-white/6"
+                  }`}
+                  key={goal.id}
+                  onClick={() => chooseMethodGoal(goal.id)}
+                  type="button"
+                >
+                  <span className="block text-sm font-semibold text-[var(--text-strong)]">{goal.title}</span>
+                  <span className="mt-1 block text-xs leading-5 text-[var(--muted)]">{goal.description}</span>
+                </button>
+              );
+            })}
+          </div>
+
+          <div className="mt-5 flex flex-wrap items-center justify-between gap-2">
+            <div>
+              <p className="text-xs font-semibold text-[var(--text-strong)]">{selectedMethodGoal.title}</p>
+              <p className="mt-1 text-xs leading-5 text-[var(--muted)]">已筛出 {formatNumber(quickStartBundles.length)} 组常用方法</p>
+            </div>
+            <span className="surface-chip">可先加入再配置</span>
+          </div>
+
+          <div className="mt-3 grid gap-3">
+            {(quickStartBundles.length ? quickStartBundles : []).map((bundle, index) => {
               const selected = bundle.methods.some((method) => selectedMethodIds.has(method.id));
               const interaction = bundleInteractionState(bundle, dataset);
               const blocked = interaction.blocked;
@@ -8383,8 +8472,8 @@ function MethodWorkspacePanel({
                 </button>
               );
             })}
-            {!recommendedBundles.length
-              ? recommendedMethodSlice.slice(0, 12).map((method, index) => {
+            {!quickStartBundles.length
+              ? recommendedMethodSlice.slice(0, 4).map((method, index) => {
                   const selected = selectedMethodIds.has(method.id);
                   const blockedReason = methodRunBlockReason(method, dataset);
                   const blocked = Boolean(blockedReason);
@@ -8501,12 +8590,14 @@ function MethodWorkspacePanel({
           </div>
 
           {catalogLoaded && methodSourceCounts.length ? (
-            <div className="mt-3 rounded-[20px] border border-white/10 bg-black/18 p-3">
+            <details className="mt-3 rounded-[20px] border border-white/10 bg-black/18 p-3">
+              <summary className="cursor-pointer text-xs font-medium text-[var(--muted)]">按来源进一步查找方法</summary>
+              <div className="mt-3">
               <div className="flex flex-wrap items-center justify-between gap-2">
-                <p className="text-[10px] uppercase tracking-[0.22em] text-[var(--muted)]">Source groups</p>
+                <p className="text-[10px] uppercase tracking-[0.22em] text-[var(--muted)]">方法来源</p>
                 {activeMethodSource ? (
                   <button className="surface-chip" onClick={() => setActiveMethodSource("")} type="button">
-                    Clear source
+                    清除来源筛选
                   </button>
                 ) : null}
               </div>
@@ -8516,17 +8607,18 @@ function MethodWorkspacePanel({
                     aria-pressed={activeMethodSource === source}
                     className={`surface-chip ${
                       activeMethodSource === source ? "border-[#f0d58c]/55 bg-[#f0d58c]/12 text-[var(--text-strong)]" : ""
-                    }`}
-                    key={source}
-                    onClick={() => setActiveMethodSource(activeMethodSource === source ? "" : source)}
-                    title={`Filter source ${source}`}
+                  }`}
+                  key={source}
+                  onClick={() => setActiveMethodSource(activeMethodSource === source ? "" : source)}
+                    title={`筛选来源：${source}`}
                     type="button"
                   >
                     {source} {count}
                   </button>
                 ))}
               </div>
-            </div>
+              </div>
+            </details>
           ) : null}
 
           {activeSelectedMethod ? (
@@ -8540,26 +8632,31 @@ function MethodWorkspacePanel({
           ) : null}
 
           <div className="mt-4 grid gap-2">
-            <button className="surface-chip justify-center" onClick={selectFilteredMethods} type="button">
-              勾选当前展示
-            </button>
-            <button className="surface-chip justify-center" onClick={clearFilteredMethods} type="button">
-              清空当前展示
-            </button>
             <button
               className="surface-chip justify-center"
               onClick={() => {
-                setMethodFilter("recommended");
-                if (recommendedBundles.length) {
-                  addBundleRunGroups(recommendedBundles.slice(0, 4));
+                setMethodFilter("all");
+                if (quickStartBundles.length) {
+                  addBundleRunGroups(quickStartBundles.slice(0, 2));
                   return;
                 }
                 replaceSelectedMethods(recommendedMethodSlice.slice(0, DEFAULT_SELECTED_METHOD_RUNS).map((method) => method.id));
               }}
               type="button"
             >
-              一键加入推荐
+              一键加入当前推荐
             </button>
+            <details className="rounded-[18px] border border-white/10 bg-black/12 p-3">
+              <summary className="cursor-pointer text-xs font-medium text-[var(--muted)]">批量选择与清空</summary>
+              <div className="mt-3 grid gap-2">
+                <button className="surface-chip justify-center" onClick={selectFilteredMethods} type="button">
+                  勾选当前展示
+                </button>
+                <button className="surface-chip justify-center" onClick={clearFilteredMethods} type="button">
+                  清空当前展示
+                </button>
+              </div>
+            </details>
           </div>
 
           <div className="mt-4 rounded-[22px] border border-white/10 bg-black/18 p-3">
@@ -8652,19 +8749,28 @@ function MethodWorkspacePanel({
         <section className="rounded-[28px] border border-white/10 bg-white/5 p-4">
           <div className="flex flex-wrap items-start justify-between gap-3">
             <div className="min-w-0">
-              <p className="text-xs uppercase tracking-[0.24em] text-[var(--muted)]">完整方法池</p>
+              <p className="text-xs uppercase tracking-[0.24em] text-[var(--muted)]">高级方法目录</p>
               <h3 className="mt-1 text-lg font-semibold text-[var(--text-strong)]">
-                {catalogLoaded ? `${formatNumber(filteredMethodBundles.length)} 个可见方法类` : "正在加载方法目录..."}
+                {catalogLoaded ? `${formatNumber(filteredMethodBundles.length)} 个可检索方法类` : "正在加载方法目录..."}
               </h3>
               <p className="mt-1 text-xs leading-5 text-[var(--muted)]">
-                前三段相同的方法明细会先合并为一类，再由详细信息展开具体子项。
+                可按技术名称、家族和来源继续筛选，并展开查看具体子方法。
               </p>
             </div>
-            <button className="surface-chip inline-flex items-center gap-2" onClick={() => setGroupedView((value) => !value)} type="button">
-              <ChevronDown size={14} />
-              {groupedView ? "按家族分组" : "按方法类平铺"}
-            </button>
           </div>
+
+          <details className="mt-4 rounded-[22px] border border-white/10 bg-black/12 p-3">
+            <summary className="flex cursor-pointer list-none items-center justify-between gap-3 text-sm font-semibold text-[var(--text-strong)]">
+              展开筛选、搜索和完整目录
+              <ChevronDown size={16} className="shrink-0" />
+            </summary>
+
+            <div className="mt-3 flex justify-end">
+              <button className="surface-chip inline-flex items-center gap-2" onClick={() => setGroupedView((value) => !value)} type="button">
+                <ChevronDown size={14} />
+                {groupedView ? "按家族分组" : "按方法类平铺"}
+              </button>
+            </div>
 
           <div className="mt-3 flex flex-wrap gap-2">
             {[
@@ -8776,6 +8882,7 @@ function MethodWorkspacePanel({
               </div>
             </div>
           ) : null}
+          </details>
         </section>
       </div>
     </section>
