@@ -4,6 +4,8 @@
 
 项目当前面向 **Windows 本机、回环地址、单用户** 工作流。公开 GitHub 仓库和公开 Release 提供代码与本地运行材料；公网多用户服务采用独立的部署架构，相关要求见 [安全与部署说明](security-deployment.zh-CN.md)。
 
+> **Windows 便携版状态：开发中。** 当前更新覆盖运行时、启动器和发布验收。新便携包发布前，请按仓库根目录的源码启动方式运行：执行 `PowerShell -ExecutionPolicy Bypass -File .\open-asteria-ui.ps1`，或在已克隆的仓库中双击 `start-asteria.cmd`。默认工作台地址为 `http://127.0.0.1:3000/analysis`。
+
 ## 先按角色选文档
 
 | 你要完成的事 | 首选文档 | 什么时候继续读 |
@@ -15,7 +17,7 @@
 | 配置 AI 提供方、CORS、Codex Runtime 或数据目录 | [配置参考](configuration-reference.zh-CN.md) | 涉及密钥、网络暴露或公开部署边界时继续读 [安全与部署说明](security-deployment.zh-CN.md) |
 | 使用或管理 Skill、Feature Trial、Report Agent Team 与 Codex Runtime | [本地扩展指南](local-extensions.zh-CN.md) | 需要逐项请求/返回字段时读 [API 参考](api-reference.zh-CN.md)；需要确认变量时读 [配置参考](configuration-reference.zh-CN.md) |
 | 修改代码、添加功能或提交 Pull Request | [开发与质量指南](development-guide.zh-CN.md) | 涉及报告生成时还必须遵守 [AI 强制发布链（中文）](architecture_ai_mandatory_chain.zh-CN.md) |
-| 构建 Windows 便携包、发布 GitHub Release、回滚发布 | [发布与运维指南](release-operations.zh-CN.md) | 使用便携包时读 [便携版离线指南](portable-user-guide.zh-CN.md) |
+| 跟踪 Windows 便携版更新、构建 GitHub Release、回滚发布 | [发布与运维指南](release-operations.zh-CN.md) | 便携版当前处于开发中；当前运行请使用仓库根目录的源码启动器 |
 
 ## 文档覆盖图
 
@@ -33,7 +35,7 @@
 | [安全与部署说明](security-deployment.zh-CN.md) | 密钥、公开仓库、网络暴露、可选 Runtime 和部署红线 | `SECURITY.md`、部署边界与安全测试 |
 | [开发与质量指南](development-guide.zh-CN.md) | 本地开发、测试、代码变更和文档维护 | `CONTRIBUTING.md`、`AGENTS.md`、项目脚本 |
 | [发布与运维指南](release-operations.zh-CN.md) | 源码/便携包构建、Release 验收、回滚 | `scripts/build_portable.ps1`、GitHub Actions |
-| [便携版离线指南](portable-user-guide.zh-CN.md) | ZIP 解压后的启动、数据位置、升级和排障 | 便携包启动脚本、`run_desktop.py` |
+| [便携版离线指南](portable-user-guide.zh-CN.md) | 开发中的 ZIP 启动目标、数据位置、升级和排障 | 便携包启动脚本、`run_desktop.py` |
 | [便携版 Codex Runtime（中文）](portable-codex-runtime.zh-CN.md) | 可选 Runtime 的发现、开关、健康检查与发布边界 | Runtime 服务、`.env.example` |
 
 | [本地扩展指南](local-extensions.zh-CN.md) | Skill、Feature Trial、Report Agent Team、Report Agent Session 与 Codex Runtime 的入口、流程、结果和边界 | Lab 前端、扩展服务、Runtime 服务 |

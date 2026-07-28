@@ -26,17 +26,15 @@
 
 ## 快速开始
 
-### 使用 Windows 便携发布包
+### Windows 便携版（开发中）
 
-1. 在 [GitHub Releases](https://github.com/wzn1118/AsteriaAnalyst/releases/latest) 下载 `AsteriaAnalyst-portable.zip`。
-2. 解压到本机目录后双击 `start-asteria.bat`。
-3. 启动器会打开本地分析界面；数据、运行产物和报告均保留在本机。
+Windows 便携版正在更新运行时、启动器和发布验收流程。新的 `AsteriaAnalyst-portable.zip` 发布前，GitHub Releases 中的历史资产继续对应各自标签；当前版本请使用下方源码启动方式。
 
-便携版自带运行时，无需预先配置 Python 或 Node.js。完整步骤、校验方式和常见问题见 [便携版用户指南](docs/portable-user-guide.zh-CN.md)。
+便携版完成发布后会提供免预装 Python 和 Node.js 的解压启动流程、SHA-256 校验值和 Windows 冒烟验证记录。目标包结构与验收要求见 [便携版用户指南](docs/portable-user-guide.zh-CN.md)。
 
-### 从源码启动
+### 当前可用：从源码启动
 
-适合开发、二次集成和参与贡献。准备 Windows、Python 3.11 与 Node.js 20+ 后执行：
+适合日常使用、开发、二次集成和参与贡献。准备 Windows、Python 3.11 与 Node.js 20+ 后执行：
 
 ```powershell
 git clone https://github.com/wzn1118/AsteriaAnalyst.git
@@ -44,7 +42,7 @@ cd AsteriaAnalyst
 PowerShell -ExecutionPolicy Bypass -File .\open-asteria-ui.ps1
 ```
 
-默认入口为 `http://127.0.0.1:3000/analysis`，服务健康检查为 `http://127.0.0.1:8000/health`。启动参数、端口处理和排障步骤见 [快速开始](docs/getting-started.zh-CN.md) 与 [开发指南](docs/development-guide.zh-CN.md)。
+脚本会准备本机依赖、启动后端和前端，并打开 `http://127.0.0.1:3000/analysis`；服务健康检查为 `http://127.0.0.1:8000/health`。已克隆源码后，也可双击根目录的 `start-asteria.cmd` 启动相同本机工作流。启动参数、端口处理和排障步骤见 [快速开始](docs/getting-started.zh-CN.md) 与 [开发指南](docs/development-guide.zh-CN.md)。
 
 ## 产品地图
 

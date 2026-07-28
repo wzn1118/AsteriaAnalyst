@@ -1,6 +1,8 @@
 # Asteria Analyst Windows 便携版离线指南
 
-本文件会随 `AsteriaAnalyst-portable.zip` 一起提供，供 Windows 本机使用者阅读，无需预装 Python 或 Node.js 开发环境。它涵盖单用户、回环地址和本地文件处理流程。
+> **当前状态：开发中。** Windows 便携版正在更新运行时、启动器和发布验收。新 `AsteriaAnalyst-portable.zip` 发布前，请使用仓库根目录的源码启动器：执行 `PowerShell -ExecutionPolicy Bypass -File .\open-asteria-ui.ps1`，或在已克隆的仓库中双击 `start-asteria.cmd`。默认工作台地址为 `http://127.0.0.1:3000/analysis`。
+
+本文件描述新 `AsteriaAnalyst-portable.zip` 发布后的离线使用流程，供 Windows 本机使用者阅读。它覆盖免预装 Python 或 Node.js 的目标运行方式、单用户回环地址和本地文件处理流程。
 
 ## 1. 你需要什么
 
